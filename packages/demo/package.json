@@ -9,6 +9,7 @@
   },
   "license": "MIT",
   "author": "Stijn Van Hulle <stijn@stijnvanhulle.be",
+  "sideEffects": false,
   "main": "dist/index.mjs",
   "unpkg": "dist/index.global.js",
   "module": "dist/index.js",

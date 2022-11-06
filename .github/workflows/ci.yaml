@@ -29,14 +29,14 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.NPM_TOKEN }}
           fetch-depth: 0
 
       - name: Checkout [Default Branch]
         uses: actions/checkout@v2
         if: ${{ github.event_name != 'pull_request' }}
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.NPM_TOKEN }}
           fetch-depth: 0
 
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
@@ -130,7 +130,7 @@ jobs:
         if: ${{ success() && (github.event_name != 'pull_request' || github.event.action == 'closed' && github.event.pull_request.merged == true) }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npx nx affected --target release --all
  

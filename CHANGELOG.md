@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.0.0](https://github.com/stijnvanhulle/template/compare/demo-v1.0.0...demo-v2.0.0) (2022-11-06)
+## 1.0.0 (2022-11-06)
 
 
 ### ⚠ BREAKING CHANGES
@@ -17,4 +17,5 @@
 * changelog + release yml ([68edf5f](https://github.com/stijnvanhulle/template/commit/68edf5f548531e3907b491f90688ba4c52f93e4e))
 * helloworld ([82e2297](https://github.com/stijnvanhulle/template/commit/82e22970b868a7386759e432820d2181d1b6fb26))
 * tryout ([9e87343](https://github.com/stijnvanhulle/template/commit/9e8734367f8c806f6443d6a7b9ec9303e89d06c8))
+* update ([1e87da2](https://github.com/stijnvanhulle/template/commit/1e87da283bd4470473b18a0b8def0870464f5c1c))
 * update ([8a42858](https://github.com/stijnvanhulle/template/commit/8a42858a3434553c0c798f27d4f08e3f5cf7228c))

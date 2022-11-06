@@ -1,0 +1,44 @@
+{
+  "name": "@stijnvanhulle/demo",
+  "version": "0.0.1",
+  "description": "Demo",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stijnvanhulle/components.git"
+  },
+  "license": "MIT",
+  "author": "Stijn Van Hulle <stijn@stijnvanhulle.be",
+  "main": "dist/index.mjs",
+  "unpkg": "dist/index.global.js",
+  "module": "dist/index.js",
+  "browser": "build/components.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "deploy": "pnpm publish",
+    "prepack":"pnpm build",
+    "pre-commit": "echo 'pre-commit not configured'",
+    "pre-push": "pnpm typecheck",
+    "test": "jest --config ../../jest.config.js --runInBand --testPathPattern=packages/demo/src",
+    "test:local": "jest --config ../../jest.config.js --testPathPattern=packages/demo/src --maxWorkers=50%",
+    "test:watch": "jest --config ../../jest.config.js --testPathPattern=packages/demo/src --maxWorkers=25% --watch",
+    "upgrade": "ncu -u",
+    "upgrade:local": "ncu --interactive --doctor",
+    "typecheck": "tsc -p ./tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "tsup": "^6.4.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

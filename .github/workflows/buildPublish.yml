@@ -1,0 +1,43 @@
+name: Build package and publish
+
+on:
+  push:
+    branches:    
+      - main
+      - 'releases/**'
+  pull_request:
+  workflow_dispatch:
+
+env: 
+  NODE_VERSION: 'lts/*'
+  FOLDER: .
+
+defaults:
+  run:
+    working-directory: .
+
+jobs:
+  test: 
+    name: 'Node ${{ matrix.node }}'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['lts/*']
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: pnpm i
+
+      - name: Run unit tests
+        run: pnpm test
+        
+      - name: Run linter
+        run: pnpm run lint

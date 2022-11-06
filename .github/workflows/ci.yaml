@@ -25,7 +25,7 @@ jobs:
         pnpm-version: [7]
     steps:
       - name: Checkout [Pull Request]
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         if: ${{ github.event_name == 'pull_request' }}
         with:
           ref: ${{ github.event.pull_request.head.sha }}
@@ -33,7 +33,7 @@ jobs:
           fetch-depth: 0
 
       - name: Checkout [Default Branch]
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         if: ${{ github.event_name != 'pull_request' }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -55,6 +55,7 @@ jobs:
           node-version: '${{ matrix.node-version }}'
           npm-version: '${{ matrix.npm-version }}'
           yarn-version: '${{ matrix.yarn-version }}'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install PNPM
         if: steps.package_manager.outputs.name == 'pnpm'

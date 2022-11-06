@@ -1,6 +1,6 @@
 {
   "name": "@stijnvanhulle/demo",
-  "version": "2.0.1",
+  "version": "2.0.0",
   "description": "Demo",
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
   "scripts": {
     "build": "tsup",
     "release": "pnpm publish --no-git-check",
-    "prepack": "pnpm build",
+    "prepack":"pnpm build",
     "pre-commit": "echo 'pre-commit not configured'",
     "pre-push": "pnpm typecheck",
     "test": "jest --config ../../jest.config.js --runInBand --testPathPattern=packages/demo/src",
@@ -39,5 +39,9 @@
   },
   "devDependencies": {
     "tsup": "^6.4.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }

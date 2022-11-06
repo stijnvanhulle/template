@@ -25,7 +25,6 @@
   ],
   "scripts": {
     "build": "tsup",
-    "release": "npx semantic-release",
     "prepack":"pnpm build",
     "pre-commit": "echo 'pre-commit not configured'",
     "pre-push": "pnpm typecheck",

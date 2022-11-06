@@ -21,7 +21,7 @@ jobs:
           node-version: 16.14.2
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm --filter "./packages/**" --prefer-offline install
+        run: pnpm --prefer-offline install
       - run: pnpm run test
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
@@ -38,7 +38,7 @@ jobs:
           node-version: 16.14.2
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm --filter "./packages/**" --prefer-offline install
+        run: pnpm --prefer-offline install
       - run: pnpm run lint
   typecheck:
     name: 'Typecheck'
@@ -53,5 +53,5 @@ jobs:
           node-version: 16.14.2
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm --filter "./packages/**" --prefer-offline install
+        run: pnpm --prefer-offline install
       - run: pnpm run typecheck

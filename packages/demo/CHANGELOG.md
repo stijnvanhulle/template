@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/stijnvanhulle/template/compare/demo-v2.0.1...demo-v2.0.2) (2022-11-06)
+
+
+### Bug Fixes
+
+* naming ([afcc9ac](https://github.com/stijnvanhulle/template/commit/afcc9ac8edee939b48363f519eb048ed22f5740e))
+
 ## [2.0.1](https://github.com/stijnvanhulle/template/compare/demo-v2.0.0...demo-v2.0.1) (2022-11-06)
 
 

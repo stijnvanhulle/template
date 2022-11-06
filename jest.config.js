@@ -4,23 +4,7 @@ module.exports = {
   projects: ["<rootDir>/packages/*/jest.config.js"],
   testEnvironment: "jsdom",
   transform: {
-    "^.+\\.(t|j)sx?$": [
-      "@swc/jest",
-      {
-        sourceMaps: true,
-        jsc: {
-          parser: {
-            syntax: "typescript",
-            tsx: true,
-          },
-          transform: {
-            react: {
-              runtime: "automatic",
-            },
-          },
-        },
-      },
-    ],
+    "^.+\\.(t|j)sx?$": "@swc/jest",
   },
   coveragePathIgnorePatterns: ["/node_modules/"],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],

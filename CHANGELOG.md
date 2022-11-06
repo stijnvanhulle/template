@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/stijnvanhulle/template/compare/template-v1.0.0...template-v1.0.1) (2022-11-06)
+
+
+### Bug Fixes
+
+* ci npm ([910d3e5](https://github.com/stijnvanhulle/template/commit/910d3e5a3af4f556eee79701e693163dce0722aa))
+
 ## 1.0.0 (2022-11-06)
 
 

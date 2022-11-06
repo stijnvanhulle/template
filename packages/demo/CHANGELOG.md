@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/stijnvanhulle/template/compare/demo-v2.0.0...demo-v2.0.1) (2022-11-06)
+
+
+### Bug Fixes
+
+* ci npm ([910d3e5](https://github.com/stijnvanhulle/template/commit/910d3e5a3af4f556eee79701e693163dce0722aa))
+
 ## [2.0.0](https://github.com/stijnvanhulle/template/compare/demo-v1.0.0...demo-v2.0.0) (2022-11-06)
 
 

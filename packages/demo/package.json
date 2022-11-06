@@ -25,6 +25,7 @@
   ],
   "scripts": {
     "build": "tsup",
+    "release": "pnpm publish",
     "prepack":"pnpm build",
     "pre-commit": "echo 'pre-commit not configured'",
     "pre-push": "pnpm typecheck",

@@ -4,14 +4,15 @@
   "description": "Demo",
   "repository": {
     "type": "git",
-    "url": "git://github.com/stijnvanhulle/components.git"
+    "url": "git://github.com/stijnvanhulle/template.git",
+    "directory": "packages/demo"
   },
   "license": "MIT",
   "author": "Stijn Van Hulle <stijn@stijnvanhulle.be",
   "main": "dist/index.mjs",
   "unpkg": "dist/index.global.js",
   "module": "dist/index.js",
-  "browser": "build/components.js",
+  "browser": "build/index.global.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
@@ -24,7 +25,7 @@
   ],
   "scripts": {
     "build": "tsup",
-    "release": "pnpm publish",
+    "release": "npx semantic-release",
     "prepack":"pnpm build",
     "pre-commit": "echo 'pre-commit not configured'",
     "pre-push": "pnpm typecheck",
@@ -39,6 +40,7 @@
     "tsup": "^6.4.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }

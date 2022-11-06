@@ -24,7 +24,7 @@
     "pre-push": "nx affected --target=pre-push",
     "release": "nx run-many --all --target=release --parallel=1",
     "release:affected": "nx affected --target=release --parallel=1",
-    "test": "cross-env NODE_OPTIONS=--max_old_space_size=4096 jest --runInBand --passWithNoTests",
+    "test": "jest --runInBand --passWithNoTests",
     "test:local": "jest --maxWorkers=50%",
     "test:watch": "jest --maxWorkers=25% --watch",
     "typecheck": "nx run-many --all --target=typecheck",

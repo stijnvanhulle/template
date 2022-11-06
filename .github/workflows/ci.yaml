@@ -29,14 +29,14 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-          token: ${{ secrets.NPM_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: Checkout [Default Branch]
         uses: actions/checkout@v2
         if: ${{ github.event_name != 'pull_request' }}
         with:
-          token: ${{ secrets.NPM_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: Derive appropriate SHAs for base and head for `nx affected` commands

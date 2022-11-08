@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/stijnvanhulle/template/compare/demo-v2.0.2...demo-v2.1.0) (2022-11-08)
+
+
+### Features
+
+* turborepo ([3ee45c7](https://github.com/stijnvanhulle/template/commit/3ee45c762d1d26abaf424e8feb32b8433ffe0e31))
+
 ## [2.0.2](https://github.com/stijnvanhulle/template/compare/demo-v2.0.1...demo-v2.0.2) (2022-11-06)
 
 

@@ -1,14 +1,14 @@
-const { pathsToModuleNameMapper } = require("ts-jest");
+const { pathsToModuleNameMapper } = require('ts-jest');
 
-const tsconfig = require("./tsconfig.json");
+const tsconfig = require('./tsconfig.json');
 
-const baseConfig = require("../../jest.config.js");
+const baseConfig = require('../../jest.config.js');
 
-const packageName = "demo";
+const packageName = 'demo';
 
 module.exports = {
   ...baseConfig,
-  rootDir: "../..",
+  rootDir: '../..',
   roots: [`<rootDir>/packages/${packageName}`],
   displayName: packageName,
   globals: {},

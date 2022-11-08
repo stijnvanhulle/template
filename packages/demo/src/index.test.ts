@@ -1,5 +1,5 @@
-import { helloWorld } from "./index";
+import { helloWorld } from './index';
 
-test("Demo", () => {
+test('Demo', () => {
   expect(helloWorld).toBeDefined();
 });

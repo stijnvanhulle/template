@@ -32,6 +32,7 @@ importers:
       nx: ^15.0.12
       prettier: ^2.7.1
       prettier-eslint: ^15.0.1
+      rome: ^10.0.0
       ts-jest: ^29.0.3
       ts-node: ^10.9.1
       tsup: ^6.4.0
@@ -67,6 +68,7 @@ importers:
       nx: 15.0.12_@swc+core@1.3.14
       prettier: 2.7.1
       prettier-eslint: 15.0.1
+      rome: 10.0.0
       ts-jest: 29.0.3_lg2chfqpf6etezq7e5mtbxakgq
       ts-node: 10.9.1_c7vtmw4r5lhzpzjntnohxhujqu
       tsup: 6.4.0_gf7ombyquhbpfyf4qnzofdw3d4
@@ -1133,6 +1135,54 @@ packages:
       '@pnpm/network.ca-file': 1.0.1
       config-chain: 1.1.13
     dev: true
+
+  /@rometools/cli-darwin-arm64/10.0.0:
+    resolution: {integrity: sha512-JT7JccEtKyFDHXy0MxhwHN4Zc94s/kW+0aTczb1ChAoCStfjj5jWzv/yQnm+HFw5Vf3ukAocLsDNRN6d9gQYbQ==}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@rometools/cli-darwin-x64/10.0.0:
+    resolution: {integrity: sha512-HORYhz8eM3L3XePPNBhU44zFpTVfhpuO4B7fjdfho7z9kwTW22M0fVvuPrxxPauxmin7gHM8lxCD2jHxabg34Q==}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@rometools/cli-linux-arm64/10.0.0:
+    resolution: {integrity: sha512-/L3jxo9RUwJ+uvDvAPCquAw10ccpZDuzADfZff5tHd6Fzv28cAToC3JrN/2miGpur0Fx/NIZIPbAsdI4NWGIRA==}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@rometools/cli-linux-x64/10.0.0:
+    resolution: {integrity: sha512-KC6CDeSR4haRfxmfrvCn8+NzQ7X31pDjFgD+m+PAbSXOeMr/KHmU7eDsjC3d47ORYYkYXqhx9VxHe1w3IEShMg==}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@rometools/cli-win32-arm64/10.0.0:
+    resolution: {integrity: sha512-8XWjx7Z1dMp9q4Lvi+ax4+Y8vkbp7JHVdfrTSMQTyUA9ofaW6ah1h9iGPuKic057VTZGX66/KazC5qNTbrlckQ==}
+    cpu: [arm64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@rometools/cli-win32-x64/10.0.0:
+    resolution: {integrity: sha512-mAf3f32oE919cZ86KVMR/X0VOs+C16jEUyt1ww2UPw/rKUmm0DNfuT6/m4FQW8GEHdCBC8z3zdRVCd05VK7UJg==}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
 
   /@sinclair/typebox/0.24.51:
     resolution: {integrity: sha512-1P1OROm/rdubP5aFDSZQILU0vrLCJ4fvHt6EoqHEM+2D/G5MK3bIaymUKLit8Js9gbns5UyJnkP/TZROLw4tUA==}
@@ -6118,6 +6168,20 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.2
+    dev: true
+
+  /rome/10.0.0:
+    resolution: {integrity: sha512-dQnIlzgHDt94N4JoFaqe9e2aDAZfdmyGOW4UaefMztDph41mt75Mg0aeJ/C7JgcIOLbp9D4LD+omyUB5YFUUPw==}
+    engines: {node: '>=14.*'}
+    hasBin: true
+    requiresBuild: true
+    optionalDependencies:
+      '@rometools/cli-darwin-arm64': 10.0.0
+      '@rometools/cli-darwin-x64': 10.0.0
+      '@rometools/cli-linux-arm64': 10.0.0
+      '@rometools/cli-linux-x64': 10.0.0
+      '@rometools/cli-win32-arm64': 10.0.0
+      '@rometools/cli-win32-x64': 10.0.0
     dev: true
 
   /run-parallel/1.2.0:

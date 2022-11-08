@@ -2,6 +2,7 @@
 
 Use of:
 - Nx
+- Turborepo
 - PNPM
 - Typescript
 - Jest

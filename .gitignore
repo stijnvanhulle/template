@@ -11,11 +11,13 @@ DS_STORE
 .vscode
 .tgz
 .zip
+.turbo
 
 umd
 build
 lib
 esnext
+dist
 types
 es
 bin/webpack

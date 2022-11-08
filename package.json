@@ -15,20 +15,17 @@
     ]
   },
   "scripts": {
-    "build": "nx run-many --all --target=build",
-    "build:affected": "nx affected --target=build",
+    "build": "turbo run build",
     "graph": "nx graph ",
     "lint": "eslint packages/**/*.ts",
     "lint-fix": "eslint packages/**/*.ts --quiet --fix",
-    "pre-commit": "nx affected --target=pre-commit && pnpm run lint-fix",
-    "pre-push": "nx affected --target=pre-push",
-    "release": "nx run-many --all --target=release --parallel=1",
-    "release:affected": "nx affected --target=release --parallel=1",
+    "pre-commit": "turbo run pre-commit && pnpm run lint-fix",
+    "pre-push": "turbo run pre-push",
+    "release": "turbo run release",
     "test": "jest --runInBand --passWithNoTests",
     "test:local": "jest --maxWorkers=50%",
     "test:watch": "jest --maxWorkers=25% --watch",
-    "typecheck": "nx run-many --all --target=typecheck",
-    "typecheck:affected": "nx affected --target=typecheck",
+    "typecheck": "turbo run typecheck",
     "upgrade": "ncu -u && ncu -u --packageFile **/packages/**/package.json"
   },
   "devDependencies": {
@@ -60,6 +57,7 @@
     "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
     "tsup": "^6.4.0",
+    "turbo": "^1.6.3",
     "typescript": "^4.8.4"
   },
   "engines": {

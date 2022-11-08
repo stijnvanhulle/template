@@ -16,27 +16,19 @@
       ]
     },
     "typecheck": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": [],
       "outputs": []
     },
     "pre-commit": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": [],
       "outputs": []
     },
     "pre-push": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": [],
       "outputs": []
     },
     "release": {
-      "dependsOn": [
-        "build"
-      ],
+      "dependsOn": [],
       "outputs": []
     }
   }

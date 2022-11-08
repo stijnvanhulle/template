@@ -18,6 +18,7 @@ build
 lib
 esnext
 dist
+**/dist/**
 types
 es
 bin/webpack

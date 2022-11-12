@@ -1,8 +1,18 @@
 {
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
-  "separate-pull-requests": true,
+  "separate-pull-requests": false,
   "packages": {
+    "packages/core": {
+      "component": "@stijnvanhulle/template-core",
+      "changelog-path": "CHANGELOG.md",
+      "release-type": "node",
+      "bump-minor-pre-major": false,
+      "bump-patch-for-minor-pre-major": false,
+      "draft": false,
+      "prerelease": false
+    },
     "packages/demo": {
+      "component": "@stijnvanhulle/template-demo",
       "changelog-path": "CHANGELOG.md",
       "release-type": "node",
       "bump-minor-pre-major": false,
@@ -10,5 +20,14 @@
       "draft": false,
       "prerelease": false
     }
-  }
+  },
+  "plugins": [
+    {
+      "type": "linked-versions",
+      "group-name": "@stijnvanhulle",
+      "components": [
+        "@code-regenerator/template-core",  "@code-regenerator/template-demo"
+      ]
+    }
+  ]
 }

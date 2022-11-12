@@ -1,5 +1,5 @@
 import { helloWorld } from "./index";
 
 test("Demo", () => {
-  expect(helloWorld).toBeDefined();
+  expect(helloWorld).toBe("Hello World Core!");
 });

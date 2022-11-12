@@ -1,11 +1,11 @@
 {
-  "name": "@stijnvanhulle/template-demo",
+  "name": "@stijnvanhulle/template-core",
   "version": "1.0.0",
-  "description": "Demo",
+  "description": "Core",
   "repository": {
     "type": "git",
     "url": "git://github.com/stijnvanhulle/template.git",
-    "directory": "packages/demo"
+    "directory": "packages/core"
   },
   "license": "MIT",
   "author": "Stijn Van Hulle <stijn@stijnvanhulle.be",
@@ -31,9 +31,9 @@
     "prepack": "pnpm build",
     "pre-commit": "echo 'pre-commit not configured'",
     "pre-push": "pnpm typecheck",
-    "test": "jest --config ../../jest.config.js --runInBand --testPathPattern=packages/demo/src",
-    "test:local": "jest --config ../../jest.config.js --testPathPattern=packages/demo/src --maxWorkers=50%",
-    "test:watch": "jest --config ../../jest.config.js --testPathPattern=packages/demo/src --maxWorkers=25% --watch",
+    "test": "jest --config ../../jest.config.js --runInBand --testPathPattern=packages/core/src",
+    "test:local": "jest --config ../../jest.config.js --testPathPattern=packages/core/src --maxWorkers=50%",
+    "test:watch": "jest --config ../../jest.config.js --testPathPattern=packages/core/src --maxWorkers=25% --watch",
     "upgrade": "ncu -u",
     "upgrade:local": "ncu --interactive --doctor",
     "typecheck": "tsc -p ./tsconfig.json --noEmit"

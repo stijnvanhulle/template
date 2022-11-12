@@ -9,6 +9,14 @@
         "dist/**"
       ]
     },
+    "start": {
+      "dependsOn": [
+        "^start"
+      ],
+      "outputs": [
+       
+      ]
+    },
     "test": {
       "dependsOn": [],
       "outputs": [

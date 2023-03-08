@@ -19,6 +19,13 @@
       "bump-patch-for-minor-pre-major": false,
       "draft": false,
       "prerelease": false
+    },
+    ".": {
+      "changelog-path": "CHANGELOG.md",
+      "bump-minor-pre-major": false,
+      "bump-patch-for-minor-pre-major": false,
+      "draft": false,
+      "prerelease": false
     }
   },
   "plugins": [
@@ -26,7 +33,8 @@
       "type": "linked-versions",
       "group-name": "@stijnvanhulle",
       "components": [
-        "@stijnvanhulle/template-core", "@stijnvanhulle/template-demo"
+        "@stijnvanhulle/template-core",
+        "@stijnvanhulle/template-demo"
       ]
     }
   ]

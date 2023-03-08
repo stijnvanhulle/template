@@ -1,6 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
   "separate-pull-requests": false,
+  "bootstrap-sha": "e345c0712f361c0ec2d49656f9cea5a6d845c163",
   "packages": {
     "packages/core": {
       "component": "@stijnvanhulle/template-core",

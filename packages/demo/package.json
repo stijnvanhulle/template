@@ -39,7 +39,7 @@
     "typecheck": "tsc -p ./tsconfig.json --noEmit"
   },
   "devDependencies": {
-    "tsup": "^6.6.3"
+    "tsup": "^6.7.0"
   },
   "publishConfig": {
     "access": "public",

@@ -1,5 +1,5 @@
-import { core } from './index';
+import { core } from './index'
 
 test('Core', () => {
-  expect(core).toBeDefined();
-});
+  expect(core).toBeDefined()
+})

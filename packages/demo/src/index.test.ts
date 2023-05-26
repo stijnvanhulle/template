@@ -1,5 +1,5 @@
-import { helloWorld } from "./index";
+import { helloWorld } from './index'
 
-test("Demo", () => {
-  expect(helloWorld).toBe("Hello World Core!");
-});
+test('Demo', () => {
+  expect(helloWorld).toBe('Hello World Core!')
+})

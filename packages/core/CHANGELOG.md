@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/stijnvanhulle/template/compare/@stijnvanhulle/template-core-v2.0.2...@stijnvanhulle/template-core-v2.1.0) (2023-05-26)
+
+
+### Features
+
+* monthly upgrade of packages ([3bebce4](https://github.com/stijnvanhulle/template/commit/3bebce4742f5c22f78015b1cb8bcb16e9d97f548))
+
 ## [2.0.2](https://github.com/stijnvanhulle/template/compare/@stijnvanhulle/template-core-v2.0.1...@stijnvanhulle/template-core-v2.0.2) (2023-03-25)
 
 

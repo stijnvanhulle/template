@@ -1,6 +1,9 @@
-umd
-build
-config
-esnext
-es
-lib
+dist/**
+dist
+**/dist/**
+coverage/**
+**/coverage/**
+mocks/**
+**/mocks/**
+*.d.ts
+**.d.ts

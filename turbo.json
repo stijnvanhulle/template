@@ -6,38 +6,72 @@
         "^build"
       ],
       "outputs": [
-        "dist/**"
+        "dist/**",
+        ".next/**"
       ]
+    },
+    "clean": {
+      "dependsOn": [
+        "^clean"
+      ],
+      "outputs": [],
+      "cache": false,
+      "outputMode": "new-only"
     },
     "start": {
       "dependsOn": [
         "^start"
       ],
       "outputs": [
-       
-      ]
+        "dist/**"
+      ],
+      "cache": false,
+      "persistent": true
     },
     "test": {
       "dependsOn": [],
       "outputs": [
         "coverage/**"
-      ]
+      ],
+      "cache": false
+    },
+    "lint": {
+      "outputs": [],
+      "cache": false
+    },
+    "lint-fix": {
+      "outputs": [],
+      "cache": false,
+      "outputMode": "new-only"
     },
     "typecheck": {
       "dependsOn": [],
-      "outputs": []
-    },
-    "pre-commit": {
-      "dependsOn": [],
-      "outputs": []
-    },
-    "pre-push": {
-      "dependsOn": [],
-      "outputs": []
+      "outputs": [],
+      "cache": false
     },
     "release": {
-      "dependsOn": [],
-      "outputs": []
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [],
+      "cache": false
+    },
+    "release:canary": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [],
+      "cache": false
+    },
+    "generate": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "gen/**",
+        "src/gen/**"
+      ],
+      "outputMode": "new-only"
     }
   }
 }

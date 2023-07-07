@@ -1,7 +1,19 @@
 {
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
   "separate-pull-requests": false,
-  "bootstrap-sha": "e345c0712f361c0ec2d49656f9cea5a6d845c163",
+  "changelog-sections": [
+    { "type": "feat", "section": "✨ Features" },
+    { "type": "feature", "section": "✨ Features" },
+    { "type": "fix", "section": "🐞 Bug Fixes" },
+    { "type": "perf", "section": "🚀 Performance Improvements" },
+    { "type": "revert", "section": "Reverts" },
+    { "type": "docs", "section": "📚 Documentation" },
+    { "type": "style", "section": "Styles", "hidden": true },
+    { "type": "chore", "section": "📦 Miscellaneous Chores", "hidden": true },
+    { "type": "refactor", "section": "Code Refactoring", "hidden": true },
+    { "type": "test", "section": "Tests", "hidden": true },
+    { "type": "ci", "section": "Continuous Integration", "hidden": true }
+  ],
   "packages": {
     "packages/core": {
       "component": "@stijnvanhulle/template-core",

@@ -1,13 +1,23 @@
+name: release-please
 on:
   push:
     branches:
       - main
-name: release-please
+      
+  workflow_dispatch:
+
+
+permissions:
+  contents: write
+  pull-requests: write
+  
 jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: google-github-actions/release-please-action@v3
+      - name: Release
+        uses: google-github-actions/release-please-action@v3.7.9
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           command: manifest
           monorepo-tags: true

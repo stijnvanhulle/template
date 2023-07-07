@@ -1,0 +1,6 @@
+{
+  "packages": ["packages/core", "packages/demo"],
+  "sandboxes": [],
+  "node": "18",
+  "installCommand": "install:csb"
+}

@@ -1,0 +1,35 @@
+.codesandbox
+.devcontainer
+.github
+*.html
+*.json
+*.yaml
+*.mdx
+*.css
+*.sass
+*.scss
+*.MD
+**/*.d.ts
+*.d.ts
+*rc.js
+*rc
+public
+assets
+LICENSE
+
+# builds
+types
+build
+*/build
+dist
+**/dist
+lib
+es
+artifacts
+coverage
+*.tgz
+
+## custom ones
+# /e2e
+.next
+!src

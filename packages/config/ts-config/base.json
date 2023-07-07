@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Default",
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext", 
+    "moduleResolution": "node",
+    "strict": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "jsx": "react-jsx",
+    "declaration": true,
+    "declarationMap": false,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "types": [
+      "vitest/globals",
+      "bun-types"
+    ],
+    "paths": {
+    }
+  },
+  "exclude": [
+    "**/node_modules",
+    "**/types/**"
+  ]
+}

@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/stijnvanhulle/template/compare/@stijnvanhulle/template-demo-v2.1.0...@stijnvanhulle/template-demo-v2.1.1) (2023-07-07)
+
+
+### 🐞 Bug Fixes
+
+* update template based on [@kubb](https://github.com/kubb) changes ([0fa37f3](https://github.com/stijnvanhulle/template/commit/0fa37f36e104fe6a7e828d1af894459543895dca))
+
 ## [2.1.0](https://github.com/stijnvanhulle/template/compare/@stijnvanhulle/template-demo-v2.0.2...@stijnvanhulle/template-demo-v2.1.0) (2023-05-26)
 
 

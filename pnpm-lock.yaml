@@ -29,8 +29,8 @@ importers:
         specifier: ^0.33.0
         version: 0.33.0(vitest@0.33.0)
       bun-types:
-        specifier: ^0.6.14
-        version: 0.6.14
+        specifier: ^0.7.1
+        version: 0.7.1
       jest:
         specifier: ^29.6.2
         version: 29.6.2(@types/node@20.4.5)(ts-node@10.9.1)
@@ -2066,8 +2066,8 @@ packages:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
     dev: true
 
-  /bun-types@0.6.14:
-    resolution: {integrity: sha512-sRdvu+t59+H/TVOe7FSGFWYITbqkhiCx9NxVUHt2+JOXM9gUOe5uMPvVvcr/hGngnh+/yb5a7uPE4JaS6uxujg==}
+  /bun-types@0.7.1:
+    resolution: {integrity: sha512-TwB4gqwPIWuBFpvISEOciXr9W+yi5b+zRLiydOxawXuQEdgFHnEYdIUDZbIJ6/dtiHJIGBBS/KY+0qwJL5FDKQ==}
     dev: true
 
   /bundle-require@4.0.1(esbuild@0.18.11):

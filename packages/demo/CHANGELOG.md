@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.2](https://github.com/stijnvanhulle/template/compare/@stijnvanhulle/template-demo-v2.1.1...@stijnvanhulle/template-demo-v2.1.2) (2023-08-11)
+
+
+### 🐞 Bug Fixes
+
+* upgrade packages ([2ee6bd8](https://github.com/stijnvanhulle/template/commit/2ee6bd84aaebaab9d7b425ce9ea3dc5385636a12))
+
 ## [2.1.1](https://github.com/stijnvanhulle/template/compare/@stijnvanhulle/template-demo-v2.1.0...@stijnvanhulle/template-demo-v2.1.1) (2023-07-07)
 
 

@@ -10,6 +10,7 @@
 // @ts-ignore
 import eslint from '@eslint/js'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
+// @ts-ignore
 import tsParser from '@typescript-eslint/parser'
 // @ts-ignore
 import prettier from 'eslint-config-prettier'

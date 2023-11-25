@@ -1,0 +1,25 @@
+{
+  "extends": "@stijnvanhulle/ts-config/bundler.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "types": [
+      "vitest/globals",
+      "bun-types",
+      "@stijnvanhulle/ts-config"
+    ],
+    "paths": {
+      "@stijnvanhulle/template-core": [
+        "packages/core/src/index.ts"
+      ]
+    }
+  },
+  "include": [
+    "./package.json",
+    "./tsup.config.ts",
+    "./vitest.config.ts",
+    "./eslint.config.js"
+  ],
+  "exclude": [
+    "**/node_modules/**"
+  ]
+}

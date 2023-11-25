@@ -4,23 +4,25 @@
  * @example `ESLINT_USE_FLAT_CONFIG=true eslint`
  */
 
-import path from 'node:path'
+import { dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-//configs
-import { configs as kubbConfigs } from '@stijnvanhulle/eslint-config/flat'
+// configs
+import config from '@stijnvanhulle/eslint-config/flat'
 
 /** @type {import("eslint").Linter.FlatConfig[]} */
 export default [
-  ...kubbConfigs,
+  config.configs.recommended,
+  config.configs.tests,
+  config.configs.build,
   {
-    ignores: ['vitest.config.ts', 'vite.config.ts'],
     files: ['packages/**'],
+    ignores: ['vitest.config.ts', 'vite.config.ts'],
     languageOptions: {
       parserOptions: {
         ecmaVersion: 'latest',
-        tsconfigRootDir: path.dirname(fileURLToPath(import.meta.url)),
-        project: ['./examples/*/tsconfig.json', './packages/*/tsconfig.json', './packages/config/*/tsconfig.json'],
+        tsconfigRootDir: dirname(fileURLToPath(import.meta.url)),
+        project: ['./packages/*/tsconfig.json', './packages/config/*/tsconfig.json'],
       },
     },
   },

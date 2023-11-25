@@ -1,30 +1,36 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Default",
+  "display": "Base",
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext", 
-    "moduleResolution": "node",
+    /* Base Options: */
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "ES2020",
+    "verbatimModuleSyntax": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    /* Strictness */
     "strict": true,
+    "noUncheckedIndexedAccess": true,
+    /* If transpiling with TypeScript: */
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "outDir": "dist",
     "sourceMap": true,
     "strictNullChecks": true,
     "jsx": "react-jsx",
     "declaration": true,
-    "declarationMap": false,
+    "declarationMap": true,
     "noEmit": true,
     "allowImportingTsExtensions": true,
     "experimentalDecorators": true,
-    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "allowJs": true,
     "types": [
       "vitest/globals",
       "bun-types"
-    ],
-    "paths": {
-    }
+    ]
   },
   "exclude": [
     "**/node_modules",

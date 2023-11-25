@@ -1,6 +1,6 @@
 import type { Linter } from 'eslint'
 
-export const rules: Linter.FlatConfig['rules'] = {
+export const rules = {
   /**
    * Should be set before `unused-imports` rules are getting used
    * @link https://github.com/sweepline/eslint-plugin-unused-imports
@@ -27,6 +27,8 @@ export const rules: Linter.FlatConfig['rules'] = {
   '@typescript-eslint/no-unsafe-return': 'warn',
   '@typescript-eslint/ban-types': 'error',
   '@typescript-eslint/no-misused-promises': 'off',
+  '@typescript-eslint/no-redundant-type-constituents': 'off',
+  '@typescript-eslint/no-explicit-any': 'off',
   camelcase: 'off',
   'global-require': 'off',
   'no-empty-pattern': 'warn',
@@ -40,6 +42,44 @@ export const rules: Linter.FlatConfig['rules'] = {
   'import/no-extraneous-dependencies': 'off',
   'import/no-unresolved': 'off',
   'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
+  // 'import/order': [
+  //   'error',
+  //   {
+  //     'newlines-between': 'always',
+  //     pathGroups: [
+  //       {
+  //         pattern: '@stijnvanhulle/**',
+  //         group: 'internal',
+  //         position: 'before',
+  //       },
+  //     ],
+  //     distinctGroup: false,
+  //     alphabetize: {
+  //       orderImportKind: 'asc',
+  //       caseInsensitive: true,
+  //     },
+  //     groups: ['builtin', 'external', 'internal', ['sibling', 'parent'], 'index', 'object', 'type'],
+  //   },
+  // ],
+  // 'sort-imports': ['error', { ignoreDeclarationSort: true }],
+  'simple-import-sort/imports': [
+    'error',
+    {
+      groups: [
+        // Node.js builtins prefixed with `node:`.
+        ['^node:'],
+        // Dependency Packages
+        ['^@stijnvanhulle'],
+        ['^@?\\w', '^\\u0000'],
+        // Parent imports. Put `..` last.
+        // Other relative imports. Put same-folder imports and `.` last.
+        ['^\\.\\.(?!/?$)', '^\\.\\./?$', '^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
+        // types
+        ['^node:.*\\u0000$', '^@stijnvanhulle.*\\u0000$', '^@?\\w.*\\u0000$', '^[^.].*\\u0000$', '^\\..*\\u0000$'],
+      ],
+    },
+  ],
+  'simple-import-sort/exports': 'error',
   'turbo/no-undeclared-env-vars': 'off',
   'unused-imports/no-unused-imports': 'error',
   'unused-imports/no-unused-vars': ['warn', { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' }],
@@ -50,5 +90,4 @@ export const rules: Linter.FlatConfig['rules'] = {
    */
   'react/jsx-uses-react': 'off',
   'react/react-in-jsx-scope': 'off',
-}
-export default rules
+} satisfies Linter.FlatConfig['rules']

@@ -6,8 +6,7 @@
         "^build"
       ],
       "outputs": [
-        "dist/**",
-        ".next/**"
+        "dist/**"
       ]
     },
     "clean": {
@@ -32,46 +31,35 @@
       "dependsOn": [],
       "outputs": [
         "coverage/**"
-      ],
-      "cache": false
+      ]
     },
     "lint": {
       "outputs": [],
       "cache": false
     },
     "lint-fix": {
-      "outputs": [],
+      "outputs": [
+        "src/**"
+      ],
       "cache": false,
       "outputMode": "new-only"
     },
     "typecheck": {
-      "dependsOn": [],
-      "outputs": [],
-      "cache": false
+      "dependsOn": [
+        "^build"
+      ]
     },
     "release": {
       "dependsOn": [
-        "^build"
+        "build"
       ],
-      "outputs": [],
-      "cache": false
+      "outputs": []
     },
     "release:canary": {
       "dependsOn": [
-        "^build"
+        "build"
       ],
-      "outputs": [],
-      "cache": false
-    },
-    "generate": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "gen/**",
-        "src/gen/**"
-      ],
-      "outputMode": "new-only"
+      "outputs": []
     }
   }
 }

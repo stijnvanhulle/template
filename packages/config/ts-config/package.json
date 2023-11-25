@@ -2,11 +2,13 @@
   "name": "@stijnvanhulle/ts-config",
   "version": "2.1.0",
   "private": true,
+  "types": "./reset.d.ts",
   "files": [
     "reset.d.ts",
-    "base.json"
+    "base.json",
+    "bundler.json"
   ],
   "devDependencies": {
-    "typescript": "^5.1.6"
+    "typescript": "^5.3.2"
   }
 }

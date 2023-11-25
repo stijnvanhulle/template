@@ -4,18 +4,20 @@
 *.html
 *.json
 *.yaml
+*.yml
 *.mdx
 *.css
 *.sass
 *.scss
+*.vue
 *.MD
-**/*.d.ts
-*.d.ts
+*.jsonc
 *rc.js
 *rc
 public
 assets
 LICENSE
+__snapshots__
 
 # builds
 types
@@ -28,8 +30,3 @@ es
 artifacts
 coverage
 *.tgz
-
-## custom ones
-# /e2e
-.next
-!src

@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 importers:
 
   .:
@@ -33,8 +29,8 @@ importers:
         specifier: ^1.0.14
         version: 1.0.14
       dprint:
-        specifier: ^0.41.0
-        version: 0.41.0
+        specifier: ^0.43.1
+        version: 0.43.1
       prettier:
         specifier: ^3.1.0
         version: 3.1.0
@@ -445,48 +441,56 @@ packages:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
 
-  /@dprint/darwin-arm64@0.41.0:
-    resolution: {integrity: sha512-P9PtcQI0mrI4U6yyd+/iI664BHSqC9KTS6ogq0ptEdnLtlaWzf09D1nv6FBaHiG9m3conuBRlPsoUqt3j6PZ2w==}
+  /@dprint/darwin-arm64@0.43.1:
+    resolution: {integrity: sha512-QK7/Eitb4RzrsvM1Y+7qzK6K49BTowr+u8+gwbczAVPiIDyygbJ/0N3wwBskiA86vA4SxDXaTOg4YbAHSZ1toA==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /@dprint/darwin-x64@0.41.0:
-    resolution: {integrity: sha512-mSYnSoH0uyCkjgIWTny2DZAcaiRTe3kRWY5SeZECLGO37e+SdVg+ZjSzndhOvvEb9pv8EeBO1NJ9gHOSceT5Xw==}
+  /@dprint/darwin-x64@0.43.1:
+    resolution: {integrity: sha512-oO7UuxPzQmFtIfHV6RgakD40DaibDVq73ewcFrWSFRNHWkl1MdkgbFIxOIltJUuRVf+yjW9bHGflmImdtl7qsQ==}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /@dprint/linux-arm64-glibc@0.41.0:
-    resolution: {integrity: sha512-U4xWzjjO/aAct8cSSMZFhg8l1jWy6VahXh8zWjGBufwX7t3xEcxMG9RyAp/ioYSY6wl4YXAmnUHywhC+wSjDHQ==}
+  /@dprint/linux-arm64-glibc@0.43.1:
+    resolution: {integrity: sha512-6hb7p3cp9eW9lpDTY/4WQE1RgG9VuizOXtQCCw2jvML8xnAdO6fAXEs9OtgGvdt5tpwxmLWLUzOBDGdcJE6Q6Q==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /@dprint/linux-x64-glibc@0.41.0:
-    resolution: {integrity: sha512-wjv5l4mGns7E8i32E8FfAk45tw5O7v4NM17gtvhe6ggOiOD6quHowOH00pLfEakMLMF9y0J5ZO2hxJ/w06bXmQ==}
+  /@dprint/linux-arm64-musl@0.43.1:
+    resolution: {integrity: sha512-EBs7r04KpB9eBMAtGLa6MXy8m7T6AkoOVcih7qZnFPmDc1d2jbIwf6ctnDlYRWYlof9BMHSiXhJiD863TRx5hA==}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@dprint/linux-x64-glibc@0.43.1:
+    resolution: {integrity: sha512-GDno20hSZBEByu3JVBMzU3ArsFuYj+lBhEFjubSZRDZFadkaLohtEHw/I5Lpd0Pe4+dynMdKyLjA92J6yWy//w==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /@dprint/linux-x64-musl@0.41.0:
-    resolution: {integrity: sha512-ZZOqiur9Xi/2uhz0Ce215VTSajAlSrduX/5k/hpIjI7Rgz22Vn77p5fmYxzWkTt/Li1zq5zboTvmGYx0QVNMrQ==}
+  /@dprint/linux-x64-musl@0.43.1:
+    resolution: {integrity: sha512-Nrkc+AaM90yMl7VSGLy3xUmIeFflE77PFth/rQaFqUb2D2rS8o6OydAxLDCD+WoYs5m2zlSb0l2M112s1Rxyqw==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /@dprint/win32-x64@0.41.0:
-    resolution: {integrity: sha512-mFx6x4Hn848/D4gPbDm7g1wlnOh2SGoVF9c9HMGCuOobUU2WIBztzV4L5qlFCB3gprlS0ru9BhlMpGhrp0CBYA==}
+  /@dprint/win32-x64@0.43.1:
+    resolution: {integrity: sha512-A5OhpGwNcmUtf7dyZrdrhQLRZEfV5yye7e2I7l4eR48inFEVrsuMDXgLqlR5Xa8fl977z8owvOGOOFYIE5wWzQ==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
@@ -1829,17 +1833,18 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /dprint@0.41.0:
-    resolution: {integrity: sha512-9Ctv6EnwOy5Ai566DczI/QhAC6y+AhWDA2gFU8Zz4xezUy1BevHaIYhfdLWZQxh4Qf4H28lRu1Lq+hhIm1US9w==}
+  /dprint@0.43.1:
+    resolution: {integrity: sha512-wdxiQehZNCu99g41qZlGP1W+ypGgK20v8MY75qf58SbejOqACJgO2g+xhHes3x1Gn5fNyDxU8gsm2xrTyDby8w==}
     hasBin: true
     requiresBuild: true
     optionalDependencies:
-      '@dprint/darwin-arm64': 0.41.0
-      '@dprint/darwin-x64': 0.41.0
-      '@dprint/linux-arm64-glibc': 0.41.0
-      '@dprint/linux-x64-glibc': 0.41.0
-      '@dprint/linux-x64-musl': 0.41.0
-      '@dprint/win32-x64': 0.41.0
+      '@dprint/darwin-arm64': 0.43.1
+      '@dprint/darwin-x64': 0.43.1
+      '@dprint/linux-arm64-glibc': 0.43.1
+      '@dprint/linux-arm64-musl': 0.43.1
+      '@dprint/linux-x64-glibc': 0.43.1
+      '@dprint/linux-x64-musl': 0.43.1
+      '@dprint/win32-x64': 0.43.1
     dev: true
 
   /eastasianwidth@0.2.0:
@@ -4887,3 +4892,7 @@ packages:
   /yocto-queue@1.0.0:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

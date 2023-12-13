@@ -1,5 +1,18 @@
 # @stijnvanhulle/template-demo
 
+## 2.3.0
+
+### Minor Changes
+
+- [`2208dacebccd162122abf9865b5ff8953bbca080`](https://github.com/stijnvanhulle/template/commit/2208dacebccd162122abf9865b5ff8953bbca080) Thanks [@stijnvanhulle](https://github.com/stijnvanhulle)! - test
+
+### Patch Changes
+
+- [`1b9fddd603ee112aa2bc309be550d8e37de26072`](https://github.com/stijnvanhulle/template/commit/1b9fddd603ee112aa2bc309be550d8e37de26072) Thanks [@stijnvanhulle](https://github.com/stijnvanhulle)! - test
+
+- Updated dependencies [[`1b9fddd603ee112aa2bc309be550d8e37de26072`](https://github.com/stijnvanhulle/template/commit/1b9fddd603ee112aa2bc309be550d8e37de26072), [`2208dacebccd162122abf9865b5ff8953bbca080`](https://github.com/stijnvanhulle/template/commit/2208dacebccd162122abf9865b5ff8953bbca080)]:
+  - @stijnvanhulle/template-core@2.3.0
+
 ## 2.2.3
 
 ### Patch Changes

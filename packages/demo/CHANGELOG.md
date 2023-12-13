@@ -1,5 +1,14 @@
 # @stijnvanhulle/template-demo
 
+## 2.2.1
+
+### Patch Changes
+
+- [`3373845755a5d79dbcf2f27facfa397ffe06db1e`](https://github.com/stijnvanhulle/template/commit/3373845755a5d79dbcf2f27facfa397ffe06db1e) Thanks [@stijnvanhulle](https://github.com/stijnvanhulle)! - update packages
+
+- Updated dependencies [[`3373845755a5d79dbcf2f27facfa397ffe06db1e`](https://github.com/stijnvanhulle/template/commit/3373845755a5d79dbcf2f27facfa397ffe06db1e)]:
+  - @stijnvanhulle/template-core@2.2.1
+
 ## 2.2.0
 
 ### Minor Changes

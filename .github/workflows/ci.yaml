@@ -71,10 +71,14 @@ jobs:
           with:
             publish: bun run release
 
+        - name: Reset Git
+          if: ${{ steps.publish.outputs.published == 'false' || steps.publish.outcome == 'failure' ||  github.event.inputs.tag != '' }}
+          run: git reset --hard
+
         - name: Publish ${{ inputs.tag || 'canary' }}
           continue-on-error: true
-          # if: ${{ steps.publish.outcome == 'failure' ||  github.event.inputs.tag != '' }}
-          if: ${{ github.event.inputs.tag != '' }}
+          if: ${{ steps.publish.outputs.published == 'false' || steps.publish.outcome == 'failure' ||  github.event.inputs.tag != '' }}
+          # if: ${{ github.event.inputs.tag != '' }}
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

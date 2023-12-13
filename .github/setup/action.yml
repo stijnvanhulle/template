@@ -17,6 +17,7 @@ runs:
 
     - name: Install bun
       uses: oven-sh/setup-bun@v1
+      continue-on-error: true
 
     - name: Setup Git User
       shell: bash

@@ -25,9 +25,11 @@ runs:
         git config --global user.name "Stijn Van Hulle"
 
     - name: Install dependencies
+      shell: bash
       run: pnpm install --prefer-offline
 
-    - uses: dtinth/setup-github-actions-caching-for-turbo@v1
+    - name: Setup Turbo
+      uses: dtinth/setup-github-actions-caching-for-turbo@v1
       with:
-      # Set the prefix for the cache keys.
-      cache-prefix: stijnvanhulle_
+        # Set the prefix for the cache keys.
+        cache-prefix: stijnvanhulle_

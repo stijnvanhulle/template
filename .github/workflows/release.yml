@@ -31,9 +31,10 @@ jobs:
         - name: Build
           run: bun run build --concurrency=1
 
-        - name: Publish ${{ inputs.tag || 'canary' }}
+        - name: Publish
           id: changesets
           uses: changesets/action@v1
+          if: ${{ github.event.inputs.tag == '' }}
           with:
             publish: bun release
             commit: "ci(changesets): version packages"

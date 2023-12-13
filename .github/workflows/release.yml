@@ -13,8 +13,53 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  release:
-      name: Release
+  canary:
+      name: Create Canary Release
+      timeout-minutes: 15
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Check out code
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 2
+
+        - uses: pnpm/action-setup@v2.2.4
+          with:
+            version: 8
+
+        - name: Setup Node.js environment
+          uses: actions/setup-node@v3
+          with:
+            node-version: 18
+            cache: 'pnpm'
+            registry-url: 'https://registry.npmjs.org'
+
+        - name: Install bun
+          uses: oven-sh/setup-bun@v1
+
+        - name: Install dependencies
+          run: pnpm install --prefer-offline
+
+        - uses: dtinth/setup-github-actions-caching-for-turbo@v1
+          with:
+           # Set the prefix for the cache keys.
+            cache-prefix: stijnvanhulle_
+
+        - name: Build
+          run: bun run build --concurrency=1
+
+        - name: Publish ${{ inputs.tag || 'canary' }}
+          continue-on-error: true
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          run: |
+            bun run release:canary --tag ${{ inputs.tag || 'canary' }}
+
+  pr:
+      name: Open Pull Request
       timeout-minutes: 15
       runs-on: ubuntu-latest
       steps:

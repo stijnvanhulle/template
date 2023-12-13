@@ -31,6 +31,7 @@ runs:
 
     - name: Setup Turbo
       uses: dtinth/setup-github-actions-caching-for-turbo@v1
+      continue-on-error: true
       with:
         # Set the prefix for the cache keys.
         cache-prefix: stijnvanhulle_

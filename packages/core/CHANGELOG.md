@@ -1,5 +1,11 @@
 # @stijnvanhulle/template-core
 
+## 2.2.3
+
+### Patch Changes
+
+- [`762687fad3f1784f76fa21319a00a7350c9ae335`](https://github.com/stijnvanhulle/template/commit/762687fad3f1784f76fa21319a00a7350c9ae335) Thanks [@stijnvanhulle](https://github.com/stijnvanhulle)! - update dprint
+
 ## 2.2.2
 
 ### Patch Changes

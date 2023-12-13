@@ -1,13 +1,15 @@
-name: release
+name: Release
 on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: override release tag
+        required: false
   push:
     branches: ['main', 'alpha', 'beta', 'rc']
-    paths-ignore:
-      - "docs/**"
-      - "examples/**"
-      - "**/*.md"
-
-  workflow_dispatch:
+    paths:
+      - ".changeset/**"
+      - "packages/**"
 
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
@@ -34,7 +36,38 @@ jobs:
             cache: 'pnpm'
             registry-url: 'https://registry.npmjs.org'
 
-        - name: Create Release Pull Request
+        - name: Install bun
+          uses: oven-sh/setup-bun@v1
+
+        - name: Install dependencies
+          run: pnpm install --prefer-offline
+
+        - uses: dtinth/setup-github-actions-caching-for-turbo@v1
+          with:
+           # Set the prefix for the cache keys.
+            cache-prefix: stijnvanhulle_
+
+        - name: Build
+          run: bun run build --concurrency=1
+
+        - name: Publish
+          id: changesets
           uses: changesets/action@v1
+          with:
+            publish: bun release
+            commit: "ci(changesets): version packages"
+            setupGitUser: false
           env:
+            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+        - name: Publish ${{ inputs.tag || 'canary' }}
+          if: steps.changesets.outputs.published != 'true'
+          run: |
+            git checkout main
+            bun version:canary
+            bun release:canary
+          env:
+            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

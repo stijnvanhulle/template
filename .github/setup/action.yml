@@ -18,6 +18,12 @@ runs:
     - name: Install bun
       uses: oven-sh/setup-bun@v1
 
+    - name: Setup Git User
+      shell: bash
+      run: |
+        git config --global user.email "stijn@stijnvanhulle.be"
+        git config --global user.name "Stijn Van Hulle"
+
     - name: Install dependencies
       shell: bash
       run: pnpm install --prefer-offline

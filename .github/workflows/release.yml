@@ -37,8 +37,8 @@ jobs:
           if: ${{ github.event.inputs.tag == '' }}
           with:
             publish: bun release
-            version: bun version
             commit: "ci(changesets): version packages"
+            setupGitUser: false
           env:
             NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
             NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -7,7 +7,11 @@
     }
   ],
   "commit": false,
-  "fixed": [],
+  "fixed": [
+    [
+      "@stijnvanhulle/*"
+    ]
+  ],
   "linked": [],
   "access": "restricted",
   "baseBranch": "main",
@@ -15,5 +19,6 @@
   "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
     "onlyUpdatePeerDependentsWhenOutOfRange": true
   },
+  "useCalculatedVersion": true,
   "ignore": []
 }

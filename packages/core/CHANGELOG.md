@@ -1,5 +1,11 @@
 # @stijnvanhulle/template-core
 
+## 2.3.1
+
+### Patch Changes
+
+- [`6f6a37109f6de6896c070ee1501b027d2bb42c94`](https://github.com/stijnvanhulle/template/commit/6f6a37109f6de6896c070ee1501b027d2bb42c94) Thanks [@stijnvanhulle](https://github.com/stijnvanhulle)! - test
+
 ## 2.3.0
 
 ### Minor Changes

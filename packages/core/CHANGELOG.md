@@ -1,5 +1,15 @@
 # @stijnvanhulle/template-core
 
+## 2.4.0
+
+### Minor Changes
+
+- [`7ab3d93`](https://github.com/stijnvanhulle/template/commit/7ab3d93138ebbbc1b41cc663cf1c52f677bbbf8b) Thanks [@stijnvanhulle](https://github.com/stijnvanhulle)! - use of biome
+
+### Patch Changes
+
+- [`6f6a371`](https://github.com/stijnvanhulle/template/commit/6f6a37109f6de6896c070ee1501b027d2bb42c94) Thanks [@stijnvanhulle](https://github.com/stijnvanhulle)! - test
+
 ## 2.3.0
 
 ### Minor Changes

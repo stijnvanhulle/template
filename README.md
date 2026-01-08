@@ -1,6 +1,4 @@
 <div align="center">
-
-<img src="assets/logo.png" alt="logo" width="200" height="auto" />
   <h1>Template</h1>
 
 <p>
@@ -54,10 +52,6 @@
 
 <!-- About the Project -->
 ## :star2: About the Project
-
-<div align="center">
-  <img src="assets/screenshot.jpg" alt="screenshot" />
-</div>
 
 A production-ready monorepo template built with modern tooling and best practices. This template is designed to help you quickly bootstrap TypeScript libraries and applications with a scalable, maintainable structure.
 

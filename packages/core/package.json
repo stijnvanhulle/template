@@ -45,10 +45,8 @@
     "tsup": "^8.0.2",
     "typescript": "^5.4.4"
   },
-  "packageManager": "pnpm@10.24.0",
   "engines": {
-    "node": ">=20",
-    "pnpm": ">=10.0.0"
+    "node": ">=20"
   },
   "publishConfig": {
     "access": "public",

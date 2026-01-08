@@ -13,27 +13,25 @@
   "workspaces": {
     "packages": [
       "packages/*",
-      "packages/config/eslint-config/*",
-      "packages/config/biome-config/*",
-      "packages/config/tsup-config/*",
-      "packages/config/ts-config/*"
+      "packages/config/*"
     ]
   },
   "scripts": {
+    "//changeset:beta:enter": "changeset pre enter beta",
+    "//changeset:beta:exit": "changeset pre exit",
     "build": "turbo run build --filter=./packages/*",
+    "changeset": "changeset",
     "clean": "turbo run clean",
-    "graph": "npx nx graph ",
-    "install:csb": "corepack enable && pnpm install --frozen-lockfile",
     "format": "bun biome format --write ./ && bun format:pack",
     "format:pack": "npx sort-package-json package.json",
+    "graph": "npx nx graph ",
+    "install:csb": "corepack enable && pnpm install --frozen-lockfile",
     "lint": "bun biome lint .",
     "lint:case": "npx case-police --fix",
     "lint:ci": "bun biome lint .",
     "lint:fix": "bun biome lint --apply-unsafe . && bun run lint:case",
     "lint:turbo": "turbo run lint",
-    "version": "changeset version",
     "release": "changeset publish",
-    "version:canary": "changeset version --snapshot canary",
     "release:canary": "changeset publish --no-git-tag",
     "start": "turbo run start --filter=./packages/*",
     "test": "vitest run --config ./configs/vitest.config.ts --coverage",
@@ -42,30 +40,29 @@
     "test:watch": "vitest --config ./configs/vitest.config.ts",
     "typecheck": "turbo run typecheck --continue --filter='./packages/*'",
     "upgrade": "npx taze -r -w --exclude pnpm",
-    "changeset": "changeset",
-    "//changeset:beta:enter": "changeset pre enter beta",
-    "//changeset:beta:exit": "changeset pre exit"
+    "version": "changeset version",
+    "version:canary": "changeset version --snapshot canary"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.6.4",
-    "@changesets/changelog-github": "^0.5.0",
-    "@changesets/cli": "^2.27.1",
+    "@biomejs/biome": "^2.3.11",
+    "@changesets/changelog-github": "^0.5.2",
+    "@changesets/cli": "^2.29.8",
     "@stijnvanhulle/biome-config": "workspace:*",
     "@stijnvanhulle/ts-config": "workspace:*",
-    "@types/node": "^20.12.5",
-    "@vitest/coverage-v8": "^1.4.0",
-    "@vitest/ui": "^1.4.0",
-    "bun-types": "^1.1.3",
-    "rimraf": "^5.0.5",
+    "@types/node": "^20.19.27",
+    "@vitest/coverage-v8": "^4.0.16",
+    "@vitest/ui": "^4.0.16",
+    "bun-types": "^1.3.5",
+    "rimraf": "^6.1.2",
     "ts-node": "^10.9.2",
-    "turbo": "^1.13.2",
-    "typescript": "^5.4.4",
-    "vite-tsconfig-paths": "^4.3.2",
-    "vitest": "^1.4.0"
+    "turbo": "^2.7.3",
+    "typescript": "^5.9.3",
+    "vite-tsconfig-paths": "^6.0.3",
+    "vitest": "^4.0.16"
   },
-  "packageManager": "pnpm@8.3.0",
+  "packageManager": "pnpm@10.24.0",
   "engines": {
-    "node": ">=18",
-    "pnpm": ">=8.3.0"
+    "node": ">=20",
+    "pnpm": ">=10.0.0"
   }
 }

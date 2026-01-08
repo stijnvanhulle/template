@@ -1,8 +1,8 @@
-import type { Options } from 'tsup'
+import type { Config } from 'tsdown'
 
-export const bannerCJS: Options['banner'] = {}
+export const bannerCJS: Config['banner'] = {}
 
-export const bannerESM: Options['banner'] = {
+export const bannerESM: Config['banner'] = {
   /**
    * @link https://stackoverflow.com/questions/31931614/require-is-not-defined-node-js
    */
@@ -12,7 +12,7 @@ export const bannerESM: Options['banner'] = {
   `,
 }
 
-export const options: Options = {
+export const options: Config = {
   entry: ['src/index.ts'],
   treeshake: true,
   sourcemap: true,
@@ -20,10 +20,9 @@ export const options: Options = {
   clean: true,
   platform: 'node',
   shims: true,
-  ignoreWatch: ['**/.turbo', '**/dist', '**/node_modules', '**/.DS_STORE', '**/.git'],
 }
 
-export const optionsESM: Options = {
+export const optionsESM: Config = {
   ...options,
   format: 'esm',
   dts: true,
@@ -31,7 +30,7 @@ export const optionsESM: Options = {
   banner: bannerESM,
 }
 
-export const optionsCJS: Options = {
+export const optionsCJS: Config = {
   ...options,
   format: 'cjs',
   dts: true,

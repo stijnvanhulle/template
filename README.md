@@ -63,11 +63,11 @@ A production-ready monorepo template built with modern tooling and best practice
 - **🎨 Biome** - Fast, modern linter and formatter (replacing ESLint + Prettier)
 - **🔷 TypeScript 5.9+** - Latest TypeScript with strict type checking
 - **⚡ Vitest** - Lightning-fast unit testing with native ESM support
-- **📦 TSUP** - Zero-config TypeScript bundler for ESM and CommonJS builds
+- **📦 tsdown** - Modern TypeScript bundler for ESM and CommonJS builds
 - **📋 Changesets** - Automated versioning and changelog generation
 - **🔄 Nx Graph** - Visualize your monorepo dependency graph
 - **🎯 Type-safe** - End-to-end type safety across all packages
-- **📝 Shared Configs** - Centralized TypeScript, Biome, and TSUP configurations
+- **📝 Shared Configs** - Centralized TypeScript, Biome, and tsdown configurations
 
 <!-- Tech Stack -->
 ### :space_invader: Tech Stack
@@ -77,7 +77,7 @@ A production-ready monorepo template built with modern tooling and best practice
   <ul>
     <li><a href="https://turbo.build/">Turborepo</a> - v2.7.3</li>
     <li><a href="https://pnpm.io/">PNPM</a> - v10.24.0</li>
-    <li><a href="https://tsup.egoist.dev/">TSUP</a> - TypeScript bundler</li>
+    <li><a href="https://tsdown.vercel.app/">tsdown</a> - TypeScript bundler</li>
   </ul>
 </details>
 
@@ -113,7 +113,7 @@ packages/
 │   ├── biome-config/   # Biome linting & formatting config
 │   ├── eslint-config/  # Legacy ESLint config (if needed)
 │   ├── ts-config/      # Shared TypeScript configurations
-│   └── tsup-config/    # Shared TSUP build configurations
+│   └── tsdown-config/  # Shared tsdown build configurations
 ├── core/               # Core library package
 └── demo/               # Demo/example package
 ```

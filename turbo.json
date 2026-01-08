@@ -37,7 +37,7 @@
       "outputLogs": "new-only"
     },
     "typecheck": {
-      "dependsOn": [],
+      "dependsOn": ["^build"],
       "inputs": ["src/**/*.ts", "src/**/*.tsx", "tsconfig.json"],
       "outputs": [],
       "cache": false

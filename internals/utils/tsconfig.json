@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "../../configs/bundler.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "types": ["bun-types"]
+  },
+  "include": ["src/**/*", "./package.json"]
+}

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://unpkg.com/@changesets/config@2.3.1/schema.json",
+  "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
   "changelog": [
     "@changesets/changelog-github",
     {
@@ -7,11 +7,7 @@
     }
   ],
   "commit": false,
-  "fixed": [
-    [
-      "@stijnvanhulle/*"
-    ]
-  ],
+  "fixed": [["@stijnvanhulle/template-*"]],
   "linked": [],
   "access": "restricted",
   "baseBranch": "main",
@@ -20,5 +16,5 @@
     "onlyUpdatePeerDependentsWhenOutOfRange": true
   },
   "useCalculatedVersion": true,
-  "ignore": []
+  "ignore": ["@internals/*"]
 }

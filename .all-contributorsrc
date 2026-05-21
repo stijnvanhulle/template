@@ -1,0 +1,20 @@
+{
+  "files": ["README.md"],
+  "imageSize": 80,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "stijnvanhulle",
+      "name": "Stijn Van Hulle",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3540770?v=4",
+      "profile": "https://stijnvanhulle.be",
+      "contributions": ["code", "doc", "design", "infra", "maintenance"]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "template",
+  "projectOwner": "stijnvanhulle",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

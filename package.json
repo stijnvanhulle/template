@@ -1,71 +1,63 @@
 {
-  "name": "template",
+  "name": "@stijnvanhulle/template",
   "version": "0.0.0",
   "private": true,
-  "description": "Monorepo template",
+  "description": "Monorepo template for Kubb-style repositories",
   "repository": {
     "type": "git",
     "url": "https://github.com/stijnvanhulle/template.git"
   },
   "license": "MIT",
-  "author": "Stijn Van Hulle <stijn@stijnvanhulle.be",
+  "author": "Stijn Van Hulle <stijn@stijnvanhulle.be>",
   "type": "module",
   "workspaces": {
     "packages": [
       "packages/*",
-      "packages/config/eslint-config/*",
-      "packages/config/biome-config/*",
-      "packages/config/tsup-config/*",
-      "packages/config/ts-config/*"
+      "internals/*"
     ]
   },
   "scripts": {
     "build": "turbo run build --filter=./packages/*",
+    "changeset": "changeset",
     "clean": "turbo run clean",
+    "format": "oxfmt -c oxfmt.config.ts packages internals configs",
     "graph": "npx nx graph ",
-    "install:csb": "corepack enable && pnpm install --frozen-lockfile",
-    "format": "bun biome format --write ./ && bun format:pack",
-    "format:pack": "npx sort-package-json package.json",
-    "lint": "bun biome lint .",
-    "lint:case": "npx case-police --fix",
-    "lint:ci": "bun biome lint .",
-    "lint:fix": "bun biome lint --apply-unsafe . && bun run lint:case",
-    "lint:turbo": "turbo run lint",
-    "version": "changeset version",
+    "lint": "oxlint -c oxlint.config.ts ./packages",
+    "lint:fix": "oxlint -c oxlint.config.ts --fix ./packages",
+    "lint:spell": "cspell \"**/*.{ts,md}\" --config ./cspell.json --no-progress",
     "release": "changeset publish",
-    "version:canary": "changeset version --snapshot canary",
     "release:canary": "changeset publish --no-git-tag",
     "start": "turbo run start --filter=./packages/*",
-    "test": "vitest run --config ./configs/vitest.config.ts --coverage",
-    "test:bun": "bun test --preload ./configs/setup.ts",
-    "test:vitest": "vitest run --config ./configs/vitest.config.ts",
+    "test": "vitest run --config ./configs/vitest.config.ts",
     "test:watch": "vitest --config ./configs/vitest.config.ts",
     "typecheck": "turbo run typecheck --continue --filter='./packages/*'",
-    "upgrade": "npx taze -r -w --exclude pnpm",
-    "changeset": "changeset",
-    "//changeset:beta:enter": "changeset pre enter beta",
-    "//changeset:beta:exit": "changeset pre exit"
+    "upgrade": "npx taze -r -w --exclude pnpm --maturity-period 3",
+    "version": "changeset version",
+    "version:canary": "changeset version --snapshot canary"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.6.4",
-    "@changesets/changelog-github": "^0.5.0",
-    "@changesets/cli": "^2.27.1",
-    "@stijnvanhulle/biome-config": "workspace:*",
-    "@stijnvanhulle/ts-config": "workspace:*",
-    "@types/node": "^20.12.5",
-    "@vitest/coverage-v8": "^1.4.0",
-    "@vitest/ui": "^1.4.0",
-    "bun-types": "^1.1.3",
-    "rimraf": "^5.0.5",
+    "@changesets/changelog-github": "^0.6.0",
+    "@changesets/cli": "^2.31.0",
+    "@size-limit/file": "catalog:",
+    "@types/node": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "@vitest/ui": "catalog:",
+    "bun-types": "^1.3.14",
+    "cspell": "^10.0.0",
+    "oxfmt": "catalog:",
+    "oxlint": "catalog:",
+    "size-limit": "catalog:",
+    "taze": "^19.12.0",
     "ts-node": "^10.9.2",
-    "turbo": "^1.13.2",
-    "typescript": "^5.4.4",
-    "vite-tsconfig-paths": "^4.3.2",
-    "vitest": "^1.4.0"
+    "tsdown": "catalog:",
+    "turbo": "^2.9.14",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   },
-  "packageManager": "pnpm@8.3.0",
+  "packageManager": "pnpm@11.1.3",
   "engines": {
-    "node": ">=18",
-    "pnpm": ">=8.3.0"
-  }
+    "node": ">=22",
+    "pnpm": ">=11.0.0"
+  },
+  "namespace": "@stijnvanhulle"
 }

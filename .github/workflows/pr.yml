@@ -1,0 +1,164 @@
+name: PR
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    if: github.actor != 'github-actions[bot]'
+    steps:
+      - name: Check out code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Tools
+        uses: kubb-labs/config/.github/setup@8508e66e6014b9ca1416591bc20791027b6ccf5c # main
+        with:
+          node-version: '22'
+
+      - name: Build
+        run: pnpm run build
+
+  typecheck:
+    name: Typecheck
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    if: github.actor != 'github-actions[bot]'
+    needs: build
+    steps:
+      - name: Check out code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Tools
+        uses: kubb-labs/config/.github/setup@8508e66e6014b9ca1416591bc20791027b6ccf5c # main
+        with:
+          node-version: '22'
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+  tests:
+    name: Tests
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    if: github.actor != 'github-actions[bot]'
+    needs: build
+    steps:
+      - name: Check out code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Tools
+        uses: kubb-labs/config/.github/setup@8508e66e6014b9ca1416591bc20791027b6ccf5c # main
+        with:
+          node-version: '22'
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Test
+        run: pnpm test --coverage
+
+      - name: Upload coverage reports to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/codecov-action@57e3a136b779b570ffcdbf80b3bdc90e7fab3de2 # v6
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+  linting:
+    name: Linting
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    if: github.actor != 'github-actions[bot]'
+    steps:
+      - name: Check out code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Tools
+        uses: kubb-labs/config/.github/setup@8508e66e6014b9ca1416591bc20791027b6ccf5c # main
+        with:
+          node-version: '22'
+
+      - name: Linting
+        env:
+          NODE_OPTIONS: '--max_old_space_size=4096'
+        run: pnpm run lint
+
+  spellcheck:
+    name: Spell Check
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    if: github.actor != 'github-actions[bot]'
+    steps:
+      - name: Check out code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Tools
+        uses: kubb-labs/config/.github/setup@8508e66e6014b9ca1416591bc20791027b6ccf5c # main
+        with:
+          node-version: '22'
+
+      - name: Spell Check
+        uses: streetsidesoftware/cspell-action@9c7145a5e625e30cb68f6932b379e17eb024d974 # v8
+        with:
+          files: |
+            **/*.{ts,md}
+          suggestions: 'true'
+          config: 'cspell.json'
+
+  prerelease:
+    name: Prerelease
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    if: github.actor != 'github-actions[bot]' && github.event.pull_request.head.repo.full_name == github.repository
+    needs: build
+    steps:
+      - name: Check out code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 2
+
+      - name: Setup Tools
+        uses: kubb-labs/config/.github/setup@8508e66e6014b9ca1416591bc20791027b6ccf5c # main
+        with:
+          node-version: '22'
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Publish preview packages
+        run: pnpx pkg-pr-new publish --pnpm --owner=stijnvanhulle --repo=https://github.com/stijnvanhulle/template.git './packages/*'

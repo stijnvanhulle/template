@@ -1,11 +1,28 @@
-import { defineConfig } from 'tsdown'
+import { defineConfig, type UserConfig } from 'tsdown'
 
-export default defineConfig({
-  entry: ['src/index.ts'],
-  format: 'esm',
+const shared: Partial<UserConfig> = {
   platform: 'node',
-  dts: true,
   sourcemap: true,
+  shims: true,
+  exports: true,
   fixedExtension: false,
-  treeshake: true,
-})
+  deps: {
+    // Other @stijnvanhulle/* packages resolve from npm at runtime — never bundle them.
+    neverBundle: [/^@stijnvanhulle\//],
+    // @internals/* packages are private and not published — inline them into the output.
+    alwaysBundle: [/@internals/],
+    onlyBundle: false,
+  },
+  outputOptions: {
+    keepNames: true,
+  },
+}
+
+export default defineConfig([
+  {
+    entry: { index: 'src/index.ts' },
+    format: 'esm',
+    dts: true,
+    ...shared,
+  },
+])

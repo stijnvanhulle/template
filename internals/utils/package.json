@@ -5,13 +5,6 @@
   "description": "Internal utilities shared across the monorepo (not published)",
   "license": "MIT",
   "author": "Stijn Van Hulle <stijn@stijnvanhulle.be>",
-  "type": "module",
-  "sideEffects": false,
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": "./dist/index.js",
-    "./package.json": "./package.json"
-  },
   "files": [
     "src",
     "dist",
@@ -19,6 +12,13 @@
     "!/**/__tests__/**",
     "!/**/__snapshots__/**"
   ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "build": "tsdown",
     "clean": "rm -rf ./dist",

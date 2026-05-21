@@ -20,18 +20,24 @@
   ],
   "words": [
     "stijnvanhulle",
+    "Stijn",
+    "Hulle",
+    "organisation",
     "Kubb",
     "kubb-labs",
     "Turborepo",
     "monorepo",
     "Oxlint",
     "Oxfmt",
+    "oxfmt",
+    "oxlint",
     "Vitest",
     "Vitepress",
     "tsdown",
     "unplugin",
     "Github",
     "changesets",
-    "codecov"
+    "codecov",
+    "rolldown"
   ]
 }

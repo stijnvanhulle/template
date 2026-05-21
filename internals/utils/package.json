@@ -2,7 +2,7 @@
   "name": "@internals/utils",
   "version": "0.0.0",
   "private": true,
-  "description": "Internal utilities shared across the monorepo (not published)",
+  "description": "Domain-agnostic utility helpers shared across all workspace packages. Not intended for public use.",
   "license": "MIT",
   "author": "Stijn Van Hulle <stijn@stijnvanhulle.be>",
   "files": [
@@ -27,10 +27,7 @@
     "typecheck": "tsc -p ./tsconfig.json --noEmit"
   },
   "devDependencies": {
-    "@types/node": "catalog:",
-    "tsdown": "catalog:",
-    "typescript": "catalog:",
-    "vitest": "catalog:"
+    "@types/node": "catalog:"
   },
   "engines": {
     "node": ">=22",

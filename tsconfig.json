@@ -5,6 +5,7 @@
     "rootDir": ".",
     "types": ["bun-types"],
     "paths": {
+      "#mocks": ["./internals/utils/src/mocks.ts"],
       "@internals/utils": ["./internals/utils/src/index.ts"],
       "@stijnvanhulle/template-core": ["./packages/core/src/index.ts"],
       "@stijnvanhulle/template-demo": ["./packages/demo/src/index.ts"]

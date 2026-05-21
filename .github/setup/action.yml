@@ -1,15 +1,20 @@
 name: Setup
-description: Sets up pnpm, Node, and installs dependencies.
+description: Sets up pnpm, Node, dependencies, and (optionally) a Turbo cache.
 
 # NOTE: local composite actions cannot call other actions that use a `pre:`
-# lifecycle hook. If you want to add `step-security/harden-runner` or
-# `rharkor/caching-for-turbo`, add them as steps in each workflow directly,
-# BEFORE this composite is invoked.
+# lifecycle hook (e.g. step-security/harden-runner,
+# rharkor/caching-for-turbo). If you want runner hardening or a network
+# Turbo cache, add those actions directly in your workflow, BEFORE this
+# composite is invoked.
 
 inputs:
   node-version:
     description: 'Node.js version to use (e.g., 22, 24, or 22.x)'
     required: true
+  cache:
+    description: 'Local Turbo cache: "turbo" (default) restores/saves node_modules/.cache/turbo; "false" skips it.'
+    required: false
+    default: 'turbo'
 
 runs:
   using: composite
@@ -33,3 +38,12 @@ runs:
     - name: Install dependencies
       shell: bash
       run: pnpm install --frozen-lockfile --prefer-offline
+
+    - name: Cache Turbo
+      if: ${{ inputs.cache == 'turbo' }}
+      uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
+      with:
+        path: node_modules/.cache/turbo
+        key: ${{ runner.os }}-turbo-${{ github.event.repository.name }}-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-turbo-${{ github.event.repository.name }}-

@@ -48,6 +48,7 @@ jobs:
         uses: ./.github/setup
         with:
           node-version: '22'
+          cache: 'false'
 
       - name: Build
         run: pnpm run build

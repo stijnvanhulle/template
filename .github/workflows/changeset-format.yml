@@ -8,6 +8,10 @@ on:
 
 permissions: {}
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   format:
     name: Format and Lint
@@ -15,6 +19,10 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+    # Same-repo only: fork PRs cannot run this since git-auto-commit needs
+    # contents: write which the read-only fork token does not have. Guarding
+    # explicitly also prevents fork code from polluting the cache scope.
+    if: github.actor != 'github-actions[bot]' && github.event.pull_request.head.repo.full_name == github.repository
     steps:
       - name: Check out code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6

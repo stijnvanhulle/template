@@ -39,11 +39,13 @@ runs:
       shell: bash
       run: pnpm install --frozen-lockfile --prefer-offline
 
+    # Cache scope is namespaced by ref so a poisoned PR cache cannot be
+    # restored by a main-branch run. See https://neciudan.dev/github-actions-poisoning
     - name: Cache Turbo
       if: ${{ inputs.cache == 'turbo' }}
       uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
       with:
         path: node_modules/.cache/turbo
-        key: ${{ runner.os }}-turbo-${{ github.event.repository.name }}-${{ github.sha }}
+        key: ${{ runner.os }}-turbo-${{ github.event.repository.name }}-${{ github.ref_name }}-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-turbo-${{ github.event.repository.name }}-
+          ${{ runner.os }}-turbo-${{ github.event.repository.name }}-${{ github.ref_name }}-

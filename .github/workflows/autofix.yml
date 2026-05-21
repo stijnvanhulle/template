@@ -1,0 +1,43 @@
+name: autofix.ci
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: true
+
+permissions: {}
+
+jobs:
+  autofix:
+    name: Lint and format
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    if: github.actor != 'github-actions[bot]' && github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - name: Check out code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+
+      - name: Setup Tools
+        uses: ./.github/setup
+        with:
+          node-version: '22'
+
+      - name: Fix formatting
+        run: pnpm run format
+
+      - name: Fix linting
+        run: pnpm run lint:fix
+
+      - name: Apply fixes
+        uses: autofix-ci/action@c5b2d67aa2274e7b5a18224e8171550871fc7e4a # v1
+        with:
+          commit-message: 'ci: apply linting and formating'
+          comment: Auto fix applied for linting and formating

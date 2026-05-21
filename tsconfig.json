@@ -1,25 +1,16 @@
 {
-  "extends": "@stijnvanhulle/ts-config/bundler.json",
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./configs/bundler.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "types": [
-      "vitest/globals",
-      "bun-types",
-      "@stijnvanhulle/ts-config"
-    ],
+    "rootDir": ".",
+    "types": ["bun-types"],
     "paths": {
-      "@stijnvanhulle/template-core": [
-        "packages/core/src/index.ts"
-      ]
+      "#mocks": ["./internals/utils/src/mocks.ts"],
+      "@internals/utils": ["./internals/utils/src/index.ts"],
+      "@stijnvanhulle/template-core": ["./packages/core/src/index.ts"],
+      "@stijnvanhulle/template-demo": ["./packages/demo/src/index.ts"]
     }
   },
-  "include": [
-    "./package.json",
-    "./tsup.config.ts",
-    "./vitest.config.ts",
-    "./eslint.config.js"
-  ],
-  "exclude": [
-    "**/node_modules/**"
-  ]
+  "include": ["./package.json", "./tsdown.config.ts", "./vitest.config.ts", "./src/**/*"],
+  "exclude": ["node_modules", "dist", "tmp", "coverage", "**/__snapshots__/**"]
 }

@@ -3,53 +3,99 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: override release tag
+        description: 'Optional: Custom tag for canary release'
         required: false
+        type: string
   push:
     branches: ['main', 'alpha', 'beta', 'rc']
     paths:
-      - ".changeset/**"
-      - "packages/**"
+      - '.changeset/**'
+      - 'packages/**'
 
+# Deny all permissions at workflow level; each job declares only what it needs.
+# id-token: write is intentionally restricted to the publish job so that
+# build/test steps never have access to an OIDC token that could publish to npm.
+permissions: {}
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   release:
-      name: Release
-      timeout-minutes: 15
-      runs-on: ubuntu-latest
-      steps:
-        - name: Check out code
-          uses: actions/checkout@v4
-          with:
-            fetch-depth: 2
+    name: Release
+    if: github.repository_owner == 'stijnvanhulle'
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    # id-token: write is scoped to this job only, which runs after tests pass.
+    # The fresh install below avoids restoring a potentially poisoned pnpm cache.
+    permissions:
+      contents: write
+      id-token: write
+      packages: write
+      pull-requests: write
+      issues: write
+    outputs:
+      published_packages: ${{ steps.changesets.outputs.publishedPackages }}
+      published: ${{ steps.changesets.outputs.published }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0
 
-        - name: Setup
-          uses: ./.github/setup
+      - name: Setup Tools
+        uses: ./.github/setup
+        with:
+          node-version: '22'
+          cache: 'false'
 
-        - name: Build
-          run: bun run build --concurrency=1
+      - name: Build
+        run: pnpm run build
 
-        - name: Publish
-          id: changesets
-          uses: changesets/action@v1
-          if: ${{ github.event.inputs.tag == '' }}
-          with:
-            publish: bun release
-            commit: "ci(changesets): version packages"
-            setupGitUser: false
-          env:
-            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish
+        id: changesets
+        uses: changesets/action@63a615b9cd06ba9a3e6d13796c7fbcb080a60a0b # v1
+        if: ${{ github.event.inputs.tag == '' }}
+        with:
+          publish: pnpm release
+          commit: 'ci(changesets): version packages'
+          setupGitUser: false
+        env:
+          NPM_CONFIG_PROVENANCE: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-        - name: Publish ${{ inputs.tag || 'canary' }}
-          if: steps.changesets.outputs.published != 'true'
-          run: |
-            git checkout main
-            bun version:canary
-            bun release:canary --tag ${{ inputs.tag || 'canary' }}
-          env:
-            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish ${{ inputs.tag || 'canary' }}
+        id: canary
+        if: steps.changesets.outputs.published != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
+          RELEASE_TAG: ${{ inputs.tag || 'canary' }}
+        run: |
+          git checkout main
+          pnpm version:canary
+          pnpm release:canary --tag "$RELEASE_TAG"
+
+  get-version:
+    name: Get Published Version
+    if: needs.release.outputs.published == 'true'
+    needs: [release]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      version: ${{ steps.version.outputs.result }}
+    steps:
+      - name: Get version
+        id: version
+        uses: actions/github-script@373c709c69115d41ff229c7e5df9f8788daa9553 # v9
+        env:
+          PUBLISHED_PACKAGES: ${{ needs.release.outputs.published_packages }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          result-encoding: string
+          script: |
+            const publishedPackages = JSON.parse(process.env.PUBLISHED_PACKAGES || '[]');
+            const corePackage = publishedPackages.find(pkg => pkg.name === '@stijnvanhulle/template-core');
+            return corePackage?.version || '';

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "language": "en-US",
+  "useGitignore": true,
+  "ignorePaths": [
+    "**/*.snap",
+    "__snapshots__",
+    "mocks",
+    "**/*.d.ts",
+    "*.lock",
+    "pnpm-lock.yaml",
+    "**/.changeset/**",
+    "**/CHANGELOG.md",
+    "**/changelog.md"
+  ],
+  "ignoreRegExpList": [
+    "https?://github\\.com/[a-zA-Z0-9-_]+(/[a-zA-Z0-9-_]+)?",
+    "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b"
+  ],
+  "words": [
+    "stijnvanhulle",
+    "Stijn",
+    "Hulle",
+    "organisation",
+    "Turborepo",
+    "monorepo",
+    "Oxlint",
+    "Oxfmt",
+    "oxfmt",
+    "oxlint",
+    "Vitest",
+    "Vitepress",
+    "tsdown",
+    "Github",
+    "changesets",
+    "codecov",
+    "rolldown",
+    "taze",
+    "pkg-pr-new",
+    "rharkor"
+  ]
+}

@@ -1,37 +1,51 @@
-name: "Setup"
-description: "Sets up Node.js and runs install"
+name: Setup
+description: Sets up pnpm, Node, dependencies, and (optionally) a Turbo cache.
+
+# NOTE: local composite actions cannot call other actions that use a `pre:`
+# lifecycle hook (e.g. step-security/harden-runner,
+# rharkor/caching-for-turbo). If you want runner hardening or a network
+# Turbo cache, add those actions directly in your workflow, BEFORE this
+# composite is invoked.
+
+inputs:
+  node-version:
+    description: 'Node.js version to use (e.g., 22, 24, or 22.x)'
+    required: true
+  cache:
+    description: 'Local Turbo cache: "turbo" (default) restores/saves node_modules/.cache/turbo; "false" skips it.'
+    required: false
+    default: 'turbo'
 
 runs:
   using: composite
   steps:
-    - uses: pnpm/action-setup@v2.2.4
-      with:
-        version:
+    - name: Setup pnpm
+      uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
 
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v3
+    - name: Setup Node.js
+      uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
       with:
-        node-version: 18
-        cache: 'pnpm'
+        node-version: ${{ inputs.node-version }}
         registry-url: 'https://registry.npmjs.org'
+        cache: 'pnpm'
 
-    - name: Install bun
-      uses: oven-sh/setup-bun@v1
-      continue-on-error: true
-
-    - name: Setup Git User
+    - name: Setup git user
       shell: bash
       run: |
-        git config --global user.email "stijn@stijnvanhulle.be"
-        git config --global user.name "Stijn Van Hulle"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
 
     - name: Install dependencies
       shell: bash
-      run: pnpm install --prefer-offline
+      run: pnpm install --frozen-lockfile --prefer-offline
 
-    - name: Setup Turbo
-      uses: dtinth/setup-github-actions-caching-for-turbo@v1
-      continue-on-error: true
+    # Cache scope is namespaced by ref so a poisoned PR cache cannot be
+    # restored by a main-branch run. See https://neciudan.dev/github-actions-poisoning
+    - name: Cache Turbo
+      if: ${{ inputs.cache == 'turbo' }}
+      uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
       with:
-        # Set the prefix for the cache keys.
-        cache-prefix: stijnvanhulle_
+        path: node_modules/.cache/turbo
+        key: ${{ runner.os }}-turbo-${{ github.event.repository.name }}-${{ github.ref_name }}-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-turbo-${{ github.event.repository.name }}-${{ github.ref_name }}-

@@ -1,16 +1,9 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "types": [
-      "vitest/globals",
-      "bun-types",
-      "../config/ts-config/reset.d.ts"
-    ]
+    "outDir": "dist",
+    "types": ["bun-types", "../../reset.d.ts"]
   },
-  "include": [
-    "src/**/*",
-    "./package.json",
-    "./tsup.config.ts",
-    "./vitest.config.ts"
-  ]
+  "include": ["src/**/*", "./package.json", "./tsdown.config.ts", "./vitest.config.ts"]
 }

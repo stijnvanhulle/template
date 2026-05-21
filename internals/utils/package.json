@@ -1,0 +1,36 @@
+{
+  "name": "@internals/utils",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Domain-agnostic utility helpers shared across all workspace packages. Not intended for public use.",
+  "license": "MIT",
+  "author": "Stijn Van Hulle <stijn@stijnvanhulle.be>",
+  "files": [
+    "src",
+    "dist",
+    "!/**/**.test.**",
+    "!/**/__tests__/**",
+    "!/**/__snapshots__/**"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "clean": "rm -rf ./dist",
+    "start": "tsdown --watch",
+    "test": "vitest --passWithNoTests",
+    "typecheck": "tsc -p ./tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:"
+  },
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=11.0.0"
+  }
+}

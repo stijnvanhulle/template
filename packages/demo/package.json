@@ -1,60 +1,49 @@
 {
   "name": "@stijnvanhulle/template-demo",
-  "version": "2.4.0",
-  "description": "Demo",
+  "version": "0.0.0",
+  "description": "Demo package",
+  "license": "MIT",
+  "author": "Stijn Van Hulle <stijn@stijnvanhulle.be>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/stijnvanhulle/template.git",
+    "url": "https://github.com/stijnvanhulle/template.git",
     "directory": "packages/demo"
   },
-  "license": "MIT",
-  "author": "Stijn Van Hulle <stijn@stijnvanhulle.be",
-  "sideEffects": false,
-  "type": "module",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "default": "./dist/index.cjs"
-    },
-    "./package.json": "./package.json",
-    "./*": "./*"
-  },
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "./dist/index.d.ts",
   "files": [
     "src",
     "dist"
   ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
-    "build": "tsup",
-    "clean": "npx rimraf ./dist",
-    "lint": "bun biome lint .",
-    "lint:fix": "bun biome lint --apply-unsafe .",
+    "build": "tsdown",
+    "clean": "rm -rf ./dist",
     "release": "pnpm publish --no-git-check",
-    "release:canary": "bash ../../.github/canary.sh && node ../../scripts/build.js canary && pnpm publish --no-git-check",
-    "start": "tsup --watch",
+    "release:canary": "bash ../../.github/canary.sh && pnpm publish --no-git-check",
+    "start": "tsdown --watch",
     "test": "vitest --passWithNoTests",
-    "typecheck": "tsc -p ./tsconfig.json --noEmit --emitDeclarationOnly false"
+    "typecheck": "tsc -p ./tsconfig.json --noEmit"
   },
   "dependencies": {
     "@stijnvanhulle/template-core": "workspace:*"
   },
   "devDependencies": {
-    "@stijnvanhulle/biome-config": "workspace:*",
-    "@stijnvanhulle/ts-config": "workspace:*",
-    "@stijnvanhulle/tsup-config": "workspace:*",
-    "tsup": "^8.0.2",
-    "typescript": "^5.4.4"
+    "@types/node": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   },
-  "packageManager": "pnpm@8.3.0",
   "engines": {
-    "node": ">=18",
-    "pnpm": ">=8.3.0"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
+    "node": ">=22",
+    "pnpm": ">=11.0.0"
   }
 }

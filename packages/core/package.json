@@ -2,15 +2,22 @@
   "name": "@stijnvanhulle/template-core",
   "version": "0.0.0",
   "description": "Core package",
+  "license": "MIT",
+  "author": "Stijn Van Hulle <stijn@stijnvanhulle.be>",
   "repository": {
     "type": "git",
     "url": "https://github.com/stijnvanhulle/template.git",
     "directory": "packages/core"
   },
-  "license": "MIT",
-  "author": "Stijn Van Hulle <stijn@stijnvanhulle.be>",
-  "sideEffects": false,
+  "files": [
+    "src",
+    "dist"
+  ],
   "type": "module",
+  "sideEffects": false,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.js",
@@ -18,13 +25,10 @@
     },
     "./package.json": "./package.json"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "src",
-    "dist"
-  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "build": "tsdown",
     "clean": "rm -rf ./dist",
@@ -43,9 +47,5 @@
   "engines": {
     "node": ">=22",
     "pnpm": ">=11.0.0"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
   }
 }

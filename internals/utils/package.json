@@ -5,13 +5,13 @@
   "description": "Internal utilities shared across the monorepo (not published)",
   "license": "MIT",
   "author": "Stijn Van Hulle <stijn@stijnvanhulle.be>",
-  "sideEffects": false,
   "type": "module",
+  "sideEffects": false,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts"
   },
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
   "scripts": {
     "clean": "rm -rf ./dist",
     "typecheck": "tsc -p ./tsconfig.json --noEmit"

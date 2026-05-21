@@ -1,0 +1,23 @@
+'@stijnvanhulle/template-core':
+  - any: ['packages/core/**', '!packages/core/package.json']
+
+'@stijnvanhulle/template-demo':
+  - any: ['packages/demo/**', '!packages/demo/package.json']
+
+'@internals/utils':
+  - any: ['internals/utils/**']
+
+docs:
+  - any: ['README.md', '*.md', 'docs/**']
+
+ci:
+  - any: ['.github/**']
+
+feature:
+  - head-branch: ['^feat', 'feat']
+
+bug:
+  - head-branch: ['^bug', 'bug', '^fix', 'fix']
+
+chore:
+  - head-branch: ['^chore', 'chore']

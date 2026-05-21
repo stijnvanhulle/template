@@ -1,0 +1,37 @@
+name: Sync AGENTS.md from Skills
+
+on:
+  push:
+    paths:
+      - '.skills/**'
+  pull_request:
+    paths:
+      - '.skills/**'
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  build-agents-md:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - name: Generate skills block
+        id: build
+        uses: dave1010/skills-to-agents@12f69f287941dfafb2fcf761455e73a5c6361469 # v2
+        with:
+          repo-root: .
+          skills-dir: .skills
+          agents-path: AGENTS.md
+      - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8
+        if: steps.build.outputs.changed == 'true'
+        with:
+          base: ${{ github.head_ref || github.ref_name }}
+          branch: chore/update-agents-${{ github.event.number }}
+          delete-branch: true
+          title: 'Update AGENTS.md'
+          commit-message: 'chore(agents): update AGENTS.md'
+          body: 'Automated update of AGENTS.md from skills.'

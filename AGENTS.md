@@ -1,8 +1,6 @@
 # AGENTS.md
 
-This repository is the monorepo template used to scaffold new repositories in
-the [`kubb-labs`](https://github.com/kubb-labs) organisation. It mirrors the
-toolchain used by `kubb-labs/kubb` and `kubb-labs/plugins`.
+A modern TypeScript monorepo template — pnpm workspaces, Turborepo, oxlint, oxfmt, tsdown, Vitest and Changesets.
 
 ## Folder Structure
 
@@ -14,6 +12,7 @@ template/
 ├── internals/               # Non-published shared utilities
 │   └── utils/
 ├── configs/                 # Shared TypeScript + Vitest configs
+├── .github/setup/           # Reusable composite action for CI setup
 ├── .github/workflows/       # CI workflows
 ├── .claude/                 # Claude Code workspace config
 └── .skills/                 # Claude Code skills
@@ -39,13 +38,14 @@ pnpm install                 # Install dependencies
 pnpm clean                   # Clean build artifacts
 pnpm build                   # Build all packages
 pnpm test                    # Run tests
+pnpm test:bench              # Run benchmarks
 pnpm typecheck               # Type-check all packages
 pnpm format                  # Format code with oxfmt
 pnpm lint                    # Lint code with oxlint
 pnpm lint:fix                # Lint and fix issues
 pnpm lint:spell              # Spell-check
 pnpm changeset               # Create a changelog entry
-pnpm run upgrade && pnpm i   # Upgrade dependencies
+pnpm run upgrade && pnpm i   # Upgrade dependencies via taze
 ```
 
 <skills>

@@ -24,7 +24,7 @@ concurrency:
 jobs:
   release:
     name: Release
-    if: github.repository_owner == 'stijnvanhulle' || github.repository_owner == 'kubb-labs'
+    if: github.repository_owner == 'stijnvanhulle'
     timeout-minutes: 15
     runs-on: ubuntu-latest
     # id-token: write is scoped to this job only, which runs after tests pass.
@@ -45,7 +45,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Tools
-        uses: kubb-labs/config/.github/setup@8508e66e6014b9ca1416591bc20791027b6ccf5c # main
+        uses: ./.github/setup
         with:
           node-version: '22'
           cache: 'false'

@@ -23,8 +23,6 @@
     "Stijn",
     "Hulle",
     "organisation",
-    "Kubb",
-    "kubb-labs",
     "Turborepo",
     "monorepo",
     "Oxlint",
@@ -34,10 +32,11 @@
     "Vitest",
     "Vitepress",
     "tsdown",
-    "unplugin",
     "Github",
     "changesets",
     "codecov",
-    "rolldown"
+    "rolldown",
+    "taze",
+    "pkg-pr-new"
   ]
 }

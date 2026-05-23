@@ -14,13 +14,14 @@ template/
 ├── configs/                 # Shared TypeScript + Vitest configs
 ├── .github/setup/           # Reusable composite action for CI setup
 ├── .github/workflows/       # CI workflows
+├── plans/                   # Spec-driven workflow: templates/ + per-feature plan folders
 ├── .agents/
 │   └── skills/              # Agent skills, shared across providers (Claude, Copilot, OpenCode, Cursor, ChatGPT)
 └── .claude/                 # Claude Code workspace config
     ├── settings.json        # Permissions + hooks (format-on-edit, session-start)
     ├── skills -> ../.agents/skills
     ├── rules/               # Always-on conventions (code-style, jsdoc, markdown, testing, security)
-    ├── commands/            # Slash commands (/changeset)
+    ├── commands/            # Slash commands (/changeset, /spec, /plan, /verify)
     ├── agents/              # Subagents (code-reviewer)
     ├── output-styles/       # System-prompt styles (plan)
     └── hooks/               # Hook scripts
@@ -86,4 +87,5 @@ You have new skills. If any skill might be relevant then you MUST read it.
 - [humanizer](.agents/skills/humanizer/SKILL.md) - Remove AI writing patterns to make documentation sound natural, specific, and human. Covers content patterns, language patterns, style patterns, and communication patterns.
 - [jsdoc](.agents/skills/jsdoc/SKILL.md) - Full JSDoc format guide for TypeScript - @example formats, tag usage (@default, @deprecated, what to avoid), documentation patterns for properties/enums/functions, and tag order.
 - [pr](.agents/skills/pr/SKILL.md) - Rules and checklist for preparing PRs, creating changesets, and releasing packages in the monorepo.
+- [spec-driven](.agents/skills/spec-driven/SKILL.md) - Drive a spec-driven workflow for a larger feature: specify requirements and acceptance criteria, research decisions, plan numbered slices, implement, then verify. Use for multi-step features that need a reviewable paper trail; skip it for small, obvious changes.
 </skills>

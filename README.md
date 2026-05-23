@@ -55,6 +55,7 @@ already wired up.
 ├── packages/            # Publishable packages
 │   ├── core/
 │   └── demo/
+├── plans/               # Spec-driven workflow (templates + per-feature folders)
 ├── env.d.ts
 ├── oxfmt.config.ts
 ├── oxlint.config.ts
@@ -102,7 +103,7 @@ Claude-specific extensions layer on top. The pieces, and when each one loads:
 | Path | What it does | When it loads |
 |---|---|---|
 | `.claude/rules/` | Always-on conventions: code style, JSDoc, markdown humanizer, testing, security | Session start, or when a matching file opens for path-scoped rules |
-| `.agents/skills/` | Playbooks: changelog, documentation, humanizer, jsdoc, pr | On demand, when the task matches the skill description |
+| `.agents/skills/` | Playbooks: changelog, documentation, humanizer, jsdoc, pr, spec-driven | On demand, when the task matches the skill description |
 | `.claude/commands/` | Explicit slash-command actions, such as `/changeset` | When you type the command |
 | `.claude/agents/` | Subagents with their own context window, such as `code-reviewer` | When delegated a matching task |
 | `.claude/output-styles/` | System-prompt modes, such as `plan` | When selected |
@@ -111,6 +112,11 @@ Claude-specific extensions layer on top. The pieces, and when each one loads:
 
 The guiding split: rules always apply, skills are optional expertise loaded only when
 relevant, and commands are actions you trigger yourself.
+
+For larger features, `plans/` holds a spec-driven workflow (spec, research, plan, slices,
+verification) driven by the `spec-driven` skill and the `/spec`, `/plan`, and `/verify`
+commands. See [plans/README.md](plans/README.md). For quick changes, use the `plan` output
+style instead.
 
 ## Prerequisites
 

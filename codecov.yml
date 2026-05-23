@@ -1,0 +1,14 @@
+coverage:
+  range: 50..90
+  status:
+    project:
+      default:
+        target: auto
+        threshold: 1%
+
+comment: false
+
+ignore:
+  - '**/examples/**'
+  - '**/tests/**'
+  - '**/dist/**'

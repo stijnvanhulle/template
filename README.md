@@ -56,6 +56,7 @@ already wired up.
 │   ├── core/
 │   └── demo/
 ├── plans/               # Spec-driven workflow (templates + per-feature folders)
+├── codecov.yml          # Coverage targets + ignores
 ├── env.d.ts
 ├── oxfmt.config.ts
 ├── oxlint.config.ts

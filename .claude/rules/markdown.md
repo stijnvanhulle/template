@@ -7,9 +7,9 @@ paths:
 # Markdown and documentation
 
 Apply this whenever you write or edit any markdown file, so generated docs read as natural and
-specific rather than generic. For a thorough pass on substantial docs, read the full reference
-use the `humanizer` skill (`.agents/skills/humanizer/SKILL.md`); for the complete writing guide
-(voice, content patterns, SEO) use the `documentation` skill.
+specific rather than generic. For a thorough pass on substantial docs, use the `humanizer`
+skill (`.agents/skills/humanizer/SKILL.md`); for the complete writing guide (voice, content
+patterns, SEO) use the `documentation` skill.
 
 ## Always
 
@@ -17,7 +17,7 @@ use the `humanizer` skill (`.agents/skills/humanizer/SKILL.md`); for the complet
 - No emojis in prose or headings
 - No inline-header bullet lists (`- **Speed**: faster load times`); write a sentence instead
 - Do not bold product names or ordinary words mid-sentence
-- Replace em dashes with a comma, semicolon, or sentence break
+- No dashes as sentence punctuation: avoid the em dash (`—`), en dash (`–`), and a spaced hyphen (` - `); use a comma, parentheses, or a separate sentence. Hyphenated compounds like `spec-driven` and CLI flags are fine
 - Cut filler: "in order to", "it is worth noting", "has the ability to", excessive hedging
 - Replace AI vocabulary: utilize and leverage become use, facilitate becomes help; drop empty
   words like seamless, powerful, robust, comprehensive, and be specific instead

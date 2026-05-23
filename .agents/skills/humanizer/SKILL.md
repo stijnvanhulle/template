@@ -34,5 +34,5 @@ Load the category you need:
 | --- | --- |
 | [content-patterns.md](references/content-patterns.md) | Undue significance, empty credibility signals, -ing-participle filler, marketing language, vague attributions, generic filler sections |
 | [language-patterns.md](references/language-patterns.md) | AI vocabulary, copula avoidance, negative parallelisms, rule-of-three, elegant variation, false ranges, filler and hedging, words to cut |
-| [style-patterns.md](references/style-patterns.md) | Em dashes, unnecessary bold, inline-header lists, title-case headings, emojis |
+| [style-patterns.md](references/style-patterns.md) | Dashes as punctuation, unnecessary bold, inline-header lists, title-case headings, emojis |
 | [communication-patterns.md](references/communication-patterns.md) | Chatbot artifacts, sycophantic openers |

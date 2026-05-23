@@ -2,12 +2,17 @@
 
 Formatting tells that mark text as AI-generated.
 
-## Em dash overuse
+## Dashes as punctuation
 
-Replace em dashes with commas, semicolons, or sentence breaks.
+Do not use a dash to join clauses or set off an aside: not the em dash (`—`), the en dash (`–`),
+or a spaced hyphen (` - `). Use a comma, parentheses, or a separate sentence. Hyphenated compound
+words such as `spec-driven` or `server-side` are fine.
 
 > Before: "The update improves performance — especially on older devices."
 > After: "The update improves performance, especially on older devices."
+
+> Before: "The API is fast - and reliable."
+> After: "The API is fast and reliable."
 
 ## Unnecessary bold
 

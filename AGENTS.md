@@ -14,8 +14,16 @@ template/
 ├── configs/                 # Shared TypeScript + Vitest configs
 ├── .github/setup/           # Reusable composite action for CI setup
 ├── .github/workflows/       # CI workflows
-├── .claude/                 # Claude Code workspace config
-└── .skills/                 # Claude Code skills
+├── .agents/
+│   └── skills/              # Agent skills, shared across providers (Claude, Copilot, OpenCode, Cursor, ChatGPT)
+└── .claude/                 # Claude Code workspace config
+    ├── settings.json        # Permissions + hooks (format-on-edit, session-start)
+    ├── skills -> ../.agents/skills
+    ├── rules/               # Always-on conventions (coding-style, jsdoc, markdown)
+    ├── commands/            # Slash commands (/changeset)
+    ├── agents/              # Subagents (code-reviewer)
+    ├── output-styles/       # System-prompt styles (plan)
+    └── hooks/               # Hook scripts
 ```
 
 ## Repository Setup
@@ -48,16 +56,26 @@ pnpm changeset               # Create a changelog entry
 pnpm run upgrade && pnpm i   # Upgrade dependencies via taze
 ```
 
+## Rules, skills and commands
+
+This repo separates AI configuration by how each piece is used:
+
+- **Rules** (`.claude/rules/`) — the constraints that always apply: repo setup, naming
+  conventions, TypeScript style, how to run tests. Auto-loaded (Claude-specific).
+- **Skills** (`.agents/skills/`) — on-demand playbooks for specific workflows; loaded when the
+  task matches their description. Shared across providers (Claude, Copilot, OpenCode, Cursor,
+  ChatGPT).
+- **Commands** (`.claude/commands/`) — explicit `/name` actions you trigger yourself.
+- **Subagents** (`.claude/agents/`) — isolated specialists with their own context window.
+
 <skills>
 
 ## Skills
 
 You have new skills. If any skill might be relevant then you MUST read it.
 
-- [changelog](.skills/changelog/SKILL.md) - Automatically creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes. Turns hours of manual changelog writing into minutes of automated generation.
-- [coding-style](.skills/coding-style/SKILL.md) - Coding style, testing, and PR guidelines. Use when writing or reviewing code.
-- [documentation](.skills/documentation/SKILL.md) - Use when writing blog posts or documentation markdown files - provides writing style guide (active voice, present tense), content structure patterns, and SEO optimization. Overrides brevity rules for proper grammar.
-- [jsdoc](.skills/jsdoc/SKILL.md) - Guidelines for writing minimal, high-quality JSDoc comments in TypeScript.
-- [pr](.skills/pr/SKILL.md) - Rules and checklist for preparing PRs, creating changesets, and releasing packages in the monorepo.
-- [testing](.skills/testing/SKILL.md) - Testing, CI, and troubleshooting guidance for running the repository's test suite and interpreting CI failures.
+- [changelog](.agents/skills/changelog/SKILL.md) - Automatically creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes. Turns hours of manual changelog writing into minutes of automated generation.
+- [documentation](.agents/skills/documentation/SKILL.md) - Use when writing blog posts or documentation markdown files - provides writing style guide (active voice, present tense), content structure patterns, and SEO optimization. Overrides brevity rules for proper grammar.
+- [pr](.agents/skills/pr/SKILL.md) - Rules and checklist for preparing PRs, creating changesets, and releasing packages in the monorepo.
+- [testing](.agents/skills/testing/SKILL.md) - Testing, CI, and troubleshooting guidance for running the repository's test suite and interpreting CI failures.
 </skills>

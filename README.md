@@ -40,13 +40,15 @@ already wired up.
 
 ```
 .
+├── .agents/
+│   └── skills/          # Agent skills, shared across providers
 ├── .changeset/          # Changeset configuration
-├── .claude/             # Claude Code workspace config
+├── .claude/             # Claude Code config (rules, commands, agents, hooks, settings)
+│   └── skills/          # → ../.agents/skills
 ├── .github/
 │   ├── ISSUE_TEMPLATE/  # Issue templates
 │   ├── setup/           # Reusable setup composite action
 │   └── workflows/       # CI workflows
-├── .skills/             # Claude Code skills
 ├── configs/             # Shared TS bases + vitest config
 ├── internals/           # Internal, non-published packages
 │   └── utils/
@@ -62,6 +64,31 @@ already wired up.
 ├── tsconfig.json
 └── turbo.json
 ```
+
+## AI assistant configuration
+
+This template is set up for AI coding agents. Instructions are shared across tools through two
+cross-provider standards, with Claude Code specific extensions layered on top.
+
+`AGENTS.md` holds the project instructions every agent reads: stack, commands, and conventions.
+`CLAUDE.md` is a symlink to it, so Claude Code and other tools stay in sync from one file.
+Skills live in `.agents/skills/`, the shared location read by Claude, GitHub Copilot, OpenCode,
+Cursor, and ChatGPT; `.claude/skills` symlinks there so Claude finds them too.
+
+The pieces, and when each one loads:
+
+| Path | What it does | When it loads |
+|---|---|---|
+| `.claude/rules/` | Always-on conventions: coding style, JSDoc, markdown humanizer | Session start, or when a matching file opens for path-scoped rules |
+| `.agents/skills/` | Playbooks for workflows: changelog, documentation, pr, testing | On demand, when the task matches the skill description |
+| `.claude/commands/` | Explicit slash-command actions, such as `/changeset` | When you type the command |
+| `.claude/agents/` | Subagents with their own context window, such as `code-reviewer` | When delegated a matching task |
+| `.claude/output-styles/` | System-prompt modes, such as `plan` | When selected |
+| `.claude/hooks/` | Scripts that install deps on session start and format files on edit | On the matching event |
+| `.claude/settings.json` | Permissions and hook registration | Always |
+
+The guiding split: rules always apply, skills are optional expertise loaded only when
+relevant, and commands are actions you trigger yourself.
 
 ## Prerequisites
 

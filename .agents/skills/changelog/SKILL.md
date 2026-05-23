@@ -1,6 +1,6 @@
 ---
 name: changelog
-description: Automatically creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes. Turns hours of manual changelog writing into minutes of automated generation.
+description: Creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes.
 ---
 
 # Changelog and Versioning Skill
@@ -130,9 +130,9 @@ const petType = {
 
 ## Related Skills
 
-| Skill                                                      | Use For             |
-| ---------------------------------------------------------- | ------------------- | ------------------------------------------ |
-| **[../documentation/SKILL.md](../documentation/SKILL.md)** | Documentation style | Adding documentation for changelog entries |
+| Skill | Use for |
+| --- | --- |
+| [documentation](../documentation/SKILL.md) | Documentation style for changelog entries |
 
 ## Checklist
 

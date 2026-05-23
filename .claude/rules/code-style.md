@@ -1,15 +1,15 @@
+---
+paths:
+  - "**/*.ts"
+  - "**/*.tsx"
+  - "**/*.vue"
+---
+
 # Coding style
 
-Repository conventions that always apply. For the workflows beyond these conventions, reach
-for the skills: `pr` (PR prep and checklist), `testing` (CI and test troubleshooting), and
-`changelog` (release notes and changesets).
-
-## Repository facts
-
-- Monorepo managed by pnpm workspaces and Turborepo
-- ESM-only (`type: "module"` across the repo)
-- Node 22, pnpm 11+
-- oxlint (lint), oxfmt (format), tsdown (bundle), Vitest (test), Changesets (versioning)
+Conventions for code in this repo. Repo setup and tooling are in AGENTS.md. For release
+workflows, see the `changelog` and `pr` skills; for test authoring and CI, see the `testing`
+rule.
 
 ## Style
 
@@ -39,7 +39,6 @@ for the skills: `pr` (PR prep and checklist), `testing` (CI and test troubleshoo
 
 ## Tests
 
-- Location: `*.test.ts` or `*.test.tsx` in `src` folders
-- Run all with `pnpm test`, one with `pnpm test "<name>"`, update snapshots with `-u`
 - Add or update tests for every code change and keep the suite green
 - After moving files or changing imports, run `pnpm lint && pnpm typecheck`
+- See the `testing` rule for authoring conventions and how to run the suite

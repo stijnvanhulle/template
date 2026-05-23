@@ -8,7 +8,7 @@ paths:
 
 Apply this whenever you write or edit any markdown file, so generated docs read as natural and
 specific rather than generic. For a thorough pass on substantial docs, read the full reference
-at `.agents/skills/documentation/references/humanizer.md`; for the complete writing guide
+use the `humanizer` skill (`.agents/skills/humanizer/SKILL.md`); for the complete writing guide
 (voice, content patterns, SEO) use the `documentation` skill.
 
 ## Always

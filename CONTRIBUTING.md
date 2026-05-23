@@ -10,7 +10,7 @@ Thanks for considering a contribution. Please read and follow our [Code of Condu
 
 | Tool | Purpose |
 |---|---|
-| [TypeScript](https://www.typescriptlang.org/) | Primary language — strict, ESM only |
+| [TypeScript](https://www.typescriptlang.org/) | Primary language (strict, ESM only) |
 | [pnpm](https://pnpm.io/) | Package manager with workspaces |
 | [Turborepo](https://turbo.build/) | Monorepo task runner |
 | [tsdown](https://github.com/sxzz/tsdown) | Bundler and `.d.ts` generation |

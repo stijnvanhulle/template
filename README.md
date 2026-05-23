@@ -3,7 +3,7 @@
   <h1>Template</h1>
 
   <p>
-    A modern TypeScript monorepo template — pnpm workspaces, Turborepo, oxlint, oxfmt, tsdown, Vitest and Changesets.
+    A modern TypeScript monorepo template (pnpm workspaces, Turborepo, oxlint, oxfmt, tsdown, Vitest, and Changesets).
   </p>
 
   <h4>
@@ -78,17 +78,17 @@ source of truth.
 
 Supported agents:
 
-- **Claude Code** — reads `CLAUDE.md` (symlink to `AGENTS.md`) and `.claude/skills` (symlink to
+- **Claude Code** reads `CLAUDE.md` (symlink to `AGENTS.md`) and `.claude/skills` (symlink to
   `.agents/skills`), plus the Claude-specific extensions below.
-- **OpenAI Codex / ChatGPT** — reads `AGENTS.md` and Agent Skills natively.
-- **GitHub Copilot** — reads `AGENTS.md` natively, and `.github/copilot-instructions.md`
+- **OpenAI Codex / ChatGPT** reads `AGENTS.md` and Agent Skills natively.
+- **GitHub Copilot** reads `AGENTS.md` natively, and `.github/copilot-instructions.md`
   (symlink to `AGENTS.md`) in VS Code.
-- **Cursor** — reads `AGENTS.md` natively. It does not follow symlinks into `.cursor/rules/`,
+- **Cursor** reads `AGENTS.md` natively. It does not follow symlinks into `.cursor/rules/`,
   so rules are not duplicated there; the rule files under `.claude/rules/` are referenced from
   `AGENTS.md` instead.
-- **OpenCode** — reads `AGENTS.md` and Agent Skills natively.
-- **Gemini CLI** — reads `GEMINI.md` (symlink to `AGENTS.md`).
-- **Windsurf and other AGENTS.md runtimes** — read `AGENTS.md` natively.
+- **OpenCode** reads `AGENTS.md` and Agent Skills natively.
+- **Gemini CLI** reads `GEMINI.md` (symlink to `AGENTS.md`).
+- **Windsurf and other AGENTS.md runtimes** read `AGENTS.md` natively.
 
 | Entry point | Tool | Mechanism |
 |---|---|---|
@@ -154,7 +154,7 @@ pnpm upgrade         # Bump dependencies to latest (via taze)
 6. Update `tsconfig.json` `paths` to match the new packages.
 7. Edit `README.md`, `AGENTS.md`, `CLAUDE.md`, `CONTRIBUTING.md`, `SECURITY.md`
    for the new project.
-8. Push to `main` — CI runs immediately.
+8. Push to `main`. CI runs immediately.
 
 ## Releasing
 

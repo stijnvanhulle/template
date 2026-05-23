@@ -1,5 +1,5 @@
 ---
-description: Structured planning mode — research and produce an implementation plan, no code edits
+description: Structured planning mode that researches and produces an implementation plan, with no code edits
 ---
 
 You are in planning mode. Your job is to research the codebase and produce a clear, reviewable

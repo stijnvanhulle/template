@@ -1,6 +1,6 @@
 # AGENTS.md
 
-A modern TypeScript monorepo template — pnpm workspaces, Turborepo, oxlint, oxfmt, tsdown, Vitest and Changesets.
+A modern TypeScript monorepo template (pnpm workspaces, Turborepo, oxlint, oxfmt, tsdown, Vitest, and Changesets).
 
 ## Folder Structure
 
@@ -29,16 +29,18 @@ template/
 
 ## Repository Setup
 
-- **Monorepo** — pnpm workspaces + Turborepo
-- **Module system** — ESM-only (`type: "module"`)
-- **Node version** — 22
-- **Package manager** — pnpm 11+
-- **Linter** — oxlint
-- **Formatter** — oxfmt
-- **Bundler** — tsdown
-- **Tests** — Vitest
-- **Versioning** — Changesets
-- **CI/CD** — GitHub Actions
+| Aspect | Choice |
+| --- | --- |
+| Monorepo | pnpm workspaces + Turborepo |
+| Module system | ESM-only (`type: "module"`) |
+| Node version | 22 |
+| Package manager | pnpm 11+ |
+| Linter | oxlint |
+| Formatter | oxfmt |
+| Bundler | tsdown |
+| Tests | Vitest |
+| Versioning | Changesets |
+| CI/CD | GitHub Actions |
 
 ## Commands
 

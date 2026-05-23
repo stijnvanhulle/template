@@ -1,6 +1,6 @@
 ---
 name: jsdoc
-description: Full JSDoc format guide for TypeScript — @example formats (short, multi-line, multi-variant), tag usage (@default, @deprecated, what to avoid), documentation patterns for properties/enums/functions, and tag order.
+description: Full JSDoc format guide for TypeScript, covering @example formats (short, multi-line, multi-variant), tag usage (@default, @deprecated, what to avoid), documentation patterns for properties/enums/functions, and tag order.
 ---
 
 # JSDoc

@@ -9,4 +9,6 @@ fi
 
 cd "${CLAUDE_PROJECT_DIR:-.}"
 
-pnpm install --frozen-lockfile
+# Mutable install (not --frozen-lockfile) so a forker with lockfile drift still
+# gets a working session; the container caches the result after the first run.
+pnpm install

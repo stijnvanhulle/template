@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Format the file Claude just edited in place with oxfmt (JS/TS only).
 # Reads the PostToolUse payload from stdin.
-file=$(jq -r '.tool_input.file_path // empty')
+file=$(jq -r '.tool_input.file_path // empty' 2>/dev/null || true)
 if [ -z "$file" ]; then
   exit 0
 fi

@@ -76,9 +76,14 @@ open format or a symlink, so there is a single source of truth:
 | --- | --- | --- |
 | `AGENTS.md` | Codex / ChatGPT, Cursor, Copilot, OpenCode, Windsurf | Read natively |
 | `CLAUDE.md` → `AGENTS.md` | Claude Code | Symlink |
+| `GEMINI.md` → `AGENTS.md` | Gemini CLI | Symlink |
 | `.github/copilot-instructions.md` → `AGENTS.md` | GitHub Copilot (VS Code) | Symlink |
 | `.agents/skills/<name>/SKILL.md` | Claude, Codex, Cursor, Copilot, OpenCode, and 35+ runtimes | Open SKILL.md format |
 | `.claude/skills` → `.agents/skills` | Claude Code | Symlink |
+
+Path-scoped rules (`.claude/rules/`) are auto-loaded by Claude. Cursor reads `AGENTS.md`
+natively but does not follow symlinks into `.cursor/rules/`, so its rules are not duplicated
+there; any agent can read the rule files directly from the locations listed below.
 
 Configuration is separated by how each piece is used:
 

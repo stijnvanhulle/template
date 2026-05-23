@@ -70,16 +70,29 @@ already wired up.
 This template is set up for AI coding agents. It builds on two open formats, AGENTS.md and
 Agent Skills, and uses symlinks so every tool reads from one source instead of drifting copies.
 
-`AGENTS.md` is the canonical instruction file. Codex and ChatGPT, Cursor, Copilot, OpenCode,
-and Windsurf read it natively; Claude Code reads `CLAUDE.md`, a symlink to it; GitHub Copilot
-in VS Code also reads `.github/copilot-instructions.md`, another symlink to it. Skills live in
-`.agents/skills/` as portable `SKILL.md` folders that work across those runtimes, and
-`.claude/skills` symlinks there so Claude finds them too.
+`AGENTS.md` is the canonical instruction file. Skills live in `.agents/skills/` as portable
+`SKILL.md` folders. Everything else points back to those two through symlinks, so there is one
+source of truth.
+
+Supported agents:
+
+- **Claude Code** — reads `CLAUDE.md` (symlink to `AGENTS.md`) and `.claude/skills` (symlink to
+  `.agents/skills`), plus the Claude-specific extensions below.
+- **OpenAI Codex / ChatGPT** — reads `AGENTS.md` and Agent Skills natively.
+- **GitHub Copilot** — reads `AGENTS.md` natively, and `.github/copilot-instructions.md`
+  (symlink to `AGENTS.md`) in VS Code.
+- **Cursor** — reads `AGENTS.md` natively. It does not follow symlinks into `.cursor/rules/`,
+  so rules are not duplicated there; the rule files under `.claude/rules/` are referenced from
+  `AGENTS.md` instead.
+- **OpenCode** — reads `AGENTS.md` and Agent Skills natively.
+- **Gemini CLI** — reads `GEMINI.md` (symlink to `AGENTS.md`).
+- **Windsurf and other AGENTS.md runtimes** — read `AGENTS.md` natively.
 
 | Entry point | Tool | Mechanism |
 |---|---|---|
 | `AGENTS.md` | Codex / ChatGPT, Cursor, Copilot, OpenCode, Windsurf | Read natively |
 | `CLAUDE.md` → `AGENTS.md` | Claude Code | Symlink |
+| `GEMINI.md` → `AGENTS.md` | Gemini CLI | Symlink |
 | `.github/copilot-instructions.md` → `AGENTS.md` | Copilot (VS Code) | Symlink |
 | `.agents/skills/` | Any Agent Skills runtime | Open `SKILL.md` format |
 | `.claude/skills` → `.agents/skills` | Claude Code | Symlink |

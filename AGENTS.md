@@ -69,30 +69,11 @@ For any change to a published package, run `pnpm changeset` and commit the gener
 
 ## How agents read this repo
 
-AGENTS.md is the canonical, cross-provider instruction file. Every agent reaches it through an
-open format or a symlink, so there is a single source of truth:
-
-| Entry point | Tool | Mechanism |
-| --- | --- | --- |
-| `AGENTS.md` | Codex / ChatGPT, Cursor, Copilot, OpenCode, Windsurf | Read natively |
-| `CLAUDE.md` → `AGENTS.md` | Claude Code | Symlink |
-| `GEMINI.md` → `AGENTS.md` | Gemini CLI | Symlink |
-| `.github/copilot-instructions.md` → `AGENTS.md` | GitHub Copilot (VS Code) | Symlink |
-| `.agents/skills/<name>/SKILL.md` | Claude, Codex, Cursor, Copilot, OpenCode, and 35+ runtimes | Open SKILL.md format |
-| `.claude/skills` → `.agents/skills` | Claude Code | Symlink |
-
-Path-scoped rules (`.claude/rules/`) are auto-loaded by Claude. Cursor reads `AGENTS.md`
-natively but does not follow symlinks into `.cursor/rules/`, so its rules are not duplicated
-there; any agent can read the rule files directly from the locations listed below.
-
-Configuration is separated by how each piece is used:
-
-| Type | Location | Role |
-| --- | --- | --- |
-| Rules | `.claude/rules/` | Constraints that always apply: `code-style`, `jsdoc`, `markdown`, `testing`, `security`. Claude auto-loads them; other agents can read the files directly. |
-| Skills | `.agents/skills/` | On-demand playbooks, loaded when the task matches the description. Portable via the open SKILL.md format. |
-| Commands | `.claude/commands/` | Explicit `/name` actions you trigger yourself. |
-| Subagents | `.claude/agents/` | Isolated specialists with their own context window. |
+`AGENTS.md` is the canonical instruction file; `CLAUDE.md`, `GEMINI.md`, and
+`.github/copilot-instructions.md` symlink to it. Skills live in `.agents/skills/` (open
+`SKILL.md` format, cross-provider). Always-on conventions live in `.claude/rules/`
+(`code-style`, `jsdoc`, `markdown`, `testing`, `security`); `.claude/` also holds commands,
+subagents, and hooks. See the README for the full cross-provider map and how each piece loads.
 
 <skills>
 
@@ -103,5 +84,6 @@ You have new skills. If any skill might be relevant then you MUST read it.
 - [changelog](.agents/skills/changelog/SKILL.md) - Creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes.
 - [documentation](.agents/skills/documentation/SKILL.md) - Use when writing blog posts or documentation markdown files - provides writing style guide (active voice, present tense), content structure patterns, and SEO optimization. Overrides brevity rules for proper grammar.
 - [humanizer](.agents/skills/humanizer/SKILL.md) - Remove AI writing patterns to make documentation sound natural, specific, and human. Covers content patterns, language patterns, style patterns, and communication patterns.
+- [jsdoc](.agents/skills/jsdoc/SKILL.md) - Full JSDoc format guide for TypeScript - @example formats, tag usage (@default, @deprecated, what to avoid), documentation patterns for properties/enums/functions, and tag order.
 - [pr](.agents/skills/pr/SKILL.md) - Rules and checklist for preparing PRs, creating changesets, and releasing packages in the monorepo.
 </skills>

@@ -76,6 +76,29 @@ Agent Skills, and uses symlinks so every tool reads from one source instead of d
 `SKILL.md` folders. Everything else points back to those two through symlinks, so there is one
 source of truth.
 
+### Folder structure
+
+```
+AGENTS.md                                     # canonical instructions every agent reads
+CLAUDE.md → AGENTS.md                         # Claude Code
+GEMINI.md → AGENTS.md                         # Gemini CLI
+.github/copilot-instructions.md → AGENTS.md   # GitHub Copilot in VS Code
+.agents/
+└── skills/                                   # cross-provider Agent Skills, one SKILL.md folder each
+    └── changelog, documentation, humanizer, jsdoc, pr, spec-driven
+.claude/                                      # Claude-specific extensions
+├── settings.json                             # permissions and hook registration
+├── skills → ../.agents/skills                # lets Claude load the shared skills
+├── rules/                                    # always-on conventions: code-style, jsdoc, markdown, testing, security
+├── commands/                                 # slash commands: /changeset, /spec, /plan, /verify
+├── agents/                                   # subagents: code-reviewer
+├── output-styles/                            # system-prompt modes: plan
+└── hooks/                                    # shell hooks: session-start, format
+plans/                                        # spec-driven workflow
+├── templates/                                # blank docs copied per feature
+└── <feature>/                                # spec.md, research.md, plan.md, verification.md, NNN-<slug>.md
+```
+
 Supported agents:
 
 - **Claude Code** reads `CLAUDE.md` (symlink to `AGENTS.md`) and `.claude/skills` (symlink to
@@ -84,7 +107,7 @@ Supported agents:
 - **GitHub Copilot** reads `AGENTS.md` natively, and `.github/copilot-instructions.md`
   (symlink to `AGENTS.md`) in VS Code.
 - **Cursor** reads `AGENTS.md` natively. It does not follow symlinks into `.cursor/rules/`,
-  so rules are not duplicated there; the rule files under `.claude/rules/` are referenced from
+  so rules are not duplicated there. The rule files under `.claude/rules/` are referenced from
   `AGENTS.md` instead.
 - **OpenCode** reads `AGENTS.md` and Agent Skills natively.
 - **Gemini CLI** reads `GEMINI.md` (symlink to `AGENTS.md`).

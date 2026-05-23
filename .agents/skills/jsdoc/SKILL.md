@@ -6,7 +6,7 @@ description: Full JSDoc format guide for TypeScript, covering @example formats (
 # JSDoc
 
 The detailed JSDoc format guide with examples for every case. The always-on essentials live in
-the `jsdoc` rule; reach here when you need the full reference.
+the `jsdoc` rule. Reach here when you need the full reference.
 
 ## `@example` format
 
@@ -62,7 +62,7 @@ the `jsdoc` rule; reach here when you need the full reference.
 
 | Tag           | Purpose            | Notes                                                  |
 | ------------- | ------------------ | ------------------------------------------------------ |
-| `@default`    | Default value      | Only when the default is non-obvious; omit for `undefined` |
+| `@default`    | Default value      | Only when the default is non-obvious (omit for `undefined`) |
 | `@example`    | Usage example      | Prefer for complex or multi-variant APIs               |
 | `@note`       | Important caveat   | Version info, breaking changes                         |
 | `@deprecated` | Mark as deprecated | Include a migration path                               |
@@ -94,7 +94,7 @@ the `jsdoc` rule; reach here when you need the full reference.
 outDir?: string
 ```
 
-Never use single-line `/** description */`; always expand to multi-line.
+Never use single-line `/** description */`. Always expand to multi-line.
 
 ### Property with a non-obvious default
 

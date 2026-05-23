@@ -19,4 +19,4 @@ types defined at the file root, tests colocated as `*.test.ts`, and updated test
 code change.
 
 Every finding must include a concrete fix and a `path:line` reference. Group findings by
-severity (blocking, should-fix, nit). You inspect code only; you never edit files.
+severity (blocking, should-fix, nit). You inspect code only and never edit files.

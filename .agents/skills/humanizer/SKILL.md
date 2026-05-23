@@ -21,7 +21,7 @@ and keeps the right tone.
 
 ## Adding voice
 
-Removing patterns is only half the job; sterile, voiceless writing is just as obvious. Have
+Removing patterns is only half the job. Sterile, voiceless writing is just as obvious. Have
 opinions and react to facts instead of only reporting them. Vary sentence rhythm: short punchy
 sentences, then longer ones that take their time. Acknowledge complexity ("it works, but it
 also feels like a workaround"), use specific details, and let natural asides appear.
@@ -34,5 +34,5 @@ Load the category you need:
 | --- | --- |
 | [content-patterns.md](references/content-patterns.md) | Undue significance, empty credibility signals, -ing-participle filler, marketing language, vague attributions, generic filler sections |
 | [language-patterns.md](references/language-patterns.md) | AI vocabulary, copula avoidance, negative parallelisms, rule-of-three, elegant variation, false ranges, filler and hedging, words to cut |
-| [style-patterns.md](references/style-patterns.md) | Dashes as punctuation, unnecessary bold, inline-header lists, title-case headings, emojis |
+| [style-patterns.md](references/style-patterns.md) | Dashes and semicolons as punctuation, unnecessary bold, inline-header lists, title-case headings, emojis |
 | [communication-patterns.md](references/communication-patterns.md) | Chatbot artifacts, sycophantic openers |

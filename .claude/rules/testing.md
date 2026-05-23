@@ -17,7 +17,7 @@ How to write, run, and debug tests in this repo (Vitest).
 - Use `vi.useFakeTimers()` and `vi.setSystemTime()` for time-dependent logic
 - Treat snapshots as intentional: review every change and update with `-u` only when expected
 - Assert on public behaviour and output, not private implementation details
-- Keep unit tests fast; reserve `pnpm test:bench` for performance-sensitive code
+- Keep unit tests fast, and reserve `pnpm test:bench` for performance-sensitive code
 
 ## Running and CI
 

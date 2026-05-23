@@ -7,7 +7,7 @@ plan, no files).
 
 ## Layout
 
-Each feature gets its own folder; shared blank templates live in `templates/`.
+Each feature gets its own folder. Shared blank templates live in `templates/`.
 
 ```
 plans/
@@ -47,5 +47,5 @@ The `spec-driven` skill explains the same flow and when to reach for it.
 
 ## Credit
 
-The structure is adapted from [GitHub Spec Kit](https://github.com/github/spec-kit); the
+The structure is adapted from [GitHub Spec Kit](https://github.com/github/spec-kit). The
 `verification.md` role is Spec Kit's `quickstart.md`.

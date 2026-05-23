@@ -6,7 +6,7 @@ description: Turn a feature's spec and research into its plan.md (architecture +
 Produce the Phase 2 plan for **$ARGUMENTS** from `plans/$ARGUMENTS/spec.md` and
 `plans/$ARGUMENTS/research.md`.
 
-1. Confirm the spec exists and its acceptance criteria (`AC-N`) are clear; if not, run `/spec` first.
+1. Confirm the spec exists and its acceptance criteria (`AC-N`) are clear. If not, run `/spec` first.
 2. If `plans/$ARGUMENTS/research.md` is missing, copy it from `plans/templates/research.md` and
    record the key decisions first.
 3. Copy `plans/templates/plan.md` to `plans/$ARGUMENTS/plan.md` and fill it: overview,

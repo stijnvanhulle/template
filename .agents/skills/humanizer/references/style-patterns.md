@@ -5,13 +5,21 @@ Formatting tells that mark text as AI-generated.
 ## Dashes as punctuation
 
 Do not use a dash to join clauses or set off an aside: not the em dash (`—`), the en dash (`–`),
-or a spaced hyphen (` - `). Use a comma, parentheses, or a separate sentence. Hyphenated compound
-words such as `spec-driven` or `server-side` are fine.
+or a spaced hyphen (` - `). Use a comma, parentheses, or a separate sentence, not a semicolon.
+Hyphenated compound words such as `spec-driven` or `server-side` are fine.
 
 > Before: "The update improves performance — especially on older devices."
 > After: "The update improves performance, especially on older devices."
 
 > Before: "The API is fast - and reliable."
+> After: "The API is fast and reliable."
+
+## Semicolons joining clauses
+
+Do not join two clauses with a semicolon. It reads formal and AI-generated. Use a comma,
+parentheses, or a separate sentence.
+
+> Before: "The API is fast; it is also reliable."
 > After: "The API is fast and reliable."
 
 ## Unnecessary bold

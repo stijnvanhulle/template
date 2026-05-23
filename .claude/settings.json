@@ -16,6 +16,8 @@
       "Bash(pnpm graph *)",
       "Bash(pnpm install*)",
       "Bash(pnpm build*)",
+      "Bash(pnpm changeset*)",
+      "Bash(pnpm exec *)",
       "Bash(npm run lint *)",
       "Bash(npm run format *)",
       "Bash(npm run typecheck *)",
@@ -28,7 +30,17 @@
       "Bash(rm -rf *)",
       "Bash(git push --force *)",
       "Bash(git push -f *)",
-      "Bash(git reset --hard *)"
+      "Bash(git push --force-with-lease*)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean -f*)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./**/.env)",
+      "Read(./**/.env.*)",
+      "Read(./secrets/**)"
+    ],
+    "ask": [
+      "Bash(git push *)"
     ]
   },
   "hooks": {

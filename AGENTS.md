@@ -19,7 +19,7 @@ template/
 └── .claude/                 # Claude Code workspace config
     ├── settings.json        # Permissions + hooks (format-on-edit, session-start)
     ├── skills -> ../.agents/skills
-    ├── rules/               # Always-on conventions (coding-style, jsdoc, markdown)
+    ├── rules/               # Always-on conventions (code-style, jsdoc, markdown, testing, security)
     ├── commands/            # Slash commands (/changeset)
     ├── agents/              # Subagents (code-reviewer)
     ├── output-styles/       # System-prompt styles (plan)
@@ -89,7 +89,7 @@ Configuration is separated by how each piece is used:
 
 | Type | Location | Role |
 | --- | --- | --- |
-| Rules | `.claude/rules/` | Constraints that always apply: repo setup, naming, TypeScript style, how to run tests. Claude auto-loads them; other agents can read the files directly. |
+| Rules | `.claude/rules/` | Constraints that always apply: `code-style`, `jsdoc`, `markdown`, `testing`, `security`. Claude auto-loads them; other agents can read the files directly. |
 | Skills | `.agents/skills/` | On-demand playbooks, loaded when the task matches the description. Portable via the open SKILL.md format. |
 | Commands | `.claude/commands/` | Explicit `/name` actions you trigger yourself. |
 | Subagents | `.claude/agents/` | Isolated specialists with their own context window. |

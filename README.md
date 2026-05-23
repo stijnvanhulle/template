@@ -101,7 +101,7 @@ Claude-specific extensions layer on top. The pieces, and when each one loads:
 
 | Path | What it does | When it loads |
 |---|---|---|
-| `.claude/rules/` | Always-on conventions: coding style, JSDoc, markdown humanizer | Session start, or when a matching file opens for path-scoped rules |
+| `.claude/rules/` | Always-on conventions: code style, JSDoc, markdown humanizer, testing, security | Session start, or when a matching file opens for path-scoped rules |
 | `.agents/skills/` | Playbooks for workflows: changelog, documentation, pr, testing | On demand, when the task matches the skill description |
 | `.claude/commands/` | Explicit slash-command actions, such as `/changeset` | When you type the command |
 | `.claude/agents/` | Subagents with their own context window, such as `code-reviewer` | When delegated a matching task |

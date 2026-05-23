@@ -56,17 +56,38 @@ pnpm changeset               # Create a changelog entry
 pnpm run upgrade && pnpm i   # Upgrade dependencies via taze
 ```
 
-## Rules, skills and commands
+## Commits and PRs
 
-This repo separates AI configuration by how each piece is used:
+Use [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`,
+`chore:`, `refactor:`, `test:`, `perf:`). Before opening a PR, run:
 
-- **Rules** (`.claude/rules/`) — the constraints that always apply: repo setup, naming
-  conventions, TypeScript style, how to run tests. Auto-loaded (Claude-specific).
-- **Skills** (`.agents/skills/`) — on-demand playbooks for specific workflows; loaded when the
-  task matches their description. Shared across providers (Claude, Copilot, OpenCode, Cursor,
-  ChatGPT).
-- **Commands** (`.claude/commands/`) — explicit `/name` actions you trigger yourself.
-- **Subagents** (`.claude/agents/`) — isolated specialists with their own context window.
+```bash
+pnpm format && pnpm lint && pnpm typecheck && pnpm test
+```
+
+For any change to a published package, run `pnpm changeset` and commit the generated file.
+
+## How agents read this repo
+
+AGENTS.md is the canonical, cross-provider instruction file. Every agent reaches it through an
+open format or a symlink, so there is a single source of truth:
+
+| Entry point | Tool | Mechanism |
+| --- | --- | --- |
+| `AGENTS.md` | Codex / ChatGPT, Cursor, Copilot, OpenCode, Windsurf | Read natively |
+| `CLAUDE.md` → `AGENTS.md` | Claude Code | Symlink |
+| `.github/copilot-instructions.md` → `AGENTS.md` | GitHub Copilot (VS Code) | Symlink |
+| `.agents/skills/<name>/SKILL.md` | Claude, Codex, Cursor, Copilot, OpenCode, and 35+ runtimes | Open SKILL.md format |
+| `.claude/skills` → `.agents/skills` | Claude Code | Symlink |
+
+Configuration is separated by how each piece is used:
+
+| Type | Location | Role |
+| --- | --- | --- |
+| Rules | `.claude/rules/` | Constraints that always apply: repo setup, naming, TypeScript style, how to run tests. Claude auto-loads them; other agents can read the files directly. |
+| Skills | `.agents/skills/` | On-demand playbooks, loaded when the task matches the description. Portable via the open SKILL.md format. |
+| Commands | `.claude/commands/` | Explicit `/name` actions you trigger yourself. |
+| Subagents | `.claude/agents/` | Isolated specialists with their own context window. |
 
 <skills>
 

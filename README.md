@@ -67,15 +67,24 @@ already wired up.
 
 ## AI assistant configuration
 
-This template is set up for AI coding agents. Instructions are shared across tools through two
-cross-provider standards, with Claude Code specific extensions layered on top.
+This template is set up for AI coding agents. It builds on two open formats, AGENTS.md and
+Agent Skills, and uses symlinks so every tool reads from one source instead of drifting copies.
 
-`AGENTS.md` holds the project instructions every agent reads: stack, commands, and conventions.
-`CLAUDE.md` is a symlink to it, so Claude Code and other tools stay in sync from one file.
-Skills live in `.agents/skills/`, the shared location read by Claude, GitHub Copilot, OpenCode,
-Cursor, and ChatGPT; `.claude/skills` symlinks there so Claude finds them too.
+`AGENTS.md` is the canonical instruction file. Codex and ChatGPT, Cursor, Copilot, OpenCode,
+and Windsurf read it natively; Claude Code reads `CLAUDE.md`, a symlink to it; GitHub Copilot
+in VS Code also reads `.github/copilot-instructions.md`, another symlink to it. Skills live in
+`.agents/skills/` as portable `SKILL.md` folders that work across those runtimes, and
+`.claude/skills` symlinks there so Claude finds them too.
 
-The pieces, and when each one loads:
+| Entry point | Tool | Mechanism |
+|---|---|---|
+| `AGENTS.md` | Codex / ChatGPT, Cursor, Copilot, OpenCode, Windsurf | Read natively |
+| `CLAUDE.md` → `AGENTS.md` | Claude Code | Symlink |
+| `.github/copilot-instructions.md` → `AGENTS.md` | Copilot (VS Code) | Symlink |
+| `.agents/skills/` | Any Agent Skills runtime | Open `SKILL.md` format |
+| `.claude/skills` → `.agents/skills` | Claude Code | Symlink |
+
+Claude-specific extensions layer on top. The pieces, and when each one loads:
 
 | Path | What it does | When it loads |
 |---|---|---|

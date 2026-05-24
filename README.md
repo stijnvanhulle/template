@@ -95,8 +95,16 @@ GEMINI.md → AGENTS.md                         # Gemini CLI
 ├── output-styles/                            # system-prompt modes: plan
 └── hooks/                                    # shell hooks: session-start, format
 plans/                                        # spec-driven workflow
-├── templates/                                # blank docs copied per feature
-└── <feature>/                                # spec.md, research.md, plan.md, verification.md, NNN-<slug>.md
+├── README.md                                 # workflow guide
+├── templates/                                # blank docs, copied per feature
+│   ├── spec.md                               # requirements and acceptance criteria
+│   ├── research.md                           # decisions, open questions, constraints
+│   ├── plan.md                               # architecture and numbered slices
+│   ├── verification.md                       # end-to-end scenarios, one per AC
+│   └── slice.md                              # one implementation slice
+└── <feature>/                                # one folder per plan
+    ├── spec.md  research.md  plan.md  verification.md
+    └── NNN-<slug>.md                         # slices, copied from templates/slice.md
 ```
 
 Supported agents:

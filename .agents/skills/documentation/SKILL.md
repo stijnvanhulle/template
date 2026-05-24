@@ -41,14 +41,15 @@ Brevity is still valued, but never at the cost of clarity or correctness.
 | **[../documentation/references/writing-style.md](./../documentation/references/writing-style.md)**     | Voice, tone, sentence structure                 |
 | **[../documentation/references/content-patterns.md](../documentation/references/content-patterns.md)** | Usage patterns, props structure, component patterns |
 | **[../documentation/references/seo-optimization.md](../documentation/references/seo-optimization.md)** | SEO best practices, titles, descriptions, keywords, FAQs |
-| **[../documentation/references/humanizer.md](../documentation/references/humanizer.md)**               | Remove AI writing patterns, add voice and specificity |
+
+To remove AI writing patterns and add voice, use the [humanizer](../humanizer/SKILL.md) skill.
 
 **Load based on context:**
 
 - Writing prose → [../documentation/references/writing-style.md](../documentation/references/writing-style.md)
 - Props, options, usage patterns → [../documentation/references/content-patterns.md](../documentation/references/content-patterns.md)
 - Optimizing for search → [../documentation/references/seo-optimization.md](../documentation/references/seo-optimization.md)
-- Reviewing or editing finished prose → [../documentation/references/humanizer.md](../documentation/references/humanizer.md)
+- Reviewing or editing finished prose → the [humanizer](../humanizer/SKILL.md) skill
 
 ## Language and Tone
 

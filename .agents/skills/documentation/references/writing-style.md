@@ -8,7 +8,7 @@ Prefer direct, concrete, technical language over marketing phrasing. Be specific
 
 - Direct and technical: avoid marketing adjectives such as "powerful", "amazing", or "seamless".
 - Concrete over abstract: prefer "Generates TypeScript types from OpenAPI schemas" over "Transforms your API into typed code".
-- Short paragraphs: 1–3 sentences per paragraph.
+- Short paragraphs: 1 to 3 sentences per paragraph.
 - Avoid nominalizations (turning verbs into nouns like "the creation of").
 - Use consistent terminology across pages: choose `plugin`, `schema`, `endpoint`, etc., and stick to it.
 - Use backticks for commands, config keys, filenames, and API identifiers.
@@ -17,14 +17,14 @@ Prefer direct, concrete, technical language over marketing phrasing. Be specific
 
 When describing a feature, option, or example use this short structure:
 
-1. What — short description of the feature or option.
-2. Why — the problem it solves or the primary use case (optional if obvious).
-3. When — when to use it versus alternatives (optional).
-4. How — a minimal, working example demonstrating usage.
+1. What: short description of the feature or option.
+2. Why: the problem it solves or the primary use case (optional if obvious).
+3. When: when to use it versus alternatives (optional).
+4. How: a minimal, working example demonstrating usage.
 
 ## Sentence Patterns
 
-Documentation prefers short, subject-first sentences that state behavior or intent clearly. Aim for sentences under ~20–25 words and favor present tense and active voice.
+Documentation prefers short, subject-first sentences that state behavior or intent clearly. Aim for sentences under ~20 to 25 words and favor present tense and active voice.
 
 ### Subject-First Declarative (60%)
 
@@ -97,7 +97,7 @@ Stay consistent within sections.
 
 ## Paragraphs
 
-**Length**: 1–3 sentences per paragraph
+**Length**: 1 to 3 sentences per paragraph
 **Structure**: Topic sentence first, then supporting detail
 
 ## Opening Sentences

@@ -1,0 +1,7 @@
+# Workflow and composite-action changes are the highest-impact supply-chain
+# surface; require explicit owner review on every change. Enforcement also
+# requires branch protection: "Require review from Code Owners" on main.
+
+.github/workflows/  @stijnvanhulle
+.github/setup/      @stijnvanhulle
+.github/CODEOWNERS  @stijnvanhulle

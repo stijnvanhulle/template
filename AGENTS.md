@@ -23,7 +23,7 @@ template/
     ├── rules/               # Always-on conventions (code-style, jsdoc, markdown, testing, security)
     ├── commands/            # Slash commands (/changeset, /spec, /plan, /verify)
     ├── agents/              # Subagents (code-reviewer)
-    ├── output-styles/       # System-prompt styles (house default, plan)
+    ├── output-styles/       # System-prompt styles (house default, plan, diagrams-first)
     └── hooks/               # Hook scripts
 ```
 

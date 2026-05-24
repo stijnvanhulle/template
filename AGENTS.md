@@ -2,32 +2,7 @@
 
 A modern TypeScript monorepo template (pnpm workspaces, Turborepo, oxlint, oxfmt, tsdown, Vitest, and Changesets).
 
-## Folder Structure
-
-```
-template/
-├── packages/                # Publishable packages
-│   ├── core/                # Example library package
-│   └── demo/                # Example consumer package depending on core
-├── internals/               # Non-published shared utilities
-│   └── utils/
-├── configs/                 # Shared TypeScript + Vitest configs
-├── .github/setup/           # Reusable composite action for CI setup
-├── .github/workflows/       # CI workflows
-├── plans/                   # Spec-driven workflow: templates/ + per-feature plan folders
-├── .agents/
-│   └── skills/              # Agent skills, shared across providers (Claude, Copilot, OpenCode, Cursor, ChatGPT)
-└── .claude/                 # Claude Code workspace config
-    ├── settings.json        # Permissions, hooks (format-on-edit, session-start), default output style
-    ├── skills -> ../.agents/skills
-    ├── rules/               # Always-on conventions (code-style, jsdoc, markdown, testing, security)
-    ├── commands/            # Slash commands (/changeset, /spec, /plan, /verify)
-    ├── agents/              # Subagents (code-reviewer)
-    ├── output-styles/       # System-prompt styles (house default, plan, diagrams-first)
-    └── hooks/               # Hook scripts
-```
-
-## Repository Setup
+## Repository setup
 
 | Aspect | Choice |
 | --- | --- |
@@ -45,38 +20,30 @@ template/
 ## Commands
 
 ```bash
-pnpm install                 # Install dependencies
-pnpm clean                   # Clean build artifacts
-pnpm build                   # Build all packages
-pnpm test                    # Run tests
-pnpm test:bench              # Run benchmarks
-pnpm typecheck               # Type-check all packages
-pnpm format                  # Format code with oxfmt
-pnpm lint                    # Lint code with oxlint
-pnpm lint:fix                # Lint and fix issues
-pnpm lint:spell              # Spell-check
-pnpm changeset               # Create a changelog entry
-pnpm run upgrade && pnpm i   # Upgrade dependencies via taze
+pnpm install      # Install dependencies
+pnpm build        # Build all packages
+pnpm test         # Run tests
+pnpm typecheck    # Type-check all packages
+pnpm lint         # Lint with oxlint
+pnpm format       # Format with oxfmt
+pnpm changeset    # Add a changelog entry
 ```
 
 ## Commits and PRs
 
-Use [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`,
-`chore:`, `refactor:`, `test:`, `perf:`). Before opening a PR, run:
-
-```bash
-pnpm format && pnpm lint && pnpm typecheck && pnpm test
-```
-
-For any change to a published package, run `pnpm changeset` and commit the generated file.
+Use [Conventional Commits](https://www.conventionalcommits.org/). Before a PR, run
+`pnpm format && pnpm lint && pnpm typecheck && pnpm test`, and add a changeset
+(`pnpm changeset`) for any published-package change.
 
 ## How agents read this repo
 
 `AGENTS.md` is the canonical instruction file. `CLAUDE.md`, `GEMINI.md`, and
 `.github/copilot-instructions.md` symlink to it. Skills live in `.agents/skills/` (open
 `SKILL.md` format, cross-provider). Always-on conventions live in `.claude/rules/`
-(`code-style`, `jsdoc`, `markdown`, `testing`, `security`). `.claude/` also holds commands,
-subagents, and hooks. See the README for the full cross-provider map and how each piece loads.
+(`code-style`, `jsdoc`, `markdown`, `testing`, `security`), and `.claude/` also holds commands,
+subagents, output styles, and hooks. See the
+[README](README.md#ai-assistant-configuration) for the full folder structure and how each piece
+loads.
 
 <skills>
 

@@ -12,7 +12,8 @@
     "pnpm-lock.yaml",
     "**/.changeset/**",
     "**/CHANGELOG.md",
-    "**/changelog.md"
+    "**/changelog.md",
+    "draft/**"
   ],
   "ignoreRegExpList": [
     "https?://github\\.com/[a-zA-Z0-9-_]+(/[a-zA-Z0-9-_]+)?",

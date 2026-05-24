@@ -92,7 +92,7 @@ GEMINI.md → AGENTS.md                         # Gemini CLI
 ├── rules/                                    # always-on conventions: code-style, jsdoc, markdown, testing, security
 ├── commands/                                 # slash commands: /changeset, /spec, /plan, /verify
 ├── agents/                                   # subagents: code-reviewer
-├── output-styles/                            # system-prompt modes: plan
+├── output-styles/                            # system-prompt modes: house (default), plan
 └── hooks/                                    # shell hooks: session-start, format
 plans/                                        # spec-driven workflow
 ├── README.md                                 # workflow guide
@@ -138,7 +138,7 @@ Claude-specific extensions layer on top. The pieces, and when each one loads:
 | `.agents/skills/` | Playbooks: changelog, documentation, humanizer, jsdoc, pr, spec-driven | On demand, when the task matches the skill description |
 | `.claude/commands/` | Explicit slash-command actions, such as `/changeset` | When you type the command |
 | `.claude/agents/` | Subagents with their own context window, such as `code-reviewer` | When delegated a matching task |
-| `.claude/output-styles/` | System-prompt modes, such as `plan` | When selected |
+| `.claude/output-styles/` | System-prompt modes: `house` (the default, set in `settings.json`) and `plan` | At session start (house), or when selected |
 | `.claude/hooks/` | Scripts that install deps on session start and format files on edit | On the matching event |
 | `.claude/settings.json` | Permissions and hook registration | Always |
 

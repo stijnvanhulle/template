@@ -18,12 +18,12 @@ template/
 ├── .agents/
 │   └── skills/              # Agent skills, shared across providers (Claude, Copilot, OpenCode, Cursor, ChatGPT)
 └── .claude/                 # Claude Code workspace config
-    ├── settings.json        # Permissions + hooks (format-on-edit, session-start)
+    ├── settings.json        # Permissions, hooks (format-on-edit, session-start), default output style
     ├── skills -> ../.agents/skills
     ├── rules/               # Always-on conventions (code-style, jsdoc, markdown, testing, security)
     ├── commands/            # Slash commands (/changeset, /spec, /plan, /verify)
     ├── agents/              # Subagents (code-reviewer)
-    ├── output-styles/       # System-prompt styles (plan)
+    ├── output-styles/       # System-prompt styles (house default, plan)
     └── hooks/               # Hook scripts
 ```
 

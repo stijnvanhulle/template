@@ -1,4 +1,5 @@
 {
+  "outputStyle": "house",
   "permissions": {
     "allow": [
       "Bash(pnpm typecheck *)",

@@ -11,7 +11,7 @@ catalog:
   '@types/node': ^22.19.19
   '@vitest/coverage-v8': ^4.1.6
   '@vitest/ui': ^4.1.6
-  oxfmt: ^0.47.0
+  oxfmt: ^0.51.0
   oxlint: ^1.65.0
   'size-limit': ^12.1.0
   tsdown: ^0.22.0

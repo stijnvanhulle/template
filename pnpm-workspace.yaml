@@ -12,7 +12,7 @@ catalog:
   '@vitest/coverage-v8': ^4.1.6
   '@vitest/ui': ^4.1.6
   oxfmt: ^0.47.0
-  oxlint: ^1.65.0
+  oxlint: ^1.66.0
   'size-limit': ^12.1.0
   tsdown: ^0.22.0
   typescript: ^6.0.3

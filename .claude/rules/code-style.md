@@ -36,6 +36,10 @@ rule.
 - Expose the public API through the `"exports"` map and `typesVersions`. Keep it stable
 - Define types at the file root, not inside functions
 - Use function syntax (not arrow functions) for object methods so `this` works
+- Use `type` instead of `interface`. Reserve `interface` for declaration merging, like
+  augmenting a global in a `.d.ts`
+- When a function takes two or more parameters, pass a single object instead of positional
+  arguments
 
 ## Tests
 

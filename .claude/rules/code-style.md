@@ -17,6 +17,18 @@ rule.
 - Prefer functional patterns
 - Keep ternaries one level deep. For nested conditions use if/else or extract a helper
 
+## Comments
+
+Any prose inside the codebase (inline `//` comments, JSDoc blocks, README-style headers in code
+files) follows the house voice. The `humanizer` skill is the full reference.
+
+- No dashes as punctuation (em, en, or a spaced hyphen). Use a period, comma, parentheses, or
+  a separate sentence.
+- No clause-joining semicolons. Use two sentences or a comma + conjunction.
+- Be specific; cut filler and AI-isms ("in order to", "utilize", "leverage", "seamless").
+- Default to writing no comments. Only add one when the WHY is non-obvious. See the JSDoc rule
+  for what to document on exported members.
+
 ## Naming
 
 | Context                | Convention  |

@@ -16,24 +16,15 @@
   "sideEffects": false,
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "development": "./src/index.ts",
-      "default": "./dist/index.js"
-    },
+    ".": "./dist/index.js",
     "./package.json": "./package.json"
-  },
-  "publishConfig": {
-    "exports": {
-      ".": "./dist/index.js",
-      "./package.json": "./package.json"
-    }
   },
   "scripts": {
     "build": "tsdown",
     "clean": "rm -rf ./dist",
     "start": "tsdown --watch",
     "test": "vitest --passWithNoTests",
-    "typecheck": "tsc -b --noEmit"
+    "typecheck": "tsc -b"
   },
   "devDependencies": {
     "@types/node": "catalog:"

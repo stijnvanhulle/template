@@ -28,6 +28,6 @@ export default defineConfig({
     },
   },
   resolve: {
-    conditions: ['development', 'import', 'module', 'node', 'default'],
+    tsconfigPaths: true,
   },
 })

@@ -2,7 +2,7 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   resolve: {
-    conditions: ['development', 'import', 'module', 'node', 'default'],
+    tsconfigPaths: true,
   },
   test: {
     include: ['**/*.bench.ts'],

@@ -4,10 +4,13 @@
   "compilerOptions": {
     "composite": true,
     "declaration": true,
-    "outDir": "dist",
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "outDir": ".tsbuild",
     "rootDir": "src",
     "types": ["bun-types", "../../reset.d.ts"]
   },
   "include": ["src/**/*"],
-  "exclude": ["src/**/*.test.ts", "src/**/*.bench.ts"]
+  "exclude": ["src/**/*.test.ts", "src/**/*.bench.ts"],
+  "references": [{ "path": "../core/tsconfig.src.json" }]
 }

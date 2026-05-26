@@ -5,7 +5,7 @@ const shared: Partial<UserConfig> = {
   tsconfig: 'tsconfig.src.json',
   sourcemap: true,
   shims: true,
-  exports: { devExports: 'development' },
+  exports: true,
   fixedExtension: false,
   deps: {
     // Other @stijnvanhulle/* packages resolve from npm at runtime — never bundle them.

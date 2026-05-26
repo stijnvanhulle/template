@@ -5,6 +5,6 @@ export default defineConfig({
     dir: './src',
   },
   resolve: {
-    conditions: ['development', 'import', 'module', 'node', 'default'],
+    tsconfigPaths: true,
   },
 })

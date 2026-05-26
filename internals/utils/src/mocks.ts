@@ -1,5 +1,5 @@
-// Mocks shared across the monorepo. Import via the "#mocks" subpath import
-// (configured in the root package.json "imports" field), e.g.:
+// Mocks shared across the monorepo. Import via the "#mocks" path alias
+// (configured in configs/base.json), e.g.:
 //
 //   import { mockUser } from '#mocks'
 //

@@ -5,7 +5,7 @@ const shared: Partial<UserConfig> = {
   tsconfig: 'tsconfig.src.json',
   sourcemap: true,
   shims: true,
-  exports: { devExports: 'development' },
+  exports: true,
   fixedExtension: false,
   deps: {
     neverBundle: [/^@stijnvanhulle\//],

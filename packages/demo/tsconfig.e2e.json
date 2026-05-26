@@ -4,7 +4,11 @@
   "compilerOptions": {
     "composite": true,
     "declaration": true,
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "outDir": ".tsbuild",
     "types": ["bun-types", "../../reset.d.ts", "@playwright/test"]
   },
-  "include": ["e2e/**/*"]
+  "include": ["e2e/**/*"],
+  "references": [{ "path": "./tsconfig.src.json" }, { "path": "../core/tsconfig.src.json" }]
 }

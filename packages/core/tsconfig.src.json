@@ -4,7 +4,9 @@
   "compilerOptions": {
     "composite": true,
     "declaration": true,
-    "outDir": "dist",
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "outDir": ".tsbuild",
     "rootDir": "src",
     "types": ["bun-types", "../../reset.d.ts"]
   },

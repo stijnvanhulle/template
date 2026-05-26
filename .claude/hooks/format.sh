@@ -1,19 +1,16 @@
 #!/bin/bash
-set -euo pipefail
+source "$(dirname "$0")/_common.sh"
 
 # Format the file Claude just edited in place with oxfmt (JS/TS only).
-# Reads the PostToolUse payload from stdin.
-file=$(jq -r '.tool_input.file_path // empty' 2>/dev/null || true)
-if [ -z "$file" ]; then
-  exit 0
-fi
+file=$(hook_file_path)
+[ -z "$file" ] && exit 0
 
 case "$file" in
   *.ts | *.tsx | *.js | *.jsx | *.mjs | *.cjs) ;;
   *) exit 0 ;;
 esac
 
-cd "${CLAUDE_PROJECT_DIR:-.}"
+hook_cd_project
 if [ -x node_modules/.bin/oxfmt ]; then
   node_modules/.bin/oxfmt -c oxfmt.config.ts "$file" || true
 fi

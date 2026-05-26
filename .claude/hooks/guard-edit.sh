@@ -1,13 +1,10 @@
 #!/bin/bash
-set -euo pipefail
+source "$(dirname "$0")/_common.sh"
 
-# PreToolUse guard for Edit/Write: block hand-edits to the lockfile and to
-# generated build output. Reads the tool payload from stdin and denies via
-# exit code 2 when the target is off-limits.
-file=$(jq -r '.tool_input.file_path // empty' 2>/dev/null || true)
-if [ -z "$file" ]; then
-  exit 0
-fi
+# PreToolUse guard for Edit/Write: deny hand-edits to the lockfile and to
+# generated build output via exit code 2.
+file=$(hook_file_path)
+[ -z "$file" ] && exit 0
 
 case "$file" in
   *pnpm-lock.yaml)
@@ -19,5 +16,3 @@ case "$file" in
     exit 2
     ;;
 esac
-
-exit 0

@@ -14,12 +14,9 @@ How to write, run, and debug tests in this repo (Vitest).
 - Test one behaviour per case and name it for the expected outcome ("returns X when Y")
 - Keep tests isolated and repeatable: no shared mutable state, clean up side effects in `afterEach`
 - Mock external dependencies (network, filesystem, time), not internal modules
-- Prefer a scoped spy with `using _ = vi.spyOn(...)` inside each test over a module-level
-  `vi.mock` plus `beforeEach(mockReset)`. The `using` binding restores the spy when the test
-  scope ends, so there is no shared mock state to reset
+- Prefer a scoped `using _ = vi.spyOn(...)` per test over module-level `vi.mock` + `beforeEach(mockReset)`
 - Use `vi.useFakeTimers()` and `vi.setSystemTime()` for time-dependent logic
-- For assertions, pin a full shape with `toMatchInlineSnapshot()` and check a partial shape
-  with `toMatchObject({ ... })`
+- Assert full shapes with `toMatchInlineSnapshot()`, partial shapes with `toMatchObject({ ... })`
 - Treat snapshots as intentional: review every change and update with `-u` only when expected
 - Assert on public behaviour and output, not private implementation details
 - Keep unit tests fast, and reserve `pnpm test:bench` for performance-sensitive code

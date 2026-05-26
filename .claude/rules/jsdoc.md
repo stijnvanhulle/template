@@ -19,12 +19,5 @@ Minimal, high-quality JSDoc. For the full format guide and examples, use the `js
 
 ## Voice
 
-JSDoc is prose, so it follows the same house voice as chat replies, markdown files, and inline
-code comments. The `humanizer` skill is the full reference.
-
-- No dashes as punctuation (em, en, or a spaced hyphen). Use a period, comma, parentheses, or
-  a separate sentence. Hyphenated compounds (`request-scoped`, `four-byte`) are fine.
-- No clause-joining semicolons. Two short sentences read better than one long compound.
-- Do not lead a route or operation block with ``` `GET /foo` — description ```. Write
-  ``` `GET /foo`. Description. ``` instead.
-- Sentence-case, no marketing words, cut filler.
+- JSDoc is prose, so it follows the house voice (`humanizer` skill): no dashes or clause-joining
+  semicolons, sentence-case, no filler. Hyphenated compounds (`request-scoped`) are fine

@@ -17,6 +17,12 @@ rule.
 - Prefer functional patterns
 - Keep ternaries one level deep. For nested conditions use if/else or extract a helper
 
+## Comments
+
+- Default to no comments
+- Add one only when the WHY is non-obvious
+- Follow the house voice (`humanizer` skill)
+
 ## Naming
 
 | Context                | Convention  |
@@ -39,6 +45,8 @@ rule.
 - Expose the public API through the `"exports"` map and `typesVersions`. Keep it stable
 - Define types at the file root, not inside functions
 - Use function syntax (not arrow functions) for object methods so `this` works
+- Use `type`, not `interface` (reserve `interface` for declaration merging in `.d.ts`)
+- Functions with two or more parameters take a single object
 
 ## Tests
 

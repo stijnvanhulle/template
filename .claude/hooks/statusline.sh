@@ -1,5 +1,5 @@
 #!/bin/bash
-source "$(dirname "$0")/_common.sh"
+set -euo pipefail
 
 # Render the Claude Code status line: model, git branch, and pnpm workspace dir.
 # Reads the status-line payload from stdin.

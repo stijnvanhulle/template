@@ -1,9 +1,9 @@
 #!/bin/bash
-source "$(dirname "$0")/_common.sh"
+set -euo pipefail
 
 # Stop hook: format and lint the workspace once Claude finishes a turn.
 # Non-blocking; surfaces problems without failing the session.
-hook_cd_project
+cd "${CLAUDE_PROJECT_DIR:-.}"
 
 pnpm format || true
 pnpm lint || true

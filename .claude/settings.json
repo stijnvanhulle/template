@@ -53,10 +53,6 @@
       "Bash(git push *)"
     ]
   },
-  "statusLine": {
-    "type": "command",
-    "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/statusline.sh"
-  },
   "hooks": {
     "SessionStart": [
       {

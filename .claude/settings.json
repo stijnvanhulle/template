@@ -1,5 +1,6 @@
 {
   "outputStyle": "house",
+  "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
       "Bash(pnpm typecheck *)",

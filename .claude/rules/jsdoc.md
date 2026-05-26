@@ -19,5 +19,4 @@ Minimal, high-quality JSDoc. For the full format guide and examples, use the `js
 
 ## Voice
 
-- JSDoc is prose, so it follows the house voice (`humanizer` skill): no dashes or clause-joining
-  semicolons, sentence-case, no filler. Hyphenated compounds (`request-scoped`) are fine
+- JSDoc is prose, so it follows the house voice (`humanizer` skill)

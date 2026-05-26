@@ -19,8 +19,7 @@ rule.
 
 ## Comments
 
-- Prose in code (inline `//`, JSDoc, headers) follows the house voice (`humanizer` skill)
-- Default to no comments. Add one only when the WHY is non-obvious
+- Default to none, add one only when the WHY is non-obvious. Prose follows the house voice (`humanizer` skill)
 
 ## Naming
 

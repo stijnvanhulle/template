@@ -19,8 +19,9 @@ own folder `plans/<feature>/`. Blank templates live in `plans/templates/`, and t
 3. **Plan** (`plans/<feature>/plan.md`): the architecture and a breakdown into numbered slices,
    each demonstrable on its own. Run `/plan <feature>`. Scaffold each slice from
    `plans/templates/slice.md` into `plans/<feature>/NNN-<slug>.md`.
-4. **Execute**: implement one slice at a time until its done criteria pass, and keep each slice
-   runnable.
+4. **Execute** (`plans/<feature>/NNN-<slug>.md`): implement one slice at a time, ticking each
+   slice's Done criteria as its verification passes, and keep each slice runnable. Run
+   `/implement <feature>`.
 5. **Verify** (`plans/<feature>/verification.md`): walk end-to-end scenarios, each mapped back
    to an `AC-N`. Run `/verify <feature>`.
 

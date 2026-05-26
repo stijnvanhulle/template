@@ -19,4 +19,4 @@ Minimal, high-quality JSDoc. For the full format guide and examples, use the `js
 
 ## Voice
 
-- JSDoc is prose, so it follows the house voice (`humanizer` skill)
+- Follow the house voice (`humanizer` skill)

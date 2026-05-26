@@ -19,7 +19,9 @@ rule.
 
 ## Comments
 
-- Default to none, add one only when the WHY is non-obvious. Prose follows the house voice (`humanizer` skill)
+- Default to no comments
+- Add one only when the WHY is non-obvious
+- Follow the house voice (`humanizer` skill)
 
 ## Naming
 

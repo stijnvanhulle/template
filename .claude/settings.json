@@ -1,6 +1,9 @@
 {
   "outputStyle": "house",
-  "includeCoAuthoredBy": false,
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "allow": [
       "Bash(pnpm typecheck *)",

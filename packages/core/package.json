@@ -31,7 +31,7 @@
     "release:canary": "bash ../../.github/canary.sh && pnpm publish --no-git-check",
     "start": "tsdown --watch",
     "test": "vitest --passWithNoTests",
-    "typecheck": "tsc -p ./tsconfig.json --noEmit"
+    "typecheck": "tsc -b"
   },
   "devDependencies": {
     "@types/node": "catalog:",

@@ -1,5 +1,5 @@
 // Mocks shared across the monorepo. Import via the "#mocks" path alias
-// (configured in the root tsconfig.json), e.g.:
+// (configured in configs/base.json), e.g.:
 //
 //   import { mockUser } from '#mocks'
 //

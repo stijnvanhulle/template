@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "../../configs/bundler.json",
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "outDir": ".tsbuild",
+    "types": ["bun-types", "../../reset.d.ts", "vitest/importMeta"]
+  },
+  "include": ["src/**/*.test.ts", "src/**/*.bench.ts", "tsdown.config.ts", "vitest.config.ts"],
+  "references": [{ "path": "./tsconfig.src.json" }, { "path": "../core/tsconfig.src.json" }]
+}

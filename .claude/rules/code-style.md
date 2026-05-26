@@ -16,6 +16,7 @@ rule.
 - Single quotes, no semicolons
 - Prefer functional patterns
 - Keep ternaries one level deep. For nested conditions use if/else or extract a helper
+- Avoid `else if` chains. Use an early-return guard or a lookup/switch instead
 
 ## Comments
 

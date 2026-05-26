@@ -17,11 +17,18 @@
   "sideEffects": false,
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./dist/index.js",
+    ".": {
+      "development": "./src/index.ts",
+      "default": "./dist/index.js"
+    },
     "./package.json": "./package.json"
   },
   "publishConfig": {
     "access": "public",
+    "exports": {
+      ".": "./dist/index.js",
+      "./package.json": "./package.json"
+    },
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
@@ -31,7 +38,7 @@
     "release:canary": "bash ../../.github/canary.sh && pnpm publish --no-git-check",
     "start": "tsdown --watch",
     "test": "vitest --passWithNoTests",
-    "typecheck": "tsc -p ./tsconfig.json --noEmit"
+    "typecheck": "tsc -b --noEmit"
   },
   "dependencies": {
     "@stijnvanhulle/template-core": "workspace:*"

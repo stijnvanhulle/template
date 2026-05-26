@@ -10,6 +10,9 @@
   "license": "MIT",
   "author": "Stijn Van Hulle <stijn@stijnvanhulle.be>",
   "type": "module",
+  "imports": {
+    "#mocks": "./internals/utils/src/mocks.ts"
+  },
   "workspaces": {
     "packages": [
       "packages/*",

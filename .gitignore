@@ -16,6 +16,7 @@ build
 */build
 dist
 **/dist
+*.tsbuildinfo
 lib
 es
 artifacts

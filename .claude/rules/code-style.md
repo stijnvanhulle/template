@@ -33,6 +33,9 @@ rule.
 - `.ts` for libraries, `.tsx` for React, `.vue` for Vue components
 - DTS output is managed by tsdown
 - Use module-level import statements, not inline type imports
+- Use `null` for a value the code deliberately sets or clears, and let `undefined` mean absent or
+  machine-provided (an unset field, a missing key, no return). `null` is a chosen empty,
+  `undefined` is an unfilled slot
 - Expose the public API through the `"exports"` map and `typesVersions`. Keep it stable
 - Define types at the file root, not inside functions
 - Use function syntax (not arrow functions) for object methods so `this` works

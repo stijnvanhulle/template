@@ -2,9 +2,10 @@ import { defineConfig, type UserConfig } from 'tsdown'
 
 const shared: Partial<UserConfig> = {
   platform: 'node',
+  tsconfig: 'tsconfig.src.json',
   sourcemap: true,
   shims: true,
-  exports: true,
+  exports: { devExports: 'development' },
   fixedExtension: false,
   deps: {
     neverBundle: [/^@stijnvanhulle\//],

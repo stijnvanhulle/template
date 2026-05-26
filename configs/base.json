@@ -27,6 +27,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedSideEffectImports": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     /* If transpiling with TypeScript: */

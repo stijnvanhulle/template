@@ -1,5 +1,9 @@
 {
   "outputStyle": "house",
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "allow": [
       "Bash(pnpm typecheck *)",
@@ -19,13 +23,18 @@
       "Bash(pnpm build*)",
       "Bash(pnpm changeset*)",
       "Bash(pnpm exec *)",
+      "Bash(turbo *)",
       "Bash(npm run lint *)",
       "Bash(npm run format *)",
       "Bash(npm run typecheck *)",
       "Bash(git status*)",
       "Bash(git diff *)",
       "Bash(git log *)",
-      "Bash(git show *)"
+      "Bash(git show *)",
+      "Bash(git fetch *)",
+      "Bash(git add *)",
+      "Bash(git branch*)",
+      "Bash(git stash*)"
     ],
     "deny": [
       "Bash(rm -rf *)",
@@ -55,13 +64,23 @@
         ]
       }
     ],
-    "PostToolUse": [
+    "PreToolUse": [
       {
         "matcher": "Edit|Write",
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/format.sh"
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/guard-edit.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/format-lint.sh"
           }
         ]
       }

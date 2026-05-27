@@ -148,7 +148,7 @@ Only add JSDoc when it adds value beyond the signature:
 // No JSDoc needed: the signature is self-explanatory
 function camelCase(str: string): string { ... }
 
-// JSDoc adds value: it explains behaviour and non-obvious edge cases
+// JSDoc adds value: it explains behavior and non-obvious edge cases
 /**
  * Returns `true` when the schema resolves to a plain string output.
  *
@@ -181,7 +181,7 @@ Do not:
 ## Tag order
 
 1. Description (required)
-2. Bullet list of variants or behaviours (if applicable)
+2. Bullet list of variants or behaviors (if applicable)
 3. `@default` (if non-obvious)
 4. `@example` (one or more)
 5. `@note` (if needed)

@@ -16,11 +16,18 @@ How to write, run, and debug tests in this repo (Vitest).
 - Mock external dependencies (network, filesystem, time), not internal modules
 - Spy per test with `using _ = vi.spyOn(...)`, not module-level `vi.mock` + `beforeEach(mockReset)`
 - Use `vi.useFakeTimers()` and `vi.setSystemTime()` for time-dependent logic
-- Full shape: `toMatchInlineSnapshot()`
-- Partial shape: `toMatchObject({ ... })`
-- Treat snapshots as intentional: review every change and update with `-u` only when expected
 - Assert on public behavior and output, not private implementation details
 - Keep unit tests fast, and reserve `pnpm test:bench` for performance-sensitive code
+
+## Assertions
+
+- Primitives (number, string, boolean, `null`, `undefined`): use `toBe()`
+- Whole object/array/complex value: prefer `toStrictEqual(literal)` (or `toEqual`) with an explicit
+  literal. It states the expected result inline and catches extra or undefined keys
+- Specific behavior: use focused matchers (`toBe`, `toHaveLength`, `toContain`, single-field
+  `toEqual`) or `toMatchObject({ ... })` for a partial shape. Don't snapshot these
+- Large generated output only (e.g. generated source files): reserve `toMatchInlineSnapshot()` /
+  `toMatchFileSnapshot()`, where a hand-maintained literal is impractical
 
 ## Running and CI
 

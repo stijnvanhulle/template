@@ -28,7 +28,7 @@ For a pattern repeated across many files, describe it once with a few representa
 
 ## Verification
 
-How to confirm the change works end to end: commands to run, tests to add, behaviour to observe.
+How to confirm the change works end to end: commands to run, tests to add, behavior to observe.
 
 ## Open questions
 

@@ -11,7 +11,7 @@ How to write, run, and debug tests in this repo (Vitest).
 ## Authoring
 
 - Colocate tests next to source as `*.test.ts` or `*.test.tsx` in `src`
-- Test one behaviour per case and name it for the expected outcome ("returns X when Y")
+- Test one behavior per case and name it for the expected outcome ("returns X when Y")
 - Keep tests isolated and repeatable: no shared mutable state, clean up side effects in `afterEach`
 - Mock external dependencies (network, filesystem, time), not internal modules
 - Spy per test with `using _ = vi.spyOn(...)`, not module-level `vi.mock` + `beforeEach(mockReset)`
@@ -19,7 +19,7 @@ How to write, run, and debug tests in this repo (Vitest).
 - Full shape: `toMatchInlineSnapshot()`
 - Partial shape: `toMatchObject({ ... })`
 - Treat snapshots as intentional: review every change and update with `-u` only when expected
-- Assert on public behaviour and output, not private implementation details
+- Assert on public behavior and output, not private implementation details
 - Keep unit tests fast, and reserve `pnpm test:bench` for performance-sensitive code
 
 ## Running and CI

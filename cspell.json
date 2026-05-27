@@ -18,5 +18,27 @@
   "ignoreRegExpList": [
     "https?://github\\.com/[a-zA-Z0-9-_]+(/[a-zA-Z0-9-_]+)?",
     "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b"
+  ],
+  "words": [
+    "stijnvanhulle",
+    "Stijn",
+    "Hulle",
+    "Turborepo",
+    "monorepo",
+    "codegen",
+    "Oxlint",
+    "Oxfmt",
+    "oxfmt",
+    "oxlint",
+    "Vitest",
+    "Vitepress",
+    "tsdown",
+    "Github",
+    "changesets",
+    "codecov",
+    "rolldown",
+    "taze",
+    "pkg-pr-new",
+    "rharkor"
   ]
 }

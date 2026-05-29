@@ -6,7 +6,7 @@ Thanks for considering a contribution. Please read and follow our [Code of Condu
 - Search the [issue tracker](https://github.com/stijnvanhulle/template/issues) before opening a PR.
 - For opinion-driven changes, [open an issue](https://github.com/stijnvanhulle/template/issues/new) first.
 
-## Tech Stack
+## Tech stack
 
 | Tool | Purpose |
 |---|---|
@@ -21,7 +21,7 @@ Thanks for considering a contribution. Please read and follow our [Code of Condu
 | [Changesets](https://github.com/changesets/changesets) | Versioning and changelogs |
 | [GitHub Actions](https://github.com/features/actions) | CI/CD |
 
-## Getting Started
+## Getting started
 
 **Requirements:** Node.js `>=22`, pnpm `>=11`
 
@@ -77,7 +77,7 @@ pnpm changeset      # Create a changeset
 └── turbo.json
 ```
 
-## Submitting Changes
+## Submitting changes
 
 1. Run `pnpm format && pnpm lint && pnpm typecheck && pnpm test` locally.
 2. Use [Conventional Commits](https://www.conventionalcommits.org/): `feat:`, `fix:`, `docs:`, `chore:`, `refactor:`, `test:`, `perf:`.

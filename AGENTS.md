@@ -29,6 +29,26 @@ pnpm format       # Format with oxfmt
 pnpm changeset    # Add a changelog entry
 ```
 
+## Token optimized CLI (rtk)
+
+`rtk` is a CLI proxy that filters and compresses command output to cut token usage. Prefix shell
+commands with it so their output stays small:
+
+```bash
+rtk git status
+rtk git log -10
+rtk pnpm test
+```
+
+Run these meta commands directly:
+
+```bash
+rtk gain              # Token savings dashboard
+rtk gain --history    # Per-command savings history
+rtk discover          # Find missed rtk opportunities
+rtk proxy <cmd>       # Run raw without filtering but still track usage
+```
+
 ## Commits and PRs
 
 Use [Conventional Commits](https://www.conventionalcommits.org/). Before a PR, run

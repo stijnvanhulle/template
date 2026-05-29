@@ -7,7 +7,7 @@ on:
   push:
     branches: [main]
     paths:
-      - '.skills/**'
+      - '.agents/skills/**'
   workflow_dispatch:
 
 permissions: {}
@@ -31,7 +31,7 @@ jobs:
         uses: dave1010/skills-to-agents@12f69f287941dfafb2fcf761455e73a5c6361469 # v2
         with:
           repo-root: .
-          skills-dir: .skills
+          skills-dir: .agents/skills
           agents-path: AGENTS.md
       - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8
         if: steps.build.outputs.changed == 'true'

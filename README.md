@@ -1,11 +1,5 @@
 <div align="center">
 
-  <h1>Template</h1>
-
-  <p>
-    A modern TypeScript monorepo template (pnpm workspaces, Turborepo, oxlint, oxfmt, tsdown, Vitest, and Changesets).
-  </p>
-
   <h4>
     <a href="https://github.com/stijnvanhulle/template/issues/">Report Bug</a>
     <span> · </span>
@@ -15,57 +9,15 @@
 
 <br />
 
+# Template
+
+A modern TypeScript monorepo template (pnpm workspaces, Turborepo, oxlint, oxfmt, tsdown, Vitest, and Changesets).
+
 ## About
 
 A drop-in monorepo starter. Fork it, rename a few fields, and you have a
 production-ready repository with build, test, lint, format, release and CI
 already wired up.
-
-## What's inside
-
-| Tool | Purpose |
-|---|---|
-| [pnpm](https://pnpm.io/) | Workspaces + dependency catalog |
-| [Turborepo](https://turbo.build/) | Monorepo task runner |
-| [tsdown](https://github.com/sxzz/tsdown) | Bundler + `.d.ts` generation |
-| [oxlint](https://oxc.rs/docs/guide/usage/linter.html) | Linter (Rust-based) |
-| [oxfmt](https://github.com/oxc-project/oxfmt) | Formatter (Rust-based) |
-| [Vitest](https://vitest.dev/) | Test runner |
-| [CSpell](https://cspell.org/) | Spell checker |
-| [Changesets](https://github.com/changesets/changesets) | Versioning + changelogs |
-| [GitHub Actions](https://github.com/features/actions) | CI/CD |
-| [taze](https://github.com/antfu-collective/taze) | Dependency upgrades |
-
-## Layout
-
-```
-.
-├── .agents/
-│   └── skills/          # Agent skills, shared across providers
-├── .changeset/          # Changeset configuration
-├── .claude/             # Claude Code config (rules, commands, agents, hooks, settings)
-│   └── skills/          # → ../.agents/skills
-├── .github/
-│   ├── ISSUE_TEMPLATE/  # Issue templates
-│   ├── setup/           # Reusable setup composite action
-│   └── workflows/       # CI workflows
-├── configs/             # Shared TS bases + vitest config
-├── internals/           # Internal, non-published packages
-│   └── utils/
-├── packages/            # Publishable packages
-│   ├── core/
-│   └── demo/
-├── plans/               # Spec-driven workflow (templates + per-feature folders)
-├── codecov.yml          # Coverage targets + ignores
-├── env.d.ts
-├── oxfmt.config.ts
-├── oxlint.config.ts
-├── package.json
-├── pnpm-workspace.yaml
-├── reset.d.ts
-├── tsconfig.json
-└── turbo.json
-```
 
 ## AI assistant configuration
 
@@ -150,29 +102,6 @@ verification) driven by the `spec-driven` skill and the `/spec`, `/plan`, and `/
 commands. See [plans/README.md](plans/README.md). For quick changes, use the `plan` output
 style instead.
 
-## Prerequisites
-
-- Node.js `>= 22`
-- pnpm `>= 11`
-
-## Commands
-
-```bash
-pnpm install         # Install dependencies
-pnpm build           # Build all packages
-pnpm test            # Run tests
-pnpm test:watch      # Watch mode
-pnpm test:bench      # Run benchmarks
-pnpm lint            # Lint with oxlint
-pnpm lint:fix        # Lint + auto-fix
-pnpm format          # Format with oxfmt
-pnpm typecheck       # Type-check all packages
-pnpm lint:spell      # Spell check
-pnpm changeset       # Create a changeset
-pnpm clean           # Clean build artifacts
-pnpm upgrade         # Bump dependencies to latest (via taze)
-```
-
 ## Using this template
 
 1. Click **Use this template** on GitHub.
@@ -212,6 +141,10 @@ pnpm upgrade && pnpm install
 The `upgrade` script runs [taze](https://github.com/antfu-collective/taze)
 with `--maturity-period 3` so new releases need at least 3 days of soak
 time before being adopted.
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for the project structure, prerequisites, local setup, and commands.
 
 ## License
 

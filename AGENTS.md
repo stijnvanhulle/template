@@ -2,6 +2,20 @@
 
 A modern TypeScript monorepo template (pnpm workspaces, Turborepo, oxlint, oxfmt, tsdown, Vitest, and Changesets).
 
+## High-level architecture
+
+A drop-in monorepo starter. Fork it, rename a few fields, and you have a production-ready repository with build, test, lint, format, release, and CI already wired up. It is built from:
+
+- Publishable packages in `packages/`, bundled with tsdown
+- Internal, non-published packages in `internals/`
+- Shared TypeScript bases and Vitest config in `configs/`
+- A Turborepo pipeline that orchestrates build, test, lint, and typecheck
+
+## Project structure and commands
+
+The full folder structure, repository setup, and commands live in
+[CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Repository setup
 
 | Aspect | Choice |
@@ -17,17 +31,11 @@ A modern TypeScript monorepo template (pnpm workspaces, Turborepo, oxlint, oxfmt
 | Versioning | Changesets |
 | CI/CD | GitHub Actions |
 
-## Commands
+## Commits and PRs
 
-```bash
-pnpm install      # Install dependencies
-pnpm build        # Build all packages
-pnpm test         # Run tests
-pnpm typecheck    # Type-check all packages
-pnpm lint         # Lint with oxlint
-pnpm format       # Format with oxfmt
-pnpm changeset    # Add a changelog entry
-```
+Use [Conventional Commits](https://www.conventionalcommits.org/). Before a PR, run
+`pnpm format && pnpm lint && pnpm typecheck && pnpm test`, and add a changeset
+(`pnpm changeset`) for any published-package change.
 
 ## Token optimized CLI (rtk)
 
@@ -48,12 +56,6 @@ rtk gain --history    # Per-command savings history
 rtk discover          # Find missed rtk opportunities
 rtk proxy <cmd>       # Run raw without filtering but still track usage
 ```
-
-## Commits and PRs
-
-Use [Conventional Commits](https://www.conventionalcommits.org/). Before a PR, run
-`pnpm format && pnpm lint && pnpm typecheck && pnpm test`, and add a changeset
-(`pnpm changeset`) for any published-package change.
 
 ## How agents read this repo
 

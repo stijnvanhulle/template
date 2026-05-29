@@ -19,21 +19,6 @@ A drop-in monorepo starter. Fork it, rename a few fields, and you have a
 production-ready repository with build, test, lint, format, release and CI
 already wired up.
 
-## What's inside
-
-| Tool | Purpose |
-|---|---|
-| [pnpm](https://pnpm.io/) | Workspaces + dependency catalog |
-| [Turborepo](https://turbo.build/) | Monorepo task runner |
-| [tsdown](https://github.com/sxzz/tsdown) | Bundler + `.d.ts` generation |
-| [oxlint](https://oxc.rs/docs/guide/usage/linter.html) | Linter (Rust-based) |
-| [oxfmt](https://github.com/oxc-project/oxfmt) | Formatter (Rust-based) |
-| [Vitest](https://vitest.dev/) | Test runner |
-| [CSpell](https://cspell.org/) | Spell checker |
-| [Changesets](https://github.com/changesets/changesets) | Versioning + changelogs |
-| [GitHub Actions](https://github.com/features/actions) | CI/CD |
-| [taze](https://github.com/antfu-collective/taze) | Dependency upgrades |
-
 ## AI assistant configuration
 
 This template is set up for AI coding agents. It builds on two open formats, AGENTS.md and

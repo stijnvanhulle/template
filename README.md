@@ -1,11 +1,5 @@
 <div align="center">
 
-  <h1>Template</h1>
-
-  <p>
-    A modern TypeScript monorepo template (pnpm workspaces, Turborepo, oxlint, oxfmt, tsdown, Vitest, and Changesets).
-  </p>
-
   <h4>
     <a href="https://github.com/stijnvanhulle/template/issues/">Report Bug</a>
     <span> · </span>
@@ -14,6 +8,10 @@
 </div>
 
 <br />
+
+# Template
+
+A modern TypeScript monorepo template (pnpm workspaces, Turborepo, oxlint, oxfmt, tsdown, Vitest, and Changesets).
 
 ## About
 

@@ -11,19 +11,10 @@ A drop-in monorepo starter. Fork it, rename a few fields, and you have a product
 - Shared TypeScript bases and Vitest config in `configs/`
 - A Turborepo pipeline that orchestrates build, test, lint, and typecheck
 
-## Folder structure
+## Project structure and commands
 
-```
-.
-├── packages/                # Publishable packages (core, demo)
-├── internals/               # Internal, non-published packages (utils)
-├── configs/                 # Shared TS bases and Vitest config
-├── plans/                   # Spec-driven workflow (templates + per-feature folders)
-├── .changeset/              # Changeset configuration
-├── .agents/skills/          # Cross-provider agent skills
-├── .claude/                 # Claude rules, commands, agents, output styles, hooks
-└── .github/                 # Issue templates, setup action, CI workflows
-```
+The full folder structure, repository setup, and commands live in
+[CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Repository setup
 
@@ -39,18 +30,6 @@ A drop-in monorepo starter. Fork it, rename a few fields, and you have a product
 | Tests | Vitest |
 | Versioning | Changesets |
 | CI/CD | GitHub Actions |
-
-## Commands
-
-```bash
-pnpm install      # Install dependencies
-pnpm build        # Build all packages
-pnpm test         # Run tests
-pnpm typecheck    # Type-check all packages
-pnpm lint         # Lint with oxlint
-pnpm format       # Format with oxfmt
-pnpm changeset    # Add a changelog entry
-```
 
 ## Commits and PRs
 

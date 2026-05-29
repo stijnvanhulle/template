@@ -46,6 +46,37 @@ pnpm lint:spell     # Spell check
 pnpm changeset      # Create a changeset
 ```
 
+## Project structure
+
+```
+.
+├── .agents/
+│   └── skills/          # Agent skills, shared across providers
+├── .changeset/          # Changeset configuration
+├── .claude/             # Claude Code config (rules, commands, agents, hooks, settings)
+│   └── skills/          # → ../.agents/skills
+├── .github/
+│   ├── ISSUE_TEMPLATE/  # Issue templates
+│   ├── setup/           # Reusable setup composite action
+│   └── workflows/       # CI workflows
+├── configs/             # Shared TS bases + vitest config
+├── internals/           # Internal, non-published packages
+│   └── utils/
+├── packages/            # Publishable packages
+│   ├── core/
+│   └── demo/
+├── plans/               # Spec-driven workflow (templates + per-feature folders)
+├── codecov.yml          # Coverage targets + ignores
+├── env.d.ts
+├── oxfmt.config.ts
+├── oxlint.config.ts
+├── package.json
+├── pnpm-workspace.yaml
+├── reset.d.ts
+├── tsconfig.json
+└── turbo.json
+```
+
 ## Submitting Changes
 
 1. Run `pnpm format && pnpm lint && pnpm typecheck && pnpm test` locally.

@@ -24,9 +24,12 @@ already wired up.
 This template is set up for AI coding agents. It builds on two open formats, AGENTS.md and
 Agent Skills, and uses symlinks so every tool reads from one source instead of drifting copies.
 
-`AGENTS.md` is the canonical instruction file. Skills live in `.agents/skills/` as portable
-`SKILL.md` folders. Everything else points back to those two through symlinks, so there is one
-source of truth.
+`AGENTS.md` is the canonical instruction file. The shared toolset (skills, commands,
+code-reviewer agent, output styles, and conventions) lives in `tools/claude/`, which doubles as
+the `stijnvanhulle` Claude Code plugin. The workspace paths under `.claude/` and `.agents/`
+symlink into that folder, so the template repo and any project that installs the plugin run
+the same content from a single source of truth. See [tools/claude/README.md](tools/claude/README.md)
+for install steps.
 
 ### Folder structure
 
@@ -35,17 +38,25 @@ AGENTS.md                                     # canonical instructions every age
 CLAUDE.md → AGENTS.md                         # Claude Code
 GEMINI.md → AGENTS.md                         # Gemini CLI
 .github/copilot-instructions.md → AGENTS.md   # GitHub Copilot in VS Code
-.agents/
-└── skills/                                   # cross-provider Agent Skills, one SKILL.md folder each
-    └── changelog, documentation, humanizer, jsdoc, pr, spec-driven
-.claude/                                      # Claude-specific extensions
-├── settings.json                             # permissions and hook registration
-├── skills → ../.agents/skills                # lets Claude load the shared skills
-├── rules/                                    # always-on conventions: code-style, jsdoc, markdown, testing, security
-├── commands/                                 # slash commands: /changeset, /spec, /plan, /verify
+tools/claude/                                 # distributable Claude Code plugin (single source of truth)
+├── .claude-plugin/plugin.json                # plugin manifest
+├── README.md                                 # install + usage
+├── skills/                                   # cross-provider Agent Skills, one SKILL.md folder each
+│   ├── changelog, documentation, humanizer, jsdoc, pr, spec-driven
+│   └── conventions/                          # always-on rules: code-style, jsdoc, markdown, security, testing
+├── commands/                                 # slash commands: /changeset, /spec, /plan, /implement, /verify
 ├── agents/                                   # subagents: code-reviewer
-├── output-styles/                            # system-prompt modes: house (default), plan, diagrams-first
-└── hooks/                                    # shell hooks: session-start, format
+└── output-styles/                            # system-prompt modes: house (default), plan, diagrams-first
+.agents/
+└── skills → ../tools/claude/skills           # lets cross-provider runtimes find the shared skills
+.claude/                                      # Claude-specific workspace config
+├── settings.json                             # permissions and hook registration
+├── hooks/                                    # shell hooks: session-start, format-lint, guard-edit
+├── skills → ../tools/claude/skills           # all seven skills, including conventions
+├── commands → ../tools/claude/commands
+├── agents → ../tools/claude/agents
+├── output-styles → ../tools/claude/output-styles
+└── rules → ../tools/claude/skills/conventions # the conventions skill files, exposed as rules
 plans/                                        # spec-driven workflow
 ├── README.md                                 # workflow guide
 ├── templates/                                # blank docs, copied per feature
@@ -62,7 +73,8 @@ plans/                                        # spec-driven workflow
 Supported agents:
 
 - **Claude Code** reads `CLAUDE.md` (symlink to `AGENTS.md`) and `.claude/skills` (symlink to
-  `.agents/skills`), plus the Claude-specific extensions below.
+  `tools/claude/skills`), plus the Claude-specific extensions below. Other projects can install
+  the same toolset as a marketplace plugin (see [tools/claude/README.md](tools/claude/README.md)).
 - **OpenAI Codex / ChatGPT** reads `AGENTS.md` and Agent Skills natively.
 - **GitHub Copilot** reads `AGENTS.md` natively, and `.github/copilot-instructions.md`
   (symlink to `AGENTS.md`) in VS Code.
@@ -79,18 +91,20 @@ Supported agents:
 | `CLAUDE.md` → `AGENTS.md` | Claude Code | Symlink |
 | `GEMINI.md` → `AGENTS.md` | Gemini CLI | Symlink |
 | `.github/copilot-instructions.md` → `AGENTS.md` | Copilot (VS Code) | Symlink |
-| `.agents/skills/` | Any Agent Skills runtime | Open `SKILL.md` format |
-| `.claude/skills` → `.agents/skills` | Claude Code | Symlink |
+| `tools/claude/skills/` | Any Agent Skills runtime | Open `SKILL.md` format |
+| `.agents/skills` → `tools/claude/skills` | Cross-provider runtimes | Symlink |
+| `.claude/skills` → `tools/claude/skills` | Claude Code | Symlink |
+| `tools/claude/.claude-plugin/plugin.json` | Other projects, via marketplace install | Claude Code plugin |
 
 Claude-specific extensions layer on top. The pieces, and when each one loads:
 
 | Path | What it does | When it loads |
 |---|---|---|
-| `.claude/rules/` | Always-on conventions: code style, JSDoc, markdown humanizer, testing, security | Session start, or when a matching file opens for path-scoped rules |
-| `.agents/skills/` | Playbooks: changelog, documentation, humanizer, jsdoc, pr, spec-driven | On demand, when the task matches the skill description |
-| `.claude/commands/` | Explicit slash-command actions, such as `/changeset` | When you type the command |
-| `.claude/agents/` | Subagents with their own context window, such as `code-reviewer` | When delegated a matching task |
-| `.claude/output-styles/` | System-prompt modes: `house` (the default, set in `settings.json`), `plan`, and `diagrams-first` | At session start (house), or when selected |
+| `.claude/rules/` → `tools/claude/skills/conventions/` | Always-on conventions: code style, JSDoc, markdown, security, testing | Session start, or when a matching file opens for path-scoped rules |
+| `.claude/skills/` → `tools/claude/skills/` | Playbooks: changelog, documentation, humanizer, jsdoc, pr, spec-driven, conventions | On demand, when the task matches the skill description |
+| `.claude/commands/` → `tools/claude/commands/` | Explicit slash-command actions, such as `/changeset` | When you type the command |
+| `.claude/agents/` → `tools/claude/agents/` | Subagents with their own context window, such as `code-reviewer` | When delegated a matching task |
+| `.claude/output-styles/` → `tools/claude/output-styles/` | System-prompt modes: `house` (the default, set in `settings.json`), `plan`, and `diagrams-first` | At session start (house), or when selected |
 | `.claude/hooks/` | Scripts that install deps on session start and format files on edit | On the matching event |
 | `.claude/settings.json` | Permissions and hook registration | Always |
 

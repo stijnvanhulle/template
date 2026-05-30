@@ -35,9 +35,6 @@ jobs:
       packages: write
       pull-requests: write
       issues: write
-    outputs:
-      published_packages: ${{ steps.changesets.outputs.publishedPackages }}
-      published: ${{ steps.changesets.outputs.published }}
     steps:
       - name: Check out code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -53,19 +50,19 @@ jobs:
       - name: Build
         run: pnpm run build
 
-      - name: Publish
+      - name: Stage publish
         id: changesets
         uses: changesets/action@63a615b9cd06ba9a3e6d13796c7fbcb080a60a0b # v1
         if: ${{ github.event.inputs.tag == '' }}
         with:
-          publish: pnpm release
+          publish: pnpm release:stage
           commit: 'ci(changesets): version packages'
           setupGitUser: false
         env:
           NPM_CONFIG_PROVENANCE: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish ${{ inputs.tag || 'canary' }}
+      - name: Stage publish ${{ inputs.tag || 'canary' }}
         id: canary
         if: steps.changesets.outputs.published != 'true'
         env:
@@ -75,27 +72,4 @@ jobs:
         run: |
           git checkout main
           pnpm version:canary
-          pnpm release:canary --tag "$RELEASE_TAG"
-
-  get-version:
-    name: Get Published Version
-    if: needs.release.outputs.published == 'true'
-    needs: [release]
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    outputs:
-      version: ${{ steps.version.outputs.result }}
-    steps:
-      - name: Get version
-        id: version
-        uses: actions/github-script@373c709c69115d41ff229c7e5df9f8788daa9553 # v9
-        env:
-          PUBLISHED_PACKAGES: ${{ needs.release.outputs.published_packages }}
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          result-encoding: string
-          script: |
-            const publishedPackages = JSON.parse(process.env.PUBLISHED_PACKAGES || '[]');
-            const corePackage = publishedPackages.find(pkg => pkg.name === '@stijnvanhulle/template-core');
-            return corePackage?.version || '';
+          pnpm release:stage --tag "$RELEASE_TAG"

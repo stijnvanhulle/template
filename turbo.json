@@ -49,6 +49,11 @@
     "release:canary": {
       "dependsOn": ["build"],
       "outputs": []
+    },
+    "release:stage": {
+      "dependsOn": ["build"],
+      "outputs": [],
+      "cache": false
     }
   }
 }

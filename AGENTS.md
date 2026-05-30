@@ -59,13 +59,32 @@ rtk proxy <cmd>       # Run raw without filtering but still track usage
 
 ## How agents read this repo
 
-`AGENTS.md` is the canonical instruction file. `CLAUDE.md`, `GEMINI.md`, and
-`.github/copilot-instructions.md` symlink to it. Skills live in `.agents/skills/` (open
-`SKILL.md` format, cross-provider). Always-on conventions live in `.claude/rules/`
-(`code-style`, `jsdoc`, `markdown`, `testing`, `security`), and `.claude/` also holds commands,
-subagents, output styles, and hooks. See the
-[README](README.md#ai-assistant-configuration) for the full folder structure and how each piece
-loads.
+`AGENTS.md` is the canonical instruction file, read natively by Codex /
+ChatGPT, OpenCode, Windsurf, Cursor (0.46+), and any other AGENTS.md
+runtime. `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`
+symlink to it so Claude Code, Gemini CLI, and GitHub Copilot pick up the
+same content. The shared toolset (skills, commands, code-reviewer agent,
+output styles, and conventions) lives in `tools/claude/`, which is also
+packaged as a Claude Code plugin (installable as
+`plugin@stijnvanhulle/template`). The `.claude/` and `.agents/skills/`
+paths used by the workspace symlink into that folder, so the template repo
+and any project that installs the plugin run the same content.
+Workspace-only pieces (hooks and `settings.json`) stay under `.claude/`.
+See [tools/claude/README.md](tools/claude/README.md) for install steps and
+the [README](README.md#ai-assistant-configuration) for the full folder
+structure.
+
+## Rules
+
+Always-on conventions for this repo. Read the file that matches what you
+are doing. The same files ship in the `conventions` skill, so any tool
+that loads `SKILL.md` folders also picks them up on demand.
+
+- [code-style](.agents/skills/conventions/rules/code-style.md) - ESM conventions, naming, imports, exports.
+- [jsdoc](.agents/skills/conventions/rules/jsdoc.md) - Always-on JSDoc essentials. The `jsdoc` skill is the full reference.
+- [markdown](.agents/skills/conventions/rules/markdown.md) - Markdown structure. The `documentation` and `humanizer` skills cover voice and SEO.
+- [security](.agents/skills/conventions/rules/security.md) - Secrets, input validation at trust boundaries, safe shell use.
+- [testing](.agents/skills/conventions/rules/testing.md) - Vitest patterns and what to test.
 
 <skills>
 
@@ -73,10 +92,11 @@ loads.
 
 You have new skills. If any skill might be relevant then you MUST read it.
 
-- [changelog](.agents/skills/changelog/SKILL.md) - Creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes.
-- [documentation](.agents/skills/documentation/SKILL.md) - Use when writing blog posts or documentation markdown files - provides writing style guide (active voice, present tense), content structure patterns, and SEO optimization. Overrides brevity rules for proper grammar.
-- [humanizer](.agents/skills/humanizer/SKILL.md) - Remove AI writing patterns to make documentation sound natural, specific, and human. Covers content patterns, language patterns, style patterns, and communication patterns.
-- [jsdoc](.agents/skills/jsdoc/SKILL.md) - Full JSDoc format guide for TypeScript, covering @example formats, tag usage (@default, @deprecated, what to avoid), documentation patterns for properties/enums/functions, and tag order.
-- [pr](.agents/skills/pr/SKILL.md) - Rules and checklist for preparing PRs, creating changesets, and releasing packages in the monorepo.
-- [spec-driven](.agents/skills/spec-driven/SKILL.md) - Drive a spec-driven workflow for a larger feature: specify requirements and acceptance criteria, research decisions, plan numbered slices, implement, then verify. Use for multi-step features that need a reviewable paper trail. Skip it for small, obvious changes.
+- [changelog](.claude/skills/changelog/SKILL.md) - Creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes.
+- [conventions](.claude/skills/conventions/SKILL.md) - Always-on conventions for TypeScript monorepos. Bundles code style, JSDoc, markdown structure, security, and testing rules.
+- [documentation](.claude/skills/documentation/SKILL.md) - Use when writing blog posts or documentation markdown files - provides writing style guide (active voice, present tense), content structure patterns, and SEO optimization. Overrides brevity rules for proper grammar.
+- [humanizer](.claude/skills/humanizer/SKILL.md) - Remove AI writing patterns to make documentation sound natural, specific, and human. Covers content patterns, language patterns, style patterns, and communication patterns.
+- [jsdoc](.claude/skills/jsdoc/SKILL.md) - Full JSDoc format guide for TypeScript, covering @example formats, tag usage (@default, @deprecated, what to avoid), documentation patterns for properties/enums/functions, and tag order.
+- [pr](.claude/skills/pr/SKILL.md) - Rules and checklist for preparing PRs, creating changesets, and releasing packages in the monorepo.
+- [spec-driven](.claude/skills/spec-driven/SKILL.md) - Drive a spec-driven workflow for a larger feature: specify requirements and acceptance criteria, research decisions, plan numbered slices, implement, then verify. Use for multi-step features that need a reviewable paper trail. Skip it for small, obvious changes.
 </skills>

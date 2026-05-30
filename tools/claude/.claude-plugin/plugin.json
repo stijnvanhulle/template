@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "plugin",
+  "displayName": "stijnvanhulle toolkit",
+  "version": "0.1.0",
+  "description": "Spec-driven workflow, writing-voice skills, code-reviewer agent, and shared TypeScript-monorepo conventions. Extracted from stijnvanhulle/template so other projects can install the same toolset.",
+  "author": {
+    "name": "stijnvanhulle",
+    "url": "https://github.com/stijnvanhulle"
+  },
+  "homepage": "https://github.com/stijnvanhulle/template",
+  "repository": "https://github.com/stijnvanhulle/template",
+  "license": "MIT",
+  "keywords": ["typescript", "monorepo", "spec-driven", "changesets", "skills", "conventions"]
+}

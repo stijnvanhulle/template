@@ -59,16 +59,32 @@ rtk proxy <cmd>       # Run raw without filtering but still track usage
 
 ## How agents read this repo
 
-`AGENTS.md` is the canonical instruction file. `CLAUDE.md`, `GEMINI.md`, and
-`.github/copilot-instructions.md` symlink to it. The shared toolset (skills,
-commands, code-reviewer agent, output styles, and conventions) lives in
-`tools/claude/`, which is also packaged as a Claude Code plugin (installable
-as `plugin@stijnvanhulle/template`). The `.claude/` and `.agents/skills/` paths used by the workspace
-symlink into that folder, so the template repo and any project that installs
-the plugin run the same content. Workspace-only pieces (hooks and
-`settings.json`) stay under `.claude/`. See [tools/claude/README.md](tools/claude/README.md)
-for install steps and the [README](README.md#ai-assistant-configuration) for
-the full folder structure.
+`AGENTS.md` is the canonical instruction file, read natively by Codex /
+ChatGPT, OpenCode, Windsurf, Cursor (0.46+), and any other AGENTS.md
+runtime. `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`
+symlink to it so Claude Code, Gemini CLI, and GitHub Copilot pick up the
+same content. The shared toolset (skills, commands, code-reviewer agent,
+output styles, and conventions) lives in `tools/claude/`, which is also
+packaged as a Claude Code plugin (installable as
+`plugin@stijnvanhulle/template`). The `.claude/` and `.agents/skills/`
+paths used by the workspace symlink into that folder, so the template repo
+and any project that installs the plugin run the same content.
+Workspace-only pieces (hooks and `settings.json`) stay under `.claude/`.
+See [tools/claude/README.md](tools/claude/README.md) for install steps and
+the [README](README.md#ai-assistant-configuration) for the full folder
+structure.
+
+## Rules
+
+Always-on conventions for this repo. Read the file that matches what you
+are doing. The same files ship in the `conventions` skill, so any tool
+that loads `SKILL.md` folders also picks them up on demand.
+
+- [code-style](.agents/skills/conventions/code-style.md) - ESM conventions, naming, imports, exports.
+- [jsdoc](.agents/skills/conventions/jsdoc.md) - Always-on JSDoc essentials. The `jsdoc` skill is the full reference.
+- [markdown](.agents/skills/conventions/markdown.md) - Markdown structure. The `documentation` and `humanizer` skills cover voice and SEO.
+- [security](.agents/skills/conventions/security.md) - Secrets, input validation at trust boundaries, safe shell use.
+- [testing](.agents/skills/conventions/testing.md) - Vitest patterns and what to test.
 
 <skills>
 

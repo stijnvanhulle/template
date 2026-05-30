@@ -35,9 +35,6 @@ jobs:
       packages: write
       pull-requests: write
       issues: write
-    outputs:
-      published_packages: ${{ steps.changesets.outputs.publishedPackages }}
-      published: ${{ steps.changesets.outputs.published }}
     steps:
       - name: Check out code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -76,26 +73,3 @@ jobs:
           git checkout main
           pnpm version:canary
           pnpm release:stage --tag "$RELEASE_TAG"
-
-  get-version:
-    name: Get Published Version
-    if: needs.release.outputs.published == 'true'
-    needs: [release]
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    outputs:
-      version: ${{ steps.version.outputs.result }}
-    steps:
-      - name: Get version
-        id: version
-        uses: actions/github-script@373c709c69115d41ff229c7e5df9f8788daa9553 # v9
-        env:
-          PUBLISHED_PACKAGES: ${{ needs.release.outputs.published_packages }}
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          result-encoding: string
-          script: |
-            const publishedPackages = JSON.parse(process.env.PUBLISHED_PACKAGES || '[]');
-            const corePackage = publishedPackages.find(pkg => pkg.name === '@stijnvanhulle/template-core');
-            return corePackage?.version || '';

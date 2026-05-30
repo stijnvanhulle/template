@@ -80,11 +80,11 @@ Always-on conventions for this repo. Read the file that matches what you
 are doing. The same files ship in the `conventions` skill, so any tool
 that loads `SKILL.md` folders also picks them up on demand.
 
-- [code-style](.agents/skills/conventions/code-style.md) - ESM conventions, naming, imports, exports.
-- [jsdoc](.agents/skills/conventions/jsdoc.md) - Always-on JSDoc essentials. The `jsdoc` skill is the full reference.
-- [markdown](.agents/skills/conventions/markdown.md) - Markdown structure. The `documentation` and `humanizer` skills cover voice and SEO.
-- [security](.agents/skills/conventions/security.md) - Secrets, input validation at trust boundaries, safe shell use.
-- [testing](.agents/skills/conventions/testing.md) - Vitest patterns and what to test.
+- [code-style](.agents/skills/conventions/rules/code-style.md) - ESM conventions, naming, imports, exports.
+- [jsdoc](.agents/skills/conventions/rules/jsdoc.md) - Always-on JSDoc essentials. The `jsdoc` skill is the full reference.
+- [markdown](.agents/skills/conventions/rules/markdown.md) - Markdown structure. The `documentation` and `humanizer` skills cover voice and SEO.
+- [security](.agents/skills/conventions/rules/security.md) - Secrets, input validation at trust boundaries, safe shell use.
+- [testing](.agents/skills/conventions/rules/testing.md) - Vitest patterns and what to test.
 
 <skills>
 

@@ -75,7 +75,7 @@ jobs:
         run: |
           git checkout main
           pnpm version:canary
-          pnpm release:canary:stage -- --tag "$RELEASE_TAG"
+          pnpm release:stage --tag "$RELEASE_TAG"
 
   get-version:
     name: Get Published Version

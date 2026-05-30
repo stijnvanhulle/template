@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
-  "name": "stijnvanhulle",
+  "name": "plugin",
   "displayName": "stijnvanhulle toolkit",
   "version": "0.1.0",
   "description": "Spec-driven workflow, writing-voice skills, code-reviewer agent, and shared TypeScript-monorepo conventions. Extracted from stijnvanhulle/template so other projects can install the same toolset.",

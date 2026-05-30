@@ -62,8 +62,8 @@ rtk proxy <cmd>       # Run raw without filtering but still track usage
 `AGENTS.md` is the canonical instruction file. `CLAUDE.md`, `GEMINI.md`, and
 `.github/copilot-instructions.md` symlink to it. The shared toolset (skills,
 commands, code-reviewer agent, output styles, and conventions) lives in
-`tools/claude/`, which is also packaged as the `stijnvanhulle` Claude Code
-plugin. The `.claude/` and `.agents/skills/` paths used by the workspace
+`tools/claude/`, which is also packaged as a Claude Code plugin (installable
+as `plugin@stijnvanhulle/template`). The `.claude/` and `.agents/skills/` paths used by the workspace
 symlink into that folder, so the template repo and any project that installs
 the plugin run the same content. Workspace-only pieces (hooks and
 `settings.json`) stay under `.claude/`. See [tools/claude/README.md](tools/claude/README.md)

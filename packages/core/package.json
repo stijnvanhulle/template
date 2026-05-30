@@ -27,9 +27,9 @@
   "scripts": {
     "build": "tsdown",
     "clean": "rm -rf ./dist",
-    "publish:stage": "npm stage publish --access public --provenance",
     "release": "pnpm publish --no-git-check",
     "release:canary": "bash ../../.github/canary.sh && pnpm publish --no-git-check",
+    "release:stage": "pnpm stage publish --no-git-check",
     "start": "tsdown --watch",
     "test": "vitest --passWithNoTests",
     "typecheck": "tsc -b"

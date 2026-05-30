@@ -50,7 +50,7 @@
       "dependsOn": ["build"],
       "outputs": []
     },
-    "publish:stage": {
+    "release:stage": {
       "dependsOn": ["build"],
       "outputs": [],
       "cache": false

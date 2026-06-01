@@ -22,9 +22,62 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # Opens/updates the "Version Packages" PR: `changeset version` bumps package
+  # versions and regenerates changelogs from the queued changesets. Split out
+  # from the publish job below so it owns PR creation and can be triggered
+  # manually via workflow_dispatch (run without a canary `tag`). Skipped on a
+  # canary dispatch (a `tag` is provided).
+  version:
+    name: Version Packages
+    if: github.repository_owner == 'stijnvanhulle' && github.event.inputs.tag == ''
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    outputs:
+      # Whether changesets are still queued. The publish job keys off this to
+      # avoid running (and racing on changeset-release/main) while a Version
+      # Packages PR is still open.
+      hasChangesets: ${{ steps.changesets.outputs.hasChangesets }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Tools
+        uses: ./.github/setup
+        with:
+          node-version: '22'
+          cache: 'false'
+
+      - name: Create Version Packages PR
+        id: changesets
+        uses: changesets/action@63a615b9cd06ba9a3e6d13796c7fbcb080a60a0b # v1
+        with:
+          # Version-only: bump versions + regenerate changelogs into a PR. No
+          # `publish` here — staging/publishing stays with the release job.
+          version: pnpm version
+          commit: 'ci(changesets): version packages'
+          title: 'ci(changesets): version packages'
+          # ./.github/setup already configures the github-actions[bot] git user.
+          setupGitUser: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   release:
     name: Release
-    if: github.repository_owner == 'stijnvanhulle'
+    needs: [version]
+    # Publish path. Runs only when there is nothing left to version: either the
+    # Version Packages PR was merged (no changesets remain) or this is a canary
+    # dispatch (a `tag` is provided, so the version job was skipped). While
+    # changesets are still queued the version job owns the run and this job is
+    # skipped, which also prevents both jobs racing on changeset-release/main.
+    if: |
+      always() &&
+      github.repository_owner == 'stijnvanhulle' &&
+      (github.event.inputs.tag != '' || (needs.version.result == 'success' && needs.version.outputs.hasChangesets == 'false'))
     timeout-minutes: 15
     runs-on: ubuntu-latest
     # id-token: write is scoped to this job only, which runs after tests pass.
@@ -70,8 +123,9 @@ jobs:
           # records that staging ran. It must be a single script: the action
           # splits `publish` on whitespace and spawns it directly (no shell), so
           # `&&` and `>>` only work when wrapped in a script pnpm runs via a shell.
+          # Reaches here only with no changesets queued (see job `if`), so the
+          # action takes the publish path and never touches the version branch.
           publish: pnpm release:stage:ci
-          commit: 'ci(changesets): version packages'
           setupGitUser: false
         env:
           NPM_CONFIG_PROVENANCE: true
@@ -79,7 +133,7 @@ jobs:
 
       - name: Publish ${{ inputs.tag || 'canary' }}
         id: canary
-        if: steps.changesets.outputs.staged != 'true'
+        if: ${{ github.event.inputs.tag != '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: true

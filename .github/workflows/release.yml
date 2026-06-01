@@ -50,7 +50,7 @@ jobs:
         id: changesets
         uses: changesets/action@63a615b9cd06ba9a3e6d13796c7fbcb080a60a0b # v1
         with:
-          version: pnpm version
+          version: pnpm exec changeset version
           commit: 'ci(changesets): version packages'
           title: 'ci(changesets): version packages'
           setupGitUser: false
@@ -117,31 +117,3 @@ jobs:
           pnpm version:canary
           pnpm release:canary --tag "$RELEASE_TAG"
 
-  notify:
-    name: Send Discord Notification
-    needs: [release]
-    if: needs.release.outputs.staged == 'true'
-    runs-on: ubuntu-latest
-    permissions: {}
-    steps:
-      - name: Send a discord notification
-        if: ${{ secrets.DISCORD_WEBHOOK_URL != '' }}
-        uses: actions/github-script@373c709c69115d41ff229c7e5df9f8788daa9553 # v9
-        env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            fetch(process.env.DISCORD_WEBHOOK_URL, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                content: `A new release is available 🎉. \n [Read the changelog](https://github.com/${context.repo.owner}/${context.repo.repo}/releases)`,
-              }),
-            })
-              .then((res) => {
-                console.log('Sent discord notification', res.status);
-              })
-              .catch((err) => {
-                console.error('Error sending discord notification', err);
-              });

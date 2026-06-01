@@ -35,7 +35,6 @@
     "test:watch": "vitest --config ./configs/vitest.config.ts",
     "typecheck": "turbo run typecheck --continue --filter='./packages/*' --filter='./internals/*'",
     "upgrade": "npx taze -r -w --exclude pnpm --maturity-period 3",
-    "version": "changeset version",
     "version:canary": "changeset version --snapshot canary"
   },
   "devDependencies": {

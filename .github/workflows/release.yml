@@ -12,9 +12,6 @@ on:
       - '.changeset/**'
       - 'packages/**'
 
-# Deny all permissions at workflow level; each job declares only what it needs.
-# id-token: write is intentionally restricted to the publish job so that
-# build/test steps never have access to an OIDC token that could publish to npm.
 permissions: {}
 
 concurrency:
@@ -22,11 +19,6 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Opens/updates the "Version Packages" PR: `changeset version` bumps package
-  # versions and regenerates changelogs from the queued changesets. Split out
-  # from the publish job below so it owns PR creation and can be triggered
-  # manually via workflow_dispatch (run without a canary `tag`). Skipped on a
-  # canary dispatch (a `tag` is provided).
   version:
     name: Version Packages
     if: github.repository_owner == 'stijnvanhulle' && github.event.inputs.tag == ''
@@ -36,9 +28,6 @@ jobs:
       contents: write
       pull-requests: write
     outputs:
-      # Whether changesets are still queued. The publish job keys off this to
-      # avoid running (and racing on changeset-release/main) while a Version
-      # Packages PR is still open.
       hasChangesets: ${{ steps.changesets.outputs.hasChangesets }}
     steps:
       - name: Check out code
@@ -56,12 +45,9 @@ jobs:
         id: changesets
         uses: changesets/action@63a615b9cd06ba9a3e6d13796c7fbcb080a60a0b # v1
         with:
-          # Version-only: bump versions + regenerate changelogs into a PR. No
-          # `publish` here — staging/publishing stays with the release job.
           version: pnpm version
           commit: 'ci(changesets): version packages'
           title: 'ci(changesets): version packages'
-          # ./.github/setup already configures the github-actions[bot] git user.
           setupGitUser: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -69,19 +55,12 @@ jobs:
   release:
     name: Release
     needs: [version]
-    # Publish path. Runs only when there is nothing left to version: either the
-    # Version Packages PR was merged (no changesets remain) or this is a canary
-    # dispatch (a `tag` is provided, so the version job was skipped). While
-    # changesets are still queued the version job owns the run and this job is
-    # skipped, which also prevents both jobs racing on changeset-release/main.
     if: |
       always() &&
       github.repository_owner == 'stijnvanhulle' &&
       (github.event.inputs.tag != '' || (needs.version.result == 'success' && needs.version.outputs.hasChangesets == 'false'))
     timeout-minutes: 15
     runs-on: ubuntu-latest
-    # id-token: write is scoped to this job only, which runs after tests pass.
-    # The fresh install below avoids restoring a potentially poisoned pnpm cache.
     permissions:
       contents: write
       id-token: write
@@ -103,9 +82,6 @@ jobs:
           cache: 'false'
 
       - name: Reinstall dependencies (release hardening)
-        # Defense-in-depth: re-install so the release build does not implicitly
-        # trust a pnpm store restored from cache by the composite Setup Tools
-        # step. Lockfile integrity hashes still gate content.
         run: pnpm install --frozen-lockfile --force
 
       - name: Build
@@ -116,15 +92,6 @@ jobs:
         uses: changesets/action@63a615b9cd06ba9a3e6d13796c7fbcb080a60a0b # v1
         if: ${{ github.event.inputs.tag == '' }}
         with:
-          # `release:stage:ci` chains three steps: `release:stage` stages every
-          # package on npm (no publish to `latest`), `changeset tag` creates the
-          # local git tags and prints the `New tag:` lines the action parses to
-          # push tags and create a GitHub Release per package, and the final echo
-          # records that staging ran. It must be a single script: the action
-          # splits `publish` on whitespace and spawns it directly (no shell), so
-          # `&&` and `>>` only work when wrapped in a script pnpm runs via a shell.
-          # Reaches here only with no changesets queued (see job `if`), so the
-          # action takes the publish path and never touches the version branch.
           publish: pnpm release:stage:ci
           setupGitUser: false
         env:
@@ -138,9 +105,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
           RELEASE_TAG: ${{ inputs.tag || 'canary' }}
-        # Canaries auto-publish straight to npm under their dist-tag via OIDC,
-        # no stage + 2FA approval. They never land on `latest`, so the staging
-        # gate isn't needed and a canary you'd have to approve by hand is useless.
         run: |
           git checkout main
           pnpm version:canary
@@ -154,7 +118,6 @@ jobs:
     permissions: {}
     steps:
       - name: Send a discord notification
-        # Skips cleanly when DISCORD_WEBHOOK_URL is not configured.
         if: ${{ secrets.DISCORD_WEBHOOK_URL != '' }}
         uses: actions/github-script@373c709c69115d41ff229c7e5df9f8788daa9553 # v9
         env:

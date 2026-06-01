@@ -24,8 +24,6 @@ jobs:
       packages: write
       pull-requests: write
       issues: write
-    outputs:
-      published: ${{ steps.changesets.outputs.published }}
     steps:
       - name: Check out code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -56,39 +54,3 @@ jobs:
         env:
           NPM_CONFIG_PROVENANCE: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  canary:
-    name: Canary
-    needs: [release]
-    # When the release job did not publish a real release, publish a
-    # timestamped canary for the current main under the `canary` dist-tag.
-    if: github.repository_owner == 'stijnvanhulle' && github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.release.outputs.published != 'true'
-    timeout-minutes: 15
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
-      packages: write
-    steps:
-      - name: Check out code
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-        with:
-          fetch-depth: 0
-
-      - name: Setup Tools
-        uses: ./.github/setup
-        with:
-          node-version: '22'
-          cache: 'false'
-
-      - name: Stamp canary versions
-        run: pnpm -r exec bash "$GITHUB_WORKSPACE/.github/canary.sh"
-
-      - name: Build
-        run: pnpm run build
-
-      - name: Publish canary
-        env:
-          NPM_CONFIG_PROVENANCE: true
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: pnpm exec changeset publish --no-git-tag --tag canary

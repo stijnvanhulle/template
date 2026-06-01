@@ -38,7 +38,7 @@ plans/
 
 ## How to use it
 
-Claude Code users have slash-command shortcuts; every other agent runs the same workflow by
+Claude Code users have slash-command shortcuts. Every other agent runs the same workflow by
 copying the template files by hand.
 
 | Phase | Claude Code | Any other agent |

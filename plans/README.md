@@ -38,12 +38,29 @@ plans/
 
 ## How to use it
 
-1. `/spec <feature>` creates `plans/<feature>/spec.md`.
-2. `/plan <feature>` turns the spec and research into `plan.md` and scaffolds the slice files.
-3. `/implement <feature>` works each `NNN-<slug>.md` slice in order, ticking its Done criteria as the slice passes.
-4. `/verify <feature>` fills and runs `verification.md`.
+Claude Code users have slash-command shortcuts. Every other agent runs the same workflow by
+copying the template files by hand.
+
+| Phase | Claude Code | Any other agent |
+| --- | --- | --- |
+| Specify | `/spec <feature>` | `cp plans/templates/spec.md plans/<feature>/spec.md` and fill it in |
+| Research | (manual) | `cp plans/templates/research.md plans/<feature>/research.md` and fill it in |
+| Plan | `/plan <feature>` | `cp plans/templates/plan.md plans/<feature>/plan.md`, then `cp plans/templates/slice.md plans/<feature>/NNN-<slug>.md` per slice |
+| Execute | `/implement <feature>` | Open the lowest-numbered unchecked slice, follow its Steps, tick its Done criteria as Verification passes |
+| Verify | `/verify <feature>` | `cp plans/templates/verification.md plans/<feature>/verification.md`, then run each scenario |
 
 The `spec-driven` skill explains the same flow and when to reach for it.
+
+## Resuming an in-progress feature
+
+Picking up someone else's plan:
+
+1. `ls plans/` to find the active feature folder (the one with unchecked Done criteria).
+2. Read `spec.md` for intent, then `plan.md` for the slice list.
+3. Open the lowest-numbered `NNN-<slug>.md` slice that still has unchecked Done items.
+4. Run that slice's Verification first to confirm the current state before changing anything.
+5. When ending the session, leave a short note in the slice or `verification.md` so the next
+   agent knows where you stopped.
 
 ## Credit
 

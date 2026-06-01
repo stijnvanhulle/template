@@ -5,7 +5,7 @@
 ## ✅ Checklist
 
 - [ ] I have followed the steps in the [Contributing guide](../blob/main/CONTRIBUTING.md).
-- [ ] I have tested this code locally with `pnpm run test`.
+- [ ] I ran the full pre-PR check locally: `pnpm format && pnpm lint:fix && pnpm typecheck && pnpm test`.
 
 ## 🚀 Release Impact
 

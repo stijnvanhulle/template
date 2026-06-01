@@ -14,21 +14,22 @@ This skill instructs agents on PR preconditions, changeset usage, and reviewer e
 
 ## What It Does
 
-- Enforces the PR checklist: `format, lint, typecheck, tests`
+- Enforces the PR checklist: `format, lint:fix, typecheck, test`
 - Instructs on creating and using changesets for version bumps
 - Describes release/merge expectations and documentation updates
 
 ## Commands to Suggest
 
+The same sequence is named in `AGENTS.md`, `CONTRIBUTING.md`, and the PR template:
+
 ```bash
-pnpm format && pnpm lint:fix
-pnpm typecheck
-pnpm test
-pnpm changeset
+pnpm format && pnpm lint:fix && pnpm typecheck && pnpm test
+pnpm changeset   # only when a published package changed
 ```
 
 ## Checklist
 
+- [ ] Local pre-PR sequence above passes
 - [ ] CI green (unit tests, linters, typechecks)
 - [ ] Documentation updated if public behavior changed
 - [ ] No secrets in the PR

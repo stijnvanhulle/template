@@ -34,8 +34,22 @@ The full folder structure, repository setup, and commands live in
 ## Commits and PRs
 
 Use [Conventional Commits](https://www.conventionalcommits.org/). Before a PR, run
-`pnpm format && pnpm lint && pnpm typecheck && pnpm test`, and add a changeset
-(`pnpm changeset`) for any published-package change.
+`pnpm format && pnpm lint:fix && pnpm typecheck && pnpm test`, and add a changeset
+(`pnpm changeset`) for any published-package change. The same command sequence is
+what the PR template asks contributors to confirm.
+
+## Resuming work
+
+When picking up an in-progress task, before editing anything:
+
+1. `git status` and `git log -10 --oneline` to see the working tree and recent history.
+2. Check `plans/` for an active feature folder. If one exists, read its `spec.md`,
+   the latest unchecked slice (`NNN-<slug>.md`), and `verification.md` to find the
+   next step.
+3. Run `pnpm install`, then the same pre-PR sequence above to confirm the baseline
+   is green before changing code.
+4. Leave a short note in the relevant slice or `verification.md` before ending the
+   session so the next agent knows where you stopped.
 
 ## Token optimized CLI (rtk)
 

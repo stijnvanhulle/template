@@ -13,39 +13,6 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  version:
-    name: Version Packages
-    if: github.repository_owner == 'stijnvanhulle' && github.event.inputs.tag == ''
-    timeout-minutes: 15
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-    outputs:
-      hasChangesets: ${{ steps.changesets.outputs.hasChangesets }}
-    steps:
-      - name: Check out code
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-        with:
-          fetch-depth: 0
-
-      - name: Setup Tools
-        uses: ./.github/setup
-        with:
-          node-version: '22'
-          cache: 'false'
-
-      - name: Create Version Packages PR
-        id: changesets
-        uses: changesets/action@63a615b9cd06ba9a3e6d13796c7fbcb080a60a0b # v1
-        with:
-          version: pnpm exec changeset version
-          commit: 'ci(changesets): version packages'
-          title: 'ci(changesets): version packages'
-          setupGitUser: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   release:
     name: Release
     if: github.repository_owner == 'stijnvanhulle'
@@ -81,7 +48,7 @@ jobs:
         id: changesets
         uses: changesets/action@63a615b9cd06ba9a3e6d13796c7fbcb080a60a0b # v1
         with:
-          version: pnpm version
+          version: pnpm exec changeset version
           publish: pnpm release
           commit: 'ci(changesets): version packages'
           title: 'ci(changesets): version packages'
@@ -90,3 +57,38 @@ jobs:
           NPM_CONFIG_PROVENANCE: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  canary:
+    name: Canary
+    needs: [release]
+    # When the release job did not publish a real release, publish a
+    # timestamped canary for the current main under the `canary` dist-tag.
+    if: github.repository_owner == 'stijnvanhulle' && github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.release.outputs.published != 'true'
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
+    steps:
+      - name: Check out code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Tools
+        uses: ./.github/setup
+        with:
+          node-version: '22'
+          cache: 'false'
+
+      - name: Stamp canary versions
+        run: pnpm -r exec bash "$GITHUB_WORKSPACE/.github/canary.sh"
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Publish canary
+        env:
+          NPM_CONFIG_PROVENANCE: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pnpm exec changeset publish --no-git-tag --tag canary

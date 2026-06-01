@@ -24,8 +24,6 @@ jobs:
       packages: write
       pull-requests: write
       issues: write
-    outputs:
-      published: ${{ steps.changesets.outputs.published }}
     steps:
       - name: Check out code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -48,7 +46,7 @@ jobs:
         id: changesets
         uses: changesets/action@63a615b9cd06ba9a3e6d13796c7fbcb080a60a0b # v1
         with:
-          version: pnpm version
+          version: pnpm exec changeset version
           publish: pnpm release
           commit: 'ci(changesets): version packages'
           title: 'ci(changesets): version packages'
@@ -56,4 +54,3 @@ jobs:
         env:
           NPM_CONFIG_PROVENANCE: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-

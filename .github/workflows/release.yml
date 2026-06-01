@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'Release mode (version = open the Version Packages PR only, no npm publish)'
+        description: 'Release mode (version = PR only; staged = stage on npm; publish = release to latest)'
         type: choice
-        options: [version, publish]
+        options: [version, staged, publish]
         default: version
       tag:
         description: 'Optional: Custom tag for canary release'
@@ -64,7 +64,7 @@ jobs:
       always() &&
       github.repository_owner == 'stijnvanhulle' &&
       (github.event.inputs.tag != '' ||
-        ((github.event_name != 'workflow_dispatch' || github.event.inputs.mode == 'publish') &&
+        ((github.event_name != 'workflow_dispatch' || github.event.inputs.mode != 'version') &&
           needs.version.result == 'success' && needs.version.outputs.hasChangesets == 'false'))
     timeout-minutes: 15
     runs-on: ubuntu-latest
@@ -94,12 +94,12 @@ jobs:
       - name: Build
         run: pnpm run build
 
-      - name: Stage publish
+      - name: Publish
         id: changesets
         uses: changesets/action@63a615b9cd06ba9a3e6d13796c7fbcb080a60a0b # v1
         if: ${{ github.event.inputs.tag == '' }}
         with:
-          publish: pnpm release:stage:ci
+          publish: ${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'publish') && 'pnpm release' || 'pnpm release:stage:ci' }}
           setupGitUser: false
         env:
           NPM_CONFIG_PROVENANCE: true

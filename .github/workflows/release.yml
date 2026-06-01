@@ -90,15 +90,3 @@ jobs:
           NPM_CONFIG_PROVENANCE: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish ${{ inputs.tag || 'canary' }}
-        id: canary
-        if: ${{ github.event.inputs.tag != '' }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
-          RELEASE_TAG: ${{ inputs.tag || 'canary' }}
-        run: |
-          git checkout main
-          pnpm version:canary
-          pnpm release:canary --tag "$RELEASE_TAG"
-

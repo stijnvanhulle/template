@@ -1,18 +1,7 @@
 name: Release
 on:
-  workflow_dispatch:
-    inputs:
-      mode:
-        description: 'Release mode (version = PR only; staged = stage on npm; publish = release to latest)'
-        type: choice
-        options: [version, staged, publish]
-        default: version
-      tag:
-        description: 'Optional: Custom tag for canary release'
-        required: false
-        type: string
   push:
-    branches: ['main', 'alpha', 'beta', 'rc']
+    branches: ['main']
     paths:
       - '.changeset/**'
       - 'packages/**'
@@ -59,13 +48,7 @@ jobs:
 
   release:
     name: Release
-    needs: [version]
-    if: |
-      always() &&
-      github.repository_owner == 'stijnvanhulle' &&
-      (github.event.inputs.tag != '' ||
-        ((github.event_name != 'workflow_dispatch' || github.event.inputs.mode != 'version') &&
-          needs.version.result == 'success' && needs.version.outputs.hasChangesets == 'false'))
+    if: github.repository_owner == 'stijnvanhulle'
     timeout-minutes: 15
     runs-on: ubuntu-latest
     permissions:
@@ -75,7 +58,7 @@ jobs:
       pull-requests: write
       issues: write
     outputs:
-      staged: ${{ steps.changesets.outputs.staged }}
+      published: ${{ steps.changesets.outputs.published }}
     steps:
       - name: Check out code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -88,18 +71,20 @@ jobs:
           node-version: '22'
           cache: 'false'
 
-      - name: Reinstall dependencies (release hardening)
-        run: pnpm install --frozen-lockfile --force
-
       - name: Build
         run: pnpm run build
 
-      - name: Publish
+      # Opens (or updates) a "Version Packages" PR when changesets are present.
+      # Merging that PR removes the changesets, which triggers this same
+      # workflow again, this time publishing the versioned packages to npm.
+      - name: Create Release PR or Publish
         id: changesets
         uses: changesets/action@63a615b9cd06ba9a3e6d13796c7fbcb080a60a0b # v1
-        if: ${{ github.event.inputs.tag == '' }}
         with:
-          publish: ${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'publish') && 'pnpm release' || 'pnpm release:stage:ci' }}
+          version: pnpm version
+          publish: pnpm release
+          commit: 'ci(changesets): version packages'
+          title: 'ci(changesets): version packages'
           setupGitUser: false
         env:
           NPM_CONFIG_PROVENANCE: true

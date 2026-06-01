@@ -2,6 +2,11 @@ name: Release
 on:
   workflow_dispatch:
     inputs:
+      mode:
+        description: 'Release mode (version = open the Version Packages PR only, no npm publish)'
+        type: choice
+        options: [version, publish]
+        default: version
       tag:
         description: 'Optional: Custom tag for canary release'
         required: false
@@ -58,7 +63,9 @@ jobs:
     if: |
       always() &&
       github.repository_owner == 'stijnvanhulle' &&
-      (github.event.inputs.tag != '' || (needs.version.result == 'success' && needs.version.outputs.hasChangesets == 'false'))
+      (github.event.inputs.tag != '' ||
+        ((github.event_name != 'workflow_dispatch' || github.event.inputs.mode == 'publish') &&
+          needs.version.result == 'success' && needs.version.outputs.hasChangesets == 'false'))
     timeout-minutes: 15
     runs-on: ubuntu-latest
     permissions:

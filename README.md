@@ -140,11 +140,9 @@ git commit -am "feat: ..."
 git push
 ```
 
-The `release.yml` workflow opens a "Version Packages" PR on `main`. Merging
-that PR publishes the affected packages to npm with provenance.
-
-For pre-release tags (canary/alpha/beta/rc) see `pnpm version:canary` and
-`pnpm release:canary`.
+When changesets land on `main`, the `release.yml` workflow opens a "Version
+Packages" PR. Merging that PR publishes the affected packages to npm with
+provenance.
 
 ## Upgrading dependencies
 

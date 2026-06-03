@@ -1,7 +1,7 @@
 <div align="center">
 
 <a href="https://github.com/stijnvanhulle/template" target="_blank">
-  <img alt="stijnvanhulle/template badges" src="https://shieldcn.dev/group/github/stars/stijnvanhulle/template+github/license/stijnvanhulle/template+github/sponsors/stijnvanhulle.svg?variant=branded&size=xs&theme=zinc&mode=dark">
+  <img alt="stijnvanhulle/template badges" src="https://shieldcn.dev/group/github/stars/stijnvanhulle/template+badge/license-MIT-blue+badge/sponsors-stijnvanhulle-EA4AAA.svg?variant=branded&size=xs&theme=zinc&mode=dark">
 </a>
 
   <h4>

@@ -2,6 +2,7 @@
 
 [![Stars][stars-src]][stars-href]
 [![License][license-src]][license-href]
+[![Coverage][coverage-src]][coverage-href]
 
   <h4>
     <a href="https://github.com/stijnvanhulle/template/issues/">Report Bug</a>
@@ -171,3 +172,5 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for the project structure, prerequisite
 [stars-href]: https://github.com/stijnvanhulle/template
 [license-src]: https://shieldcn.dev/badge/license-MIT-blue.svg?variant=branded&size=xs&theme=zinc&mode=dark
 [license-href]: https://github.com/stijnvanhulle/template/blob/main/LICENSE
+[coverage-src]: https://shieldcn.dev/codecov/github/stijnvanhulle/template.svg?variant=branded&size=xs&theme=zinc&mode=dark
+[coverage-href]: https://app.codecov.io/gh/stijnvanhulle/template

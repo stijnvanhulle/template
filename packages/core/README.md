@@ -13,12 +13,12 @@
 <!-- Badges -->
 
 [npm-version-src]: https://shieldcn.dev/npm/v/@stijnvanhulle/template-core.svg?variant=branded&size=xs&theme=zinc&mode=dark
-[npm-version-href]: https://npmjs.com/package/@stijnvanhulle/template-core
+[npm-version-href]: https://npmx.dev/package/@stijnvanhulle/template-core
 [npm-downloads-src]: https://shieldcn.dev/npm/dm/@stijnvanhulle/template-core.svg?variant=branded&size=xs&theme=zinc&mode=dark
-[npm-downloads-href]: https://npmjs.com/package/@stijnvanhulle/template-core
+[npm-downloads-href]: https://npmx.dev/package/@stijnvanhulle/template-core
 [stars-src]: https://shieldcn.dev/github/stars/stijnvanhulle/template.svg?variant=branded&size=xs&theme=zinc&mode=dark
 [stars-href]: https://github.com/stijnvanhulle/template
 [license-src]: https://shieldcn.dev/npm/license/@stijnvanhulle/template-core.svg?variant=branded&size=xs&theme=zinc&mode=dark
 [license-href]: https://github.com/stijnvanhulle/template/blob/main/LICENSE
 [node-src]: https://shieldcn.dev/npm/node/@stijnvanhulle/template-core.svg?variant=branded&size=xs&theme=zinc&mode=dark
-[node-href]: https://npmjs.com/package/@stijnvanhulle/template-core
+[node-href]: https://npmx.dev/package/@stijnvanhulle/template-core

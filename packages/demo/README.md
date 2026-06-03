@@ -18,7 +18,7 @@
 [npm-downloads-href]: https://npmx.dev/package/@stijnvanhulle/template-demo
 [stars-src]: https://shieldcn.dev/github/stars/stijnvanhulle/template.svg?variant=secondary&size=xs&theme=zinc&mode=dark
 [stars-href]: https://github.com/stijnvanhulle/template
-[license-src]: https://shieldcn.dev/npm/license/@stijnvanhulle/template-demo.svg?variant=secondary&size=xs&theme=zinc&mode=dark
+[license-src]: https://shieldcn.dev/npm/license/@stijnvanhulle/template-demo.svg?variant=secondary&size=xs&theme=zinc
 [license-href]: https://github.com/stijnvanhulle/template/blob/main/LICENSE
 [node-src]: https://shieldcn.dev/npm/node/@stijnvanhulle/template-demo.svg?variant=secondary&size=xs&theme=zinc&mode=dark
 [node-href]: https://npmx.dev/package/@stijnvanhulle/template-demo

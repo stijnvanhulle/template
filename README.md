@@ -170,7 +170,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for the project structure, prerequisite
 
 [stars-src]: https://shieldcn.dev/github/stars/stijnvanhulle/template.svg?variant=secondary&size=xs&theme=zinc&mode=dark
 [stars-href]: https://github.com/stijnvanhulle/template
-[license-src]: https://shieldcn.dev/badge/license-MIT-blue.svg?variant=secondary&size=xs&theme=zinc
+[license-src]: https://shieldcn.dev/npm/license/@stijnvanhulle/template-core.svg?variant=secondary&size=xs&theme=zinc
 [license-href]: https://github.com/stijnvanhulle/template/blob/main/LICENSE
 [coverage-src]: https://shieldcn.dev/codecov/github/stijnvanhulle/template.svg?variant=secondary&size=xs&theme=zinc&mode=dark
 [coverage-href]: https://app.codecov.io/gh/stijnvanhulle/template

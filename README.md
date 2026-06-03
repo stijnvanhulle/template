@@ -1,5 +1,9 @@
 <div align="center">
 
+<a href="https://github.com/stijnvanhulle/template" target="_blank">
+  <img alt="stijnvanhulle/template badges" src="https://shieldcn.dev/group/github/stars/stijnvanhulle/template+github/license/stijnvanhulle/template+github/sponsors/stijnvanhulle.svg?variant=branded&size=xs&theme=zinc&mode=dark">
+</a>
+
   <h4>
     <a href="https://github.com/stijnvanhulle/template/issues/">Report Bug</a>
     <span> · </span>

@@ -5,7 +5,16 @@
     /* Base Options: */
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "target": "ES2022",
+    "target": "ES2024",
+    /*
+     * Type lib scoped to what Node 22 (V8 12.4) actually ships, so the types
+     * match the runtime. ES2024 covers Object.groupBy / Map.groupBy and
+     * Promise.withResolvers. The ES2025 sublibs add Set methods (Collection)
+     * and iterator helpers (Iterator), and ESNext.Array adds Array.fromAsync.
+     * Granular sublibs are deliberate: the full ES2025 lib would also expose
+     * Float16Array, which is Node 24, not Node 22.
+     */
+    "lib": ["ES2024", "ES2025.Collection", "ES2025.Iterator", "ESNext.Array"],
     "verbatimModuleSyntax": true,
     "allowJs": true,
     "resolveJsonModule": true,

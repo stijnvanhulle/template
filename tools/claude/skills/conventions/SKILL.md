@@ -19,6 +19,8 @@ Read the file that matches what you are doing:
 - [`rules/security.md`](./rules/security.md) for secrets, input validation at trust
   boundaries, and safe shell use.
 - [`rules/testing.md`](./rules/testing.md) for Vitest patterns and what to test.
+- [`rules/usa-english.md`](./rules/usa-english.md) for the USA English spelling
+  convention used across code, comments, and docs.
 
 If a rule conflicts with a project-specific instruction in `AGENTS.md` or
 `CLAUDE.md`, the project instruction wins.

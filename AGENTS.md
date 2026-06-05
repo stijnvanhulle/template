@@ -99,6 +99,7 @@ that loads `SKILL.md` folders also picks them up on demand.
 - [markdown](.agents/skills/conventions/rules/markdown.md) - Markdown structure. The `documentation` and `humanizer` skills cover voice and SEO.
 - [security](.agents/skills/conventions/rules/security.md) - Secrets, input validation at trust boundaries, safe shell use.
 - [testing](.agents/skills/conventions/rules/testing.md) - Vitest patterns and what to test.
+- [usa-english](.agents/skills/conventions/rules/usa-english.md) - Write code, comments, and docs in USA English spellings.
 
 <skills>
 

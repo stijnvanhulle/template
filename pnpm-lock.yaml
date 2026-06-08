@@ -13,8 +13,8 @@ catalogs:
       specifier: ^4.1.7
       version: 4.1.7
     '@vitest/ui':
-      specifier: ^4.1.7
-      version: 4.1.7
+      specifier: ^4.1.8
+      version: 4.1.8
     oxfmt:
       specifier: ^0.47.0
       version: 0.47.0
@@ -49,7 +49,7 @@ importers:
         version: 4.1.7(vitest@4.1.7)
       '@vitest/ui':
         specifier: 'catalog:'
-        version: 4.1.7(vitest@4.1.7)
+        version: 4.1.8(vitest@4.1.7)
       bun-types:
         specifier: ^1.3.14
         version: 1.3.14
@@ -76,7 +76,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 'catalog:'
-        version: 4.1.7(@types/node@22.19.19)(@vitest/coverage-v8@4.1.7)(@vitest/ui@4.1.7)(vite@8.0.13(@types/node@22.19.19)(jiti@2.7.0)(yaml@2.9.0))
+        version: 4.1.7(@types/node@22.19.19)(@vitest/coverage-v8@4.1.7)(@vitest/ui@4.1.8(vitest@4.1.7))(vite@8.0.13(@types/node@22.19.19)(jiti@2.7.0)(yaml@2.9.0))
 
   internals/utils:
     devDependencies:
@@ -97,7 +97,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 'catalog:'
-        version: 4.1.7(@types/node@22.19.19)(@vitest/coverage-v8@4.1.7)(@vitest/ui@4.1.7)(vite@8.0.13(@types/node@22.19.19)(jiti@2.7.0)(yaml@2.9.0))
+        version: 4.1.7(@types/node@22.19.19)(@vitest/coverage-v8@4.1.7)(@vitest/ui@4.1.8(vitest@4.1.7))(vite@8.0.13(@types/node@22.19.19)(jiti@2.7.0)(yaml@2.9.0))
 
   packages/demo:
     dependencies:
@@ -116,7 +116,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 'catalog:'
-        version: 4.1.7(@types/node@22.19.19)(@vitest/coverage-v8@4.1.7)(@vitest/ui@4.1.7)(vite@8.0.13(@types/node@22.19.19)(jiti@2.7.0)(yaml@2.9.0))
+        version: 4.1.7(@types/node@22.19.19)(@vitest/coverage-v8@4.1.7)(@vitest/ui@4.1.8(vitest@4.1.7))(vite@8.0.13(@types/node@22.19.19)(jiti@2.7.0)(yaml@2.9.0))
 
 packages:
 
@@ -745,6 +745,9 @@ packages:
   '@vitest/pretty-format@4.1.7':
     resolution: {integrity: sha512-umgCarTOYQWIaDMvGDRZij+6b9oVeLIyJzfN+AS88e0ZOU3QTgNNSTtjQOpcvWr3np1N0j4WgZj+sb3oYBDscw==}
 
+  '@vitest/pretty-format@4.1.8':
+    resolution: {integrity: sha512-9GasEBxpZ1VYIpqHf/0+YGg121uSNwCKOJqIrTwWP/TB7DmFCiaBpNl3aPZzoLWfWkuqhbH8vJIVobZkvdo2cA==}
+
   '@vitest/runner@4.1.7':
     resolution: {integrity: sha512-BapjmAQ2aI78WdMEfeUWivnfVzB+VPGwWRQcJE0OUq7qEeEcBsCSf+0T5iREBNE5nBb4wA5Ya0W6IA+sghdEFw==}
 
@@ -754,13 +757,16 @@ packages:
   '@vitest/spy@4.1.7':
     resolution: {integrity: sha512-kbkI5LMWakyuTIvs6fUJ5qdIVb1XVKsYJAT4OJ938cHMROYMSfmoQdZy0aaAnjbbc8F61vkoTqz/Az+/HiIu5Q==}
 
-  '@vitest/ui@4.1.7':
-    resolution: {integrity: sha512-TP6utB2yX6rsJNVRo2qAlsi48i1YwFTrLV2tnTtWqJaYX7m4lRCCLirZBjU6xC5m0RsPHr+L2+N+eIPhgEzFfw==}
+  '@vitest/ui@4.1.8':
+    resolution: {integrity: sha512-RUS2ZU2TsduVrI+9c12uTNaKrNUTsm6yFt3fueEUB9iKvyC2UP83F+sqIz00HQIah4UOL1TMoDAki8K0NjGvsA==}
     peerDependencies:
-      vitest: 4.1.7
+      vitest: 4.1.8
 
   '@vitest/utils@4.1.7':
     resolution: {integrity: sha512-T532WBu791cBxJlCl6SO+J14l81DQx6uQHm1bQbmCDY7nqlEIgkza/UFnSBNaUtSf41unldDFjdOBYEQC4b5Hw==}
+
+  '@vitest/utils@4.1.8':
+    resolution: {integrity: sha512-uOJamYALNhfJ6iolExyQM40yIQwDqYnkKtQ5VCiSe17E33H0aQ/u+1GlRuz4LZBk6Mm3sg90G9hEbmEt37C1Zg==}
 
   acorn-walk@8.3.5:
     resolution: {integrity: sha512-HEHNfbars9v4pgpW6SO1KSPkfoS0xVOM/9UzkJltjlsHZmJasxg8aXkuZa7SMf8vKGIBhpUsPluQSqhJFCqebw==}
@@ -2157,7 +2163,7 @@ snapshots:
       obug: 2.1.1
       std-env: 4.1.0
       tinyrainbow: 3.1.0
-      vitest: 4.1.7(@types/node@22.19.19)(@vitest/coverage-v8@4.1.7)(@vitest/ui@4.1.7)(vite@8.0.13(@types/node@22.19.19)(jiti@2.7.0)(yaml@2.9.0))
+      vitest: 4.1.7(@types/node@22.19.19)(@vitest/coverage-v8@4.1.7)(@vitest/ui@4.1.8(vitest@4.1.7))(vite@8.0.13(@types/node@22.19.19)(jiti@2.7.0)(yaml@2.9.0))
 
   '@vitest/expect@4.1.7':
     dependencies:
@@ -2180,6 +2186,10 @@ snapshots:
     dependencies:
       tinyrainbow: 3.1.0
 
+  '@vitest/pretty-format@4.1.8':
+    dependencies:
+      tinyrainbow: 3.1.0
+
   '@vitest/runner@4.1.7':
     dependencies:
       '@vitest/utils': 4.1.7
@@ -2194,20 +2204,26 @@ snapshots:
 
   '@vitest/spy@4.1.7': {}
 
-  '@vitest/ui@4.1.7(vitest@4.1.7)':
+  '@vitest/ui@4.1.8(vitest@4.1.7)':
     dependencies:
-      '@vitest/utils': 4.1.7
+      '@vitest/utils': 4.1.8
       fflate: 0.8.3
       flatted: 3.4.2
       pathe: 2.0.3
       sirv: 3.0.2
       tinyglobby: 0.2.16
       tinyrainbow: 3.1.0
-      vitest: 4.1.7(@types/node@22.19.19)(@vitest/coverage-v8@4.1.7)(@vitest/ui@4.1.7)(vite@8.0.13(@types/node@22.19.19)(jiti@2.7.0)(yaml@2.9.0))
+      vitest: 4.1.7(@types/node@22.19.19)(@vitest/coverage-v8@4.1.7)(@vitest/ui@4.1.8(vitest@4.1.7))(vite@8.0.13(@types/node@22.19.19)(jiti@2.7.0)(yaml@2.9.0))
 
   '@vitest/utils@4.1.7':
     dependencies:
       '@vitest/pretty-format': 4.1.7
+      convert-source-map: 2.0.0
+      tinyrainbow: 3.1.0
+
+  '@vitest/utils@4.1.8':
+    dependencies:
+      '@vitest/pretty-format': 4.1.8
       convert-source-map: 2.0.0
       tinyrainbow: 3.1.0
 
@@ -2890,7 +2906,7 @@ snapshots:
       jiti: 2.7.0
       yaml: 2.9.0
 
-  vitest@4.1.7(@types/node@22.19.19)(@vitest/coverage-v8@4.1.7)(@vitest/ui@4.1.7)(vite@8.0.13(@types/node@22.19.19)(jiti@2.7.0)(yaml@2.9.0)):
+  vitest@4.1.7(@types/node@22.19.19)(@vitest/coverage-v8@4.1.7)(@vitest/ui@4.1.8(vitest@4.1.7))(vite@8.0.13(@types/node@22.19.19)(jiti@2.7.0)(yaml@2.9.0)):
     dependencies:
       '@vitest/expect': 4.1.7
       '@vitest/mocker': 4.1.7(vite@8.0.13(@types/node@22.19.19)(jiti@2.7.0)(yaml@2.9.0))
@@ -2915,7 +2931,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 22.19.19
       '@vitest/coverage-v8': 4.1.7(vitest@4.1.7)
-      '@vitest/ui': 4.1.7(vitest@4.1.7)
+      '@vitest/ui': 4.1.8(vitest@4.1.7)
     transitivePeerDependencies:
       - msw
 

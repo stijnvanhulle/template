@@ -8,7 +8,7 @@ allowBuilds:
   esbuild: true
 catalog:
   '@types/node': ^22.19.19
-  '@vitest/coverage-v8': ^4.1.7
+  '@vitest/coverage-v8': ^4.1.8
   '@vitest/ui': ^4.1.7
   oxfmt: ^0.47.0
   oxlint: ^1.67.0

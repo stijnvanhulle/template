@@ -141,3 +141,30 @@ jobs:
 
       - name: Publish preview packages
         run: pnpx pkg-pr-new publish --pnpm --owner=stijnvanhulle --repo=https://github.com/stijnvanhulle/template.git './packages/*'
+
+  compressed-size:
+    name: Compressed size
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    if: github.actor != 'github-actions[bot]' && github.event_name == 'pull_request'
+    steps:
+      - name: Check out code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup Tools
+        uses: ./.github/setup
+        with:
+          node-version: '22'
+
+      - name: Report compressed bundle size
+        uses: preactjs/compressed-size-action@66325aad6443cb7cf89c4bfcd414aea2367cda94 # v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          build-script: 'build'
+          pattern: './packages/*/dist/**/*.{js,mjs,cjs}'

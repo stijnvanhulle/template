@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace-manifest.json",
+  "name": "stijnvanhulle-template",
+  "owner": {
+    "name": "stijnvanhulle",
+    "url": "https://github.com/stijnvanhulle"
+  },
+  "metadata": {
+    "description": "Marketplace for the stijnvanhulle toolkit plugin."
+  },
+  "plugins": [
+    {
+      "name": "plugin",
+      "source": "./tools/claude",
+      "description": "Spec-driven workflow, writing-voice skills, code-reviewer agent, and shared TypeScript-monorepo conventions."
+    }
+  ]
+}

@@ -30,7 +30,7 @@ Agent Skills, and uses symlinks so every tool reads from one source instead of d
 
 `AGENTS.md` is the canonical instruction file. The shared toolset (skills, commands,
 code-reviewer agent, output styles, and conventions) lives in `tools/claude/`, which doubles as
-a Claude Code plugin (installable as `plugin@stijnvanhulle-template`). The workspace paths under `.claude/` and `.agents/`
+a Claude Code plugin (installable as `template@stijnvanhulle`). The workspace paths under `.claude/` and `.agents/`
 symlink into that folder, so the template repo and any project that installs the plugin run
 the same content from a single source of truth. See [tools/claude/README.md](tools/claude/README.md)
 for install steps.

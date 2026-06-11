@@ -6,8 +6,8 @@ the always-on rules (code style, JSDoc, markdown, security, testing).
 
 The toolkit is extracted from [stijnvanhulle/template](https://github.com/stijnvanhulle/template)
 so the same content powers the template repo itself and any project that installs
-the plugin. It is published under the plugin name `plugin` from the `stijnvanhulle-template` marketplace, so the install reads as
-`plugin@stijnvanhulle-template`.
+the plugin. It is published under the plugin name `template` from the `stijnvanhulle` marketplace, so the install reads as
+`template@stijnvanhulle`.
 
 ## What you get
 
@@ -39,7 +39,7 @@ spec-driven formatting (`plan`), and a diagrams-first layout (`diagrams-first`).
 ```bash
 # add this repo as a marketplace, then install the plugin
 /plugin marketplace add stijnvanhulle/template
-/plugin install plugin@stijnvanhulle-template
+/plugin install template@stijnvanhulle
 ```
 
 To try it locally before publishing:

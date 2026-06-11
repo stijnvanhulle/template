@@ -80,7 +80,7 @@ symlink to it so Claude Code, Gemini CLI, and GitHub Copilot pick up the
 same content. The shared toolset (skills, commands, code-reviewer agent,
 output styles, and conventions) lives in `tools/claude/`, which is also
 packaged as a Claude Code plugin (installable as
-`plugin@stijnvanhulle/template`). The `.claude/` and `.agents/skills/`
+`template@stijnvanhulle`). The `.claude/` and `.agents/skills/`
 paths used by the workspace symlink into that folder, so the template repo
 and any project that installs the plugin run the same content.
 Workspace-only pieces (hooks and `settings.json`) stay under `.claude/`.

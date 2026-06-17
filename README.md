@@ -1,9 +1,6 @@
 <div align="center">
 
 [![Stars][stars-src]][stars-href]
-[![License][license-src]][license-href]
-[![Coverage][coverage-src]][coverage-href]
-
   <h4>
     <a href="https://github.com/stijnvanhulle/template/issues/">Report Bug</a>
     <span> · </span>

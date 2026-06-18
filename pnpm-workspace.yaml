@@ -12,7 +12,7 @@ catalog:
   '@vitest/ui': ^4.1.7
   oxfmt: ^0.47.0
   oxlint: ^1.67.0
-  tsdown: ^0.22.0
+  tsdown: ^0.22.2
   typescript: ^6.0.3
   vitest: ^4.1.7
 minimumReleaseAge: 4320 # 72 hours, matches .npmrc min-package-age

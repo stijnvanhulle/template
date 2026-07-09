@@ -43,9 +43,9 @@ tools/claude/                                 # distributable Claude Code plugin
 ├── .claude-plugin/plugin.json                # plugin manifest
 ├── README.md                                 # install + usage
 ├── skills/                                   # cross-provider Agent Skills, one SKILL.md folder each
-│   ├── changelog, documentation, humanizer, jsdoc, pr, spec-driven
+│   ├── changelog, deslop, documentation, humanizer, jsdoc, pr, spec-driven
 │   └── conventions/                          # always-on rules: code-style, jsdoc, markdown, security, testing
-├── commands/                                 # slash commands: /changeset, /spec, /plan, /implement, /verify
+├── commands/                                 # slash commands: /changeset, /deslop, /spec, /plan, /implement, /verify
 ├── agents/                                   # subagents: code-reviewer
 └── output-styles/                            # system-prompt modes: house (default), plan, diagrams-first
 .agents/
@@ -102,8 +102,8 @@ Claude-specific extensions layer on top. The pieces, and when each one loads:
 | Path | What it does | When it loads |
 |---|---|---|
 | `.claude/rules/` → `tools/claude/skills/conventions/` | Always-on conventions: code style, JSDoc, markdown, security, testing | Session start, or when a matching file opens for path-scoped rules |
-| `.claude/skills/` → `tools/claude/skills/` | Playbooks: changelog, documentation, humanizer, jsdoc, pr, spec-driven, conventions | On demand, when the task matches the skill description |
-| `.claude/commands/` → `tools/claude/commands/` | Explicit slash-command actions, such as `/changeset` | When you type the command |
+| `.claude/skills/` → `tools/claude/skills/` | Playbooks: changelog, deslop, documentation, humanizer, jsdoc, pr, spec-driven, conventions | On demand, when the task matches the skill description |
+| `.claude/commands/` → `tools/claude/commands/` | Explicit slash-command actions, such as `/changeset` and `/deslop` | When you type the command |
 | `.claude/agents/` → `tools/claude/agents/` | Subagents with their own context window, such as `code-reviewer` | When delegated a matching task |
 | `.claude/output-styles/` → `tools/claude/output-styles/` | System-prompt modes: `house` (the default, set in `settings.json`), `plan`, and `diagrams-first` | At session start (house), or when selected |
 | `.claude/hooks/` | Scripts that install deps on session start and format files on edit | On the matching event |

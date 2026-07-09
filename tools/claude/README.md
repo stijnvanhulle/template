@@ -18,10 +18,12 @@ Slash commands for the spec-driven workflow and releases:
 - `/implement <feature>` executes a plan slice and ticks done criteria.
 - `/verify <feature>` checks the implementation against the spec.
 - `/changeset [patch|minor|major]` creates Changesets for affected packages.
+- `/deslop [path]` removes AI-generated code slop from the branch's changes.
 
 Skills loaded on demand from their descriptions:
 
 - `changelog` turns commit history into a user-facing changelog.
+- `deslop` strips AI-generated code slop from a diff, the code counterpart to `humanizer`.
 - `documentation` is the writing style guide for blog posts and docs.
 - `humanizer` removes AI tells from user-facing markdown.
 - `jsdoc` covers JSDoc tags and examples for TypeScript.
@@ -47,6 +49,29 @@ To try it locally before publishing:
 ```bash
 claude --plugin-dir ./tools/claude
 ```
+
+## Usage
+
+Slash commands run when you type them. In Claude Code, name the command and pass any
+argument:
+
+```bash
+/deslop                    # strip AI code slop from the whole branch diff
+/deslop apps/web           # limit it to one path
+/spec offline-mode         # start a spec-driven feature
+/plan offline-mode         # turn the spec into a numbered plan
+/implement offline-mode    # work the next plan slice
+/verify offline-mode       # check the result against the spec
+/changeset minor           # add a changeset for the current changes
+```
+
+Skills load on their own. Each carries a description, and the agent reads the matching one when
+the task fits, so writing release notes pulls in `changelog` and cleaning prose pulls in
+`humanizer` without being asked. To force one, name it: "use the deslop skill on this diff."
+
+The `conventions` rules (code style, JSDoc, markdown, security, testing) are always on and need
+no trigger. The guiding split: rules always apply, skills are optional expertise loaded when
+relevant, and commands are actions you trigger yourself.
 
 ## Scope
 

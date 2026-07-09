@@ -18,10 +18,12 @@ Slash commands for the spec-driven workflow and releases:
 - `/implement <feature>` executes a plan slice and ticks done criteria.
 - `/verify <feature>` checks the implementation against the spec.
 - `/changeset [patch|minor|major]` creates Changesets for affected packages.
+- `/deslop [path]` removes AI-generated code slop from the branch's changes.
 
 Skills loaded on demand from their descriptions:
 
 - `changelog` turns commit history into a user-facing changelog.
+- `deslop` strips AI-generated code slop from a diff, the code counterpart to `humanizer`.
 - `documentation` is the writing style guide for blog posts and docs.
 - `humanizer` removes AI tells from user-facing markdown.
 - `jsdoc` covers JSDoc tags and examples for TypeScript.

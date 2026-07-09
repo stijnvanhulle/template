@@ -50,6 +50,29 @@ To try it locally before publishing:
 claude --plugin-dir ./tools/claude
 ```
 
+## Usage
+
+Slash commands are actions you trigger by name. In Claude Code, type the command with any
+argument:
+
+```bash
+/deslop                    # strip AI code slop from the whole branch diff
+/deslop apps/web           # limit it to one path
+/spec offline-mode         # start a spec-driven feature
+/plan offline-mode         # turn the spec into a numbered plan
+/implement offline-mode    # work the next plan slice
+/verify offline-mode       # check the result against the spec
+/changeset minor           # add a changeset for the current changes
+```
+
+Skills load on their own. Each carries a description, and the agent reads the matching one when
+the task fits, so writing release notes pulls in `changelog` and cleaning prose pulls in
+`humanizer` without being asked. To force one, name it: "use the deslop skill on this diff."
+
+The `conventions` rules (code style, JSDoc, markdown, security, testing) are always on and need
+no trigger. The split to remember: rules always apply, skills are optional expertise loaded when
+relevant, and commands are actions you trigger yourself.
+
 ## Scope
 
 The plugin ships generic, project-agnostic content. Workspace-specific pieces

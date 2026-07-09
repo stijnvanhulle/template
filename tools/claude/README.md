@@ -52,7 +52,7 @@ claude --plugin-dir ./tools/claude
 
 ## Usage
 
-Slash commands are actions you trigger by name. In Claude Code, type the command with any
+Slash commands run when you type them. In Claude Code, name the command and pass any
 argument:
 
 ```bash
@@ -70,7 +70,7 @@ the task fits, so writing release notes pulls in `changelog` and cleaning prose 
 `humanizer` without being asked. To force one, name it: "use the deslop skill on this diff."
 
 The `conventions` rules (code style, JSDoc, markdown, security, testing) are always on and need
-no trigger. The split to remember: rules always apply, skills are optional expertise loaded when
+no trigger. The guiding split: rules always apply, skills are optional expertise loaded when
 relevant, and commands are actions you trigger yourself.
 
 ## Scope

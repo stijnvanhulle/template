@@ -34,6 +34,7 @@ pnpm build
 ├── internals/           # Internal, non-published packages (utils)
 ├── configs/             # Shared TypeScript bases and Vitest config
 ├── plans/               # Spec-driven workflow (templates and per-feature folders)
+├── tools/claude/        # Shared agent toolset (skills, commands, code-reviewer agent), packaged as the toolkit plugin
 ├── .changeset/          # Changeset configuration
 ├── .agents/skills/      # Cross-provider agent skills
 ├── .claude/             # Claude rules, commands, agents, output styles, hooks

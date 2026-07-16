@@ -14,5 +14,8 @@
       "source": "./tools/claude",
       "description": "Spec-driven workflow, writing-voice skills, code-reviewer agent, and shared TypeScript-monorepo conventions."
     }
-  ]
+  ],
+  "renames": {
+    "template": "toolkit"
+  }
 }

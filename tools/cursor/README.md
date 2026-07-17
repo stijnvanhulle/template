@@ -35,11 +35,11 @@ Skills loaded on demand from their descriptions:
 - `humanizer` removes AI tells from user-facing markdown.
 - `jsdoc` covers JSDoc tags and examples for TypeScript.
 - `pr` is the PR-prep and release checklist for a Changesets monorepo.
-- `spec-driven` drives the spec, plan, implement, verify loop.
+- `spec-driven` drives the spec, plan, implement, and verify loop.
 - `conventions` bundles the same rule text the Cursor rules carry.
 
 A `code-reviewer` subagent reviews TypeScript changes for correctness, security,
-and maintainability, read-only, in its own context.
+and maintainability. It is read-only and runs in its own context.
 
 ## Install
 

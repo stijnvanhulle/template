@@ -1,0 +1,17 @@
+{
+  "name": "stijnvanhulle",
+  "owner": {
+    "name": "stijnvanhulle",
+    "url": "https://github.com/stijnvanhulle"
+  },
+  "metadata": {
+    "description": "Marketplace for the stijnvanhulle template."
+  },
+  "plugins": [
+    {
+      "name": "toolkit",
+      "source": "./tools/cursor",
+      "description": "Spec-driven workflow, writing-voice skills, code-reviewer agent, and shared TypeScript-monorepo conventions."
+    }
+  ]
+}

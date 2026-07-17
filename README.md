@@ -32,6 +32,12 @@ symlink into that folder, so the template repo and any project that installs the
 the same content from a single source of truth. See [tools/claude/README.md](tools/claude/README.md)
 for install steps.
 
+The same toolset ships as a Cursor plugin in `tools/cursor/`, with the conventions expressed as
+Cursor rules (`rules/*.mdc`) and its skills read from `tools/claude/skills` so the two plugins stay
+in sync. The workspace paths under `.cursor/` symlink into it, and `.cursor-plugin/marketplace.json`
+makes it installable from Cursor's marketplace. See [tools/cursor/README.md](tools/cursor/README.md)
+for install steps.
+
 ### Folder structure
 
 ```
@@ -48,6 +54,14 @@ tools/claude/                                 # distributable Claude Code plugin
 ├── commands/                                 # slash commands: /changeset, /deslop, /spec, /plan, /implement, /verify
 ├── agents/                                   # subagents: code-reviewer
 └── output-styles/                            # system-prompt modes: house (default), plan, diagrams-first
+tools/cursor/                                 # distributable Cursor plugin (same toolset, Cursor formats)
+├── .cursor-plugin/plugin.json                # plugin manifest
+├── README.md                                 # install + usage
+├── rules/                                    # Cursor rules (.mdc): code-style, jsdoc, markdown, security, testing, usa-english
+├── commands/                                 # slash commands: /changeset, /deslop, /spec, /plan, /implement, /verify
+├── agents/                                   # subagents: code-reviewer
+└── skills → ../claude/skills                 # shares one skills source with the Claude plugin
+.cursor-plugin/marketplace.json               # Cursor marketplace manifest (lists the toolkit plugin)
 .agents/
 └── skills → ../tools/claude/skills           # lets cross-provider runtimes find the shared skills
 .claude/                                      # Claude-specific workspace config
@@ -58,6 +72,11 @@ tools/claude/                                 # distributable Claude Code plugin
 ├── agents → ../tools/claude/agents
 ├── output-styles → ../tools/claude/output-styles
 └── rules → ../tools/claude/skills/conventions # the conventions skill files, exposed as rules
+.cursor/                                      # Cursor workspace config, symlinked into tools/cursor/
+├── rules → ../tools/cursor/rules
+├── commands → ../tools/cursor/commands
+├── agents → ../tools/cursor/agents
+└── skills → ../tools/cursor/skills
 plans/                                        # spec-driven workflow
 ├── README.md                                 # workflow guide
 ├── templates/                                # blank docs, copied per feature
@@ -79,9 +98,10 @@ Supported agents:
 - **OpenAI Codex / ChatGPT** reads `AGENTS.md` and Agent Skills natively.
 - **GitHub Copilot** reads `AGENTS.md` natively, and `.github/copilot-instructions.md`
   (symlink to `AGENTS.md`) in VS Code.
-- **Cursor** reads `AGENTS.md` natively. It does not follow symlinks into `.cursor/rules/`,
-  so rules are not duplicated there. The rule files under `.claude/rules/` are referenced from
-  `AGENTS.md` instead.
+- **Cursor** reads `AGENTS.md` natively, and the toolkit also ships as a Cursor plugin under
+  `tools/cursor/` (rules, commands, code-reviewer agent, and the shared skills). This repo wires it
+  in through `.cursor/`, and other projects install it from the `.cursor-plugin/marketplace.json`
+  marketplace. See [tools/cursor/README.md](tools/cursor/README.md).
 - **OpenCode** reads `AGENTS.md` and Agent Skills natively.
 - **Gemini CLI** reads `GEMINI.md` (symlink to `AGENTS.md`).
 - **Windsurf and other AGENTS.md runtimes** read `AGENTS.md` natively.
@@ -95,7 +115,9 @@ Supported agents:
 | `tools/claude/skills/` | Any Agent Skills runtime | Open `SKILL.md` format |
 | `.agents/skills` → `tools/claude/skills` | Cross-provider runtimes | Symlink |
 | `.claude/skills` → `tools/claude/skills` | Claude Code | Symlink |
+| `.cursor/` → `tools/cursor/` | Cursor | Symlink |
 | `tools/claude/.claude-plugin/plugin.json` | Other projects, via marketplace install | Claude Code plugin |
+| `tools/cursor/.cursor-plugin/plugin.json` | Other projects, via marketplace install | Cursor plugin |
 
 Claude-specific extensions layer on top. The pieces, and when each one loads:
 

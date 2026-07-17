@@ -84,7 +84,14 @@ packaged as a Claude Code plugin (installable as
 paths used by the workspace symlink into that folder, so the template repo
 and any project that installs the plugin run the same content.
 Workspace-only pieces (hooks and `settings.json`) stay under `.claude/`.
-See [tools/claude/README.md](tools/claude/README.md) for install steps and
+
+The same toolset ships as a Cursor plugin in `tools/cursor/`, exposed through
+the root `.cursor-plugin/marketplace.json` and consumed in this repo through
+`.cursor/`. It carries the conventions as Cursor rules (`rules/*.mdc`), the
+same commands and code-reviewer agent, and reads its skills from
+`tools/claude/skills` so the Claude and Cursor plugins never drift.
+See [tools/claude/README.md](tools/claude/README.md) and
+[tools/cursor/README.md](tools/cursor/README.md) for install steps and
 the [README](README.md#ai-assistant-configuration) for the full folder
 structure.
 

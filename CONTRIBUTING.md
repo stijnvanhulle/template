@@ -35,9 +35,11 @@ pnpm build
 ├── configs/             # Shared TypeScript bases and Vitest config
 ├── plans/               # Spec-driven workflow (templates and per-feature folders)
 ├── tools/claude/        # Shared agent toolset (skills, commands, code-reviewer agent), packaged as the toolkit plugin
+├── tools/cursor/        # Same toolset as a Cursor plugin (rules, commands, agent, shared skills)
 ├── .changeset/          # Changeset configuration
 ├── .agents/skills/      # Cross-provider agent skills
 ├── .claude/             # Claude rules, commands, agents, output styles, hooks
+├── .cursor/             # Cursor rules, commands, agents, skills (symlinked into tools/cursor)
 └── .github/             # Issue templates, setup action, CI workflows
 ```
 

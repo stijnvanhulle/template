@@ -7,8 +7,8 @@ skills, a code-reviewer agent, and Cursor rules that ship the always-on conventi
 The toolkit is extracted from [stijnvanhulle/template](https://github.com/stijnvanhulle/template)
 so the same content powers the template repo itself and any project that installs
 the plugin. It ships under the plugin name `toolkit` from the `stijnvanhulle` marketplace.
-It is the Cursor counterpart of the Claude Code plugin in [../claude](../claude), and both
-read their skills from one shared source so the two never drift.
+It is the Cursor counterpart of the Claude Code plugin in [../claude](../claude). Both symlink
+their `skills/` to the repo's canonical `.agents/skills`, so the two never drift.
 
 ## What you get
 
@@ -48,8 +48,8 @@ Marketplaces), then install the `toolkit` plugin from it. The marketplace manife
 lives at the repo root in `.cursor-plugin/marketplace.json`.
 
 To try it locally before publishing, point Cursor at this folder as a workspace
-plugin, or copy `rules/`, `commands/`, `agents/`, and `skills/` into a project's
-`.cursor/` directory.
+plugin, or copy `rules/`, `commands/`, and `agents/` into a project's `.cursor/`
+directory, with the skills from `.agents/skills`.
 
 ## Usage
 

@@ -77,19 +77,20 @@ rtk proxy <cmd>       # Run raw without filtering but still track usage
 ChatGPT, OpenCode, Windsurf, Cursor (0.46+), and any other AGENTS.md
 runtime. `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`
 symlink to it so Claude Code, Gemini CLI, and GitHub Copilot pick up the
-same content. The shared toolset (skills, commands, code-reviewer agent,
-output styles, and conventions) lives in `tools/claude/`, which is also
-packaged as a Claude Code plugin (installable as
-`toolkit@stijnvanhulle`). The `.claude/` and `.agents/skills/`
-paths used by the workspace symlink into that folder, so the template repo
-and any project that installs the plugin run the same content.
-Workspace-only pieces (hooks and `settings.json`) stay under `.claude/`.
+same content. The cross-provider skills are the canonical shared asset and
+live in `.agents/skills/`. The Claude toolkit (commands, code-reviewer agent,
+output styles, and the conventions rules) lives in `tools/claude/`, packaged as
+a Claude Code plugin (installable as `toolkit@stijnvanhulle`); its `skills/`
+symlinks to `.agents/skills`. The `.claude/` workspace paths symlink into that
+folder, so the template repo and any project that installs the plugin run the
+same content. Workspace-only pieces (hooks and `settings.json`) stay under
+`.claude/`.
 
 The same toolset ships as a Cursor plugin in `tools/cursor/`, exposed through
 the root `.cursor-plugin/marketplace.json` and consumed in this repo through
 `.cursor/`. It carries the conventions as Cursor rules (`rules/*.mdc`), the
-same commands and code-reviewer agent, and reads its skills from
-`tools/claude/skills` so the Claude and Cursor plugins never drift.
+same commands and code-reviewer agent, and symlinks its skills to the shared
+`.agents/skills` so the Claude and Cursor plugins never drift.
 See [tools/claude/README.md](tools/claude/README.md) and
 [tools/cursor/README.md](tools/cursor/README.md) for install steps and
 the [README](README.md#ai-assistant-configuration) for the full folder

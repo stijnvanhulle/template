@@ -1,7 +1,7 @@
 name: Release
 on:
   push:
-    branches: ['main']
+    branches: [ 'main' ]
     paths:
       - '.changeset/**'
       - 'packages/**'
@@ -44,7 +44,7 @@ jobs:
       # workflow again, this time publishing the versioned packages to npm.
       - name: Create Release PR or Publish
         id: changesets
-        uses: changesets/action@63a615b9cd06ba9a3e6d13796c7fbcb080a60a0b # v1
+        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
         with:
           version: pnpm exec changeset version
           publish: pnpm release

@@ -1,3 +1,8 @@
+---
+name: humanizer
+description: Remove AI writing patterns from the prose changed on the current branch
+---
+
 Rewrite the user-facing prose on this branch so it reads as human.
 
 1. Review the branch's prose changes: the diff against the default branch, narrowed to `$1` when

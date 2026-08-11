@@ -39,15 +39,15 @@ spec-driven formatting (`plan`), and a diagrams-first layout (`diagrams-first`).
 
 ## Install
 
-One command from any shell, no session needed:
+Install from any shell, without opening a session:
 
 ```bash
 claude plugin marketplace add stijnvanhulle/template && claude plugin install toolkit@stijnvanhulle
 ```
 
-It installs to user scope. Pass `--scope project` on the install to share it with everyone who
-clones the repository, or `--scope local` to keep it to yourself in one repository. Start Claude
-Code again, or run `/reload-plugins` in an open session, to activate it.
+That installs to user scope. Pass `--scope project` to share it with everyone who clones the
+repository, or `--scope local` to keep it to yourself in one repository. Restart Claude Code to
+load it, or run `/reload-plugins` in a session that is already open.
 
 The same two steps inside a session:
 

@@ -1,3 +1,8 @@
+---
+name: deslop
+description: Remove AI-generated code slop from the current branch's changes
+---
+
 Remove AI-generated code slop from the changes on this branch.
 
 1. Review the branch's changes: the diff against the default branch, narrowed to `$1` when a path

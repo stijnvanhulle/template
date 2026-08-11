@@ -59,10 +59,10 @@ agent plugin marketplace add https://github.com/stijnvanhulle/template
 agent plugin install toolkit@stijnvanhulle
 ```
 
-The badges link to the per-tool steps, they do not install on click. Neither tool has a URL
-scheme that installs a plugin from a third-party marketplace, so no link can open the app and
-do it for you. Cursor's one deeplink, `cursor://anysphere.cursor-deeplink/mcp/install`, handles
-MCP servers, and the Claude Code equivalent is an
+The badges link to those steps. Clicking one does not install anything, because neither tool has
+a URL scheme that installs a plugin from a third-party marketplace. Cursor's one deeplink,
+`cursor://anysphere.cursor-deeplink/mcp/install`, is for MCP servers, and the Claude Code
+equivalent is still an
 [open feature request](https://github.com/anthropics/claude-code/issues/62481).
 
 ### Folder structure

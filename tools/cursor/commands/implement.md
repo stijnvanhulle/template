@@ -1,3 +1,8 @@
+---
+name: implement
+description: Work a feature's slices one at a time, ticking each slice's Done criteria as it passes
+---
+
 Execute the slices for the feature **$1** from `plans/$1/plan.md` and its `NNN-<slug>.md` slice files.
 
 1. Confirm `plans/$1/plan.md` and at least one slice file exist. If not, run `/plan` first.

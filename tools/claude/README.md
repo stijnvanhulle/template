@@ -19,6 +19,7 @@ Slash commands for the spec-driven workflow and releases:
 - `/verify <feature>` checks the implementation against the spec.
 - `/changeset [patch|minor|major]` creates Changesets for affected packages.
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.
+- `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
 
 Skills loaded on demand from their descriptions:
 
@@ -38,8 +39,19 @@ spec-driven formatting (`plan`), and a diagrams-first layout (`diagrams-first`).
 
 ## Install
 
+One command from any shell, no session needed:
+
 ```bash
-# add this repo as a marketplace, then install the plugin
+claude plugin marketplace add stijnvanhulle/template && claude plugin install toolkit@stijnvanhulle
+```
+
+It installs to user scope. Pass `--scope project` on the install to share it with everyone who
+clones the repository, or `--scope local` to keep it to yourself in one repository. Start Claude
+Code again, or run `/reload-plugins` in an open session, to activate it.
+
+The same two steps inside a session:
+
+```bash
 /plugin marketplace add stijnvanhulle/template
 /plugin install toolkit@stijnvanhulle
 ```
@@ -58,6 +70,7 @@ argument:
 ```bash
 /deslop                    # strip AI code slop from the whole branch diff
 /deslop apps/web           # limit it to one path
+/humanizer docs            # rewrite the prose the branch changed under docs/
 /spec offline-mode         # start a spec-driven feature
 /plan offline-mode         # turn the spec into a numbered plan
 /implement offline-mode    # work the next plan slice

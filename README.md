@@ -39,6 +39,32 @@ workspace paths under `.cursor/` symlink into it, and `.cursor-plugin/marketplac
 installable from Cursor's marketplace. See [tools/cursor/README.md](tools/cursor/README.md) for
 install steps.
 
+### Install the toolkit
+
+[![Install in Claude Code][claude-install-src]][claude-install-href] [![Install in Cursor][cursor-install-src]][cursor-install-href]
+
+Both tools install the same `toolkit` plugin from this repo's marketplace, in two steps: add the
+marketplace, then install the plugin.
+
+Claude Code, from any shell:
+
+```bash
+claude plugin marketplace add stijnvanhulle/template && claude plugin install toolkit@stijnvanhulle
+```
+
+Cursor, from any shell (`agent` is the Cursor CLI):
+
+```bash
+agent plugin marketplace add https://github.com/stijnvanhulle/template
+agent plugin install toolkit@stijnvanhulle
+```
+
+The badges link to the per-tool steps, they do not install on click. Neither tool has a URL
+scheme that installs a plugin from a third-party marketplace, so no link can open the app and
+do it for you. Cursor's one deeplink, `cursor://anysphere.cursor-deeplink/mcp/install`, handles
+MCP servers, and the Claude Code equivalent is an
+[open feature request](https://github.com/anthropics/claude-code/issues/62481).
+
 ### Folder structure
 
 ```
@@ -54,14 +80,14 @@ tools/claude/                                 # distributable Claude Code plugin
 ├── .claude-plugin/plugin.json                # plugin manifest
 ├── README.md                                 # install + usage
 ├── skills → ../../.agents/skills             # shared skills (canonical home is .agents/skills)
-├── commands/                                 # slash commands: /changeset, /deslop, /spec, /plan, /implement, /verify
+├── commands/                                 # slash commands: /changeset, /deslop, /humanizer, /spec, /plan, /implement, /verify
 ├── agents/                                   # subagents: code-reviewer
 └── output-styles/                            # system-prompt modes: house (default), plan, diagrams-first
 tools/cursor/                                 # distributable Cursor plugin (same toolset, Cursor formats)
 ├── .cursor-plugin/plugin.json                # plugin manifest
 ├── README.md                                 # install + usage
 ├── rules/                                    # Cursor rules (.mdc): code-style, jsdoc, markdown, security, testing, usa-english
-├── commands/                                 # slash commands: /changeset, /deslop, /spec, /plan, /implement, /verify
+├── commands/                                 # slash commands: /changeset, /deslop, /humanizer, /spec, /plan, /implement, /verify
 ├── agents/                                   # subagents: code-reviewer
 └── skills → ../../.agents/skills             # shared skills (canonical home is .agents/skills)
 .cursor-plugin/marketplace.json               # Cursor marketplace manifest (lists the toolkit plugin)
@@ -194,3 +220,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for the project structure, prerequisite
 [license-href]: https://github.com/stijnvanhulle/template/blob/main/LICENSE
 [coverage-src]: https://shieldcn.dev/codecov/github/stijnvanhulle/template.svg?variant=secondary&size=xs&theme=zinc&mode=dark
 [coverage-href]: https://app.codecov.io/gh/stijnvanhulle/template
+[claude-install-src]: https://img.shields.io/badge/Install%20in-Claude%20Code-D97757?logo=claude&logoColor=white&style=for-the-badge
+[claude-install-href]: tools/claude/README.md#install
+[cursor-install-src]: https://img.shields.io/badge/Install%20in-Cursor-1A1A1A?logo=cursor&logoColor=white&style=for-the-badge
+[cursor-install-href]: tools/cursor/README.md#install

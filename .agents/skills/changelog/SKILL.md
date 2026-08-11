@@ -5,7 +5,7 @@ description: Creates user-facing changelogs from git commits by analyzing commit
 
 # Changelog and versioning
 
-Turn technical git commits into polished, user-facing changelog entries. This monorepo uses
+Turn technical git commits into user-facing changelog entries. This monorepo uses
 Changesets for versioning and builds the changelog from changeset entries.
 
 ## When to use

@@ -1,12 +1,12 @@
-# SEO Optimization
+# SEO optimization
 
-Essential SEO guidelines for documentation - titles, descriptions, structure, and FAQs.
+SEO guidelines for documentation: titles, descriptions, structure, and FAQs.
 
-## Frontmatter Requirements
+## Frontmatter requirements
 
 ### Title (≤60 characters)
 
-**Formula:** `[Component/Feature] - [What it does] [Context]`
+Formula: `[Component/Feature] - [What it does] [Context]`
 
 ```yaml
 # Component/API pages
@@ -24,7 +24,7 @@ title: Fabric - JSX Code Generator for TypeScript & Files
 
 ### Description (≤155 characters)
 
-**Formula:** `[Action verb] [feature]. [Primary benefit]. [Secondary benefit].`
+Formula: `[Action verb] [feature]. [Primary benefit]. [Secondary benefit].`
 
 ```yaml
 # Be specific and benefit-focused
@@ -46,11 +46,11 @@ outline: deep
 ---
 ```
 
-## Content Structure
+## Content structure
 
-### Opening Paragraph (2-3 sentences)
+### Opening paragraph (2-3 sentences)
 
-Answer: **What** is it? **Who** is it for? **When** to use it?
+Answer what it is, who it is for, and when to use it.
 
 ```markdown
 # [H1 Title] <Badge if applicable />
@@ -58,25 +58,23 @@ Answer: **What** is it? **Who** is it for? **When** to use it?
 [What it is and does]. Use this [component/feature] when [scenario]. Perfect for [audience and use cases].
 ```
 
-### What/Why/How Sections
+### What, why, and how sections
 
 ```markdown
 ## What is [Topic]?
 
 [2-3 sentence explanation]
 
-## Why Use [Topic]?
+## Why use [Topic]?
 
-- **Benefit 1** - Specific explanation
-- **Benefit 2** - Specific explanation
-- **Benefit 3** - Specific explanation
+[Two or three sentences on what it saves the reader, with numbers where you have them]
 
-## How to Use
+## How to use
 
 [Minimal code example with explanation]
 ```
 
-### FAQ Section (3-5 questions)
+### FAQ section (3-5 questions)
 
 Target actual search queries users would type:
 
@@ -96,18 +94,18 @@ Target actual search queries users would type:
 [Key differences explained]
 ```
 
-### Internal Links
+### Internal links
 
-Minimum 2-3 per page in "See Also" or "Next Steps":
+Minimum 2-3 per page in "See also" or "Next steps":
 
 ```markdown
-## See Also
+## See also
 
 - [Link to related component/feature]
 - [Link to guide or tutorial]
 - [Link to parent hub page]
 
-## Next Steps
+## Next steps
 
 - [Link to tutorial]
 - [Link to API reference]

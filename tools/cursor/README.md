@@ -20,11 +20,13 @@ Slash commands for the spec-driven workflow and releases:
 - `/verify <feature>` checks the implementation against the spec.
 - `/changeset [patch|minor|major]` creates Changesets for affected packages.
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.
+- `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
 
 Rules that Cursor auto-attaches by file type, or applies always:
 
-- `code-style`, `jsdoc`, and `testing` attach when you edit matching TypeScript files.
-- `markdown` attaches when you edit markdown.
+- `code-style` attaches on `.ts`, `.tsx`, and `.vue` files, `jsdoc` on `.ts` and `.tsx`.
+- `testing` attaches on `*.test.*` and `*.spec.*` files.
+- `markdown` attaches on `.md` and `.mdx`.
 - `security` and `usa-english` apply on every request.
 
 Skills loaded on demand from their descriptions:
@@ -43,9 +45,27 @@ and maintainability. It is read-only and runs in its own context.
 
 ## Install
 
-Add this repo as a marketplace in Cursor's Customize page (Settings, Customize,
-Marketplaces), then install the `toolkit` plugin from it. The marketplace manifest
-lives at the repo root in `.cursor-plugin/marketplace.json`.
+Add the marketplace, then install the plugin. From any shell, with the Cursor CLI (`agent`):
+
+```bash
+agent plugin marketplace add https://github.com/stijnvanhulle/template
+agent plugin install toolkit@stijnvanhulle
+```
+
+The same two steps work as `/plugin` inside a Cursor CLI session, and in the editor under
+Settings, Customize, Marketplaces. The manifest Cursor reads is
+`.cursor-plugin/marketplace.json` at the repo root.
+
+This plugin's `skills/` is a symlink to `.agents/skills` at the repo root, so an install that
+fetches only `tools/cursor/` leaves the link dangling and the skills do not load. When that
+happens, clone the whole repo into Cursor's local plugin folder so the symlink resolves:
+
+```bash
+git clone https://github.com/stijnvanhulle/template.git ~/.cursor/plugins/local/toolkit
+```
+
+Cursor has no plugin deeplink, so there is no one-click install button. Its only deeplink today,
+`cursor://anysphere.cursor-deeplink/mcp/install`, installs MCP servers, not plugins.
 
 To try it locally before publishing, point Cursor at this folder as a workspace
 plugin, or copy `rules/`, `commands/`, and `agents/` into a project's `.cursor/`
@@ -58,6 +78,7 @@ Slash commands run when you type them. Name the command and pass any argument:
 ```text
 /deslop                    # strip AI code slop from the whole branch diff
 /deslop apps/web           # limit it to one path
+/humanizer docs            # rewrite the prose the branch changed under docs/
 /spec offline-mode         # start a spec-driven feature
 /plan offline-mode         # turn the spec into a numbered plan
 /implement offline-mode    # work the next plan slice

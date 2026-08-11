@@ -3,22 +3,22 @@ name: pr
 description: Rules and checklist for preparing PRs, creating changesets, and releasing packages in the monorepo.
 ---
 
-# PR Skill
+# PR skill
 
 This skill instructs agents on PR preconditions, changeset usage, and reviewer expectations.
 
-## When to Use
+## When to use
 
 - When a user asks how to prepare a PR or what checks are required before merging
 - When guiding contributors to create changesets or update the changelog
 
-## What It Does
+## What it does
 
 - Enforces the PR checklist: `format, lint:fix, typecheck, test`
 - Instructs on creating and using changesets for version bumps
 - Describes release/merge expectations and documentation updates
 
-## Commands to Suggest
+## Commands to suggest
 
 The same sequence is named in `AGENTS.md`, `CONTRIBUTING.md`, and the PR template:
 
@@ -35,8 +35,8 @@ pnpm changeset   # only when a published package changed
 - [ ] No secrets in the PR
 - [ ] Appropriate version bump via changeset
 
-## Related Skills
+## Related skills
 
-| Skill                                              | Use For                          |
-| -------------------------------------------------- | -------------------------------- |
-| **[../changelog/SKILL.md](../changelog/SKILL.md)** | Update changelogs and changesets |
+| Skill | Use for |
+| --- | --- |
+| [../changelog/SKILL.md](../changelog/SKILL.md) | Update changelogs and changesets |

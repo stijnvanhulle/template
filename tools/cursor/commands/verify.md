@@ -1,3 +1,8 @@
+---
+name: verify
+description: Fill a feature's verification.md with scenarios mapped to acceptance criteria, then run them
+---
+
 Write and run the closeout verification for the feature **$1** from `plans/$1/spec.md`.
 
 1. Copy `plans/templates/verification.md` to `plans/$1/verification.md` if it does not exist yet.

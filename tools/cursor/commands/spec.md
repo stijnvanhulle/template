@@ -1,3 +1,8 @@
+---
+name: spec
+description: Draft or refine the Phase 0 spec (requirements and acceptance criteria) for a feature
+---
+
 Write the specification for the feature **$1**.
 
 Copy `plans/templates/spec.md` to `plans/$1/spec.md` and fill it in.

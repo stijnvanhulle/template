@@ -2,7 +2,7 @@
 
 A reusable toolkit for TypeScript monorepos: a spec-driven workflow, writing-voice
 skills, a code-reviewer agent, output styles, and a `conventions` skill that ships
-the always-on rules (code style, JSDoc, markdown, security, testing).
+the always-on rules (code style, JSDoc, markdown, security, testing, USA English).
 
 The toolkit is extracted from [stijnvanhulle/template](https://github.com/stijnvanhulle/template)
 so the same content powers the template repo itself and any project that installs
@@ -19,6 +19,7 @@ Slash commands for the spec-driven workflow and releases:
 - `/verify <feature>` checks the implementation against the spec.
 - `/changeset [patch|minor|major]` creates Changesets for affected packages.
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.
+- `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
 
 Skills loaded on demand from their descriptions:
 
@@ -29,8 +30,8 @@ Skills loaded on demand from their descriptions:
 - `jsdoc` covers JSDoc tags and examples for TypeScript.
 - `pr` is the PR-prep and release checklist for a Changesets monorepo.
 - `spec-driven` drives the spec → plan → implement → verify loop.
-- `conventions` bundles the five always-on rules (code style, JSDoc, markdown,
-  security, testing).
+- `conventions` bundles the six always-on rules (code style, JSDoc, markdown,
+  security, testing, USA English).
 
 A `code-reviewer` subagent reviews TypeScript changes for correctness, security,
 and maintainability. Three output styles set the writing voice (`house`),
@@ -38,8 +39,19 @@ spec-driven formatting (`plan`), and a diagrams-first layout (`diagrams-first`).
 
 ## Install
 
+Install from any shell, without opening a session:
+
 ```bash
-# add this repo as a marketplace, then install the plugin
+claude plugin marketplace add stijnvanhulle/template && claude plugin install toolkit@stijnvanhulle
+```
+
+That installs to user scope. Pass `--scope project` to share it with everyone who clones the
+repository, or `--scope local` to keep it to yourself in one repository. Restart Claude Code to
+load it, or run `/reload-plugins` in a session that is already open.
+
+The same two steps inside a session:
+
+```bash
 /plugin marketplace add stijnvanhulle/template
 /plugin install toolkit@stijnvanhulle
 ```
@@ -58,6 +70,7 @@ argument:
 ```bash
 /deslop                    # strip AI code slop from the whole branch diff
 /deslop apps/web           # limit it to one path
+/humanizer docs            # rewrite the prose the branch changed under docs/
 /spec offline-mode         # start a spec-driven feature
 /plan offline-mode         # turn the spec into a numbered plan
 /implement offline-mode    # work the next plan slice
@@ -69,8 +82,8 @@ Skills load on their own. Each carries a description, and the agent reads the ma
 the task fits, so writing release notes pulls in `changelog` and cleaning prose pulls in
 `humanizer` without being asked. To force one, name it: "use the deslop skill on this diff."
 
-The `conventions` rules (code style, JSDoc, markdown, security, testing) are always on and need
-no trigger. The guiding split: rules always apply, skills are optional expertise loaded when
+The `conventions` rules (code style, JSDoc, markdown, security, testing, USA English) are always
+on and need no trigger. The guiding split: rules always apply, skills are optional expertise loaded when
 relevant, and commands are actions you trigger yourself.
 
 ## Scope

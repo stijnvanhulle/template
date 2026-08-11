@@ -1,10 +1,10 @@
-# Content Patterns
+# Content patterns
 
 Blog post structure, frontmatter, and component patterns for documentation.
 
 ## Default
 
-### Default Frontmatter
+### Default frontmatter
 
 Every documentation file must include YAML frontmatter:
 
@@ -16,9 +16,9 @@ outline: deep        # Enables deep table of contents
 ---
 ```
 
-## Package Documentation
+## Package documentation
 
-### Package Documentation Frontmatter
+### Package documentation frontmatter
 
 For packages documentation:
 
@@ -30,24 +30,24 @@ outline: deep
 ---
 ```
 
-### Package Documentation Structure
+### Package documentation structure
 
 Structure for package documentation pages:
 
-1. **Opening** (1-2 paragraphs) - Title and one-sentence description
-2. **Installation**
+1. Opening (1-2 paragraphs): title and one-sentence description
+2. Installation
   - Use code groups (start with `::: code-group` and end with `:::`) for multiple package managers (always include `bun`, `pnpm`, `npm`, `yarn` in that order):
 
 ```shell [bun]
 bun add -d @scope/name
 ```
 
-3. **Options** (one section per option, in logical order)
-  - **Always include Required**: `true` or `false`, never omit
-  - **Always include Default**: If there's a default, specify it. If no default, omit this row
+3. Options (one section per option, in logical order)
+  - Always include `Required:`, either `true` or `false`, never omitted
+  - Always include `Default:` when a default exists. Omit the row when there is none
   - Use following pattern:
 
-```md
+````md
 ### optionName
 
 Brief one-sentence description of what this option does.
@@ -61,24 +61,24 @@ Brief one-sentence description of what this option does.
 | Required: | `false`     |
 |  Default: | `'default'` |
 
-**Example:**
+Example:
 
 ```typescript
 // Show minimal usage example
 ```
-```
-4. **Code examples**
+````
+
+4. Code examples
   - With file path labels
   - All required imports
   - Minimal but complete configuration
-5. **Resources** - Links to docs, repo if relevant
+5. Resources: links to docs, repo if relevant
 
+## Blog post patterns
 
-## Blog Post pattens
+### Blog post frontmatter
 
-### Blog Post Frontmatter
-
-Blog specific Frontmatter rules:
+Blog specific frontmatter rules:
 
 ```yaml
 ---
@@ -95,46 +95,44 @@ category: Release
 ---
 ```
 
-**Categories**: `Release` (version announcements), `Article` (tutorials, guides)
+Categories are `Release` for version announcements and `Article` for tutorials and guides.
 
-### Blog Post Structure
+### Blog post structure
 
-1. **Opening** (1-2 paragraphs) - Announce what's new, why it matters
-2. **Key callout** - `> [!NOTE]`  with requirements/prerequisites
-3. **Feature sections** - `## Emoji Feature Name` headers
-4. **Code examples** - With file path labels
-5. **Breaking changes** - If release post
-6. **Thank you** - Credit contributors
-7. **Resources** - Links to docs, repo
-8. **Release link** - Link to full changelog
+1. Opening (1-2 paragraphs): announce what's new, why it matters
+2. Key callout: `> [!NOTE]` with requirements and prerequisites
+3. Feature sections: `## Emoji Feature Name` headers
+4. Code examples: with file path labels
+5. Breaking changes: if release post
+6. Thank you: credit contributors
+7. Resources: links to docs, repo
+8. Release link: link to full changelog
 
-## Component Patterns
+## Component patterns
 
 Use the right component for the right purpose:
 
-| Need             | Component                            | When                       |
-| ---------------- |--------------------------------------| -------------------------- |
-| Background info  | `> [!NOTE]`                          | Supplementary context      |
-| Best practice    | `> [!TIP]`                           | Recommendations            |
-| Potential issue  | `> [!WARNING]`                       | Things that could go wrong |
-| Must-know        | `> [!IMPORTANT]`                     | Required actions           |
-| Danger           | `> [!CAUTION]`                       | Destructive operations     |
-| Package managers | `::: code-group` and ends with `:::` | `bun`, `pnpm`, `npm`, `yarn` variants     |
+| Need | Component | When |
+| --- | --- | --- |
+| Background info | `> [!NOTE]` | Supplementary context |
+| Best practice | `> [!TIP]` | Recommendations |
+| Potential issue | `> [!WARNING]` | Things that could go wrong |
+| Must-know | `> [!IMPORTANT]` | Required actions |
+| Danger | `> [!CAUTION]` | Destructive operations |
+| Package managers | `::: code-group` and ends with `:::` | `bun`, `pnpm`, `npm`, `yarn` variants |
 
-## Usage Section
-- **Minimal, generic snippet** showing basic syntax
-- Shows core functionality only
-- Uses placeholder/simple values
-- Always includes `::: code-group` with input and output
-- First example users see - keep it simple
+## Usage section
 
-## Examples Section
-- **Realistic, concrete snippets** showing real-world scenarios
-- Demonstrates actual use cases
-- Uses meaningful variable names and realistic data
-- Multiple examples for different scenarios
+A minimal, generic snippet showing the basic syntax. Core functionality only, placeholder or
+simple values, always inside `::: code-group` with input and output. This is the first example
+a reader sees, so keep it simple.
 
-## Props/Options/Parameters Structure
+## Examples section
+
+Realistic, concrete snippets showing real scenarios: meaningful variable names, realistic data,
+and more than one example when the feature is used in different ways.
+
+## Props, options, and parameters structure
 
 All props, options, and parameters must use this exact table format:
 
@@ -148,27 +146,23 @@ All props, options, and parameters must use this exact table format:
 | Required: | `true`   |
 |  Default: | `value`  |  // Only if a default exists
 
-**Table rules:**
-- **Required rows**:
-  - `Type:` - Always present, show the TypeScript type
-  - `Required:` - Always present, use `true` or `false`
-- **Optional rows**:
-  - `Default:` - Only include if a default value exists
-  - Do not include Default row if there's no default
+Table rules:
 
+- `Type:` is always present and shows the TypeScript type
+- `Required:` is always present and is `true` or `false`
+- `Default:` appears only when a default value exists. Leave the row out otherwise
 
-## Prefer table Pattern
+## Prefer the table pattern
 
 Prefer using table pattern when listing options or multiple items:
 
 ```md
-| Skill                                   | Use For           |
-|-----------------------------------------|-------------------|
-| **[../../changelog/SKILL.md](../../changelog/SKILL.md)** | Update changelogs |
+| Skill | Use for |
+| --- | --- |
+| [../../changelog/SKILL.md](../../changelog/SKILL.md) | Update changelogs |
 ```
 
-
-## Including Shared Content
+## Including shared content
 
 Use VitePress `@include` directive to reuse shared content:
 
@@ -177,7 +171,7 @@ Use VitePress `@include` directive to reuse shared content:
 <!--@include: ../core/contentType.md-->
 ```
 
-## Code Block Labels
+## Code block labels
 
 Always include file path:
 

@@ -1,3 +1,8 @@
+---
+name: changeset
+description: Create a Changeset for the current changes with the right semver bump
+---
+
 Create a Changeset for the current changes on this branch.
 
 1. Review the changes (the diff against the default branch) and determine which workspace packages

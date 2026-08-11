@@ -1,3 +1,8 @@
+---
+name: plan
+description: Turn a feature's spec and research into its plan.md (architecture and numbered slices) and scaffold the slice files
+---
+
 Produce the Phase 2 plan for the feature **$1** from `plans/$1/spec.md` and `plans/$1/research.md`.
 
 1. Confirm the spec exists and its acceptance criteria (`AC-N`) are clear. If not, run `/spec` first.

@@ -11,7 +11,7 @@ Execute the slices for **$ARGUMENTS** from `plans/$ARGUMENTS/plan.md` and its
    its Verification commands. Keep the slice runnable before moving on.
 3. When a slice's Verification passes, tick its Done criteria in that slice file (`- [ ]` to
    `- [x]`).
-4. If a slice's Verification fails, fix it or stop and report; do not check unmet criteria or
+4. If a slice's Verification fails, fix it or stop and report. Do not check unmet criteria or
    start the next slice.
 5. Once every slice's Done criteria pass, run `/verify $ARGUMENTS` for the feature-level closeout.
 

@@ -1,8 +1,8 @@
-# Writing Style
+# Writing style
 
 Sentence structure, voice, tone, and paragraph patterns for documentation.
 
-## Guiding principle, Clarity over marketing
+## Guiding principle: clarity over marketing
 
 Prefer direct, concrete, technical language over marketing phrasing. Be specific about what the code does and how to use it.
 
@@ -22,11 +22,11 @@ When describing a feature, option, or example use this short structure:
 3. When: when to use it versus alternatives (optional).
 4. How: a minimal, working example demonstrating usage.
 
-## Sentence Patterns
+## Sentence patterns
 
 Documentation prefers short, subject-first sentences that state behavior or intent clearly. Aim for sentences under ~20 to 25 words and favor present tense and active voice.
 
-### Subject-First Declarative (60%)
+### Subject-first declarative (60%)
 
 Use to describe what the product, module, or plugin does. Keep the subject first and follow with a concise verb phrase.
 
@@ -35,7 +35,7 @@ The plugin generates TypeScript types from a schema.
 The parser validates schema types during build.
 ```
 
-### Imperative Instructions (25%)
+### Imperative instructions (25%)
 
 Use for step-by-step commands or quick actions. Start with a verb and keep the object direct.
 
@@ -44,7 +44,7 @@ Run `pnpm changeset` to create a changeset.
 Add the plugin to the config file and configure the options.
 ```
 
-### Contextual Openers (15%)
+### Contextual openers (15%)
 
 Use when you need to signal a prerequisite, conditional, or sequence. Begin with words like `When`, `If`, `During`, or `After`.
 
@@ -55,7 +55,7 @@ After installing the module, restart the server.
 
 ## Voice
 
-### Active Voice (85%)
+### Active voice (85%)
 
 Subject performs action. Prefer this.
 
@@ -65,7 +65,7 @@ Subject performs action. Prefer this.
 | You can override defaults       | Defaults can be overridden            |
 | The library handles validation  | Validation is handled by the library  |
 
-### When Passive is OK (15%)
+### When passive is OK (15%)
 
 - Actor unknown: "The file is loaded during startup."
 - Object more important: "Data is cached for 5 minutes."
@@ -73,11 +73,11 @@ Subject performs action. Prefer this.
 
 ## Tense
 
-**Present (90%)**: Instructions and behavior
-**Future (5%)**: Consequences ("This will create an endpoint")
-**Past (5%)**: Changelogs only
+Write instructions and behavior in the present tense, which covers about 90 percent of the text.
+Future tense is for consequences ("This will create an endpoint"), and past tense belongs in
+changelogs.
 
-## Modal Verbs
+## Modal verbs
 
 | Verb     | Meaning           | Example                          |
 | -------- | ----------------- | -------------------------------- |
@@ -88,21 +88,20 @@ Subject performs action. Prefer this.
 
 Avoid weak modals: `might`, `could`, `would`
 
-## Direct Address
+## Direct address
 
-**Guides/tutorials**: Use "you" (70% of content)
-**API references**: Neutral voice, no "you"
+Guides and tutorials address the reader as "you", roughly 70 percent of the content. API
+references stay neutral and drop the "you".
 
 Stay consistent within sections.
 
 ## Paragraphs
 
-**Length**: 1 to 3 sentences per paragraph
-**Structure**: Topic sentence first, then supporting detail
+Keep paragraphs to 1 to 3 sentences, topic sentence first, supporting detail after.
 
-## Opening Sentences
+## Opening sentences
 
-### Page Openings
+### Page openings
 
 Define what it is, its purpose, key benefits:
 
@@ -112,7 +111,7 @@ The CLI offers an easy way to monitor generation progress by invoking the core `
 
 Avoid: "This page describes...", "In this guide...", "Let's explore..."
 
-### Section Openings
+### Section openings
 
 Introduce topic and why it matters:
 
@@ -122,7 +121,7 @@ Introduce topic and why it matters:
 The plugin accepts several options that control its behavior.
 ```
 
-## Tone by Content Type
+## Tone by content type
 
 | Type            | Tone                         |
 | --------------- | ---------------------------- |
@@ -131,7 +130,7 @@ The plugin accepts several options that control its behavior.
 | API Reference   | Precise, neutral             |
 | Troubleshooting | Empathetic, solution-focused |
 
-## Word Choice
+## Word choice
 
 | Avoid           | Use         |
 | --------------- | ----------- |
@@ -142,7 +141,7 @@ The plugin accepts several options that control its behavior.
 | due to the fact | because     |
 | —               | (rewrite the sentence to avoid it) |
 
-## Common Mistakes
+## Common mistakes
 
 - Starting with "It" or "This" (unclear antecedent)
 - Stacking prepositions ("the value of the property of the config")

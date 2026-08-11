@@ -150,20 +150,20 @@ Claude-specific extensions layer on top. The pieces, and when each one loads:
 
 | Path | What it does | When it loads |
 |---|---|---|
-| `.claude/rules/` → `.agents/skills/conventions/rules/` | Always-on conventions: code style, JSDoc, markdown, security, testing | Session start, or when a matching file opens for path-scoped rules |
+| `.claude/rules/` → `.agents/skills/conventions/rules/` | Always-on conventions: code style, JSDoc, markdown, security, testing, USA English | Session start, or when a matching file opens for path-scoped rules |
 | `.claude/skills/` → `.agents/skills/` | Playbooks: changelog, deslop, documentation, humanizer, jsdoc, pr, spec-driven, conventions | On demand, when the task matches the skill description |
 | `.claude/commands/` → `tools/claude/commands/` | Explicit slash-command actions, such as `/changeset` and `/deslop` | When you type the command |
 | `.claude/agents/` → `tools/claude/agents/` | Subagents with their own context window, such as `code-reviewer` | When delegated a matching task |
 | `.claude/output-styles/` → `tools/claude/output-styles/` | System-prompt modes: `house` (the default, set in `settings.json`), `plan`, and `diagrams-first` | At session start (house), or when selected |
-| `.claude/hooks/` | Scripts that install deps on session start and format files on edit | On the matching event |
-| `.claude/settings.json` | Permissions and hook registration | Always |
+| `.claude/hooks/` | Scripts that install deps in remote sessions, refuse edits to the lockfile and to build output, and format and lint once a turn ends | On the matching event |
+| `.claude/settings.json` | Permissions, hook registration, and the default output style | Always |
 
 The guiding split: rules always apply, skills are optional expertise loaded only when
 relevant, and commands are actions you trigger yourself.
 
 For larger features, `plans/` holds a spec-driven workflow (spec, research, plan, slices,
-verification) driven by the `spec-driven` skill and the `/spec`, `/plan`, and `/verify`
-commands. See [plans/README.md](plans/README.md). For quick changes, use the `plan` output
+verification) driven by the `spec-driven` skill and the `/spec`, `/plan`, `/implement`, and
+`/verify` commands. See [plans/README.md](plans/README.md). For quick changes, use the `plan` output
 style instead.
 
 ## Using this template

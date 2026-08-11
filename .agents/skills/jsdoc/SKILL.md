@@ -101,7 +101,7 @@ Never use single-line `/** description */`. Always expand to multi-line.
 ```typescript
 /**
  * Maximum number of concurrent callbacks during traversal.
- * Higher values overlap I/O-bound work; lower values reduce memory pressure.
+ * Higher values overlap I/O-bound work, lower values save memory.
  *
  * @default 30
  */

@@ -9,7 +9,7 @@ Execute the slices for the feature **$1** from `plans/$1/plan.md` and its `NNN-<
 2. Work the slices in numbered order, one at a time. For each slice: follow its Steps, then run its
    Verification commands. Keep the slice runnable before moving on.
 3. When a slice's Verification passes, tick its Done criteria in that slice file (`- [ ]` to `- [x]`).
-4. If a slice's Verification fails, fix it or stop and report; do not check unmet criteria or start
+4. If a slice's Verification fails, fix it or stop and report. Do not check unmet criteria or start
    the next slice.
 5. Once every slice's Done criteria pass, run `/verify $1` for the feature-level closeout.
 

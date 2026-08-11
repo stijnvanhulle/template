@@ -24,8 +24,9 @@ Slash commands for the spec-driven workflow and releases:
 
 Rules that Cursor auto-attaches by file type, or applies always:
 
-- `code-style`, `jsdoc`, and `testing` attach when you edit matching TypeScript files.
-- `markdown` attaches when you edit markdown.
+- `code-style` attaches on `.ts`, `.tsx`, and `.vue` files, `jsdoc` on `.ts` and `.tsx`.
+- `testing` attaches on `*.test.*` and `*.spec.*` files.
+- `markdown` attaches on `.md` and `.mdx`.
 - `security` and `usa-english` apply on every request.
 
 Skills loaded on demand from their descriptions:

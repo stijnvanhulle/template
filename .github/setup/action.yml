@@ -35,10 +35,9 @@ runs:
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
 
-    # Blocks known-malicious packages and packages published less than
-    # SAFE_CHAIN_MINIMUM_PACKAGE_AGE_HOURS ago at install time, on top of
-    # pnpm's own minimumReleaseAge. Keep the threshold at 72h to match
-    # min-package-age in .npmrc. See: https://github.com/AikidoSec/safe-chain
+    # Blocks known-malicious packages and enforces a 72h minimum package age
+    # at install, matching pnpm-workspace.yaml's minimumReleaseAge.
+    # https://github.com/AikidoSec/safe-chain
     - name: Install safe-chain
       shell: bash
       run: |

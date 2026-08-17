@@ -10,7 +10,7 @@ catalog:
   "@types/node": ^22.20.1
   "@vitest/coverage-v8": ^4.1.10
   "@vitest/ui": ^4.1.10
-  oxfmt: ^0.62.0
+  oxfmt: ^0.63.0
   oxlint: ^1.77.0
   tsdown: ^0.22.14
   typescript: ^6.0.3

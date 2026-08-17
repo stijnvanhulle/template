@@ -41,7 +41,7 @@
     "bun-types": "^1.3.14",
     "oxfmt": "catalog:",
     "oxlint": "catalog:",
-    "taze": "^20.0.0",
+    "taze": "^21.1.0",
     "ts-node": "^10.9.2",
     "tsdown": "catalog:",
     "turbo": "^2.10.8",

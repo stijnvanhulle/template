@@ -35,9 +35,8 @@ runs:
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
 
-    # Blocks known-malicious packages and enforces a 72h minimum package age
-    # at install, matching pnpm-workspace.yaml's minimumReleaseAge.
-    # https://github.com/AikidoSec/safe-chain
+    # Blocks known-malicious packages and enforces the 48h minimum package age
+    # matching pnpm-workspace.yaml. https://github.com/AikidoSec/safe-chain
     - name: Install safe-chain
       shell: bash
       run: |
@@ -45,7 +44,7 @@ runs:
         echo "de0565e3d6346407a604e84e639e95fea8758748063da2216bbfdca5feda5dd2  /tmp/install-safe-chain.sh" | sha256sum -c -
         sh /tmp/install-safe-chain.sh --ci
         rm /tmp/install-safe-chain.sh
-        echo "SAFE_CHAIN_MINIMUM_PACKAGE_AGE_HOURS=72" >> "$GITHUB_ENV"
+        echo "SAFE_CHAIN_MINIMUM_PACKAGE_AGE_HOURS=48" >> "$GITHUB_ENV"
 
     - name: Install dependencies
       shell: bash

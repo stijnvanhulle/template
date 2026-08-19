@@ -39,18 +39,16 @@ jobs:
       - name: Build
         run: pnpm run build
 
-      # Opens (or updates) a "Version Packages" PR when changesets are present.
-      # Merging that PR removes the changesets, which triggers this same
-      # workflow again, this time publishing the versioned packages to npm.
+      # Opens a "Version Packages" PR when changesets are present. Merging it
+      # re-triggers this workflow, which then publishes to npm.
       - name: Create Release PR or Publish
         id: changesets
-        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
+        uses: changesets/action@8488615a623b1b9c987934bb89eae8af6a946ac1 # v2.1.1
         with:
-          version: pnpm exec changeset version
-          publish: pnpm release
-          commit: 'ci(changesets): version packages'
-          title: 'ci(changesets): version packages'
-          setupGitUser: false
+          version-script: pnpm exec changeset version
+          publish-script: pnpm release
+          commit-message: 'ci(changesets): version packages'
+          pr-title: 'ci(changesets): version packages'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
           NPM_CONFIG_PROVENANCE: true
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

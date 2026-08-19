@@ -25,100 +25,74 @@ already wired up.
 Every agent reads from the same source: `AGENTS.md` plus the Agent Skills in `.agents/skills/`.
 Tool-specific files are symlinks, not copies, so nothing drifts out of sync.
 
+### 30-second setup
+
 [![Install in Claude Code][claude-install-src]][claude-install-href] [![Install in Cursor][cursor-install-src]][cursor-install-href]
 
-Claude Code and Cursor also get a matching plugin (rules, slash commands, a code-reviewer
-subagent) from this repo's marketplace:
-
-```bash
-# Claude Code
-claude plugin marketplace add stijnvanhulle/template && claude plugin install toolkit@stijnvanhulle
-
-# Cursor (agent is the Cursor CLI)
-agent plugin marketplace add https://github.com/stijnvanhulle/template
-agent plugin install toolkit@stijnvanhulle
-```
-
-The badges above link to those commands rather than installing anything directly: neither tool
-has a URL scheme for installing a plugin from a third-party marketplace yet. Cursor's one
-deeplink is for MCP servers, and the Claude Code equivalent is an
+The badges link to the steps below rather than installing anything directly: neither tool has a
+URL scheme yet for installing a plugin from a third-party marketplace. Cursor's one deeplink is
+for MCP servers, and the Claude Code equivalent is an
 [open feature request](https://github.com/anthropics/claude-code/issues/62481).
 
 <details>
 <summary><strong>Claude Code</strong></summary>
 
-Reads `CLAUDE.md` (a symlink to `AGENTS.md`) and gets the full plugin: rules, skills, slash
-commands, and the `code-reviewer` subagent, all under `.claude/`, which itself symlinks into
-`tools/claude/`.
+```bash
+claude plugin marketplace add stijnvanhulle/template
+claude plugin install toolkit@stijnvanhulle
+```
 
-| Path | What it does | When it loads |
-|---|---|---|
-| `.claude/rules/` | Always-on conventions: code style, JSDoc, markdown, security, testing, USA English | Session start, plus path-scoped rules when a matching file opens |
-| `.claude/skills/` | Playbooks: changelog, deslop, documentation, humanizer, jsdoc, pr, spec-driven | On demand, when a task matches the skill |
-| `.claude/commands/` | Slash commands: `/changeset`, `/deslop`, `/spec`, `/plan`, `/implement`, `/verify` | When you type the command |
-| `.claude/agents/` | Subagents with their own context window (`code-reviewer`) | When delegated a matching task |
-| `.claude/output-styles/` | System-prompt modes: `house` (default), `plan`, `diagrams-first` | Session start, or when selected |
-| `.claude/hooks/` | Installs deps in remote sessions, blocks edits to the lockfile and build output, formats and lints on turn end | On the matching event |
-| `.claude/settings.json` | Permissions, hook registration, default output style | Always |
-
-Other projects can pull in the same plugin without cloning this repo — see
-[tools/claude/README.md](tools/claude/README.md).
+Reads `CLAUDE.md` (a symlink to `AGENTS.md`) and installs the `toolkit` plugin: rules, skills,
+slash commands, and the `code-reviewer` subagent. Other projects can install the same plugin
+without cloning this repo — see [tools/claude/README.md](tools/claude/README.md).
 
 </details>
 
 <details>
 <summary><strong>Cursor</strong></summary>
 
-Reads `AGENTS.md` natively and gets the toolkit as a Cursor plugin under `tools/cursor/`
-(conventions as `rules/*.mdc`, the same slash commands, and the `code-reviewer` subagent),
-wired into this repo through `.cursor/`.
+```bash
+# agent is the Cursor CLI
+agent plugin marketplace add https://github.com/stijnvanhulle/template
+agent plugin install toolkit@stijnvanhulle
+```
 
-Other projects install it from `.cursor-plugin/marketplace.json` — see
-[tools/cursor/README.md](tools/cursor/README.md).
+Reads `AGENTS.md` natively and installs the matching Cursor plugin: rules (as `.mdc` files), the
+same slash commands, and the `code-reviewer` subagent. Other projects install it from
+`.cursor-plugin/marketplace.json` — see [tools/cursor/README.md](tools/cursor/README.md).
 
 </details>
 
 <details>
 <summary><strong>Other agents</strong></summary>
 
+Nothing to install. These read `AGENTS.md` directly, or through a symlink, with no plugin step.
+
 - **Gemini CLI** reads `GEMINI.md`, a symlink to `AGENTS.md`.
 - **GitHub Copilot** (VS Code) reads `.github/copilot-instructions.md`, also a symlink to
   `AGENTS.md`.
 - **OpenAI Codex / ChatGPT** and **OpenCode** read `AGENTS.md` and the Agent Skills in
-  `.agents/skills/` natively, no symlink needed.
+  `.agents/skills/` natively.
 - **Windsurf**, and anything else that speaks the AGENTS.md convention, reads `AGENTS.md`
   directly.
 
 </details>
 
-<details>
-<summary><strong>Folder structure</strong></summary>
+### Skills and commands
 
-```
-AGENTS.md                                     # canonical instructions every agent reads
-CLAUDE.md → AGENTS.md                         # Claude Code
-GEMINI.md → AGENTS.md                         # Gemini CLI
-.github/copilot-instructions.md → AGENTS.md   # GitHub Copilot in VS Code
-.agents/skills/                               # canonical cross-provider Agent Skills
-├── changelog, deslop, documentation, humanizer, jsdoc, pr, spec-driven
-└── conventions/                              # always-on rules: code-style, jsdoc, markdown, security, testing, usa-english
-tools/claude/                                 # distributable Claude Code plugin
-├── skills → ../../.agents/skills
-├── commands/                                 # /changeset, /deslop, /humanizer, /spec, /plan, /implement, /verify
-├── agents/                                   # code-reviewer
-└── output-styles/                            # house (default), plan, diagrams-first
-tools/cursor/                                 # distributable Cursor plugin, same toolset
-├── rules/                                    # Cursor rules (.mdc)
-├── commands/
-├── agents/
-└── skills → ../../.agents/skills
-.cursor-plugin/marketplace.json               # Cursor marketplace manifest
-.claude/                                      # Claude workspace config, symlinked into tools/claude/
-.cursor/                                      # Cursor workspace config, symlinked into tools/cursor/
-plans/                                        # spec-driven workflow: spec, research, plan, slices, verification
-```
+Claude Code and Cursor share one toolset, so a skill or command written once works in both:
 
-</details>
+| Path | What it does | When it loads |
+|---|---|---|
+| `.agents/skills/conventions/` | Always-on rules: code style, JSDoc, markdown, security, testing, USA English | Session start, plus path-scoped rules when a matching file opens |
+| `.agents/skills/` | Playbooks: changelog, deslop, documentation, humanizer, jsdoc, pr, spec-driven | On demand, when a task matches the skill |
+| `tools/{claude,cursor}/commands/` | Slash commands: `/changeset`, `/deslop`, `/spec`, `/plan`, `/implement`, `/verify` | When you type the command |
+| `tools/{claude,cursor}/agents/` | Subagents with their own context window (`code-reviewer`) | When delegated a matching task |
+| `tools/claude/output-styles/` | System-prompt modes: `house` (default), `plan`, `diagrams-first`. Claude Code only | Session start, or when selected |
+
+`.claude/` and `.cursor/` are workspace config, symlinked into `tools/claude/` and
+`tools/cursor/` so this repo runs the same plugins it distributes. `plans/` holds the
+spec-driven workflow: spec, research, plan, slices, verification.
 
 For larger features, `plans/` holds a spec-driven workflow driven by the `spec-driven` skill
 and the `/spec`, `/plan`, `/implement`, and `/verify` commands. See

@@ -86,7 +86,7 @@ Claude Code and Cursor share one toolset, so a skill or command written once wor
 |---|---|---|
 | `.agents/skills/conventions/` | Always-on rules: code style, JSDoc, markdown, security, testing, USA English | Session start, plus path-scoped rules when a matching file opens |
 | `.agents/skills/` | Playbooks: changelog, deslop, documentation, humanizer, jsdoc, pr, spec-driven | On demand, when a task matches the skill |
-| `tools/{claude,cursor}/commands/` | Slash commands: `/changeset`, `/deslop`, `/spec`, `/plan`, `/implement`, `/verify` | When you type the command |
+| `tools/{claude,cursor}/commands/` | Slash commands: `/changeset`, `/deslop`, `/humanizer`, `/spec`, `/plan`, `/implement`, `/verify` | When you type the command |
 | `tools/{claude,cursor}/agents/` | Subagents with their own context window (`code-reviewer`) | When delegated a matching task |
 | `tools/claude/output-styles/` | System-prompt modes: `house` (default), `plan`, `diagrams-first`. Claude Code only | Session start, or when selected |
 

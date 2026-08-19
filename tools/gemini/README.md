@@ -4,10 +4,14 @@ The Gemini CLI counterpart of the [Claude Code plugin](../claude) and the
 [Cursor plugin](../cursor): the same spec-driven workflow and writing-voice commands, plus the
 always-on conventions.
 
-Gemini CLI has no on-demand skill loading, so the conventions ship inlined in `GEMINI.md`
-instead of as a skill the model picks up when a task matches. That file is generated from
-`.agents/skills/conventions/rules/` by `scripts/agentFiles.ts`, and CI fails if it drifts. Edit
-the rules, not the generated file.
+Gemini CLI loads one context file and has no on-demand skill loading, so the conventions ship
+inlined rather than as a skill the model picks up when a task matches. The repo's root
+`GEMINI.md` is generated from `AGENTS.md` plus `.agents/skills/conventions/rules/` by
+`scripts/agentFiles.ts`, and CI fails if it drifts. Edit those sources, not the generated file.
+
+The manifest lives at the repo root as `gemini-extension.json`, which is where Gemini looks when
+installing from a repository URL, and the root `commands/` symlink points back at this folder so
+the commands sit beside the manifest as Gemini expects.
 
 ## What you get
 
@@ -34,7 +38,7 @@ Restart the CLI afterward. Management operations, including new slash commands, 
 only on a fresh session. To try it from a local checkout:
 
 ```bash
-gemini extensions install --path=./tools/gemini
+gemini extensions install --path=.
 ```
 
 ## Usage

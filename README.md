@@ -70,10 +70,11 @@ same slash commands, and the `code-reviewer` subagent. Other projects install it
 gemini extensions install https://github.com/stijnvanhulle/template
 ```
 
-Reads `GEMINI.md` (a symlink to `AGENTS.md`) and installs the extension: the same seven slash
-commands, as `commands/*.toml`. Gemini CLI has no on-demand skill loading, so the conventions
-ship inlined in the extension's own context file, generated from the shared rules. It has no
-subagent concept either, so `code-reviewer` has no equivalent. See
+Installs the extension from `gemini-extension.json` at the repo root, which is where Gemini
+looks. It reads `GEMINI.md` and the seven slash commands in `commands/*.toml`. Gemini has no
+on-demand skill loading, so `GEMINI.md` is generated as `AGENTS.md` plus the conventions
+inlined, rather than symlinked like the other agents' instruction files. No subagent concept
+either, so `code-reviewer` has no equivalent. See
 [tools/gemini/README.md](tools/gemini/README.md).
 
 </details>
@@ -103,8 +104,9 @@ ln -s "$PWD/tools/codex/prompts"/*.md ~/.codex/prompts/
 
 Reads `AGENTS.md` natively, so instructions and conventions need no setup. Only the commands
 need linking, and because Codex discovers prompts from `~/.codex/prompts/` rather than the
-repo, each person links them once. The prompt format matches Claude Code's, so `prompts/` is a
-symlink, not a copy. See [tools/codex/README.md](tools/codex/README.md).
+repo, each person links them once. `.codex-plugin/plugin.json` at the repo root describes the
+same content for the Codex plugin marketplace. The prompt format matches Claude Code's, so
+`prompts/` is a symlink, not a copy. See [tools/codex/README.md](tools/codex/README.md).
 
 </details>
 
@@ -142,11 +144,16 @@ Every agent shares one toolset, so a skill or command written once works in all 
 | `tools/{claude,cursor,opencode}/agents/` | Subagents with their own context window (`code-reviewer`). Not supported by Gemini CLI or Codex | When delegated a matching task |
 | `tools/claude/output-styles/` | System-prompt modes: `house` (default), `plan`, `diagrams-first`. Claude Code only | Session start, or when selected |
 
-Commands live once per format, not once per agent. OpenCode and Codex use Claude Code's
-command syntax, so their folders are symlinks to `tools/claude/commands/`. Cursor and Gemini CLI
-need their own formats (`.mdc` rules, `.toml` commands), so those are real files, and
-`pnpm agent-files` checks in CI that they still expose the same command set. The one generated
-file, the Gemini extension's inlined conventions, is regenerated with `pnpm agent-files --write`.
+Each agent's plugin manifest sits at the repo root, where its CLI looks for it, and points back
+at the shared content under `tools/`: `.claude-plugin/`, `.cursor-plugin/`, `.codex-plugin/`,
+and `gemini-extension.json`. Gemini also needs its `commands/` beside the manifest, so the root
+`commands/` symlink points at `tools/gemini/commands`.
+
+Commands live once per format, not once per agent. OpenCode and Codex use Claude Code's command
+syntax, so their folders are symlinks to `tools/claude/commands/`. Cursor and Gemini CLI need
+their own formats (`.mdc` rules, `.toml` commands), so those are real files, and
+`pnpm agent-files` checks in CI that they still expose the same command set. It also regenerates
+`GEMINI.md`, the one generated file, with `pnpm agent-files --write`.
 
 `.claude/`, `.cursor/`, `.gemini/`, and `.opencode/` are workspace config, symlinked into their
 `tools/` folders so this repo runs the same plugins it distributes.

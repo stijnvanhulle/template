@@ -19,6 +19,7 @@
   "scripts": {
     "build": "turbo run build --filter=./packages/* --filter=./internals/*",
     "changeset": "changeset",
+    "agent-files": "node --experimental-strip-types scripts/agentFiles.ts",
     "clean": "turbo run clean",
     "format": "oxfmt -c oxfmt.config.ts packages internals configs",
     "graph": "npx nx graph ",

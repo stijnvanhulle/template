@@ -1,0 +1,6 @@
+{
+  "name": "toolkit",
+  "version": "0.1.0",
+  "description": "Spec-driven workflow, writing-voice skills, and shared TypeScript-monorepo conventions. Extracted from stijnvanhulle/template so other projects can install the same toolset.",
+  "contextFileName": "GEMINI.md"
+}

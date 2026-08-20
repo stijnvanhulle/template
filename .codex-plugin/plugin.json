@@ -11,6 +11,5 @@
   "repository": "https://github.com/stijnvanhulle/template",
   "license": "MIT",
   "keywords": ["typescript", "monorepo", "spec-driven", "changesets", "skills", "conventions"],
-  "skills": "./.agents/skills/",
-  "prompts": "./tools/codex/prompts/"
+  "skills": "./.agents/skills/"
 }

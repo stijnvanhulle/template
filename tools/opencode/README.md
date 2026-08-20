@@ -28,15 +28,15 @@ Skills load from `.agents/skills/`, the same folder the other plugins use.
 
 ## Install
 
-OpenCode reads its config from the project itself, so clone the repo and the toolkit is
-already wired through `.opencode/`:
+OpenCode reads `opencode.json` from the project root and discovers commands, agents, and skills
+under `.opencode/`, so cloning the repo is the whole install:
 
 ```bash
 git clone https://github.com/stijnvanhulle/template.git
 ```
 
-To use it in another project, copy `opencode.json` to that project's root and symlink the
-pieces you want:
+To use it in another project, copy the repo's root `opencode.json` to that project's root and
+symlink the pieces you want:
 
 ```bash
 mkdir -p .opencode
@@ -44,6 +44,9 @@ ln -s ../path/to/template/tools/opencode/commands .opencode/commands
 ln -s ../path/to/template/tools/opencode/agents .opencode/agents
 ln -s ../path/to/template/.agents/skills .opencode/skills
 ```
+
+OpenCode accepts both plural and singular directory names, but plural is the current standard
+and what this repo uses.
 
 ## Usage
 

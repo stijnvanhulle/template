@@ -86,11 +86,11 @@ either, so `code-reviewer` has no equivalent. See
 git clone https://github.com/stijnvanhulle/template.git
 ```
 
-Reads `AGENTS.md` natively and picks the toolkit up through `.opencode/`, already wired in this
-repo. OpenCode uses the same command syntax Claude Code does, so its `commands/` is a symlink to
-the Claude ones rather than a copy. The `code-reviewer` subagent works here too, invoked with
-`@code-reviewer`. To wire it into another project, see
-[tools/opencode/README.md](tools/opencode/README.md).
+Reads `opencode.json` and `AGENTS.md` from the repo root, and picks the toolkit up through
+`.opencode/`, already wired in this repo. OpenCode uses the same command syntax Claude Code
+does, so its `commands/` is a symlink to the Claude ones rather than a copy. The
+`code-reviewer` subagent works here too, invoked with `@code-reviewer`. To wire it into another
+project, see [tools/opencode/README.md](tools/opencode/README.md).
 
 </details>
 
@@ -146,8 +146,8 @@ Every agent shares one toolset, so a skill or command written once works in all 
 
 Each agent's plugin manifest sits at the repo root, where its CLI looks for it, and points back
 at the shared content under `tools/`: `.claude-plugin/`, `.cursor-plugin/`, `.codex-plugin/`,
-and `gemini-extension.json`. Gemini also needs its `commands/` beside the manifest, so the root
-`commands/` symlink points at `tools/gemini/commands`.
+`gemini-extension.json`, and `opencode.json`. Gemini also needs its `commands/` beside the
+manifest, so the root `commands/` symlink points at `tools/gemini/commands`.
 
 Commands live once per format, not once per agent. OpenCode and Codex use Claude Code's command
 syntax, so their folders are symlinks to `tools/claude/commands/`. Cursor and Gemini CLI need

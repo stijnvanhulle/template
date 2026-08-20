@@ -104,9 +104,9 @@ or if `GEMINI.md` is stale.
 
 Each agent's plugin manifest sits at the repo root, where its CLI looks for it,
 and points back at the shared content under `tools/`: `.claude-plugin/`,
-`.cursor-plugin/`, `.codex-plugin/`, and `gemini-extension.json`. Gemini also
-needs its `commands/` beside the manifest, so the root `commands/` symlink points
-at `tools/gemini/commands`.
+`.cursor-plugin/`, `.codex-plugin/`, `gemini-extension.json`, and `opencode.json`.
+Gemini also needs its `commands/` beside the manifest, so the root `commands/`
+symlink points at `tools/gemini/commands`.
 
 Agents that need only instructions read `AGENTS.md` through a symlink at their own
 path: `.clinerules/`, `.kiro/steering/`, `.windsurf/rules/`, `.zed/`,

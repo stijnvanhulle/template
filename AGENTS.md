@@ -74,7 +74,7 @@ rtk proxy <cmd>       # Run raw without filtering but still track usage
 ## How agents read this repo
 
 `AGENTS.md` is the canonical instruction file, read natively by Codex /
-ChatGPT, OpenCode, Windsurf, Cursor (0.46+), and any other AGENTS.md
+ChatGPT, OpenCode, Cursor (0.46+), and any other AGENTS.md
 runtime. `CLAUDE.md` and `.github/copilot-instructions.md` symlink to it so
 Claude Code and GitHub Copilot pick up the same content, and `GEMINI.md` is
 generated from it. The cross-provider skills are the canonical shared asset and
@@ -109,8 +109,8 @@ Gemini also needs its `commands/` beside the manifest, so the root `commands/`
 symlink points at `tools/gemini/commands`.
 
 Agents that need only instructions read `AGENTS.md` through a symlink at their own
-path: `.clinerules/`, `.kiro/steering/`, `.windsurf/rules/`, `.zed/`,
-`.junie/guidelines.md`, and `AGENT.md` for tools that expect the singular spelling.
+path: `.kiro/steering/`, `.zed/`, and `AGENT.md` for tools that expect the
+singular spelling.
 
 See [tools/claude/README.md](tools/claude/README.md),
 [tools/cursor/README.md](tools/cursor/README.md),

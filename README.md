@@ -117,9 +117,8 @@ Nothing to install. These read `AGENTS.md` directly, or through a symlink, with 
 and no slash commands.
 
 - **GitHub Copilot** (VS Code) reads `.github/copilot-instructions.md`.
-- **Cline** reads `.clinerules/`, **Kiro** reads `.kiro/steering/`, **Windsurf** reads
-  `.windsurf/rules/`, **Zed** reads `.zed/`, and **Junie** reads `.junie/guidelines.md`. Each is
-  a symlink back to `AGENTS.md`.
+- **Kiro** reads `.kiro/steering/` and **Zed** reads `.zed/`. Both are symlinks back to
+  `AGENTS.md`.
 - **Amp**, **Jules**, and anything else that speaks the AGENTS.md convention read it directly.
   `AGENT.md` is symlinked too, for the tools that look for the singular spelling.
 - **Aider** takes it as an argument: `aider --read AGENTS.md`.

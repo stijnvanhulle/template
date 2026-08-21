@@ -1,17 +1,16 @@
 # stijnvanhulle OpenCode toolkit
 
-The OpenCode counterpart of the [Claude Code plugin](../claude) and the
-[Cursor plugin](../cursor).
+A reusable toolkit for TypeScript monorepos: a spec-driven workflow, writing-voice skills, and
+the always-on conventions (code style, JSDoc, markdown, security, testing, USA English).
 
-OpenCode reads `AGENTS.md` natively and uses the same command syntax Claude Code does
-(`description` frontmatter, `$ARGUMENTS`, `` !`command` ``, `@file`). So `commands/` is a
-symlink to `../claude/commands` rather than a copy, and the two can never drift. Only the
-subagent needed its own file, because OpenCode expects `mode: subagent` and a `permission`
-block where Claude Code expects a `tools` list.
+OpenCode reads `AGENTS.md` natively and uses a command syntax with `description` frontmatter,
+`$ARGUMENTS`, `` !`command` ``, and `@file`, so `commands/` is a symlink to `../claude/commands`
+rather than a copy, and the two can never drift. Only the subagent needed its own file, because
+OpenCode expects `mode: subagent` and a `permission` block instead of a `tools` list.
 
 ## What you get
 
-Slash commands, shared with the Claude Code plugin:
+Slash commands:
 
 - `/spec <feature>` writes the Phase 0 spec (requirements and acceptance criteria).
 - `/plan <feature>` turns the spec into a numbered implementation plan.
@@ -24,7 +23,7 @@ Slash commands, shared with the Claude Code plugin:
 A read-only `code-reviewer` subagent reviews TypeScript changes for correctness, security, and
 maintainability. Invoke it by name with `@code-reviewer`.
 
-Skills load from `.agents/skills/`, the same folder the other plugins use.
+Skills load from `.agents/skills/`.
 
 ## Install
 

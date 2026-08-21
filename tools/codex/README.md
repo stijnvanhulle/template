@@ -1,13 +1,12 @@
 # stijnvanhulle Codex prompts
 
-The Codex counterpart of the [Claude Code plugin](../claude) and the
-[Cursor plugin](../cursor).
+A reusable toolkit for TypeScript monorepos: a spec-driven workflow, writing-voice skills, and
+the always-on conventions (code style, JSDoc, markdown, security, testing, USA English).
 
 Codex reads `AGENTS.md` natively, so the instructions and conventions need no setup at all.
-Only the slash commands need installing, and Codex uses the same prompt format Claude Code does
-(`description` and `argument-hint` frontmatter, `$ARGUMENTS` and `$1` placeholders). So
-`prompts/` is a symlink to `../claude/commands` rather than a copy, and the two can never
-drift.
+Only the slash commands need installing, and Codex uses a prompt format with `description` and
+`argument-hint` frontmatter and `$ARGUMENTS`/`$1` placeholders, so `prompts/` is a symlink to
+`../claude/commands` rather than a copy, and the two can never drift.
 
 ## What you get
 
@@ -19,8 +18,7 @@ drift.
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
 
-Codex has no subagent concept, so the `code-reviewer` agent that ships with the Claude and
-Cursor plugins has no equivalent here.
+Codex has no subagent concept, so there is no code-reviewer agent here.
 
 ## Install
 

@@ -1,8 +1,7 @@
 # stijnvanhulle Gemini CLI extension
 
-The Gemini CLI counterpart of the [Claude Code plugin](../claude) and the
-[Cursor plugin](../cursor): the same spec-driven workflow and writing-voice commands, plus the
-always-on conventions.
+A reusable toolkit for TypeScript monorepos: a spec-driven workflow, writing-voice commands, and
+the always-on conventions (code style, JSDoc, markdown, security, testing, USA English).
 
 Gemini CLI loads one context file and has no on-demand skill loading, so the conventions ship
 inlined rather than as a skill the model picks up when a task matches. The repo's root
@@ -25,8 +24,7 @@ Slash commands, as `commands/*.toml`:
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
 
-Gemini CLI has no subagent concept, so the `code-reviewer` agent that ships with the Claude and
-Cursor plugins has no equivalent here.
+Gemini CLI has no subagent concept, so there is no code-reviewer agent here.
 
 ## Install
 

@@ -1,8 +1,7 @@
 # stijnvanhulle Claude Code plugin
 
-A reusable toolkit for TypeScript monorepos: a spec-driven workflow, writing-voice
-skills, a code-reviewer agent, output styles, and a `conventions` skill that ships
-the always-on rules (code style, JSDoc, markdown, security, testing, USA English).
+A reusable toolkit for TypeScript monorepos: a spec-driven workflow, writing-voice skills, and
+the always-on conventions (code style, JSDoc, markdown, security, testing, USA English).
 
 The toolkit is extracted from [stijnvanhulle/template](https://github.com/stijnvanhulle/template)
 so the same content powers the template repo itself and any project that installs

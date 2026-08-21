@@ -3,10 +3,8 @@
 A reusable toolkit for TypeScript monorepos: a spec-driven workflow, writing-voice skills, and
 the always-on conventions (code style, JSDoc, markdown, security, testing, USA English).
 
-The toolkit is extracted from [stijnvanhulle/template](https://github.com/stijnvanhulle/template)
-so the same content powers the template repo itself and any project that installs
-the plugin. It ships under the plugin name `toolkit` from the `stijnvanhulle` marketplace.
-Its `skills/` symlinks to the repo's canonical `.agents/skills`.
+It ships under the plugin name `toolkit` from the `stijnvanhulle` marketplace. Its `skills/`
+symlinks to the repo's canonical `.agents/skills`.
 
 ## What you get
 

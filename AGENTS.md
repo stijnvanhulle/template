@@ -74,10 +74,10 @@ rtk proxy <cmd>       # Run raw without filtering but still track usage
 ## How agents read this repo
 
 `AGENTS.md` is the canonical instruction file, read natively by Codex /
-ChatGPT, OpenCode, Windsurf, Cursor (0.46+), and any other AGENTS.md
-runtime. `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`
-symlink to it so Claude Code, Gemini CLI, and GitHub Copilot pick up the
-same content. The cross-provider skills are the canonical shared asset and
+ChatGPT, OpenCode, Cursor (0.46+), and any other AGENTS.md
+runtime. `CLAUDE.md` and `.github/copilot-instructions.md` symlink to it so
+Claude Code and GitHub Copilot pick up the same content, and `GEMINI.md` is
+generated from it. The cross-provider skills are the canonical shared asset and
 live in `.agents/skills/`. The Claude toolkit (commands, code-reviewer agent,
 output styles, and the conventions rules) lives in `tools/claude/`, packaged as
 a Claude Code plugin (installable as `toolkit@stijnvanhulle`); its `skills/`
@@ -91,8 +91,32 @@ the root `.cursor-plugin/marketplace.json` and consumed in this repo through
 `.cursor/`. It carries the conventions as Cursor rules (`rules/*.mdc`), the
 same commands and code-reviewer agent, and symlinks its skills to the shared
 `.agents/skills` so the Claude and Cursor plugins never drift.
-See [tools/claude/README.md](tools/claude/README.md) and
-[tools/cursor/README.md](tools/cursor/README.md) for install steps and
+
+Three more agents have their own folder under `tools/`. `tools/gemini/` is a
+Gemini CLI extension, and its commands are TOML. Because Gemini loads one context
+file and has no on-demand skill loading, the root `GEMINI.md` is generated as this
+file plus the conventions inlined. Edit `AGENTS.md` or the rules, then run
+`pnpm agent-files --write`. Never edit `GEMINI.md` directly. `tools/opencode/` and
+`tools/codex/` both reuse Claude Code's command syntax, so their command folders
+are symlinks to `tools/claude/commands/` and cannot drift. `pnpm agent-files`
+runs in CI and fails if the per-format copies stop exposing the same command set
+or if `GEMINI.md` is stale.
+
+Each agent's plugin manifest sits at the repo root, where its CLI looks for it,
+and points back at the shared content under `tools/`: `.claude-plugin/`,
+`.cursor-plugin/`, `.codex-plugin/`, `gemini-extension.json`, and `opencode.json`.
+Gemini also needs its `commands/` beside the manifest, so the root `commands/`
+symlink points at `tools/gemini/commands`.
+
+Agents that need only instructions read `AGENTS.md` through a symlink at their own
+path: `.kiro/steering/`, `.zed/`, and `AGENT.md` for tools that expect the
+singular spelling.
+
+See [tools/claude/README.md](tools/claude/README.md),
+[tools/cursor/README.md](tools/cursor/README.md),
+[tools/gemini/README.md](tools/gemini/README.md),
+[tools/opencode/README.md](tools/opencode/README.md), and
+[tools/codex/README.md](tools/codex/README.md) for install steps, and
 the [README](README.md#ai-assistant-configuration) for the full folder
 structure.
 

@@ -64,45 +64,103 @@ same slash commands, and the `code-reviewer` subagent. Other projects install it
 </details>
 
 <details>
+<summary><strong>Gemini CLI</strong></summary>
+
+```bash
+gemini extensions install https://github.com/stijnvanhulle/template
+```
+
+Installs the extension from `gemini-extension.json` at the repo root, which is where Gemini
+looks. It reads `GEMINI.md` and the seven slash commands in `commands/*.toml`. Gemini has no
+on-demand skill loading, so `GEMINI.md` is generated as `AGENTS.md` plus the conventions
+inlined, rather than symlinked like the other agents' instruction files. No subagent concept
+either, so `code-reviewer` has no equivalent. See
+[tools/gemini/README.md](tools/gemini/README.md).
+
+</details>
+
+<details>
+<summary><strong>OpenCode</strong></summary>
+
+```bash
+git clone https://github.com/stijnvanhulle/template.git
+```
+
+Reads `opencode.json` and `AGENTS.md` from the repo root, and picks the toolkit up through
+`.opencode/`, already wired in this repo. OpenCode uses the same command syntax Claude Code
+does, so its `commands/` is a symlink to the Claude ones rather than a copy. The
+`code-reviewer` subagent works here too, invoked with `@code-reviewer`. To wire it into another
+project, see [tools/opencode/README.md](tools/opencode/README.md).
+
+</details>
+
+<details>
+<summary><strong>Codex</strong></summary>
+
+```bash
+mkdir -p ~/.codex/prompts
+ln -s "$PWD/tools/codex/prompts"/*.md ~/.codex/prompts/
+```
+
+Reads `AGENTS.md` natively, so instructions and conventions need no setup. Only the commands
+need linking, and because Codex discovers prompts from `~/.codex/prompts/` rather than the
+repo, each person links them once. `.codex-plugin/plugin.json` at the repo root describes the
+same content for the Codex plugin marketplace. The prompt format matches Claude Code's, so
+`prompts/` is a symlink, not a copy. See [tools/codex/README.md](tools/codex/README.md).
+
+</details>
+
+<details>
 <summary><strong>Other agents</strong></summary>
 
-Nothing to install. These read `AGENTS.md` directly, or through a symlink, with no plugin step.
+Nothing to install. These read `AGENTS.md` directly, or through a symlink, with no plugin step
+and no slash commands.
 
-- **Gemini CLI** reads `GEMINI.md`, a symlink to `AGENTS.md`.
-- **GitHub Copilot** (VS Code) reads `.github/copilot-instructions.md`, also a symlink to
+- **GitHub Copilot** (VS Code) reads `.github/copilot-instructions.md`.
+- **Kiro** reads `.kiro/steering/` and **Zed** reads `.zed/`. Both are symlinks back to
   `AGENTS.md`.
-- **OpenAI Codex / ChatGPT** and **OpenCode** read `AGENTS.md` and the Agent Skills in
-  `.agents/skills/` natively.
-- **Windsurf**, and anything else that speaks the AGENTS.md convention, reads `AGENTS.md`
-  directly.
+- **Amp**, **Jules**, and anything else that speaks the AGENTS.md convention read it directly.
+  `AGENT.md` is symlinked too, for the tools that look for the singular spelling.
+- **Aider** takes it as an argument: `aider --read AGENTS.md`.
 
 </details>
 
 ### Skills and commands
 
-Claude Code and Cursor share one toolset, so a skill or command written once works in both:
+Every agent shares one toolset, so a skill or command written once works in all of them:
 
 | Path | What it does | When it loads |
 |---|---|---|
 | `.agents/skills/conventions/` | Always-on rules: code style, JSDoc, markdown, security, testing, USA English | Session start, plus path-scoped rules when a matching file opens |
 | `.agents/skills/` | Playbooks: changelog, deslop, documentation, humanizer, jsdoc, pr, spec-driven | On demand, when a task matches the skill |
-| `tools/{claude,cursor}/commands/changeset.md` | `/changeset` creates a changeset with the right semver bump | When you type the command |
-| `tools/{claude,cursor}/commands/deslop.md` | `/deslop` removes AI-generated code slop from the current branch's changes | When you type the command |
-| `tools/{claude,cursor}/commands/humanizer.md` | `/humanizer` removes AI writing patterns from the prose changed on the current branch | When you type the command |
-| `tools/{claude,cursor}/commands/spec.md` | `/spec` drafts or refines a feature's Phase 0 spec (requirements and acceptance criteria) | When you type the command |
-| `tools/{claude,cursor}/commands/plan.md` | `/plan` turns a feature's spec and research into `plan.md`, then scaffolds its slices | When you type the command |
-| `tools/{claude,cursor}/commands/implement.md` | `/implement` works a feature's slices one at a time, ticking each slice's done criteria | When you type the command |
-| `tools/{claude,cursor}/commands/verify.md` | `/verify` fills a feature's `verification.md` with scenarios mapped to acceptance criteria, then runs them | When you type the command |
-| `tools/{claude,cursor}/agents/` | Subagents with their own context window (`code-reviewer`) | When delegated a matching task |
+| `tools/*/commands/changeset` | `/changeset` creates a changeset with the right semver bump | When you type the command |
+| `tools/*/commands/deslop` | `/deslop` removes AI-generated code slop from the current branch's changes | When you type the command |
+| `tools/*/commands/humanizer` | `/humanizer` removes AI writing patterns from the prose changed on the current branch | When you type the command |
+| `tools/*/commands/spec` | `/spec` drafts or refines a feature's Phase 0 spec (requirements and acceptance criteria) | When you type the command |
+| `tools/*/commands/plan` | `/plan` turns a feature's spec and research into `plan.md`, then scaffolds its slices | When you type the command |
+| `tools/*/commands/implement` | `/implement` works a feature's slices one at a time, ticking each slice's done criteria | When you type the command |
+| `tools/*/commands/verify` | `/verify` fills a feature's `verification.md` with scenarios mapped to acceptance criteria, then runs them | When you type the command |
+| `tools/{claude,cursor,opencode}/agents/` | Subagents with their own context window (`code-reviewer`). Not supported by Gemini CLI or Codex | When delegated a matching task |
 | `tools/claude/output-styles/` | System-prompt modes: `house` (default), `plan`, `diagrams-first`. Claude Code only | Session start, or when selected |
 
-`.claude/` and `.cursor/` are workspace config, symlinked into `tools/claude/` and
-`tools/cursor/` so this repo runs the same plugins it distributes. `plans/` holds the
-spec-driven workflow: spec, research, plan, slices, verification.
+Each agent's plugin manifest sits at the repo root, where its CLI looks for it, and points back
+at the shared content under `tools/`: `.claude-plugin/`, `.cursor-plugin/`, `.codex-plugin/`,
+`gemini-extension.json`, and `opencode.json`. Gemini also needs its `commands/` beside the
+manifest, so the root `commands/` symlink points at `tools/gemini/commands`.
 
-For larger features, `plans/` holds a spec-driven workflow driven by the `spec-driven` skill
-and the `/spec`, `/plan`, `/implement`, and `/verify` commands. See
-[plans/README.md](plans/README.md). For quick changes, use the `plan` output style instead.
+Commands live once per format, not once per agent. OpenCode and Codex use Claude Code's command
+syntax, so their folders are symlinks to `tools/claude/commands/`. Cursor and Gemini CLI need
+their own formats (`.mdc` rules, `.toml` commands), so those are real files, and
+`pnpm agent-files` checks in CI that they still expose the same command set. It also regenerates
+`GEMINI.md`, the one generated file, with `pnpm agent-files --write`.
+
+`.claude/`, `.cursor/`, `.gemini/`, and `.opencode/` are workspace config, symlinked into their
+`tools/` folders so this repo runs the same plugins it distributes.
+
+For larger features, `plans/` holds a spec-driven workflow (spec, research, plan, slices,
+verification) driven by the `spec-driven` skill and the `/spec`, `/plan`, `/implement`, and
+`/verify` commands. See [plans/README.md](plans/README.md). For quick changes, use the `plan`
+output style instead.
 
 ## Using this template
 

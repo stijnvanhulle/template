@@ -115,6 +115,9 @@ jobs:
           NODE_OPTIONS: '--max_old_space_size=4096'
         run: pnpm run lint
 
+      - name: Agent files in sync
+        run: pnpm run agent-files
+
   prerelease:
     name: Prerelease
     timeout-minutes: 15

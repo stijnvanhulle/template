@@ -129,6 +129,7 @@ that loads `SKILL.md` folders also picks them up on demand.
 - [code-style](.agents/skills/conventions/rules/code-style.md): ESM conventions, naming, imports, exports.
 - [jsdoc](.agents/skills/conventions/rules/jsdoc.md): Always-on JSDoc essentials. The `jsdoc` skill is the full reference.
 - [markdown](.agents/skills/conventions/rules/markdown.md): Markdown structure. The `documentation` and `humanizer` skills cover voice and SEO.
+- [plain-language](.agents/skills/conventions/rules/plain-language.md): ISO 24495-1 plain language for agent responses and user-facing output.
 - [security](.agents/skills/conventions/rules/security.md): Secrets, input validation at trust boundaries, safe shell use.
 - [testing](.agents/skills/conventions/rules/testing.md): Vitest patterns and what to test.
 - [usa-english](.agents/skills/conventions/rules/usa-english.md): Write code, comments, and docs in USA English spellings.
@@ -140,7 +141,7 @@ that loads `SKILL.md` folders also picks them up on demand.
 You have new skills. If any skill might be relevant then you MUST read it.
 
 - [changelog](.agents/skills/changelog/SKILL.md) - Creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes.
-- [conventions](.agents/skills/conventions/SKILL.md) - Always-on conventions for TypeScript monorepos. Use when writing or reviewing TypeScript, markdown, or tests, when handling secrets, env vars, or input at trust boundaries, or any time you would otherwise reach for a project style guide. Bundles code style, JSDoc, markdown structure, security, testing, and USA English rules.
+- [conventions](.agents/skills/conventions/SKILL.md) - Always-on conventions for TypeScript monorepos. Use when writing or reviewing TypeScript, markdown, or tests, when handling secrets, env vars, or input at trust boundaries, or any time you would otherwise reach for a project style guide. Bundles code style, JSDoc, markdown structure, plain language, security, testing, and USA English rules.
 - [deslop](.agents/skills/deslop/SKILL.md) - Remove AI-generated code slop from a branch or diff. Use after writing or generating code to strip unnecessary comments, defensive checks, `any` casts, and style that does not match the surrounding file. For prose and markdown, use the humanizer skill instead.
 - [documentation](.agents/skills/documentation/SKILL.md) - Use when writing blog posts or documentation markdown files. Provides a writing style guide (active voice, present tense), content structure patterns, and SEO optimization. Overrides brevity rules for proper grammar.
 - [humanizer](.agents/skills/humanizer/SKILL.md) - Remove AI writing patterns to make documentation sound natural, specific, and human. Covers content patterns, language patterns, style patterns, and communication patterns.

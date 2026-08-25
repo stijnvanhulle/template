@@ -131,7 +131,7 @@ Every agent shares one toolset, so a skill or command written once works in all 
 
 | Path | What it does | When it loads |
 |---|---|---|
-| `.agents/skills/conventions/` | Always-on rules: code style, JSDoc, markdown, security, testing, USA English | Session start, plus path-scoped rules when a matching file opens |
+| `.agents/skills/conventions/` | Rules: code style, JSDoc, markdown, plain language, security, testing, USA English | Session start, plus path-scoped rules when a matching file opens |
 | `.agents/skills/` | Playbooks: changelog, deslop, documentation, humanizer, jsdoc, pr, spec-driven | On demand, when a task matches the skill |
 | `tools/*/commands/changeset` | `/changeset` creates a changeset with the right semver bump | When you type the command |
 | `tools/*/commands/deslop` | `/deslop` removes AI-generated code slop from the current branch's changes | When you type the command |

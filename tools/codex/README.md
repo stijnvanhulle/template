@@ -1,7 +1,7 @@
 # stijnvanhulle Codex prompts
 
 A reusable toolkit for TypeScript monorepos: a spec-driven workflow, writing-voice skills, and
-the always-on conventions (code style, JSDoc, markdown, security, testing, USA English).
+the conventions (code style, JSDoc, markdown, plain language, security, testing, USA English).
 
 Codex reads `AGENTS.md` natively, so the instructions and conventions need no setup at all.
 Only the slash commands need installing, and Codex uses a prompt format with `description` and

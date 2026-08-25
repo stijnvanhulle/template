@@ -1,7 +1,7 @@
 # stijnvanhulle Gemini CLI extension
 
 A reusable toolkit for TypeScript monorepos: a spec-driven workflow, writing-voice commands, and
-the always-on conventions (code style, JSDoc, markdown, security, testing, USA English).
+the conventions (code style, JSDoc, markdown, plain language, security, testing, USA English).
 
 Gemini CLI loads one context file and has no on-demand skill loading, so the conventions ship
 inlined rather than as a skill the model picks up when a task matches. The repo's root

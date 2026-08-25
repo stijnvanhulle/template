@@ -9,7 +9,7 @@
  *
  * Run `--write` to regenerate, or no argument to check, which is what CI runs.
  */
-import { readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 type CommandSet = {
@@ -20,6 +20,7 @@ type CommandSet = {
 
 const root = new URL('..', import.meta.url).pathname
 const rulesDir = join(root, '.agents/skills/conventions/rules')
+const cursorRulesDir = join(root, 'tools/cursor/rules')
 const geminiContext = join(root, 'GEMINI.md')
 
 const commandSets: Array<CommandSet> = [
@@ -72,13 +73,34 @@ const checkCommandParity = () => {
   })
 }
 
+const ruleNames = () =>
+  readdirSync(rulesDir)
+    .filter((file) => file.endsWith('.md'))
+    .map((file) => file.slice(0, -'.md'.length))
+    .sort()
+
+const checkRuleParity = () =>
+  ruleNames().flatMap((name) => {
+    const mirror = join(cursorRulesDir, `${name}.mdc`)
+
+    if (!existsSync(mirror)) {
+      return [`cursor is missing the ${name} rule`]
+    }
+
+    const source = stripFrontmatter(readFileSync(join(rulesDir, `${name}.md`), 'utf8'))
+
+    return stripFrontmatter(readFileSync(mirror, 'utf8')) === source
+      ? []
+      : [`tools/cursor/rules/${name}.mdc has drifted from the rule it mirrors`]
+  })
+
 const write = () => {
   writeFileSync(geminiContext, buildGeminiContext())
   console.log('wrote GEMINI.md')
 }
 
 const check = () => {
-  const problems = checkCommandParity()
+  const problems = [...checkCommandParity(), ...checkRuleParity()]
 
   if (readFileSync(geminiContext, 'utf8') !== buildGeminiContext()) {
     problems.push('GEMINI.md is stale, run `pnpm agent-files --write`')

@@ -1,7 +1,7 @@
 # stijnvanhulle OpenCode toolkit
 
 A reusable toolkit for TypeScript monorepos: a spec-driven workflow, writing-voice skills, and
-the always-on conventions (code style, JSDoc, markdown, security, testing, USA English).
+the conventions (code style, JSDoc, markdown, plain language, security, testing, USA English).
 
 OpenCode reads `AGENTS.md` natively and uses a command syntax with `description` frontmatter,
 `$ARGUMENTS`, `` !`command` ``, and `@file`, so `commands/` is a symlink to `../claude/commands`

@@ -1,7 +1,7 @@
 # stijnvanhulle Cursor plugin
 
 A reusable toolkit for TypeScript monorepos: a spec-driven workflow, writing-voice skills, and
-the always-on conventions (code style, JSDoc, markdown, security, testing, USA English).
+the conventions (code style, JSDoc, markdown, plain language, security, testing, USA English).
 
 It ships under the plugin name `toolkit` from the `stijnvanhulle` marketplace. Its `skills/`
 symlinks to the repo's canonical `.agents/skills`.
@@ -23,7 +23,7 @@ Rules that Cursor auto-attaches by file type, or applies always:
 - `code-style` attaches on `.ts`, `.tsx`, and `.vue` files, `jsdoc` on `.ts` and `.tsx`.
 - `testing` attaches on `*.test.*` and `*.spec.*` files.
 - `markdown` attaches on `.md` and `.mdx`.
-- `security` and `usa-english` apply on every request.
+- `plain-language`, `security`, and `usa-english` apply on every request.
 
 Skills loaded on demand from their descriptions:
 
@@ -86,7 +86,7 @@ Skills load on their own. Each carries a description, and the agent reads the ma
 the task fits, so writing release notes pulls in `changelog` and cleaning prose pulls in
 `humanizer` without being asked. To force one, name it: "use the deslop skill on this diff."
 
-Rules apply on their own too. `security` and `usa-english` are always on, and the rest attach
+Rules apply on their own too. `plain-language`, `security`, and `usa-english` are always on, and the rest attach
 when you open a matching file. The guiding split: rules always apply (or attach by file type),
 skills are optional expertise loaded when relevant, and commands are actions you trigger yourself.
 

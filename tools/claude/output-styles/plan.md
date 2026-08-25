@@ -1,4 +1,5 @@
 ---
+name: plan
 description: Structured planning mode that researches and produces an implementation plan, with no code edits
 ---
 

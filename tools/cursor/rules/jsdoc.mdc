@@ -17,6 +17,3 @@ Minimal, high-quality JSDoc. For the full format guide and examples, use the `js
 - Do not use `@param`, `@returns`, `@type`, or `@typedef`, since TypeScript already provides these
 - Do not over-document trivial, self-explanatory members
 
-## Voice
-
-- Follow the house voice (`humanizer` skill)

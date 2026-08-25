@@ -11,6 +11,7 @@
  */
 import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 type CommandSet = {
   agent: string
@@ -18,7 +19,7 @@ type CommandSet = {
   extension: string
 }
 
-const root = new URL('..', import.meta.url).pathname
+const root = fileURLToPath(new URL('..', import.meta.url))
 const rulesDir = join(root, '.agents/skills/conventions/rules')
 const cursorRulesDir = join(root, 'tools/cursor/rules')
 const geminiContext = join(root, 'GEMINI.md')
@@ -73,25 +74,75 @@ const checkCommandParity = () => {
   })
 }
 
-const ruleNames = () =>
-  readdirSync(rulesDir)
-    .filter((file) => file.endsWith('.md'))
-    .map((file) => file.slice(0, -'.md'.length))
+const namesIn = (dir: string, extension: string) =>
+  readdirSync(dir)
+    .filter((file) => file.endsWith(extension))
+    .map((file) => file.slice(0, -extension.length))
     .sort()
 
-const checkRuleParity = () =>
-  ruleNames().flatMap((name) => {
-    const mirror = join(cursorRulesDir, `${name}.mdc`)
+const frontmatter = (source: string) => source.match(/^---\n([\s\S]*?)\n---\n/)?.[1] ?? ''
 
-    if (!existsSync(mirror)) {
-      return [`cursor is missing the ${name} rule`]
-    }
+/** The `paths:` list a rule is scoped to, or an empty list when it is always on. */
+const rulePaths = (source: string) => [...frontmatter(source).matchAll(/^\s*-\s*"(.+)"\s*$/gm)].map((match) => match[1]).sort()
 
-    const source = stripFrontmatter(readFileSync(join(rulesDir, `${name}.md`), 'utf8'))
+/** The same scope as Cursor spells it: a `globs:` comma list, or `alwaysApply: true`. */
+const mirrorGlobs = (source: string) => {
+  const globs = frontmatter(source).match(/^globs:\s*(.+)$/m)?.[1] ?? ''
 
-    return stripFrontmatter(readFileSync(mirror, 'utf8')) === source
-      ? []
-      : [`tools/cursor/rules/${name}.mdc has drifted from the rule it mirrors`]
+  return globs
+    .split(',')
+    .map((glob) => glob.trim())
+    .filter(Boolean)
+    .sort()
+}
+
+const checkRuleParity = () => {
+  const expected = namesIn(rulesDir, '.md')
+  const actual = namesIn(cursorRulesDir, '.mdc')
+
+  const extra = actual.filter((name) => !expected.includes(name)).map((name) => `tools/cursor/rules/${name}.mdc mirrors no rule`)
+
+  return [
+    ...extra,
+    ...expected.flatMap((name) => {
+      const mirrorPath = join(cursorRulesDir, `${name}.mdc`)
+
+      if (!existsSync(mirrorPath)) {
+        return [`cursor is missing the ${name} rule`]
+      }
+
+      const rule = readFileSync(join(rulesDir, `${name}.md`), 'utf8')
+      const mirror = readFileSync(mirrorPath, 'utf8')
+      const alwaysApply = /^alwaysApply:\s*true\s*$/m.test(frontmatter(mirror))
+      const problems: Array<string> = []
+
+      if (stripFrontmatter(mirror) !== stripFrontmatter(rule)) {
+        problems.push(`tools/cursor/rules/${name}.mdc has drifted from the rule it mirrors`)
+      }
+
+      const paths = rulePaths(rule)
+
+      if (paths.length === 0 && !alwaysApply) {
+        problems.push(`tools/cursor/rules/${name}.mdc should set alwaysApply: true, since the rule has no paths:`)
+      }
+
+      if (paths.length > 0 && (alwaysApply || paths.join() !== mirrorGlobs(mirror).join())) {
+        problems.push(`tools/cursor/rules/${name}.mdc globs do not match the rule's paths:`)
+      }
+
+      return problems
+    }),
+  ]
+}
+
+/** Names only prove a command exists. A Gemini command also has to carry its prompt. */
+const checkGeminiCommandBodies = () =>
+  namesIn(join(root, 'tools/gemini/commands'), '.toml').flatMap((name) => {
+    const source = readFileSync(join(root, 'tools/gemini/commands', `${name}.toml`), 'utf8')
+
+    return ['description', 'prompt'].flatMap((key) =>
+      new RegExp(`^${key}\\s*=\\s*("""[\\s\\S]*?"""|".+")`, 'm').test(source) ? [] : [`tools/gemini/commands/${name}.toml has no ${key}`],
+    )
   })
 
 const write = () => {
@@ -100,7 +151,7 @@ const write = () => {
 }
 
 const check = () => {
-  const problems = [...checkCommandParity(), ...checkRuleParity()]
+  const problems = [...checkCommandParity(), ...checkGeminiCommandBodies(), ...checkRuleParity()]
 
   if (readFileSync(geminiContext, 'utf8') !== buildGeminiContext()) {
     problems.push('GEMINI.md is stale, run `pnpm agent-files --write`')

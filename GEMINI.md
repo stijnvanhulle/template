@@ -181,10 +181,6 @@ Minimal, high-quality JSDoc. For the full format guide and examples, use the `js
 - Use `@example` for complex or multi-variant APIs, one concern per example, code on its own line
 - Do not use `@param`, `@returns`, `@type`, or `@typedef`, since TypeScript already provides these
 - Do not over-document trivial, self-explanatory members
-
-## Voice
-
-- Follow the house voice (`humanizer` skill)
 # Markdown structure
 
 The writing voice (no dashes or clause-joining semicolons, sentence-case headings, no emoji, no
@@ -241,7 +237,8 @@ How to write, run, and debug tests in this repo (Vitest).
 
 ## Authoring
 
-- Colocate tests next to source as `*.test.ts` or `*.test.tsx` in `src`
+- Colocate tests next to source as `*.test.ts` or `*.test.tsx` in `src`. This repo does not
+  use `.spec.*`, so rename any you find
 - Test one behavior per case and name it for the expected outcome ("returns X when Y")
 - Keep tests isolated and repeatable: no shared mutable state, clean up side effects in `afterEach`
 - Mock external dependencies (network, filesystem, time), not internal modules

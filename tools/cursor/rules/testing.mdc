@@ -10,7 +10,8 @@ How to write, run, and debug tests in this repo (Vitest).
 
 ## Authoring
 
-- Colocate tests next to source as `*.test.ts` or `*.test.tsx` in `src`
+- Colocate tests next to source as `*.test.ts` or `*.test.tsx` in `src`. This repo does not
+  use `.spec.*`, so rename any you find
 - Test one behavior per case and name it for the expected outcome ("returns X when Y")
 - Keep tests isolated and repeatable: no shared mutable state, clean up side effects in `afterEach`
 - Mock external dependencies (network, filesystem, time), not internal modules

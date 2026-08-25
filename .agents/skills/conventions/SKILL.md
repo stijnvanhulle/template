@@ -5,14 +5,17 @@ description: Always-on conventions for TypeScript monorepos. Use when writing or
 
 # Conventions
 
-This skill ships the always-on rules that the template repo uses under
-`.claude/rules/`. When the plugin is installed in another project, the same
-files load on demand from here instead.
+This skill ships the rules the template repo keeps in
+`.agents/skills/conventions/rules/`. When the plugin is installed in another
+project, the same files load on demand from here instead.
+
+`plain-language`, `security`, and `usa-english` apply to every request. The rest
+carry `paths:` frontmatter and load when you open a matching file.
 
 Read the file that matches what you are doing:
 
 - [`rules/code-style.md`](./rules/code-style.md) for ESM conventions, naming, imports, and exports.
-- [`rules/jsdoc.md`](./rules/jsdoc.md) for the always-on JSDoc essentials. The full reference
+- [`rules/jsdoc.md`](./rules/jsdoc.md) for the JSDoc essentials. The full reference
   lives in the separate `jsdoc` skill.
 - [`rules/markdown.md`](./rules/markdown.md) for markdown structure. The `documentation` and
   `humanizer` skills cover writing voice and SEO.

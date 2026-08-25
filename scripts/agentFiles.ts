@@ -44,7 +44,7 @@ const buildGeminiContext = () => {
     '',
     '# Conventions',
     '',
-    'Gemini CLI has no on-demand skill loading, so the always-on conventions are inlined here.',
+    'Gemini CLI has no on-demand skill loading, so every convention rule is inlined here.',
     '',
     ...rules,
     '',

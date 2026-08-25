@@ -94,7 +94,7 @@ file. The same files ship in the `conventions` skill for tools that load `SKILL.
 folders on demand.
 
 - [code-style](.agents/skills/conventions/rules/code-style.md): ESM conventions, naming, imports, exports.
-- [jsdoc](.agents/skills/conventions/rules/jsdoc.md): Always-on JSDoc essentials. The `jsdoc` skill is the full reference.
+- [jsdoc](.agents/skills/conventions/rules/jsdoc.md): JSDoc essentials. The `jsdoc` skill is the full reference.
 - [markdown](.agents/skills/conventions/rules/markdown.md): Markdown structure. The `documentation` and `humanizer` skills cover voice and SEO.
 - [plain-language](.agents/skills/conventions/rules/plain-language.md): ISO 24495-1 plain language for agent responses and user-facing output.
 - [security](.agents/skills/conventions/rules/security.md): Secrets, input validation at trust boundaries, safe shell use.
@@ -119,7 +119,7 @@ You have new skills. If any skill might be relevant then you MUST read it.
 
 # Conventions
 
-Gemini CLI has no on-demand skill loading, so the always-on conventions are inlined here.
+Gemini CLI has no on-demand skill loading, so every convention rule is inlined here.
 
 # Coding style
 

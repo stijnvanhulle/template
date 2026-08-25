@@ -5,8 +5,8 @@ description: Full JSDoc format guide for TypeScript, covering @example formats (
 
 # JSDoc
 
-The detailed JSDoc format guide with examples for every case. The always-on essentials live in
-the `jsdoc` rule. Reach here when you need the full reference.
+The detailed JSDoc format guide with examples for every case. The essentials live in the
+`jsdoc` rule. Reach here when you need the full reference.
 
 ## `@example` format
 

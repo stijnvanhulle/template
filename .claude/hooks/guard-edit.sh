@@ -13,8 +13,12 @@ case "$file" in
     echo "Refusing to edit pnpm-lock.yaml directly; change package.json and run pnpm install." >&2
     exit 2
     ;;
+  *GEMINI.md)
+    echo "GEMINI.md is generated. Edit AGENTS.md or a rule, then run pnpm agent-files --write." >&2
+    exit 2
+    ;;
   */dist/* | */node_modules/*)
-    echo "Refusing to edit generated output ($file); edit the source instead." >&2
+    echo "Refusing to edit generated output ($file). Edit the source instead." >&2
     exit 2
     ;;
 esac

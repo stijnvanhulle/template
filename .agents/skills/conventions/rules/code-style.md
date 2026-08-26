@@ -52,5 +52,4 @@ rule.
 ## Tests
 
 - Add or update tests for every code change and keep the suite green
-- After moving files or changing imports, run `pnpm lint && pnpm typecheck`
-- See the `testing` rule for authoring conventions and how to run the suite
+- See the `testing` rule for authoring conventions, assertions, and how to run the suite

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json.schemastore.org/claude-code-marketplace-manifest.json",
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "stijnvanhulle",
   "owner": {
     "name": "stijnvanhulle",

@@ -75,62 +75,28 @@ rtk proxy <cmd>       # Run raw without filtering but still track usage
 
 ## How agents read this repo
 
-`AGENTS.md` is the canonical instruction file, read natively by Codex /
-ChatGPT, OpenCode, Cursor (0.46+), and any other AGENTS.md
-runtime. `CLAUDE.md` and `.github/copilot-instructions.md` symlink to it so
-Claude Code and GitHub Copilot pick up the same content, and `GEMINI.md` is
-generated from it. The cross-provider skills are the canonical shared asset and
-live in `.agents/skills/`. The Claude toolkit (commands, code-reviewer agent,
-output styles, and the conventions rules) lives in `tools/claude/`, packaged as
-a Claude Code plugin (installable as `toolkit@stijnvanhulle`); its `skills/`
-symlinks to `.agents/skills`. The `.claude/` workspace paths symlink into that
-folder, so the template repo and any project that installs the plugin run the
-same content. Workspace-only pieces (hooks and `settings.json`) stay under
-`.claude/`.
+`AGENTS.md` is canonical. Every other context file symlinks to it, except `GEMINI.md`,
+which `pnpm agent-files --write` generates as this file plus the rules inlined. Never
+edit `GEMINI.md` by hand. Skills live in `.agents/skills/`, rules in
+`.agents/skills/conventions/rules/`, and each agent's toolkit under `tools/<agent>/`.
+`pnpm agent-files` runs in CI and fails if the command sets diverge, a Cursor rule
+drifts from its source, or `GEMINI.md` is stale.
 
-The same toolset ships as a Cursor plugin in `tools/cursor/`, exposed through
-the root `.cursor-plugin/marketplace.json` and consumed in this repo through
-`.cursor/`. It carries the conventions as Cursor rules (`rules/*.mdc`), the
-same commands and code-reviewer agent, and symlinks its skills to the shared
-`.agents/skills` so the Claude and Cursor plugins never drift.
-
-Three more agents have their own folder under `tools/`. `tools/gemini/` is a
-Gemini CLI extension, and its commands are TOML. Because Gemini loads one context
-file and has no on-demand skill loading, the root `GEMINI.md` is generated as this
-file plus the conventions inlined. Edit `AGENTS.md` or the rules, then run
-`pnpm agent-files --write`. Never edit `GEMINI.md` directly. `tools/opencode/` and
-`tools/codex/` both reuse Claude Code's command syntax, so their command folders
-are symlinks to `tools/claude/commands/` and cannot drift. `pnpm agent-files`
-runs in CI and fails if the per-format copies stop exposing the same command set
-or if `GEMINI.md` is stale.
-
-Each agent's plugin manifest sits at the repo root, where its CLI looks for it,
-and points back at the shared content under `tools/`: `.claude-plugin/`,
-`.cursor-plugin/`, `.codex-plugin/`, `gemini-extension.json`, and `opencode.json`.
-Gemini also needs its `commands/` beside the manifest, so the root `commands/`
-symlink points at `tools/gemini/commands`.
-
-Agents that need only instructions read `AGENTS.md` through a symlink at their own
-path: `.kiro/steering/`, `.zed/`, and `AGENT.md` for tools that expect the
-singular spelling.
-
-See [tools/claude/README.md](tools/claude/README.md),
-[tools/cursor/README.md](tools/cursor/README.md),
-[tools/gemini/README.md](tools/gemini/README.md),
-[tools/opencode/README.md](tools/opencode/README.md), and
-[tools/codex/README.md](tools/codex/README.md) for install steps, and
-the [README](README.md#ai-assistant-configuration) for the full folder
-structure.
+For the full wiring (which path symlinks where, plugin manifests, install steps) see
+the per-agent READMEs under `tools/` and the
+[README](README.md#ai-assistant-configuration).
 
 ## Rules
 
-Always-on conventions for this repo. Read the file that matches what you
-are doing. The same files ship in the `conventions` skill, so any tool
-that loads `SKILL.md` folders also picks them up on demand.
+Conventions for this repo. `plain-language`, `security`, and `usa-english` apply to
+every request. The rest carry `paths:` frontmatter and load when you open a matching
+file. The same files ship in the `conventions` skill for tools that load `SKILL.md`
+folders on demand.
 
 - [code-style](.agents/skills/conventions/rules/code-style.md): ESM conventions, naming, imports, exports.
-- [jsdoc](.agents/skills/conventions/rules/jsdoc.md): Always-on JSDoc essentials. The `jsdoc` skill is the full reference.
+- [jsdoc](.agents/skills/conventions/rules/jsdoc.md): JSDoc essentials. The `jsdoc` skill is the full reference.
 - [markdown](.agents/skills/conventions/rules/markdown.md): Markdown structure. The `documentation` and `humanizer` skills cover voice and SEO.
+- [plain-language](.agents/skills/conventions/rules/plain-language.md): ISO 24495-1 plain language for agent responses and user-facing output.
 - [security](.agents/skills/conventions/rules/security.md): Secrets, input validation at trust boundaries, safe shell use.
 - [testing](.agents/skills/conventions/rules/testing.md): Vitest patterns and what to test.
 - [usa-english](.agents/skills/conventions/rules/usa-english.md): Write code, comments, and docs in USA English spellings.
@@ -142,7 +108,7 @@ that loads `SKILL.md` folders also picks them up on demand.
 You have new skills. If any skill might be relevant then you MUST read it.
 
 - [changelog](.agents/skills/changelog/SKILL.md) - Creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes.
-- [conventions](.agents/skills/conventions/SKILL.md) - Always-on conventions for TypeScript monorepos. Use when writing or reviewing TypeScript, markdown, or tests, when handling secrets, env vars, or input at trust boundaries, or any time you would otherwise reach for a project style guide. Bundles code style, JSDoc, markdown structure, security, testing, and USA English rules.
+- [conventions](.agents/skills/conventions/SKILL.md) - Always-on conventions for TypeScript monorepos. Use when writing or reviewing TypeScript, markdown, or tests, when handling secrets, env vars, or input at trust boundaries, or any time you would otherwise reach for a project style guide. Bundles code style, JSDoc, markdown structure, plain language, security, testing, and USA English rules.
 - [deslop](.agents/skills/deslop/SKILL.md) - Remove AI-generated code slop from a branch or diff. Use after writing or generating code to strip unnecessary comments, defensive checks, `any` casts, and style that does not match the surrounding file. For prose and markdown, use the humanizer skill instead.
 - [documentation](.agents/skills/documentation/SKILL.md) - Use when writing blog posts or documentation markdown files. Provides a writing style guide (active voice, present tense), content structure patterns, and SEO optimization. Overrides brevity rules for proper grammar.
 - [humanizer](.agents/skills/humanizer/SKILL.md) - Remove AI writing patterns to make documentation sound natural, specific, and human. Covers content patterns, language patterns, style patterns, and communication patterns.
@@ -153,7 +119,7 @@ You have new skills. If any skill might be relevant then you MUST read it.
 
 # Conventions
 
-Gemini CLI has no on-demand skill loading, so the always-on conventions are inlined here.
+Gemini CLI has no on-demand skill loading, so every convention rule is inlined here.
 
 # Coding style
 
@@ -202,8 +168,7 @@ rule.
 ## Tests
 
 - Add or update tests for every code change and keep the suite green
-- After moving files or changing imports, run `pnpm lint && pnpm typecheck`
-- See the `testing` rule for authoring conventions and how to run the suite
+- See the `testing` rule for authoring conventions, assertions, and how to run the suite
 # JSDoc conventions
 
 Minimal, high-quality JSDoc. For the full format guide and examples, use the `jsdoc` skill.
@@ -216,16 +181,12 @@ Minimal, high-quality JSDoc. For the full format guide and examples, use the `js
 - Use `@example` for complex or multi-variant APIs, one concern per example, code on its own line
 - Do not use `@param`, `@returns`, `@type`, or `@typedef`, since TypeScript already provides these
 - Do not over-document trivial, self-explanatory members
-
-## Voice
-
-- Follow the house voice (`humanizer` skill)
 # Markdown structure
 
 The writing voice (no dashes or clause-joining semicolons, sentence-case headings, no emoji, no
-marketing words, cut filler) is set by the always-on `house` output style, and the `humanizer`
-skill is the full reference. For the complete writing guide (voice, content patterns, SEO) use
-the `documentation` skill. This rule adds only the markdown-structure specifics:
+marketing words, cut filler) comes from the `humanizer` skill, which is the full reference. For
+the complete writing guide (voice, content patterns, SEO) use the `documentation` skill. This
+rule adds only the markdown-structure specifics:
 
 - No inline-header bullet lists (`- **Speed**: faster load times`). Write a sentence instead
 - Do not bold product names or ordinary words mid-sentence
@@ -240,6 +201,21 @@ the `documentation` skill. This rule adds only the markdown-structure specifics:
 Run the `humanizer` skill over any user-facing markdown you write or edit (READMEs, docs,
 changesets) and fix the tells it surfaces in that same pass. Do this by default as
 part of writing the file, not only when asked.
+# Plain language
+
+Everything an agent writes for a person follows
+[ISO 24495-1:2023](https://www.iso.org/standard/78907.html), the plain language standard. That
+covers chat replies, task summaries, commit messages, PR titles and bodies, review comments, and
+any error or CLI text.
+
+The standard sets four outcomes. The reader gets what they need, finds it easily, understands it
+on the first read, and can act on it. In practice:
+
+- Answer what was asked. Cut background the reader has, options you ruled out, and restatements
+  of the request.
+- Lead with the answer or the change, then the reason.
+- One idea per sentence. Everyday words, active voice, exact paths and commands.
+- Say what changed and how to verify it. When blocked, name the blocker and what you need.
 # Security requirements
 
 Constraints that always apply.
@@ -261,7 +237,8 @@ How to write, run, and debug tests in this repo (Vitest).
 
 ## Authoring
 
-- Colocate tests next to source as `*.test.ts` or `*.test.tsx` in `src`
+- Colocate tests next to source as `*.test.ts` or `*.test.tsx` in `src`. This repo does not
+  use `.spec.*`, so rename any you find
 - Test one behavior per case and name it for the expected outcome ("returns X when Y")
 - Keep tests isolated and repeatable: no shared mutable state, clean up side effects in `afterEach`
 - Mock external dependencies (network, filesystem, time), not internal modules

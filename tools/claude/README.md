@@ -1,7 +1,7 @@
 # stijnvanhulle Claude Code plugin
 
 A reusable toolkit for TypeScript monorepos: a spec-driven workflow, writing-voice skills, and
-the always-on conventions (code style, JSDoc, markdown, security, testing, USA English).
+the conventions (code style, JSDoc, markdown, plain language, security, testing, USA English).
 
 It is published under the plugin name `toolkit` from the `stijnvanhulle` marketplace, so the
 install reads as `toolkit@stijnvanhulle`.
@@ -27,7 +27,7 @@ Skills loaded on demand from their descriptions:
 - `jsdoc` covers JSDoc tags and examples for TypeScript.
 - `pr` is the PR-prep and release checklist for a Changesets monorepo.
 - `spec-driven` drives the spec → plan → implement → verify loop.
-- `conventions` bundles the six always-on rules (code style, JSDoc, markdown,
+- `conventions` bundles the seven rules (code style, JSDoc, markdown, plain language,
   security, testing, USA English).
 
 A `code-reviewer` subagent reviews TypeScript changes for correctness, security,
@@ -79,9 +79,9 @@ Skills load on their own. Each carries a description, and the agent reads the ma
 the task fits, so writing release notes pulls in `changelog` and cleaning prose pulls in
 `humanizer` without being asked. To force one, name it: "use the deslop skill on this diff."
 
-The `conventions` rules (code style, JSDoc, markdown, security, testing, USA English) are always
-on and need no trigger. The guiding split: rules always apply, skills are optional expertise loaded when
-relevant, and commands are actions you trigger yourself.
+Rules need no trigger. `plain-language`, `security`, and `usa-english` apply on every request,
+and the rest attach when you open a matching file. The guiding split: rules apply on their own,
+skills are optional expertise loaded when relevant, and commands are actions you trigger yourself.
 
 ## Scope
 

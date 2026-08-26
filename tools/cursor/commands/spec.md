@@ -1,6 +1,6 @@
 ---
 name: spec
-description: Draft or refine the Phase 0 spec (requirements and acceptance criteria) for a feature
+description: Draft or refine the Phase 0 spec (requirements + acceptance criteria) for a feature
 ---
 
 Write the specification for the feature **$1**.

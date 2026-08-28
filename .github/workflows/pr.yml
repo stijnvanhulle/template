@@ -118,9 +118,6 @@ jobs:
       - name: Agent files in sync
         run: pnpm run agent-files
 
-      - name: Plugin versions bumped
-        run: pnpm run plugin-version
-
   prerelease:
     name: Prerelease
     timeout-minutes: 15

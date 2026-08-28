@@ -84,6 +84,15 @@ For the full wiring (which path symlinks where, plugin manifests, install steps)
 the per-agent READMEs under `tools/` and the
 [README](README.md#ai-assistant-configuration).
 
+Four toolkit manifests ship this content and each carries its own `version` field:
+`tools/claude/.claude-plugin/plugin.json`, `tools/cursor/.cursor-plugin/plugin.json`,
+`.codex-plugin/plugin.json`, and `gemini-extension.json`. `claude plugin update` (and
+the Cursor and Codex equivalents) compare that field to decide whether there's anything
+new, so a content change with no version bump makes the update look like a no-op. When
+a change touches `.agents/skills/`, `tools/claude/`, or `tools/cursor/`, bump the
+`version` in every manifest whose content it affects (a semver patch bump for most
+changes) in the same PR.
+
 ## Rules
 
 Conventions for this repo. `plain-language`, `security`, and `usa-english` apply to

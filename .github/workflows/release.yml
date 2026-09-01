@@ -5,6 +5,8 @@ on:
     paths:
       - '.changeset/**'
       - 'packages/**'
+      - 'tools/claude/**'
+      - 'tools/cursor/**'
 
 permissions: {}
 
@@ -45,7 +47,9 @@ jobs:
         id: changesets
         uses: changesets/action@8488615a623b1b9c987934bb89eae8af6a946ac1 # v2.1.1
         with:
-          version-script: pnpm exec changeset version
+          # Keeps the Claude and Cursor plugin manifests' version fields in step with
+          # the @stijnvanhulle/template-{claude,cursor}-plugin packages Changesets bumps.
+          version-script: pnpm exec changeset version && pnpm run sync:plugin-version
           publish-script: pnpm release
           commit-message: 'ci(changesets): version packages'
           pr-title: 'ci(changesets): version packages'

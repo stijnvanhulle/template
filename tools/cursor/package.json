@@ -1,0 +1,7 @@
+{
+  "name": "@stijnvanhulle/template-cursor-plugin",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Cursor plugin for this template (agents, commands, rules, skills).",
+  "license": "MIT"
+}

@@ -1,4 +1,5 @@
 import { readFileSync, writeFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
@@ -9,8 +10,8 @@ const manifests = [
 ]
 
 for (const { packageJson, manifest } of manifests) {
-  const { version } = JSON.parse(readFileSync(`${root}${packageJson}`, 'utf-8'))
-  const manifestPath = `${root}${manifest}`
+  const { version } = JSON.parse(readFileSync(join(root, packageJson), 'utf-8'))
+  const manifestPath = join(root, manifest)
   const manifestText = readFileSync(manifestPath, 'utf-8')
   const currentVersion = JSON.parse(manifestText).version
 

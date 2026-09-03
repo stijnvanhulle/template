@@ -49,7 +49,9 @@ jobs:
         with:
           # Keeps the Claude and Cursor plugin manifests' version fields in step with
           # the @stijnvanhulle/template-{claude,cursor}-plugin packages Changesets bumps.
-          version-script: pnpm exec changeset version && pnpm run sync:plugin-version
+          # changesets/action runs this without a shell, so `&&` can't chain
+          # commands here — pnpm run does its own shell chaining instead.
+          version-script: pnpm run release:version
           publish-script: pnpm release
           commit-message: 'ci(changesets): version packages'
           pr-title: 'ci(changesets): version packages'

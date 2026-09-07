@@ -5,6 +5,8 @@ on:
     paths:
       - '.changeset/**'
       - 'packages/**'
+      - 'tools/claude/**'
+      - 'tools/cursor/**'
 
 permissions: {}
 
@@ -26,7 +28,7 @@ jobs:
       issues: write
     steps:
       - name: Check out code
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
 
@@ -45,7 +47,11 @@ jobs:
         id: changesets
         uses: changesets/action@8488615a623b1b9c987934bb89eae8af6a946ac1 # v2.1.1
         with:
-          version-script: pnpm exec changeset version
+          # Keeps the Claude and Cursor plugin manifests' version fields in step with
+          # the @stijnvanhulle/template-{claude,cursor}-plugin packages Changesets bumps.
+          # changesets/action runs this without a shell, so `&&` can't chain
+          # commands here — pnpm run does its own shell chaining instead.
+          version-script: pnpm run release:version
           publish-script: pnpm release
           commit-message: 'ci(changesets): version packages'
           pr-title: 'ci(changesets): version packages'

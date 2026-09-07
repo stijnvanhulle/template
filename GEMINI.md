@@ -90,10 +90,17 @@ Four toolkit manifests ship this content and each carries its own `version` fiel
 `tools/claude/.claude-plugin/plugin.json`, `tools/cursor/.cursor-plugin/plugin.json`,
 `.codex-plugin/plugin.json`, and `gemini-extension.json`. `claude plugin update` (and
 the Cursor and Codex equivalents) compare that field to decide whether there's anything
-new, so a content change with no version bump makes the update look like a no-op. When
-a change touches `.agents/skills/`, `tools/claude/`, or `tools/cursor/`, bump the
-`version` in every manifest whose content it affects (a semver patch bump for most
-changes) in the same PR.
+new, so a content change with no version bump makes the update look like a no-op.
+
+The Claude and Cursor manifests are versioned through Changesets: `tools/claude` and
+`tools/cursor` are private workspace packages (`@stijnvanhulle/template-claude-plugin`,
+`@stijnvanhulle/template-cursor-plugin`) in the same `fixed` group as every other
+`@stijnvanhulle/template-*` package. Add a changeset when you change either plugin's
+content; release syncs the bumped version into the matching `plugin.json` automatically
+(`scripts/syncPluginVersion.mjs`), so never edit those two `version` fields by hand.
+`.codex-plugin/plugin.json` and `gemini-extension.json` aren't tied to a workspace
+package yet, so when a change touches `.agents/skills/` (which both of those also ship),
+bump their `version` by hand in the same PR.
 
 ## Rules
 

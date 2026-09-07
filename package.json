@@ -26,7 +26,9 @@
     "lint": "oxlint -c oxlint.config.ts ./packages",
     "lint:fix": "oxlint -c oxlint.config.ts --fix ./packages",
     "release": "changeset publish",
+    "release:version": "changeset version && pnpm run sync:plugin-version",
     "start": "turbo run start --filter=./packages/* --filter=./internals/*",
+    "sync:plugin-version": "node scripts/syncPluginVersion.mjs",
     "test": "vitest run --config ./configs/vitest.config.ts",
     "test:bench": "NODE_OPTIONS='--max_old_space_size=4096' vitest bench --config ./configs/vitest.bench.config.ts",
     "test:watch": "vitest --config ./configs/vitest.config.ts",
@@ -45,7 +47,7 @@
     "taze": "^21.1.0",
     "ts-node": "^10.9.2",
     "tsdown": "catalog:",
-    "turbo": "^2.10.11",
+    "turbo": "^2.10.12",
     "typescript": "catalog:",
     "vitest": "catalog:"
   },

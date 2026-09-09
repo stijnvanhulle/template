@@ -12,9 +12,12 @@ body when it is not empty.
 1. Run `pnpm format && pnpm lint:fix && pnpm typecheck && pnpm test` and fix what fails.
 2. Add a changeset when the branch touches a published package, or say why it needs none.
 3. Commit anything outstanding with a Conventional Commit message.
-4. Push with `git push -u origin <branch>`.
-5. Open the PR against `main`, ready for review, with the body filling every section of
-   `.github/pull_request_template.md`. Tick only the boxes you verified.
+4. Bring the branch up to date with `git fetch origin main`, then `git push -u origin <branch>`.
+5. Derive the title from the branch name as one Conventional Commit line.
+6. Open the PR with `gh pr create --base main --assignee @me`, ready for review. Fill every
+   section of `.github/pull_request_template.md`, give the how-to-test section numbered steps
+   ending in the expected result, add a label the repo already uses, and tick only the boxes
+   you verified.
 
 Report the PR URL and anything you left unticked.
 """

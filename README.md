@@ -132,15 +132,11 @@ Every agent shares one toolset, so a skill or command written once works in all 
 | Path | What it does | When it loads |
 |---|---|---|
 | `.agents/skills/conventions/` | Rules: code style, JSDoc, markdown, plain language, security, testing, USA English | Session start, plus path-scoped rules when a matching file opens |
-| `.agents/skills/` | Playbooks: changelog, deslop, documentation, humanizer, jsdoc, pr, spec-driven | On demand, when a task matches the skill |
+| `.agents/skills/` | Playbooks: changelog, deslop, documentation, humanizer, jsdoc, pr | On demand, when a task matches the skill |
 | `tools/*/commands/changeset` | `/changeset` creates a changeset with the right semver bump | When you type the command |
 | `tools/*/commands/deslop` | `/deslop` removes AI-generated code slop from the current branch's changes | When you type the command |
 | `tools/*/commands/humanizer` | `/humanizer` removes AI writing patterns from the prose changed on the current branch | When you type the command |
 | `tools/*/commands/pr` | `/pr` runs the pre-push checks, adds a changeset when one is needed, and opens the pull request | When you type the command |
-| `tools/*/commands/spec` | `/spec` drafts or refines a feature's Phase 0 spec (requirements and acceptance criteria) | When you type the command |
-| `tools/*/commands/plan` | `/plan` turns a feature's spec and research into `plan.md`, then scaffolds its slices | When you type the command |
-| `tools/*/commands/implement` | `/implement` works a feature's slices one at a time, ticking each slice's done criteria | When you type the command |
-| `tools/*/commands/verify` | `/verify` fills a feature's `verification.md` with scenarios mapped to acceptance criteria, then runs them | When you type the command |
 | `tools/{claude,cursor,opencode}/agents/` | Subagents with their own context window (`code-reviewer`). Not supported by Gemini CLI or Codex | When delegated a matching task |
 | `tools/claude/output-styles/` | System-prompt modes: `house` (default), `plan`, `diagrams-first`. Claude Code only | Session start, or when selected |
 
@@ -157,11 +153,6 @@ their own formats (`.mdc` rules, `.toml` commands), so those are real files, and
 
 `.claude/`, `.cursor/`, `.gemini/`, and `.opencode/` are workspace config, symlinked into their
 `tools/` folders so this repo runs the same plugins it distributes.
-
-For larger features, `plans/` holds a spec-driven workflow (spec, research, plan, slices,
-verification) driven by the `spec-driven` skill and the `/spec`, `/plan`, `/implement`, and
-`/verify` commands. See [plans/README.md](plans/README.md). For quick changes, use the `plan`
-output style instead.
 
 ## Using this template
 

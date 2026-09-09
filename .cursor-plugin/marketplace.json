@@ -11,7 +11,7 @@
     {
       "name": "toolkit",
       "source": "./tools/cursor",
-      "description": "Spec-driven workflow, writing-voice skills, code-reviewer agent, and shared TypeScript-monorepo conventions."
+      "description": "Writing-voice skills, code-reviewer agent, and shared TypeScript-monorepo conventions."
     }
   ]
 }

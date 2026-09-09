@@ -1,6 +1,6 @@
 # stijnvanhulle Codex prompts
 
-A reusable toolkit for TypeScript monorepos: a spec-driven workflow, writing-voice skills, and
+A reusable toolkit for TypeScript monorepos: writing-voice skills and
 the conventions (code style, JSDoc, markdown, plain language, security, testing, USA English).
 
 Codex reads `AGENTS.md` natively, so the instructions and conventions need no setup at all.
@@ -10,13 +10,11 @@ Only the slash commands need installing, and Codex uses a prompt format with `de
 
 ## What you get
 
-- `/spec <feature>` writes the Phase 0 spec (requirements and acceptance criteria).
-- `/plan <feature>` turns the spec into a numbered implementation plan.
-- `/implement <feature>` executes a plan slice and ticks done criteria.
-- `/verify <feature>` checks the implementation against the spec.
 - `/changeset [patch|minor|major]` creates Changesets for affected packages.
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
+- `/pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens the
+  pull request.
 
 Codex has no subagent concept, so there is no code-reviewer agent here.
 

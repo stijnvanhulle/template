@@ -2,7 +2,7 @@
   "name": "toolkit",
   "displayName": "stijnvanhulle template",
   "version": "0.2.0",
-  "description": "Spec-driven workflow, writing-voice skills, and shared TypeScript-monorepo conventions.",
+  "description": "Writing-voice skills and shared TypeScript-monorepo conventions.",
   "author": {
     "name": "stijnvanhulle",
     "url": "https://github.com/stijnvanhulle"
@@ -10,9 +10,9 @@
   "homepage": "https://github.com/stijnvanhulle/template",
   "repository": "https://github.com/stijnvanhulle/template",
   "license": "MIT",
-  "keywords": ["typescript", "monorepo", "spec-driven", "changesets", "skills", "conventions"],
+  "keywords": ["typescript", "monorepo", "changesets", "skills", "conventions"],
   "category": "developer-tools",
-  "tags": ["typescript", "monorepo", "conventions", "spec-driven", "review"],
+  "tags": ["typescript", "monorepo", "conventions", "review"],
   "skills": "./skills/",
   "rules": "./rules/",
   "commands": "./commands/",

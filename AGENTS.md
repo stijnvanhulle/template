@@ -43,13 +43,8 @@ what the PR template asks contributors to confirm.
 When picking up an in-progress task, before editing anything:
 
 1. `git status` and `git log -10 --oneline` to see the working tree and recent history.
-2. Check `plans/` for an active feature folder. If one exists, read its `spec.md`,
-   the latest unchecked slice (`NNN-<slug>.md`), and `verification.md` to find the
-   next step.
-3. Run `pnpm install`, then the same pre-PR sequence above to confirm the baseline
+2. Run `pnpm install`, then the same pre-PR sequence above to confirm the baseline
    is green before changing code.
-4. Leave a short note in the relevant slice or `verification.md` before ending the
-   session so the next agent knows where you stopped.
 
 ## Token optimized CLI (rtk)
 
@@ -128,5 +123,4 @@ You have new skills. If any skill might be relevant then you MUST read it.
 - [humanizer](.agents/skills/humanizer/SKILL.md) - Remove AI writing patterns to make documentation sound natural, specific, and human. Covers content patterns, language patterns, style patterns, and communication patterns.
 - [jsdoc](.agents/skills/jsdoc/SKILL.md) - Full JSDoc format guide for TypeScript, covering @example formats (short, multi-line, multi-variant), tag usage (@default, @deprecated, what to avoid), documentation patterns for properties/enums/functions, and tag order.
 - [pr](.agents/skills/pr/SKILL.md) - Open or update a pull request in this monorepo. Covers the pre-push checks, the changeset decision, Conventional Commit titles, how to fill the PR template, and what to do once CI runs.
-- [spec-driven](.agents/skills/spec-driven/SKILL.md) - Drive a spec-driven workflow for a larger feature: specify requirements and acceptance criteria, research decisions, plan numbered slices, implement, then verify. Use for multi-step features that need a reviewable paper trail. Skip it for small, obvious changes.
 </skills>

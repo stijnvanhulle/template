@@ -1,6 +1,6 @@
 # stijnvanhulle OpenCode toolkit
 
-A reusable toolkit for TypeScript monorepos: a spec-driven workflow, writing-voice skills, and
+A reusable toolkit for TypeScript monorepos: writing-voice skills and
 the conventions (code style, JSDoc, markdown, plain language, security, testing, USA English).
 
 OpenCode reads `AGENTS.md` natively and uses a command syntax with `description` frontmatter,
@@ -12,13 +12,11 @@ OpenCode expects `mode: subagent` and a `permission` block instead of a `tools` 
 
 Slash commands:
 
-- `/spec <feature>` writes the Phase 0 spec (requirements and acceptance criteria).
-- `/plan <feature>` turns the spec into a numbered implementation plan.
-- `/implement <feature>` executes a plan slice and ticks done criteria.
-- `/verify <feature>` checks the implementation against the spec.
 - `/changeset [patch|minor|major]` creates Changesets for affected packages.
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
+- `/pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens the
+  pull request.
 
 A read-only `code-reviewer` subagent reviews TypeScript changes for correctness, security, and
 maintainability. Invoke it by name with `@code-reviewer`.
@@ -53,11 +51,8 @@ and what this repo uses.
 /deslop                    # strip AI code slop from the whole branch diff
 /deslop apps/web           # limit it to one path
 /humanizer docs            # rewrite the prose the branch changed under docs/
-/spec offline-mode         # start a spec-driven feature
-/plan offline-mode         # turn the spec into a numbered plan
-/implement offline-mode    # work the next plan slice
-/verify offline-mode       # check the result against the spec
 /changeset minor           # add a changeset for the current changes
+/pr                        # get the branch ready for review and open the PR
 @code-reviewer             # hand the current diff to the review subagent
 ```
 

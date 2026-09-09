@@ -1,6 +1,6 @@
 # stijnvanhulle Claude Code plugin
 
-A reusable toolkit for TypeScript monorepos: a spec-driven workflow, writing-voice skills, and
+A reusable toolkit for TypeScript monorepos: writing-voice skills and
 the conventions (code style, JSDoc, markdown, plain language, security, testing, USA English).
 
 It is published under the plugin name `toolkit` from the `stijnvanhulle` marketplace, so the
@@ -8,15 +8,13 @@ install reads as `toolkit@stijnvanhulle`.
 
 ## What you get
 
-Slash commands for the spec-driven workflow and releases:
+Slash commands for release and review housekeeping:
 
-- `/spec <feature>` writes the Phase 0 spec (requirements and acceptance criteria).
-- `/plan <feature>` turns the spec into a numbered implementation plan.
-- `/implement <feature>` executes a plan slice and ticks done criteria.
-- `/verify <feature>` checks the implementation against the spec.
 - `/changeset [patch|minor|major]` creates Changesets for affected packages.
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
+- `/pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens the
+  pull request.
 
 Skills loaded on demand from their descriptions:
 
@@ -26,13 +24,12 @@ Skills loaded on demand from their descriptions:
 - `humanizer` removes AI tells from user-facing markdown.
 - `jsdoc` covers JSDoc tags and examples for TypeScript.
 - `pr` is the PR-prep and release checklist for a Changesets monorepo.
-- `spec-driven` drives the spec → plan → implement → verify loop.
 - `conventions` bundles the seven rules (code style, JSDoc, markdown, plain language,
   security, testing, USA English).
 
 A `code-reviewer` subagent reviews TypeScript changes for correctness, security,
 and maintainability. Three output styles set the writing voice (`house`),
-spec-driven formatting (`plan`), and a diagrams-first layout (`diagrams-first`).
+inline implementation planning (`plan`), and a diagrams-first layout (`diagrams-first`).
 
 ## Install
 
@@ -68,11 +65,8 @@ argument:
 /deslop                    # strip AI code slop from the whole branch diff
 /deslop apps/web           # limit it to one path
 /humanizer docs            # rewrite the prose the branch changed under docs/
-/spec offline-mode         # start a spec-driven feature
-/plan offline-mode         # turn the spec into a numbered plan
-/implement offline-mode    # work the next plan slice
-/verify offline-mode       # check the result against the spec
 /changeset minor           # add a changeset for the current changes
+/pr                        # get the branch ready for review and open the PR
 ```
 
 Skills load on their own. Each carries a description, and the agent reads the matching one when

@@ -31,7 +31,7 @@ Use the same Conventional Commit type you plan to use in the title, so `feat/`, 
 
 ## 2. Run the checks before you push
 
-Run the same sequence `AGENTS.md`, `CONTRIBUTING.md`, and the PR template name:
+Run the same sequence that `AGENTS.md`, `CONTRIBUTING.md`, and the PR template all name:
 
 ```bash
 pnpm format && pnpm lint:fix && pnpm typecheck && pnpm test

@@ -1,6 +1,6 @@
 # stijnvanhulle Gemini CLI extension
 
-A reusable toolkit for TypeScript monorepos: a spec-driven workflow, writing-voice commands, and
+A reusable toolkit for TypeScript monorepos: writing-voice commands and
 the conventions (code style, JSDoc, markdown, plain language, security, testing, USA English).
 
 Gemini CLI loads one context file and has no on-demand skill loading, so the conventions ship
@@ -16,13 +16,11 @@ the commands sit beside the manifest as Gemini expects.
 
 Slash commands, as `commands/*.toml`:
 
-- `/spec <feature>` writes the Phase 0 spec (requirements and acceptance criteria).
-- `/plan <feature>` turns the spec into a numbered implementation plan.
-- `/implement <feature>` executes a plan slice and ticks done criteria.
-- `/verify <feature>` checks the implementation against the spec.
 - `/changeset [patch|minor|major]` creates Changesets for affected packages.
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
+- `/pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens the
+  pull request.
 
 Gemini CLI has no subagent concept, so there is no code-reviewer agent here.
 
@@ -45,15 +43,12 @@ gemini extensions install --path=.
 /deslop                    # strip AI code slop from the whole branch diff
 /deslop apps/web           # limit it to one path
 /humanizer docs            # rewrite the prose the branch changed under docs/
-/spec offline-mode         # start a spec-driven feature
-/plan offline-mode         # turn the spec into a numbered plan
-/implement offline-mode    # work the next plan slice
-/verify offline-mode       # check the result against the spec
 /changeset minor           # add a changeset for the current changes
+/pr                        # get the branch ready for review and open the PR
 ```
 
-Commands take their argument through `{{args}}`, and the three that inspect the branch inject
-`git diff --stat HEAD` with `!{...}`, which asks for confirmation before it runs.
+Commands take their argument through `{{args}}`, and `/changeset`, `/deslop`, and `/humanizer`
+inject `git diff --stat HEAD` with `!{...}`, which asks for confirmation before it runs.
 
 ## Scope
 

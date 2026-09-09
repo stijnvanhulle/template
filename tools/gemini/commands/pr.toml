@@ -1,0 +1,9 @@
+description = "Get the current branch ready for review and open the pull request"
+
+prompt = """
+!{git status --short --branch}
+
+Follow `.agents/skills/pr/SKILL.md` to get this branch ready for review and open the pull
+request. Treat `{{args}}` as extra context for the PR body when it is not empty. Report the PR
+URL and anything you left unticked.
+"""

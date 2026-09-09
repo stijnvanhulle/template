@@ -136,6 +136,7 @@ Every agent shares one toolset, so a skill or command written once works in all 
 | `tools/*/commands/changeset` | `/changeset` creates a changeset with the right semver bump | When you type the command |
 | `tools/*/commands/deslop` | `/deslop` removes AI-generated code slop from the current branch's changes | When you type the command |
 | `tools/*/commands/humanizer` | `/humanizer` removes AI writing patterns from the prose changed on the current branch | When you type the command |
+| `tools/*/commands/pr` | `/pr` runs the pre-push checks, adds a changeset when one is needed, and opens the pull request | When you type the command |
 | `tools/*/commands/spec` | `/spec` drafts or refines a feature's Phase 0 spec (requirements and acceptance criteria) | When you type the command |
 | `tools/*/commands/plan` | `/plan` turns a feature's spec and research into `plan.md`, then scaffolds its slices | When you type the command |
 | `tools/*/commands/implement` | `/implement` works a feature's slices one at a time, ticking each slice's done criteria | When you type the command |

@@ -125,7 +125,7 @@ You have new skills. If any skill might be relevant then you MUST read it.
 - [humanizer](.agents/skills/humanizer/SKILL.md) - Remove AI writing patterns to make documentation sound natural, specific, and human. Covers content patterns, language patterns, style patterns, and communication patterns.
 - [jsdoc](.agents/skills/jsdoc/SKILL.md) - Full JSDoc format guide for TypeScript, covering @example formats (short, multi-line, multi-variant), tag usage (@default, @deprecated, what to avoid), documentation patterns for properties/enums/functions, and tag order.
 - [ponytail](.agents/skills/ponytail/SKILL.md) - Check new code against a reuse-first decision ladder before adding a dependency, wrapper, or abstraction. Use before implementing a feature and to audit a diff for over-engineering, such as an unneeded package, config option, or component with only one caller.
-- [pr](.agents/skills/pr/SKILL.md) - Open or update a pull request in this monorepo. Covers the pre-push checks, the changeset decision, Conventional Commit titles, how to fill the PR template, and what to do once CI runs.
+- [pr](.agents/skills/pr/SKILL.md) - Open or update a pull request in this monorepo. Covers the pre-push checks, the changeset decision, Conventional Commit titles, how to fill the PR template, and what to do once CI runs. Use when asked to open a PR, push a branch for review, fix a red PR, or judge whether a branch is ready to merge.
 </skills>
 
 # Conventions

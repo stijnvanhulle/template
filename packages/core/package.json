@@ -1,6 +1,6 @@
 {
   "name": "@stijnvanhulle/template-core",
-  "version": "0.0.0",
+  "version": "0.3.0",
   "description": "Core package",
   "license": "MIT",
   "author": "Stijn Van Hulle <stijn@stijnvanhulle.be>",

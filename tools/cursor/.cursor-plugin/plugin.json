@@ -1,7 +1,7 @@
 {
   "name": "toolkit",
   "displayName": "stijnvanhulle template",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Writing-voice skills and shared TypeScript-monorepo conventions.",
   "author": {
     "name": "stijnvanhulle",

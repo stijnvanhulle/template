@@ -1,0 +1,12 @@
+description = "Work through the latest open issues, one worktree and subagent per issue"
+
+prompt = """
+Work through the backlog from `{{args}}`, following `.agents/skills/backlog/SKILL.md`.
+
+Read the source as the first word (`github`, `clickup`, or `jira`) and the count as the second,
+defaulting to 10. List that many latest open issues, ask one batch of questions covering all of
+them (implement, skip, or needs more detail), then for each confirmed issue cut a worktree and
+branch and spawn a dedicated subagent to implement it and open the PR.
+
+Report one line per issue: implemented and pushed, skipped and why, or waiting on a follow-up.
+"""

@@ -1,5 +1,5 @@
 ---
-name: pr
+name: create-pr
 description: Get the current branch ready for review and open the pull request
 ---
 

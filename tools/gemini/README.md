@@ -16,13 +16,17 @@ the commands sit beside the manifest as Gemini expects.
 
 Slash commands, as `commands/*.toml`:
 
-- `/branch [issue or description]` cuts a Conventional Commit branch from the issue it belongs to.
-- `/changeset [patch|minor|major]` creates Changesets for affected packages.
+- `/backlog [source] [count]` works through the latest open issues, one per issue.
+- `/create-branch [issue or description]` cuts a Conventional Commit branch from the issue it
+  belongs to.
+- `/create-changeset [patch|minor|major]` creates Changesets for affected packages.
+- `/create-issue [what it is about]` opens a GitHub issue with the type, labels, and fields
+  filled in.
+- `/create-pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens
+  the pull request.
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
-- `/issue [what it is about]` opens a GitHub issue with the type, labels, and fields filled in.
-- `/pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens the
-  pull request.
+- `/ponytail [path]` audits the branch's changes for over-engineering.
 
 Gemini CLI has no subagent concept, so there is no code-reviewer agent here.
 
@@ -45,12 +49,15 @@ gemini extensions install --path=.
 /deslop                    # strip AI code slop from the whole branch diff
 /deslop apps/web           # limit it to one path
 /humanizer docs            # rewrite the prose the branch changed under docs/
-/changeset minor           # add a changeset for the current changes
-/pr                        # get the branch ready for review and open the PR
+/create-changeset minor    # add a changeset for the current changes
+/create-pr                 # get the branch ready for review and open the PR
+/backlog github 10         # triage the 10 latest GitHub issues
+/ponytail                  # audit the whole branch diff for over-engineering
 ```
 
-Commands take their argument through `{{args}}`, and `/changeset`, `/deslop`, and `/humanizer`
-inject `git diff --stat HEAD` with `!{...}`, which asks for confirmation before it runs.
+Commands take their argument through `{{args}}`, and `/create-changeset`, `/deslop`, and
+`/humanizer` inject `git diff --stat HEAD` with `!{...}`, which asks for confirmation before it
+runs.
 
 ## Scope
 

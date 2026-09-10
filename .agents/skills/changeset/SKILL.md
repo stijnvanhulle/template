@@ -10,8 +10,9 @@ reviewing the diff.
 
 ## 1. Does the change need one
 
-A change that reaches a published package does. Docs, CI, tests, and the agent files do not.
-`tools/claude` and `tools/cursor` ship as published plugins, so they do.
+A change that reaches a versioned package does. Docs, CI, and tests do not. When you are not
+sure, check whether the package is in the workspace and not listed under `ignore` in
+`.changeset/config.json`, since private packages can be versioned too.
 
 ## 2. Pick the bump
 

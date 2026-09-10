@@ -21,8 +21,7 @@ A change that reaches a published package does. Docs, CI, tests, and the agent f
 | `minor` | New behavior existing code survives | A new `unionType` option |
 | `major` | A rename, a removal, or a changed default | `enumType` now defaults to `asConst` |
 
-Every `@stijnvanhulle/template-*` package releases as one fixed group, so list only the packages
-you changed.
+List only the packages you changed.
 
 ## 3. Write the file
 
@@ -31,7 +30,7 @@ you changed.
 
 ````md
 ---
-'@stijnvanhulle/template-core': minor
+'@scope/core': minor
 ---
 
 Add `unionType` so one type covers every variant of a discriminated schema.
@@ -63,7 +62,7 @@ A patch is usually one line and no example:
 
 ```md
 ---
-'@stijnvanhulle/template-core': patch
+'@scope/core': patch
 ---
 
 Resolve nested plugin paths on Windows, which broke on a backslash separator.

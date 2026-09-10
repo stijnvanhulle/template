@@ -55,7 +55,7 @@ validates each option name before the call:
 
 ```json
 {
-  "method": "create", "owner": "stijnvanhulle", "repo": "template",
+  "method": "create", "owner": "<owner>", "repo": "<repo>",
   "title": "<title>", "body": "<body>", "type": "Bug", "labels": ["bug"],
   "issue_fields": [
     { "field_name": "Priority", "field_option_name": "High" },

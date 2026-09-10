@@ -33,8 +33,9 @@ git switch -c <category>/<ISSUE-REF>_<branch-name> origin/main
 ```
 
 `<category>/<ISSUE-REF>_<branch-name>` is the shape the `branch` skill names and cuts for you,
-so `hotfix/501_retry-queue-drops-jobs` or `feature/DEV-2048_add-dark-mode-toggle`. `/branch`
-does the step. `ISSUE-REF` is the issue this closes, uppercase, dropped out when there is none.
+so `hotfix/501_retry-queue-drops-jobs` or `feature/DEV-2048_add-dark-mode-toggle`.
+`/create-branch` does the step. `ISSUE-REF` is the issue this closes, uppercase, dropped out
+when there is none.
 
 ## 2. Run the checks before you push
 
@@ -57,7 +58,7 @@ pnpm changeset
 ```
 
 The `changeset` skill decides whether this branch needs one, which bump it takes, and how the
-entry is laid out. `/changeset` does the step for you.
+entry is laid out. `/create-changeset` does the step for you.
 
 Both plugin manifests version through Changesets, so a change under `tools/claude` or
 `tools/cursor` needs its own changeset. Never hand-edit `version` in

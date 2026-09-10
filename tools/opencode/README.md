@@ -14,8 +14,9 @@ Slash commands:
 
 - `/backlog [source] [count]` works through the latest open issues, one worktree and subagent
   per issue.
-- `/branch [issue or description]` cuts a Conventional Commit branch from the issue it belongs to.
-- `/changeset [patch|minor|major]` creates Changesets for affected packages.
+- `/create-branch [issue or description]` cuts a Conventional Commit branch from the issue it
+  belongs to.
+- `/create-changeset [patch|minor|major]` creates Changesets for affected packages.
 - `/create-issue [what it is about]` opens a GitHub issue with the type, labels, and fields
   filled in.
 - `/create-pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens
@@ -56,7 +57,7 @@ and what this repo uses.
 /deslop                    # strip AI code slop from the whole branch diff
 /deslop apps/web           # limit it to one path
 /humanizer docs            # rewrite the prose the branch changed under docs/
-/changeset minor           # add a changeset for the current changes
+/create-changeset minor    # add a changeset for the current changes
 /create-pr                 # get the branch ready for review and open the PR
 @code-reviewer             # hand the current diff to the review subagent
 ```

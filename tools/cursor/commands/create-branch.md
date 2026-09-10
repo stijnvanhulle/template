@@ -1,5 +1,5 @@
 ---
-name: branch
+name: create-branch
 description: Cut a Conventional Commit branch from the issue it belongs to
 ---
 

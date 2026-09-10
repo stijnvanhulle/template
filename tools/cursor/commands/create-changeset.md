@@ -1,5 +1,5 @@
 ---
-name: changeset
+name: create-changeset
 description: Create a Changeset for the current changes with the right semver bump
 ---
 

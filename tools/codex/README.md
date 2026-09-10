@@ -11,8 +11,9 @@ Only the slash commands need installing, and Codex uses a prompt format with `de
 ## What you get
 
 - `/backlog [source] [count]` works through the latest open issues, one worktree per issue.
-- `/branch [issue or description]` cuts a Conventional Commit branch from the issue it belongs to.
-- `/changeset [patch|minor|major]` creates Changesets for affected packages.
+- `/create-branch [issue or description]` cuts a Conventional Commit branch from the issue it
+  belongs to.
+- `/create-changeset [patch|minor|major]` creates Changesets for affected packages.
 - `/create-issue [what it is about]` opens a GitHub issue with the type, labels, and fields
   filled in.
 - `/create-pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens
@@ -36,7 +37,7 @@ ln -s "$PWD/tools/codex/prompts"/*.md ~/.codex/prompts/
 Restart Codex afterward, since it scans the folder at startup. Codex reads only top-level
 markdown files there, so link the files rather than the directory.
 
-`/changeset`, `/deslop`, and `/humanizer` open with a `` !`git diff --stat HEAD` `` line that
+`/create-changeset`, `/deslop`, and `/humanizer` open with a `` !`git diff --stat HEAD` `` line that
 Claude Code expands into command output. If your Codex version does not support shell
 injection in prompts, that line comes through as literal text and the command still works, it
 just describes the diff instead of embedding it.

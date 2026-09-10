@@ -134,8 +134,8 @@ Every agent shares one toolset, so a skill or command written once works in all 
 | `.agents/skills/conventions/` | Rules: code style, JSDoc, markdown, plain language, security, testing, USA English | Session start, plus path-scoped rules when a matching file opens |
 | `.agents/skills/` | Playbooks: backlog, branch, changelog, changeset, deslop, documentation, humanizer, issue, jsdoc, pr | On demand, when a task matches the skill |
 | `tools/*/commands/backlog` | `/backlog` works through the latest open issues, one worktree and subagent per issue | When you type the command |
-| `tools/*/commands/branch` | `/branch` cuts a Conventional Commit branch from the issue it belongs to | When you type the command |
-| `tools/*/commands/changeset` | `/changeset` creates a changeset with the right semver bump | When you type the command |
+| `tools/*/commands/create-branch` | `/create-branch` cuts a Conventional Commit branch from the issue it belongs to | When you type the command |
+| `tools/*/commands/create-changeset` | `/create-changeset` creates a changeset with the right semver bump | When you type the command |
 | `tools/*/commands/create-issue` | `/create-issue` opens a GitHub issue with the type, labels, and fields filled in | When you type the command |
 | `tools/*/commands/create-pr` | `/create-pr` runs the pre-push checks, adds a changeset when one is needed, and opens the pull request | When you type the command |
 | `tools/*/commands/deslop` | `/deslop` removes AI-generated code slop from the current branch's changes | When you type the command |

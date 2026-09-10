@@ -71,7 +71,7 @@ gemini extensions install https://github.com/stijnvanhulle/template
 ```
 
 Installs the extension from `gemini-extension.json` at the repo root, which is where Gemini
-looks. It reads `GEMINI.md` and the seven slash commands in `commands/*.toml`. Gemini has no
+looks. It reads `GEMINI.md` and the eight slash commands in `commands/*.toml`. Gemini has no
 on-demand skill loading, so `GEMINI.md` is generated as `AGENTS.md` plus the conventions
 inlined, rather than symlinked like the other agents' instruction files. No subagent concept
 either, so `code-reviewer` has no equivalent. See
@@ -132,7 +132,7 @@ Every agent shares one toolset, so a skill or command written once works in all 
 | Path | What it does | When it loads |
 |---|---|---|
 | `.agents/skills/conventions/` | Rules: code style, JSDoc, markdown, plain language, security, testing, USA English | Session start, plus path-scoped rules when a matching file opens |
-| `.agents/skills/` | Playbooks: backlog, branch, changelog, changeset, deslop, documentation, humanizer, issue, jsdoc, pr | On demand, when a task matches the skill |
+| `.agents/skills/` | Playbooks: backlog, branch, changelog, changeset, deslop, documentation, humanizer, issue, jsdoc, ponytail, pr | On demand, when a task matches the skill |
 | `tools/*/commands/backlog` | `/backlog` works through the latest open issues, one worktree and subagent per issue | When you type the command |
 | `tools/*/commands/create-branch` | `/create-branch` cuts a Conventional Commit branch from the issue it belongs to | When you type the command |
 | `tools/*/commands/create-changeset` | `/create-changeset` creates a changeset with the right semver bump | When you type the command |
@@ -140,6 +140,7 @@ Every agent shares one toolset, so a skill or command written once works in all 
 | `tools/*/commands/create-pr` | `/create-pr` runs the pre-push checks, adds a changeset when one is needed, and opens the pull request | When you type the command |
 | `tools/*/commands/deslop` | `/deslop` removes AI-generated code slop from the current branch's changes | When you type the command |
 | `tools/*/commands/humanizer` | `/humanizer` removes AI writing patterns from the prose changed on the current branch | When you type the command |
+| `tools/*/commands/ponytail` | `/ponytail` audits the current branch's changes for over-engineering | When you type the command |
 | `tools/{claude,cursor,opencode}/agents/` | Subagents with their own context window (`code-reviewer`). Not supported by Gemini CLI or Codex | When delegated a matching task |
 | `tools/claude/output-styles/` | System-prompt modes: `house` (default), `plan`, `diagrams-first`. Claude Code only | Session start, or when selected |
 

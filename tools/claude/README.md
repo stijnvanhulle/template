@@ -21,6 +21,7 @@ Slash commands for release and review housekeeping:
   the pull request.
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
+- `/ponytail [path]` audits the branch's changes for over-engineering.
 
 Skills loaded on demand from their descriptions:
 
@@ -33,6 +34,7 @@ Skills loaded on demand from their descriptions:
 - `humanizer` removes AI tells from user-facing markdown.
 - `issue` fills in an issue's type, labels, priority, and effort.
 - `jsdoc` covers JSDoc tags and examples for TypeScript.
+- `ponytail` checks new code against a reuse-first decision ladder before adding a dependency.
 - `pr` is the PR-prep and release checklist for a Changesets monorepo.
 - `conventions` bundles the seven rules (code style, JSDoc, markdown, plain language,
   security, testing, USA English).
@@ -79,6 +81,7 @@ argument:
 /create-pr                 # get the branch ready for review and open the PR
 /backlog github 10         # triage the 10 latest GitHub issues
 /backlog jira              # triage the latest Jira issues
+/ponytail                  # audit the whole branch diff for over-engineering
 ```
 
 Skills load on their own. Each carries a description, and the agent reads the matching one when

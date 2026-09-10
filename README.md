@@ -132,7 +132,8 @@ Every agent shares one toolset, so a skill or command written once works in all 
 | Path | What it does | When it loads |
 |---|---|---|
 | `.agents/skills/conventions/` | Rules: code style, JSDoc, markdown, plain language, security, testing, USA English | Session start, plus path-scoped rules when a matching file opens |
-| `.agents/skills/` | Playbooks: changelog, changeset, deslop, documentation, humanizer, issue, jsdoc, pr | On demand, when a task matches the skill |
+| `.agents/skills/` | Playbooks: branch, changelog, changeset, deslop, documentation, humanizer, issue, jsdoc, pr | On demand, when a task matches the skill |
+| `tools/*/commands/branch` | `/branch` cuts a Conventional Commit branch from the issue it belongs to | When you type the command |
 | `tools/*/commands/changeset` | `/changeset` creates a changeset with the right semver bump | When you type the command |
 | `tools/*/commands/deslop` | `/deslop` removes AI-generated code slop from the current branch's changes | When you type the command |
 | `tools/*/commands/humanizer` | `/humanizer` removes AI writing patterns from the prose changed on the current branch | When you type the command |

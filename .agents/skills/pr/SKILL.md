@@ -29,11 +29,13 @@ still on it:
 git status
 git branch --show-current
 git fetch origin main
-git switch -c <type>/<short-slug> origin/main
+git switch -c <type>/<id>-<slug> origin/main
 ```
 
 Use the same Conventional Commit type you plan to use in the title, so `feat/`, `fix/`,
-`docs/`, `chore/`, `refactor/`, `test/`, or `perf/`.
+`docs/`, `chore/`, `refactor/`, `test/`, or `perf/`. `id` is the issue this closes, so `412` for
+GitHub #412 or `dev-1234` for ClickUp DEV-1234, and it drops out when there is no issue. The
+`branch` skill names the branch and cuts it for you, and `/branch` does the step.
 
 ## 2. Run the checks before you push
 
@@ -86,10 +88,11 @@ Read the title off the branch you already named:
 
 1. Take the type from the branch prefix, so `feat/`, `fix/`, `docs/`, `chore/`, `refactor/`,
    `test/`, or `perf/`.
-2. Turn the kebab-case slug into a sentence, imperative and in the present tense.
+2. Drop the issue ID, then turn the kebab-case slug into a sentence, imperative and in the
+   present tense.
 3. Add the scope in parentheses when the change sits in one package.
 
-`feat/plugin-resolver-cache` becomes `feat(core): add a plugin resolver cache`.
+`feat/412-plugin-resolver-cache` becomes `feat(core): add a plugin resolver cache`, closing #412.
 
 Put the issue number in the body with `Closes #123`, not in the title.
 
@@ -188,6 +191,7 @@ let the author decide.
 
 | Skill | Use for |
 | --- | --- |
+| [branch](../branch/SKILL.md) | Naming and cutting the branch this PR comes from |
 | [changeset](../changeset/SKILL.md) | The changeset layout, bump, and wording |
 | [changelog](../changelog/SKILL.md) | Release-note wording |
 | [issue](../issue/SKILL.md) | Opening the issue this PR closes |

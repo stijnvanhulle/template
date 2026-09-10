@@ -3,14 +3,14 @@ description = "Create a Changeset for the current changes with the right semver 
 prompt = """
 !{git diff --stat HEAD}
 
-Create a Changeset for the changes above.
+Create a Changeset for the changes above, following `.agents/skills/changeset/SKILL.md`.
 
 1. Determine which workspace packages are affected.
 2. Choose the bump type from `{{args}}` (default `patch` when empty): `patch` for fixes,
    `minor` for backwards-compatible features, `major` for breaking changes.
-3. Add a markdown file under `.changeset/` with the correct frontmatter and a concise,
-   user-facing summary of what changed and why.
+3. Write `.changeset/<slug>.md` in the skill's layout: frontmatter, a one-sentence summary,
+   bullets for each user-visible change, and a code example when a user writes something
+   differently.
 
-For wording and release-note conventions, follow `.agents/skills/changelog/SKILL.md`. For the
-surrounding PR checklist, follow `.agents/skills/pr/SKILL.md`.
+For the surrounding PR checklist, follow `.agents/skills/pr/SKILL.md`.
 """

@@ -15,6 +15,7 @@ Slash commands:
 - `/changeset [patch|minor|major]` creates Changesets for affected packages.
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
+- `/issue [what it is about]` opens a GitHub issue with the type, labels, and fields filled in.
 - `/pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens the
   pull request.
 

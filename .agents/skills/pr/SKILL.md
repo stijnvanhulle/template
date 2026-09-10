@@ -60,7 +60,8 @@ pnpm changeset
 
 Pick `patch` for a fix, `minor` for a backwards-compatible feature, and `major` for a breaking
 change. Write the summary for a user reading the release notes, not for a reviewer reading the
-diff. The `changelog` skill has the wording conventions, and `/changeset` does this step for you.
+diff. The `changeset` skill has the layout and the wording, and `/changeset` does this step for
+you.
 
 Both plugin manifests are versioned through Changesets, so a change under `tools/claude` or
 `tools/cursor` needs its own changeset. Never hand-edit the `version` field in
@@ -192,7 +193,9 @@ let the author decide.
 
 | Skill | Use for |
 | --- | --- |
-| [changelog](../changelog/SKILL.md) | Changeset and release-note wording |
+| [changeset](../changeset/SKILL.md) | The changeset layout, bump, and wording |
+| [changelog](../changelog/SKILL.md) | Release-note wording |
+| [issue](../issue/SKILL.md) | Opening the issue this PR closes |
 | [deslop](../deslop/SKILL.md) | Stripping AI tells from the code in the diff |
 | [humanizer](../humanizer/SKILL.md) | Stripping AI tells from the prose in the diff |
 | [conventions](../conventions/SKILL.md) | Code style, markdown, security, plain language |

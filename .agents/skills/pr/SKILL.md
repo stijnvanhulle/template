@@ -5,8 +5,8 @@ description: Open or update a pull request in this monorepo. Covers the pre-push
 
 # PR skill
 
-Take a branch from "the code is written" to "a reviewer can merge this". Work the steps in
-order. When you cannot finish a step, say so in the PR body rather than skipping it quietly.
+Take a branch from "the code is written" to "a reviewer can merge this." Work the steps in
+order. Can't finish a step: say so in the PR body rather than skipping it quietly.
 
 ## When to use
 
@@ -44,11 +44,11 @@ Run the same sequence that `AGENTS.md`, `CONTRIBUTING.md`, and the PR template a
 pnpm format && pnpm lint:fix && pnpm typecheck && pnpm test
 ```
 
-Run `pnpm build` too when you changed package source, because local packages resolve through
-their build output.
+Run `pnpm build` too when you changed package source: local packages resolve through their
+build output.
 
-Everything has to pass before you push. Fix the root cause of a failure. Do not disable a lint
-rule, loosen a type, or skip a test to get a green run.
+Everything has to pass before you push. Fix the root cause: never disable a lint rule, loosen a
+type, or skip a test to get a green run.
 
 ## 3. Decide on a changeset
 
@@ -59,10 +59,10 @@ pnpm changeset
 The `changeset` skill decides whether this branch needs one, which bump it takes, and how the
 entry is laid out. `/changeset` does the step for you.
 
-Both plugin manifests are versioned through Changesets, so a change under `tools/claude` or
-`tools/cursor` needs its own changeset. Never hand-edit the `version` field in
-`tools/claude/.claude-plugin/plugin.json` or `tools/cursor/.cursor-plugin/plugin.json`. A change
-under `.agents/skills/` also ships in the Codex and Gemini toolkits, so bump `version` by hand in
+Both plugin manifests version through Changesets, so a change under `tools/claude` or
+`tools/cursor` needs its own changeset. Never hand-edit `version` in
+`tools/claude/.claude-plugin/plugin.json` or `tools/cursor/.cursor-plugin/plugin.json`. A
+change under `.agents/skills/` also ships in Codex and Gemini, so bump `version` by hand in
 `.codex-plugin/plugin.json` and `gemini-extension.json` in the same PR.
 
 ## 4. Commit
@@ -74,7 +74,7 @@ feat(core): add a plugin resolver cache
 ```
 
 Check `git diff --cached` before every commit. Never commit a secret, a token, a `.env` file, or
-a build artifact. Regenerate a lockfile with pnpm rather than editing it.
+a build artifact. Regenerate a lockfile with pnpm, never by hand.
 
 ## 5. Write the title and body
 
@@ -102,21 +102,21 @@ Put the issue number in the body with `Closes #123`, not in the title.
 Fill `.github/pull_request_template.md`. Keep its headings and their order, replace each HTML
 comment with real content, and delete no section. Write a body a reviewer gets in one read.
 
-Under **Changes**, write one to three sentences. Lead with what changed, then why. Name the
-package or file a reviewer should open first. Add `Closes #123` when the PR closes an issue.
+Under **Changes**, write one to three sentences: what changed, then why, naming the package or
+file a reviewer should open first. Add `Closes #123` when the PR closes an issue.
 
-Under **Checklist**, tick a box only for something you actually did on this branch. An unticked
-box with a one-line reason under it is honest and useful. A ticked box you did not verify costs
-a reviewer their trust, so it is the one thing never to do here.
+Under **Checklist**, tick a box only for something you actually did. An unticked box with a
+one-line reason is honest and useful; a ticked box you didn't verify costs a reviewer their
+trust, so never do that.
 
-Under **Release impact**, tick the changeset box when `.changeset/` gained a file in this branch,
-and the docs box when no published package changed.
+Under **Release impact**, tick the changeset box when `.changeset/` gained a file in this
+branch, and the docs box when no published package changed.
 
-Run the `humanizer` skill over the body before you open the PR, and fix the tells it surfaces.
-The ones that show up most here: an opener that restates the title, a closing paragraph that
-repeats the opener, words such as `comprehensive` and `robust`, bold mid-sentence, and a dash
-joining two clauses. Cut background the reviewer already has, options you ruled out, and any
-sentence that names no file, command, or result.
+Run the `humanizer` skill over the body before you open the PR, and fix the tells it surfaces:
+an opener that restates the title, a closing paragraph that repeats it, words such as
+`comprehensive` and `robust`, mid-sentence bold, a dash joining two clauses. Cut background the
+reviewer already has, options you ruled out, and any sentence naming no file, command, or
+result.
 
 ### How to test
 
@@ -126,10 +126,10 @@ Three lines, replacing the placeholders:
 - Step 2: [Next step]
 - Step 3: [Expected result]
 
-Use a real command or path, starting from a clean checkout. Fix the steps someone hands you
-rather than pasting them as they are: add the missing prerequisite, put them in order, name the
-expected result. Ask for steps when you cannot derive them from the diff. Add a screenshot for a
-visible change, and a before and after when you changed something that already existed.
+Use a real command or path, starting from a clean checkout. Fix steps someone hands you rather
+than pasting them as-is: add the missing prerequisite, order them, name the expected result. Ask
+for steps you can't derive from the diff. Add a screenshot for a visible change, before and
+after when you changed something that already existed.
 
 ### Impact
 
@@ -151,33 +151,32 @@ gh pr create \
   --assignee @me
 ```
 
-Use the `gh` CLI rather than a GitHub MCP server or any other bot token, so the PR is authored by
-whoever ran it and lands in their own list.
+Use the `gh` CLI rather than a GitHub MCP server or any other bot token, so the PR is authored
+by whoever ran it and lands in their own list.
 
 Open it ready for review, not draft. Mark a draft ready with `gh pr ready` once the branch is
 finished and the checks pass.
 
-Add a label the repo already uses. `gh label list` shows them, and inventing one is worse than
+Add a label the repo already uses; `gh label list` shows them. Inventing one is worse than
 leaving the PR unlabeled.
 
-Squash the commits and delete the branch on merge, which `gh pr merge --squash --delete-branch`
-does in one step. When you do not have merge rights, say in the body that the PR is meant to be
-squashed.
+`gh pr merge --squash --delete-branch` squashes and deletes the branch in one step. No merge
+rights: say in the body that the PR is meant to be squashed.
 
-One PR does one thing. When you notice unrelated work along the way, leave it out and mention it
-in the body instead.
+One PR does one thing. Unrelated work noticed along the way stays out, mentioned in the body
+instead.
 
 ## 7. After CI runs
 
 A red PR is work now, whatever its review state.
 
-Read the failing job, reproduce the failure locally, fix the cause, and push again. Re-running a
-job is only worth it when the failure never reached a test body, such as a checkout or install
-error, or when the same commit passed before.
+Read the failing job, reproduce it locally, fix the cause, push again. Re-run a job only when
+the failure never reached a test body (a checkout or install error) or the same commit passed
+before.
 
-Answer every review comment in a sentence or two: what you changed, and how the reviewer can
-check it. Push the fix for a small, local ask. For a larger ask, reply with what you propose and
-let the author decide.
+Answer every review comment in a sentence or two: what you changed, how the reviewer can check
+it. Push the fix for a small, local ask; for a larger one, reply with what you propose and let
+the author decide.
 
 ## Guardrails
 

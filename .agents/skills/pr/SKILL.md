@@ -29,15 +29,12 @@ still on it:
 git status
 git branch --show-current
 git fetch origin main
-git switch -c <type>/<id>-<slug> origin/main
+git switch -c <category>/<ISSUE-REF>_<branch-name> origin/main
 ```
 
-Use the same Conventional Commit type you plan to use in the title, so `feat/`, `fix/`,
-`docs/`, `chore/`, `refactor/`, `test/`, or `perf/`. `id` is the issue this closes, so `412` for
-GitHub #412 or `dev-1234` for ClickUp DEV-1234, and it drops out when there is no issue. The
-`branch` skill names the branch and cuts it for you, and `/branch` does the step. A repo that
-enforces GitLab naming instead uses the branch skill's alternate shape
-(`feature/ABC-123_branch-name`); either way, take the title straight off the branch you cut.
+`<category>/<ISSUE-REF>_<branch-name>` is the GitLab shape the `branch` skill names and cuts for
+you, so `feature/412_plugin-resolver-cache` or `hotfix/ABC-123_resolver-cache-miss`. `/branch`
+does the step. `ISSUE-REF` is the issue this closes, uppercase, dropped out when there is none.
 
 ## 2. Run the checks before you push
 
@@ -86,15 +83,17 @@ a build artifact. Regenerate a lockfile with pnpm rather than editing it.
 One Conventional Commit line, imperative, under 72 characters, no trailing period. It becomes
 the squash-merge commit, so write it for whoever reads the changelog later.
 
-Read the title off the branch you already named:
+The branch category (`feature`, `hotfix`, `release`) is too coarse for a Conventional Commit
+type, so read the type the same way the `branch` skill's step 2 does, off the issue's labels or
+the change itself, rather than off the branch prefix:
 
-1. Take the type from the branch prefix, so `feat/`, `fix/`, `docs/`, `chore/`, `refactor/`,
-   `test/`, or `perf/`.
-2. Drop the issue ID, then turn the kebab-case slug into a sentence, imperative and in the
-   present tense.
+1. Pick the type: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, or `perf`.
+2. Drop the issue reference from the branch name, then turn the kebab-case rest into a sentence,
+   imperative and in the present tense.
 3. Add the scope in parentheses when the change sits in one package.
 
-`feat/412-plugin-resolver-cache` becomes `feat(core): add a plugin resolver cache`, closing #412.
+`hotfix/412_resolver-cache-miss`, labeled `bug`, becomes `fix(core): resolve cache misses on
+nested plugins`, closing #412.
 
 Put the issue number in the body with `Closes #123`, not in the title.
 

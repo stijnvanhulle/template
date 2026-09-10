@@ -11,44 +11,35 @@ back off it.
 ## The shape
 
 ```
-<type>/<id>-<slug>
-```
-
-`type` is the Conventional Commit type the PR will carry: `feat`, `fix`, `docs`, `chore`,
-`refactor`, `test`, or `perf`.
-
-`id` is the tracker ID in lowercase, so `412`, `dev-1234`, `abc-123`. Leave it out when there is
-no issue.
-
-`slug` is two to five kebab-case words from the title. Drop filler such as `the` and `support
-for`, drop the verb the type already carries, and keep the word someone would search for. The
-scope belongs in the commit title, not here.
-
-Under 60 characters all together. GitHub #412 "Resolver cache misses on nested plugins", labeled
-`bug`, becomes `fix/412-resolver-cache-miss`.
-
-### Alternate shape: GitLab style
-
-Some downstream repos branch from `master` and enforce GitLab's naming rule instead. Use this
-shape only when the repo you are working in asks for it:
-
-```
 <category>/<ISSUE-REF>_<branch-name>
 ```
 
-- `category` is `feature`, `hotfix`, or `release`, in lowercase.
-- `ISSUE-REF` is the tracker id in uppercase, whatever the tracker's own prefix is (Jira,
-  ClickUp, or any other project key).
-- `branch-name` is kebab-case, all lowercase. GitLab rejects capitals, camelCase, and
-  snake_case here.
+This is the GitLab naming convention, and it is the correct shape for every branch this skill
+cuts, whatever the tracker or host.
+
+- `category` is `feature`, `hotfix`, or `release`, always lowercase. Map it from the signal in
+  step 2: a bug fix is `hotfix`, release prep is `release`, everything else is `feature`.
+- `ISSUE-REF` is the tracker id, always uppercase, whatever the tracker's own prefix is (GitHub,
+  Jira, ClickUp, or any other project key), so `ABC-123`, `DEV-1234`, `412` becomes `412`. Leave
+  it out when there is no issue.
+- `branch-name` is two to five kebab-case words from the title, all lowercase. Drop filler such
+  as `the` and `support for`, drop the verb the category already carries, and keep the word
+  someone would search for. GitLab rejects capitals, camelCase, and snake_case here, so never
+  use them.
 - An underscore separates the issue reference from the branch name; everything else stays
   hyphenated.
 
-`ABC-123` "Enable multiple choose questions quizzes" becomes
-`feature/ABC-123_enable-multiple-choose-questions-quizzes`.
+Under 60 characters all together. GitHub #412 "Resolver cache misses on nested plugins", labeled
+`bug`, becomes `hotfix/412_resolver-cache-miss`. `ABC-123` "Enable multiple choose questions
+quizzes" becomes `feature/ABC-123_enable-multiple-choose-questions-quizzes`.
 
-Cut it the same way as step 3, substituting `master` for `origin/main` when that is the repo's
-default branch.
+Incorrect examples, all rejected by GitLab's branch validation:
+
+```text
+feature/ABC-123_Enable-multiple-choose-questions-quizzes  # capital letters
+feature/ABC-123_enableMultipleChooseQuestionsQuizzes      # camelCase
+feature/ABC-123_enable_multiple_choose_questions          # snake_case
+```
 
 ## 1. Read the issue
 
@@ -67,25 +58,27 @@ and keep customer names and hostnames out of the branch.
 
 A type in the request wins. Otherwise read it off the issue:
 
-| Signal | Type |
-| --- | --- |
-| Label `bug`, tracker type Bug, a title about something broken | `fix` |
-| Label `enhancement` or `feature`, behavior that does not exist yet | `feat` |
-| Label `documentation`, markdown only | `docs` |
-| Dependencies, CI, releases, agent files | `chore` |
-| Same behavior, different shape | `refactor` |
-| Tests only | `test` |
-| A measured speed or memory win | `perf` |
+| Signal | Type | Category |
+| --- | --- | --- |
+| Label `bug`, tracker type Bug, a title about something broken | `fix` | `hotfix` |
+| Label `enhancement` or `feature`, behavior that does not exist yet | `feat` | `feature` |
+| Label `documentation`, markdown only | `docs` | `feature` |
+| Dependencies, CI, releases, agent files | `chore` | `feature` |
+| Same behavior, different shape | `refactor` | `feature` |
+| Tests only | `test` | `feature` |
+| A measured speed or memory win | `perf` | `feature` |
+| Version bump, tagging, release notes | — | `release` |
 
 Torn between `feat` and `fix`: ask whether the documented behavior was ever right. It was, so
-this is a fix.
+this is a fix. The type still drives the commit and PR title the `pr` skill writes; the
+category is only the first segment of the branch name.
 
 ## 3. Cut it
 
 ```bash
 git status --short
 git fetch origin main
-git switch -c fix/412-resolver-cache-miss origin/main
+git switch -c hotfix/412_resolver-cache-miss origin/main
 ```
 
 Branch from `origin/main`, unless the work builds on an open PR. Then branch from that PR's

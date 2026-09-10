@@ -42,12 +42,13 @@ One issue, one worktree, one branch. Never implement two issues on the same chec
 
 ```bash
 git fetch origin main
-git worktree add ../<repo>-<id> -b <type>/<id>-<slug> origin/main
+git worktree add ../<repo>-<ISSUE-REF> -b <category>/<ISSUE-REF>_<branch-name> origin/main
 ```
 
-Name the branch the way the `branch` skill does: Conventional Commit type off the issue's
-labels, the tracker id, a two-to-five word kebab-case slug. Run the `branch` skill's steps 1 and
-2 to get the type and slug right rather than guessing them here.
+Name the branch the way the `branch` skill does: `<category>/<ISSUE-REF>_<branch-name>`, GitLab
+style, with the category mapped off the issue's labels and a two-to-five word kebab-case
+branch name. Run the `branch` skill's steps 1 through 3 to get the category and name right
+rather than guessing them here.
 
 ## 4. Implement with a dedicated subagent
 

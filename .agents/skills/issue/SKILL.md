@@ -1,6 +1,6 @@
 ---
 name: issue
-description: Open a GitHub issue with its sidebar filled in, so the labels, the type, and the Priority, Effort, Start date, and Target date fields are set rather than left empty. Use when filing an issue, turning a report into one, or triaging an issue whose fields are empty.
+description: Open a GitHub issue with its sidebar filled in, so the labels, the type, and the Priority and Effort fields are set rather than left empty. Use when filing an issue, turning a report into one, or triaging an issue whose fields are empty.
 ---
 
 # Issue skill
@@ -42,15 +42,13 @@ or agent files.
 | --- | --- | --- |
 | Priority | Urgent, High, Medium, Low | Urgent blocks a release or breaks the published package for everyone. High hits users today with no workaround. Medium is the default. Low is a nice-to-have |
 | Effort | High, Medium, Low | Low is one file a reviewer reads in one sitting. Medium spans a few files or needs a test. High needs a design decision or touches a public API |
-| Start date | `YYYY-MM-DD` | Only when work starts now, or somebody scheduled it |
-| Target date | `YYYY-MM-DD` | Only when a release or a promise fixes the date. An invented deadline is worse than none |
 
-Stuck on one: Priority `Medium`, Effort `Medium`, no dates, and say which values you guessed.
+Stuck on one: Priority `Medium`, Effort `Medium`, and say which values you guessed.
 
 ## 5. Create it
 
 `gh issue create --title "<title>" --body-file <body>.md --label bug --assignee @me` writes the
-issue as whoever runs it. The four fields go through the GitHub MCP server's `issue_write`, which
+issue as whoever runs it. The fields go through the GitHub MCP server's `issue_write`, which
 validates each option name before the call:
 
 ```json
@@ -71,7 +69,7 @@ the values you set.
 
 - One issue does one thing. Split a report carrying two problems.
 - No tokens, `.env` lines, or internal hostnames in a body. Say where the value lives.
-- Do not raise Priority to jump a queue, or set a date nobody agreed to.
+- Do not raise Priority to jump a queue.
 - Run the `humanizer` skill over the title and body.
 
 ## Related skills

@@ -24,7 +24,7 @@ Skills loaded on demand from their descriptions:
 - `deslop` strips AI-generated code slop from a diff, the code counterpart to `humanizer`.
 - `documentation` is the writing style guide for blog posts and docs.
 - `humanizer` removes AI tells from user-facing markdown.
-- `issue` fills in an issue's type, labels, priority, effort, and dates.
+- `issue` fills in an issue's type, labels, priority, and effort.
 - `jsdoc` covers JSDoc tags and examples for TypeScript.
 - `pr` is the PR-prep and release checklist for a Changesets monorepo.
 - `conventions` bundles the seven rules (code style, JSDoc, markdown, plain language,

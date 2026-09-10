@@ -3,11 +3,11 @@
 "@stijnvanhulle/template-cursor-plugin": minor
 ---
 
-Add the `issue-batch` skill and switch branch naming to the GitLab shape
+Add the `backlog` skill and switch branch naming to the GitLab shape
 
-`issue-batch` works through the latest open issues one by one: it loads the 10 most recent
-GitHub or Jira issues, asks a clarifying question per issue before touching code, then
-implements each confirmed issue in its own git worktree with its own subagent.
+`backlog` works through the latest open issues one by one: it loads the 10 most recent GitHub
+issues, ClickUp tasks, or Jira issues, asks a clarifying question per issue before touching
+code, then implements each confirmed issue in its own git worktree with its own subagent.
 
 The `branch` and `pr` skills now name every branch `<category>/<ISSUE-REF>_<branch-name>`
 (`feature/ABC-123_branch-name`), GitLab's convention: category in lowercase, issue reference in

@@ -36,12 +36,12 @@
     "upgrade": "npx taze -r -w --exclude pnpm --maturity-period 3"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^1.0.0",
-    "@changesets/cli": "^3.0.1",
+    "@changesets/changelog-github": "^1.0.1",
+    "@changesets/cli": "^3.0.2",
     "@types/node": "catalog:",
     "@vitest/coverage-v8": "catalog:",
     "@vitest/ui": "catalog:",
-    "bun-types": "^1.4.0",
+    "bun-types": "^1.4.2",
     "oxfmt": "catalog:",
     "oxlint": "catalog:",
     "taze": "^21.1.0",
@@ -51,7 +51,7 @@
     "typescript": "catalog:",
     "vitest": "catalog:"
   },
-  "packageManager": "pnpm@12.4.0+sha512.37536c26ed40ab4134b6511e09f6b27f3ebb45687468f2406ca3805279a4e5ca158c1931350ad9774d6ab2108d71b3dbaeb39943159294375e4d053e8e05685c",
+  "packageManager": "pnpm@12.4.0",
   "engines": {
     "node": ">=22",
     "pnpm": ">=12.0.0"

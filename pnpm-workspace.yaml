@@ -8,14 +8,14 @@ allowBuilds:
   es5-ext: true
   esbuild: true
 catalog:
-  "@types/node": ^22.20.1
-  "@vitest/coverage-v8": ^4.1.11
-  "@vitest/ui": ^4.1.11
-  oxfmt: ^0.64.0
-  oxlint: ^1.79.0
-  tsdown: ^0.22.14
+  "@types/node": ^22.20.2
+  "@vitest/coverage-v8": ^5.0.0
+  "@vitest/ui": ^5.0.0
+  oxfmt: ^0.67.0
+  oxlint: ^1.82.0
+  tsdown: ^0.23.0
   typescript: ^6.0.3
-  vitest: ^4.1.11
+  vitest: ^5.0.0
 minimumReleaseAge: 2880 # 48 hours, matches CI's SAFE_CHAIN_MINIMUM_PACKAGE_AGE_HOURS
 # Native platform bindings are always co-published with their parent package in the same release.
 # Excluding them avoids false-positive ERR_PNPM_NO_MATURE_MATCHING_VERSION errors.

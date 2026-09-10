@@ -27,6 +27,29 @@ scope belongs in the commit title, not here.
 Under 60 characters all together. GitHub #412 "Resolver cache misses on nested plugins", labeled
 `bug`, becomes `fix/412-resolver-cache-miss`.
 
+### Alternate shape: GitLab style
+
+Some downstream repos branch from `master` and enforce GitLab's naming rule instead. Use this
+shape only when the repo you are working in asks for it:
+
+```
+<category>/<ISSUE-REF>_<branch-name>
+```
+
+- `category` is `feature`, `hotfix`, or `release`, in lowercase.
+- `ISSUE-REF` is the tracker id in uppercase, whatever the tracker's own prefix is (Jira,
+  ClickUp, or any other project key).
+- `branch-name` is kebab-case, all lowercase. GitLab rejects capitals, camelCase, and
+  snake_case here.
+- An underscore separates the issue reference from the branch name; everything else stays
+  hyphenated.
+
+`ABC-123` "Enable multiple choose questions quizzes" becomes
+`feature/ABC-123_enable-multiple-choose-questions-quizzes`.
+
+Cut it the same way as step 3, substituting `master` for `origin/main` when that is the repo's
+default branch.
+
 ## 1. Read the issue
 
 - GitHub `#412`, `owner/repo#412`, or an issue URL: `gh issue view 412 --json number,title,labels`

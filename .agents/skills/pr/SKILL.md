@@ -35,7 +35,9 @@ git switch -c <type>/<id>-<slug> origin/main
 Use the same Conventional Commit type you plan to use in the title, so `feat/`, `fix/`,
 `docs/`, `chore/`, `refactor/`, `test/`, or `perf/`. `id` is the issue this closes, so `412` for
 GitHub #412 or `dev-1234` for ClickUp DEV-1234, and it drops out when there is no issue. The
-`branch` skill names the branch and cuts it for you, and `/branch` does the step.
+`branch` skill names the branch and cuts it for you, and `/branch` does the step. A repo that
+enforces GitLab naming instead uses the branch skill's alternate shape
+(`feature/ABC-123_branch-name`); either way, take the title straight off the branch you cut.
 
 ## 2. Run the checks before you push
 

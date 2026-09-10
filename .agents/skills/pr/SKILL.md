@@ -51,17 +51,12 @@ rule, loosen a type, or skip a test to get a green run.
 
 ## 3. Decide on a changeset
 
-A change that reaches a published package needs a changeset. A change confined to docs, CI,
-tests, or the agent files does not.
-
 ```bash
 pnpm changeset
 ```
 
-Pick `patch` for a fix, `minor` for a backwards-compatible feature, and `major` for a breaking
-change. Write the summary for a user reading the release notes, not for a reviewer reading the
-diff. The `changeset` skill has the layout and the wording, and `/changeset` does this step for
-you.
+The `changeset` skill decides whether this branch needs one, which bump it takes, and how the
+entry is laid out. `/changeset` does the step for you.
 
 Both plugin manifests are versioned through Changesets, so a change under `tools/claude` or
 `tools/cursor` needs its own changeset. Never hand-edit the `version` field in

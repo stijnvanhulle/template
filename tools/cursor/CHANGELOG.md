@@ -1,5 +1,22 @@
 # @stijnvanhulle/template-cursor-plugin
 
+## 0.5.0
+
+### Minor Changes
+
+- [#217](https://github.com/stijnvanhulle/template/pull/217) [`586ad8c`](https://github.com/stijnvanhulle/template/commit/586ad8ca2b1f264a59573a6624d598079b15d3f7) Thanks [@stijnvanhulle](https://github.com/stijnvanhulle)! - Add the `branch` skill and the `/branch` command
+  
+  `/branch` names and cuts the branch for you, from the issue the work belongs to.
+  
+  - Reads a GitHub issue with `gh issue view`, a ClickUp task through the ClickUp MCP server, and a Jira key from the key itself, since no Jira server is connected.
+  - Picks the Conventional Commit type from the labels or the issue type, and falls back to the title.
+  - Cuts `<type>/<id>-<slug>` from an up-to-date `origin/main`, so `/pr` can read the title and the `Closes` line back off it.
+  
+  ```bash
+  /branch [#412](https://github.com/stijnvanhulle/template/issues/412)
+  # fix/412-resolver-cache-miss
+  ```
+
 ## 0.4.0
 
 ### Minor Changes

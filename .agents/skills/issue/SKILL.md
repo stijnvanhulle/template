@@ -1,17 +1,12 @@
 ---
 name: issue
-description: Open a GitHub issue with its sidebar filled in, so the labels, the type, and the Priority, Start date, Target date, and Effort fields are set rather than left empty. Use when asked to file an issue, turn a bug report into one, or triage an issue that has no fields.
+description: Open a GitHub issue with its sidebar filled in, so the labels, the type, and the Priority, Effort, Start date, and Target date fields are set rather than left empty. Use when filing an issue, turning a report into one, or triaging an issue whose fields are empty.
 ---
 
 # Issue skill
 
-An issue with an empty sidebar sits in the backlog unsorted. Write the title and body, then set
-the type, the labels, and the fields in the same pass.
-
-## When to use
-
-- Filing a new issue, or turning a chat report into one.
-- Triaging an existing issue whose type, labels, or fields are empty.
+An issue with an empty sidebar sits in the backlog unsorted. Set the type, the labels, and the
+fields in the same pass as the title and body.
 
 ## 1. Check it is not already open
 
@@ -19,109 +14,69 @@ the type, the labels, and the fields in the same pass.
 gh issue list --search "<keywords>" --state all --limit 10
 ```
 
-Comment on the existing issue instead of opening a second one.
+Comment on the match instead of opening a second issue.
 
-## 2. Pick the template
+## 2. Write it
 
-`.github/ISSUE_TEMPLATE/` holds the forms this repo uses. `bug.yml` covers a defect and applies
-the `bug` label. `docs.yml` covers missing or wrong documentation and applies the `docs` label.
-Anything else starts from a blank issue.
+Pick the form in `.github/ISSUE_TEMPLATE/`: `bug.yml` for a defect, `docs.yml` for
+documentation, blank for the rest. Answer every required field.
 
-Answer every required field of the form you pick. Leave a field out only when you do not have the
-answer, and say so in that field.
+Title in the imperative, under 72 characters, no period, so `fix the resolver cache miss on
+nested plugins` rather than `Resolver bug`. A bug body carries the version, the steps, the
+expected result, and what happened instead. A feature body leads with the problem and links the
+code it is about.
 
-## 3. Write the title and body
+## 3. Read the valid values
 
-One line for the title, in the imperative, under 72 characters, no trailing period. It reads like
-a commit: `fix the resolver cache miss on nested plugins`, not `Resolver bug`.
+Never invent a label, a type, or an option name. `gh label list` covers labels. Types and fields
+come from the organization, so read those with the GitHub MCP server's `list_issue_types` and
+`list_issue_fields`.
 
-For a bug, the body carries the version, the steps to reproduce, the expected result, and the
-actual result. For a feature, it carries the problem first and the proposal second. Link the
-reproduction or the code you are talking about.
+## 4. Fill the sidebar
 
-## 4. Read the valid values before you set anything
+Set the type first: Bug for something that broke or contradicts its documentation, Feature for
+new behavior somebody asked for, Task for work with no user-visible change, such as CI, releases,
+or agent files.
 
-Never invent a label, a type, or an option name.
-
-```bash
-gh label list
-```
-
-Types and fields come from the organization, so read them with the GitHub MCP server:
-`list_issue_types` and `list_issue_fields` for this owner and repo.
-
-## 5. Fill the sidebar
-
-Set the type first, because it decides what the rest of the sidebar means.
-
-| Type | Use for |
-| --- | --- |
-| Bug | Something that used to work, or that works differently from its documentation |
-| Feature | New behavior somebody has asked for |
-| Task | Work with no user-visible behavior, such as CI, releases, or agent files |
-
-Then set the fields. Every value below is one of the options the field defines, so pick one
-rather than writing your own.
-
-| Field | Options | How to pick |
+| Field | Options | Pick |
 | --- | --- | --- |
-| Priority | Urgent, High, Medium, Low | Urgent means a release is blocked or the published package is broken for everyone. High means it hits users today and has no workaround. Medium is the default for real work with a workaround. Low is a nice-to-have |
-| Effort | High, Medium, Low | Low is a change in one file that a reviewer reads in one sitting. Medium spans a few files or needs a test. High needs a design decision, touches a public API, or spans packages |
-| Start date | A date, `YYYY-MM-DD` | Set it only when work starts now or somebody scheduled it. Leave it empty for a backlog item |
-| Target date | A date, `YYYY-MM-DD` | Set it only when a release, an event, or a promise fixes the date. An invented deadline is worse than none |
+| Priority | Urgent, High, Medium, Low | Urgent blocks a release or breaks the published package for everyone. High hits users today with no workaround. Medium is the default. Low is a nice-to-have |
+| Effort | High, Medium, Low | Low is one file a reviewer reads in one sitting. Medium spans a few files or needs a test. High needs a design decision or touches a public API |
+| Start date | `YYYY-MM-DD` | Only when work starts now, or somebody scheduled it |
+| Target date | `YYYY-MM-DD` | Only when a release or a promise fixes the date. An invented deadline is worse than none |
 
-When you cannot judge one, use Priority `Medium` and Effort `Medium`, leave both dates empty, and
-say in your reply which values you guessed so the author can correct them.
+Stuck on one: Priority `Medium`, Effort `Medium`, no dates, and say which values you guessed.
 
-## 6. Create it
+## 5. Create it
 
-`gh` writes the issue as whoever runs it, which is what you want for the title, the body, the
-labels, and the assignee:
-
-```bash
-gh issue create \
-  --title "<title>" \
-  --body-file <body>.md \
-  --label bug \
-  --assignee @me
-```
-
-The four fields are set with the GitHub MCP server's `issue_write` tool, which validates each
-option name before it calls the API. Use `method: "create"` to open the issue and fill the
-sidebar in one call, or `method: "update"` with the issue number to fill in an issue that already
-exists:
+`gh issue create --title "<title>" --body-file <body>.md --label bug --assignee @me` writes the
+issue as whoever runs it. The four fields go through the GitHub MCP server's `issue_write`, which
+validates each option name before the call:
 
 ```json
 {
-  "method": "create",
-  "owner": "stijnvanhulle",
-  "repo": "template",
-  "title": "fix the resolver cache miss on nested plugins",
-  "body": "<body>",
-  "type": "Bug",
-  "labels": ["bug"],
+  "method": "create", "owner": "stijnvanhulle", "repo": "template",
+  "title": "<title>", "body": "<body>", "type": "Bug", "labels": ["bug"],
   "issue_fields": [
     { "field_name": "Priority", "field_option_name": "High" },
-    { "field_name": "Effort", "field_option_name": "Medium" },
-    { "field_name": "Target date", "value": "2026-10-01" }
+    { "field_name": "Effort", "field_option_name": "Medium" }
   ]
 }
 ```
 
-Report the issue URL and the values you set.
+`method: "update"` with an issue number fills in an issue that already exists. Report the URL and
+the values you set.
 
 ## Guardrails
 
-- One issue does one thing. Split a report that carries two unrelated problems.
-- Do not paste a token, a `.env` line, or an internal hostname into an issue body. Say where the
-  value lives instead.
-- Do not set a date nobody committed to, and do not raise Priority to move something up a queue.
-- Run the `humanizer` skill over the title and the body before you open the issue.
+- One issue does one thing. Split a report carrying two problems.
+- No tokens, `.env` lines, or internal hostnames in a body. Say where the value lives.
+- Do not raise Priority to jump a queue, or set a date nobody agreed to.
+- Run the `humanizer` skill over the title and body.
 
 ## Related skills
 
 | Skill | Use for |
 | --- | --- |
 | [pr](../pr/SKILL.md) | The pull request that closes the issue |
-| [humanizer](../humanizer/SKILL.md) | Stripping AI tells from the title and body |
-| [conventions](../conventions/SKILL.md) | Markdown structure, plain language, security |
+| [humanizer](../humanizer/SKILL.md) | AI tells in the title and body |

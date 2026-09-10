@@ -9,8 +9,7 @@ Create a Changeset for the current changes on this branch, following the `change
    are affected.
 2. Choose the bump type from `$1` (default `patch` when empty): `patch` for fixes, `minor` for
    backwards-compatible features, `major` for breaking changes.
-3. Write `.changeset/<slug>.md` in the skill's layout: frontmatter, a one-sentence summary,
-   bullets for each user-visible change, and a code example when a user writes something
-   differently.
+3. Write `.changeset/<slug>.md` in the skill's layout: a one-sentence summary, bullets per
+   user-visible change, and a code example when a user writes something differently.
 
 For the surrounding PR checklist, follow the `pr` skill.

@@ -2,14 +2,8 @@ name: PR
 
 on:
   workflow_dispatch:
-  # A pull request that touches only these paths cannot change what we build, so
-  # the whole workflow is skipped. autofix.ci has no filter and still formats and
-  # lints every pull request.
-  #
-  # This list is deliberately narrow, not a blanket '**/*.md'. The linting job
-  # runs `pnpm run agent-files`, which fails when GEMINI.md, the command sets, or
-  # a Cursor rule drift from .agents/skills/. Those inputs are markdown, so a
-  # blanket markdown skip would skip the only check that guards them.
+  # Narrow on purpose, not '**/*.md': `pnpm run agent-files` in the linting job
+  # guards GEMINI.md and the command sets, and its inputs are markdown.
   pull_request:
     paths-ignore:
       - 'README.md'

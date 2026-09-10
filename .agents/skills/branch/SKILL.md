@@ -28,21 +28,21 @@ This is the correct shape for every branch this skill cuts, whatever the tracker
 - An underscore separates the issue reference from the branch name; everything else stays
   hyphenated.
 
-Under 60 characters all together. Issue #412 "Resolver cache misses on nested plugins", labeled
-`bug`, becomes `hotfix/412_resolver-cache-miss`. `ABC-123` "Enable multiple choose questions
-quizzes" becomes `feature/ABC-123_enable-multiple-choose-questions-quizzes`.
+Under 60 characters all together. Issue #501 "Retry queue drops jobs after a timeout", labeled
+`bug`, becomes `hotfix/501_retry-queue-drops-jobs`. `DEV-2048` "Add a dark mode toggle to
+settings" becomes `feature/DEV-2048_add-dark-mode-toggle`.
 
 Incorrect examples, all rejected by strict branch-name validation:
 
 ```text
-feature/ABC-123_Enable-multiple-choose-questions-quizzes  # capital letters
-feature/ABC-123_enableMultipleChooseQuestionsQuizzes      # camelCase
-feature/ABC-123_enable_multiple_choose_questions          # snake_case
+feature/DEV-2048_Add-Dark-Mode-Toggle  # capital letters
+feature/DEV-2048_addDarkModeToggle     # camelCase
+feature/DEV-2048_add_dark_mode_toggle  # snake_case
 ```
 
 ## 1. Read the issue
 
-- GitHub `#412`, `owner/repo#412`, or an issue URL: `gh issue view 412 --json number,title,labels`
+- GitHub `#501`, `owner/repo#501`, or an issue URL: `gh issue view 501 --json number,title,labels`
 - A ClickUp `/t/` URL or a custom ID such as DEV-1234: the ClickUp MCP server's `clickup_get_task`
 - A Jira key such as ABC-123: no Jira server is connected, so use the key and the words you were given
 - No reference at all: the words you were given
@@ -77,7 +77,7 @@ category is only the first segment of the branch name.
 ```bash
 git status --short
 git fetch origin main
-git switch -c hotfix/412_resolver-cache-miss origin/main
+git switch -c hotfix/501_retry-queue-drops-jobs origin/main
 ```
 
 Branch from `origin/main`, unless the work builds on an open PR. Then branch from that PR's

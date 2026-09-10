@@ -33,8 +33,8 @@ git switch -c <category>/<ISSUE-REF>_<branch-name> origin/main
 ```
 
 `<category>/<ISSUE-REF>_<branch-name>` is the shape the `branch` skill names and cuts for you,
-so `feature/412_plugin-resolver-cache` or `hotfix/ABC-123_resolver-cache-miss`. `/branch` does
-the step. `ISSUE-REF` is the issue this closes, uppercase, dropped out when there is none.
+so `hotfix/501_retry-queue-drops-jobs` or `feature/DEV-2048_add-dark-mode-toggle`. `/branch`
+does the step. `ISSUE-REF` is the issue this closes, uppercase, dropped out when there is none.
 
 ## 2. Run the checks before you push
 
@@ -92,8 +92,8 @@ the change itself, rather than off the branch prefix:
    imperative and in the present tense.
 3. Add the scope in parentheses when the change sits in one package.
 
-`hotfix/412_resolver-cache-miss`, labeled `bug`, becomes `fix(core): resolve cache misses on
-nested plugins`, closing #412.
+`hotfix/501_retry-queue-drops-jobs`, labeled `bug`, becomes `fix(core): retry the queue on a
+dropped job`, closing #501.
 
 Put the issue number in the body with `Closes #123`, not in the title.
 

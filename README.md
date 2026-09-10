@@ -132,12 +132,13 @@ Every agent shares one toolset, so a skill or command written once works in all 
 | Path | What it does | When it loads |
 |---|---|---|
 | `.agents/skills/conventions/` | Rules: code style, JSDoc, markdown, plain language, security, testing, USA English | Session start, plus path-scoped rules when a matching file opens |
-| `.agents/skills/` | Playbooks: branch, changelog, changeset, deslop, documentation, humanizer, issue, jsdoc, pr | On demand, when a task matches the skill |
+| `.agents/skills/` | Playbooks: backlog, branch, changelog, changeset, deslop, documentation, humanizer, issue, jsdoc, pr | On demand, when a task matches the skill |
+| `tools/*/commands/backlog` | `/backlog` works through the latest open issues, one worktree and subagent per issue | When you type the command |
 | `tools/*/commands/branch` | `/branch` cuts a Conventional Commit branch from the issue it belongs to | When you type the command |
 | `tools/*/commands/changeset` | `/changeset` creates a changeset with the right semver bump | When you type the command |
+| `tools/*/commands/create-issue` | `/create-issue` opens a GitHub issue with the type, labels, and fields filled in | When you type the command |
 | `tools/*/commands/deslop` | `/deslop` removes AI-generated code slop from the current branch's changes | When you type the command |
 | `tools/*/commands/humanizer` | `/humanizer` removes AI writing patterns from the prose changed on the current branch | When you type the command |
-| `tools/*/commands/issue` | `/issue` opens a GitHub issue with the type, labels, and fields filled in | When you type the command |
 | `tools/*/commands/pr` | `/pr` runs the pre-push checks, adds a changeset when one is needed, and opens the pull request | When you type the command |
 | `tools/{claude,cursor,opencode}/agents/` | Subagents with their own context window (`code-reviewer`). Not supported by Gemini CLI or Codex | When delegated a matching task |
 | `tools/claude/output-styles/` | System-prompt modes: `house` (default), `plan`, `diagrams-first`. Claude Code only | Session start, or when selected |

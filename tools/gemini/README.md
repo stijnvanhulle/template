@@ -19,9 +19,10 @@ Slash commands, as `commands/*.toml`:
 - `/backlog [source] [count]` works through the latest open issues, one per issue.
 - `/branch [issue or description]` cuts a Conventional Commit branch from the issue it belongs to.
 - `/changeset [patch|minor|major]` creates Changesets for affected packages.
+- `/create-issue [what it is about]` opens a GitHub issue with the type, labels, and fields
+  filled in.
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
-- `/issue [what it is about]` opens a GitHub issue with the type, labels, and fields filled in.
 - `/pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens the
   pull request.
 

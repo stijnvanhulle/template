@@ -1,5 +1,5 @@
 ---
-name: issue
+name: create-issue
 description: Open a GitHub issue with the type, labels, and fields filled in
 ---
 

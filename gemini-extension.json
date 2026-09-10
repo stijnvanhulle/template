@@ -1,6 +1,6 @@
 {
   "name": "toolkit",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Writing-voice skills and shared TypeScript-monorepo conventions.",
   "contextFileName": "GEMINI.md"
 }

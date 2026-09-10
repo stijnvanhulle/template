@@ -1,5 +1,12 @@
 # @stijnvanhulle/template-claude-plugin
 
+## 0.3.1
+
+### Patch Changes
+
+- [#210](https://github.com/stijnvanhulle/template/pull/210) [`3e38c16`](https://github.com/stijnvanhulle/template/commit/3e38c16ea4bac4d8fbbc99e1047bea6b3b441635) Thanks [@stijnvanhulle](https://github.com/stijnvanhulle)! - The `pr` skill now runs the `humanizer` skill over the PR body and holds every output it writes
+  to what a reader has to act on, so descriptions stay short and specific.
+
 ## 0.3.0
 
 ### Minor Changes

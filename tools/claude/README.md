@@ -77,6 +77,36 @@ Rules need no trigger. `plain-language`, `security`, and `usa-english` apply on 
 and the rest attach when you open a matching file. The guiding split: rules apply on their own,
 skills are optional expertise loaded when relevant, and commands are actions you trigger yourself.
 
+## Output styles
+
+Installing the plugin already registers the three output styles (`house`, `plan`,
+`diagrams-first`) for every session. Switch between them from inside a session:
+
+```bash
+/output-style house
+/output-style plan
+/output-style diagrams-first
+```
+
+To use `house` without installing the plugin, copy the file into your user-wide output
+styles folder:
+
+```bash
+mkdir -p ~/.claude/output-styles
+curl -fsSL https://raw.githubusercontent.com/stijnvanhulle/template/main/tools/claude/output-styles/house.md \
+  -o ~/.claude/output-styles/house.md
+```
+
+Then set it as your default in `~/.claude/settings.json`:
+
+```json
+{
+  "outputStyle": "house"
+}
+```
+
+Restart Claude Code, or run `/output-style house` in an open session, to pick it up.
+
 ## Scope
 
 The plugin ships generic, project-agnostic content. Workspace-specific pieces

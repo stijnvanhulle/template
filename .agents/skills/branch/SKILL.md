@@ -5,8 +5,8 @@ description: Create a Conventional Commit branch from the issue it belongs to. R
 
 # Branch skill
 
-Name the branch after the issue it closes, so `/pr` can read the title and the `Closes` line
-back off it.
+Name the branch after the issue it closes, so `/create-pr` can read the title and the `Closes`
+line back off it.
 
 ## The shape
 
@@ -97,7 +97,7 @@ you guessed: a type with no label behind it, or a title you could not fetch.
 
 - Never commit to `main`, and never rename or delete a branch someone else may have checked out.
 - One branch, one issue.
-- Leave the branch local. `/pr` pushes it once there is a commit worth reviewing.
+- Leave the branch local. `/create-pr` pushes it once there is a commit worth reviewing.
 
 ## Related skills
 

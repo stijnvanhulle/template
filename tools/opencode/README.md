@@ -18,10 +18,10 @@ Slash commands:
 - `/changeset [patch|minor|major]` creates Changesets for affected packages.
 - `/create-issue [what it is about]` opens a GitHub issue with the type, labels, and fields
   filled in.
+- `/create-pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens
+  the pull request.
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
-- `/pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens the
-  pull request.
 
 A read-only `code-reviewer` subagent reviews TypeScript changes for correctness, security, and
 maintainability. Invoke it by name with `@code-reviewer`.
@@ -57,7 +57,7 @@ and what this repo uses.
 /deslop apps/web           # limit it to one path
 /humanizer docs            # rewrite the prose the branch changed under docs/
 /changeset minor           # add a changeset for the current changes
-/pr                        # get the branch ready for review and open the PR
+/create-pr                 # get the branch ready for review and open the PR
 @code-reviewer             # hand the current diff to the review subagent
 ```
 

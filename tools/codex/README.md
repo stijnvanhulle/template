@@ -15,10 +15,10 @@ Only the slash commands need installing, and Codex uses a prompt format with `de
 - `/changeset [patch|minor|major]` creates Changesets for affected packages.
 - `/create-issue [what it is about]` opens a GitHub issue with the type, labels, and fields
   filled in.
+- `/create-pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens
+  the pull request.
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
-- `/pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens the
-  pull request.
 
 Codex has no subagent concept, so there is no code-reviewer agent here.
 

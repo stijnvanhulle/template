@@ -83,7 +83,7 @@ pnpm vitest run --config ./configs/vitest.config.ts -u packages/core   # update 
 
 ## Development workflow
 
-1. Create a branch from `main`.
+1. Create a branch from `main`, named `<type>/<id>-<slug>`, so `fix/412-resolver-cache-miss`. The `branch` skill and the `/branch` command do this from the issue.
 2. Make your change, with tests for new behavior.
 3. Build and verify locally with `pnpm build && pnpm typecheck && pnpm test`.
 4. Fix style with `pnpm format && pnpm lint:fix`.

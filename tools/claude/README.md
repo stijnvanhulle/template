@@ -10,6 +10,7 @@ install reads as `toolkit@stijnvanhulle`.
 
 Slash commands for release and review housekeeping:
 
+- `/branch [issue or description]` cuts a Conventional Commit branch from the issue it belongs to.
 - `/changeset [patch|minor|major]` creates Changesets for affected packages.
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
@@ -19,6 +20,7 @@ Slash commands for release and review housekeeping:
 
 Skills loaded on demand from their descriptions:
 
+- `branch` names and cuts a branch from a GitHub, ClickUp, or Jira issue.
 - `changelog` turns commit history into a user-facing changelog.
 - `changeset` is the layout and wording for a changeset that reads as a release note.
 - `deslop` strips AI-generated code slop from a diff, the code counterpart to `humanizer`.

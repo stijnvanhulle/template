@@ -3,10 +3,9 @@ description = "Cut a Conventional Commit branch from the issue it belongs to"
 prompt = """
 Create a branch for `{{args}}`, following `.agents/skills/branch/SKILL.md`.
 
-Read the source first: `gh issue view` for a GitHub issue, the ClickUp MCP server's
-`clickup_get_task` for a ClickUp task, and the key itself for a Jira ticket, since no Jira
-server is connected. Pick the type from the labels or the issue type, turn the title into a
-short slug, and cut `<type>/<id>-<slug>` from an up-to-date `origin/main`.
+Read the source first: `gh issue view` for a GitHub issue, `clickup_get_task` for a ClickUp
+task, and the key itself for Jira, since no Jira server is connected. Pick the type from the
+labels, turn the title into a short slug, and cut `<type>/<id>-<slug>` from `origin/main`.
 
 Report the branch name, the issue it came from, and anything you guessed.
 """

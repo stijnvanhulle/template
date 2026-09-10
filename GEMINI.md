@@ -118,7 +118,7 @@ folders on demand.
 
 You have new skills. If any skill might be relevant then you MUST read it.
 
-- [branch](.agents/skills/branch/SKILL.md) - Create a Conventional Commit branch from the issue it belongs to. Reads the GitHub issue, ClickUp task, or Jira key you name, picks the feat, fix, docs, or chore type from what it finds, and cuts the branch from an up-to-date main. Use when starting work on an issue or a ticket, or when asked what to call a branch.
+- [branch](.agents/skills/branch/SKILL.md) - Create a Conventional Commit branch from the issue it belongs to. Reads a GitHub issue, a ClickUp task, or a Jira key, picks the type off its labels, and cuts the branch from an up-to-date main. Use when starting work on an issue or a ticket, or when asked what to call a branch.
 - [changelog](.agents/skills/changelog/SKILL.md) - Creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes.
 - [changeset](.agents/skills/changeset/SKILL.md) - Write a changeset that reads as a release note, with the right bump, a one-line summary, bullets for what changed, and a code example a user can copy. Use when adding a changeset, reviewing one, or deciding whether a change needs one.
 - [conventions](.agents/skills/conventions/SKILL.md) - Always-on conventions for TypeScript monorepos. Use when writing or reviewing TypeScript, markdown, or tests, when handling secrets, env vars, or input at trust boundaries, or any time you would otherwise reach for a project style guide. Bundles code style, JSDoc, markdown structure, plain language, security, testing, and USA English rules.

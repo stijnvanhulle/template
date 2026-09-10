@@ -1,5 +1,15 @@
 # @stijnvanhulle/template-cursor-plugin
 
+## 0.4.0
+
+### Minor Changes
+
+- [#213](https://github.com/stijnvanhulle/template/pull/213) [`927d062`](https://github.com/stijnvanhulle/template/commit/927d062a1d4398ac3a085187560dbe8ce44dfaea) Thanks [@stijnvanhulle](https://github.com/stijnvanhulle)! - Add an `issue` skill and a `changeset` skill, both reachable as slash commands.
+  
+  - Adds `/issue`, which opens a GitHub issue with its type, labels, Priority, and Effort set, and says which values it guessed.
+  - Adds a `changeset` skill with the layout a changeset follows: frontmatter, a one-sentence summary, bullets per user-visible change, and a before and after example.
+  - Points `/changeset` at that layout, and moves the version-bump table out of the `changelog` skill.
+
 ## 0.3.1
 
 ### Patch Changes

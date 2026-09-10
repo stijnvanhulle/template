@@ -51,16 +51,12 @@ rule, loosen a type, or skip a test to get a green run.
 
 ## 3. Decide on a changeset
 
-A change that reaches a published package needs a changeset. A change confined to docs, CI,
-tests, or the agent files does not.
-
 ```bash
 pnpm changeset
 ```
 
-Pick `patch` for a fix, `minor` for a backwards-compatible feature, and `major` for a breaking
-change. Write the summary for a user reading the release notes, not for a reviewer reading the
-diff. The `changelog` skill has the wording conventions, and `/changeset` does this step for you.
+The `changeset` skill decides whether this branch needs one, which bump it takes, and how the
+entry is laid out. `/changeset` does the step for you.
 
 Both plugin manifests are versioned through Changesets, so a change under `tools/claude` or
 `tools/cursor` needs its own changeset. Never hand-edit the `version` field in
@@ -192,7 +188,9 @@ let the author decide.
 
 | Skill | Use for |
 | --- | --- |
-| [changelog](../changelog/SKILL.md) | Changeset and release-note wording |
+| [changeset](../changeset/SKILL.md) | The changeset layout, bump, and wording |
+| [changelog](../changelog/SKILL.md) | Release-note wording |
+| [issue](../issue/SKILL.md) | Opening the issue this PR closes |
 | [deslop](../deslop/SKILL.md) | Stripping AI tells from the code in the diff |
 | [humanizer](../humanizer/SKILL.md) | Stripping AI tells from the prose in the diff |
 | [conventions](../conventions/SKILL.md) | Code style, markdown, security, plain language |

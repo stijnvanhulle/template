@@ -13,6 +13,7 @@ Slash commands for release and review housekeeping:
 - `/changeset [patch|minor|major]` creates Changesets for affected packages.
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
+- `/issue [what it is about]` opens a GitHub issue with the type, labels, and fields filled in.
 - `/pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens the
   pull request.
 
@@ -26,9 +27,11 @@ Rules that Cursor auto-attaches by file type, or applies always:
 Skills loaded on demand from their descriptions:
 
 - `changelog` turns commit history into a user-facing changelog.
+- `changeset` is the layout and wording for a changeset that reads as a release note.
 - `deslop` strips AI-generated code slop from a diff, the code counterpart to `humanizer`.
 - `documentation` is the writing style guide for blog posts and docs.
 - `humanizer` removes AI tells from user-facing markdown.
+- `issue` fills in an issue's type, labels, priority, and effort.
 - `jsdoc` covers JSDoc tags and examples for TypeScript.
 - `pr` is the PR-prep and release checklist for a Changesets monorepo.
 - `conventions` bundles the same rule text the Cursor rules carry.

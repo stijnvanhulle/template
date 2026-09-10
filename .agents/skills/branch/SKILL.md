@@ -14,26 +14,25 @@ back off it.
 <category>/<ISSUE-REF>_<branch-name>
 ```
 
-This is the GitLab naming convention, and it is the correct shape for every branch this skill
-cuts, whatever the tracker or host.
+This is the correct shape for every branch this skill cuts, whatever the tracker or host.
 
 - `category` is `feature`, `hotfix`, or `release`, always lowercase. Map it from the signal in
   step 2: a bug fix is `hotfix`, release prep is `release`, everything else is `feature`.
-- `ISSUE-REF` is the tracker id, always uppercase, whatever the tracker's own prefix is (GitHub,
-  Jira, ClickUp, or any other project key), so `ABC-123`, `DEV-1234`, `412` becomes `412`. Leave
-  it out when there is no issue.
+- `ISSUE-REF` is the tracker id, always uppercase, whatever the tracker's own prefix is (Jira,
+  ClickUp, or any other project key), so `ABC-123`, `DEV-1234`, `412`. Leave it out when there
+  is no issue.
 - `branch-name` is two to five kebab-case words from the title, all lowercase. Drop filler such
   as `the` and `support for`, drop the verb the category already carries, and keep the word
-  someone would search for. GitLab rejects capitals, camelCase, and snake_case here, so never
-  use them.
+  someone would search for. Capitals, camelCase, and snake_case get rejected by strict
+  branch-name validation, so never use them here.
 - An underscore separates the issue reference from the branch name; everything else stays
   hyphenated.
 
-Under 60 characters all together. GitHub #412 "Resolver cache misses on nested plugins", labeled
+Under 60 characters all together. Issue #412 "Resolver cache misses on nested plugins", labeled
 `bug`, becomes `hotfix/412_resolver-cache-miss`. `ABC-123` "Enable multiple choose questions
 quizzes" becomes `feature/ABC-123_enable-multiple-choose-questions-quizzes`.
 
-Incorrect examples, all rejected by GitLab's branch validation:
+Incorrect examples, all rejected by strict branch-name validation:
 
 ```text
 feature/ABC-123_Enable-multiple-choose-questions-quizzes  # capital letters

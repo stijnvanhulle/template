@@ -32,9 +32,9 @@ git fetch origin main
 git switch -c <category>/<ISSUE-REF>_<branch-name> origin/main
 ```
 
-`<category>/<ISSUE-REF>_<branch-name>` is the GitLab shape the `branch` skill names and cuts for
-you, so `feature/412_plugin-resolver-cache` or `hotfix/ABC-123_resolver-cache-miss`. `/branch`
-does the step. `ISSUE-REF` is the issue this closes, uppercase, dropped out when there is none.
+`<category>/<ISSUE-REF>_<branch-name>` is the shape the `branch` skill names and cuts for you,
+so `feature/412_plugin-resolver-cache` or `hotfix/ABC-123_resolver-cache-miss`. `/branch` does
+the step. `ISSUE-REF` is the issue this closes, uppercase, dropped out when there is none.
 
 ## 2. Run the checks before you push
 

@@ -10,6 +10,8 @@ install reads as `toolkit@stijnvanhulle`.
 
 Slash commands for release and review housekeeping:
 
+- `/backlog [source] [count]` works through the latest open issues, one worktree and subagent
+  per issue.
 - `/branch [issue or description]` cuts a Conventional Commit branch from the issue it belongs to.
 - `/changeset [patch|minor|major]` creates Changesets for affected packages.
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.
@@ -20,6 +22,7 @@ Slash commands for release and review housekeeping:
 
 Skills loaded on demand from their descriptions:
 
+- `backlog` triages the latest open issues and implements each confirmed one in its own worktree.
 - `branch` names and cuts a branch from a GitHub, ClickUp, or Jira issue.
 - `changelog` turns commit history into a user-facing changelog.
 - `changeset` is the layout and wording for a changeset that reads as a release note.
@@ -72,6 +75,8 @@ argument:
 /humanizer docs            # rewrite the prose the branch changed under docs/
 /changeset minor           # add a changeset for the current changes
 /pr                        # get the branch ready for review and open the PR
+/backlog github 10         # triage the 10 latest GitHub issues
+/backlog jira              # triage the latest Jira issues
 ```
 
 Skills load on their own. Each carries a description, and the agent reads the matching one when

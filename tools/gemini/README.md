@@ -16,6 +16,7 @@ the commands sit beside the manifest as Gemini expects.
 
 Slash commands, as `commands/*.toml`:
 
+- `/backlog [source] [count]` works through the latest open issues, one per issue.
 - `/branch [issue or description]` cuts a Conventional Commit branch from the issue it belongs to.
 - `/changeset [patch|minor|major]` creates Changesets for affected packages.
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.
@@ -47,6 +48,7 @@ gemini extensions install --path=.
 /humanizer docs            # rewrite the prose the branch changed under docs/
 /changeset minor           # add a changeset for the current changes
 /pr                        # get the branch ready for review and open the PR
+/backlog github 10         # triage the 10 latest GitHub issues
 ```
 
 Commands take their argument through `{{args}}`, and `/changeset`, `/deslop`, and `/humanizer`

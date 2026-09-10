@@ -10,6 +10,7 @@ Only the slash commands need installing, and Codex uses a prompt format with `de
 
 ## What you get
 
+- `/backlog [source] [count]` works through the latest open issues, one worktree per issue.
 - `/branch [issue or description]` cuts a Conventional Commit branch from the issue it belongs to.
 - `/changeset [patch|minor|major]` creates Changesets for affected packages.
 - `/deslop [path]` removes AI-generated code slop from the branch's changes.

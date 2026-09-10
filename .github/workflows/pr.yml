@@ -2,7 +2,17 @@ name: PR
 
 on:
   workflow_dispatch:
+  # Narrow on purpose, not '**/*.md': `pnpm run agent-files` in the linting job
+  # guards GEMINI.md and the command sets, and its inputs are markdown.
   pull_request:
+    paths-ignore:
+      - 'README.md'
+      - 'CONTRIBUTING.md'
+      - 'CODE_OF_CONDUCT.md'
+      - 'SECURITY.md'
+      - '.github/ISSUE_TEMPLATE/**'
+      - '.github/FUNDING.yml'
+      - 'LICENSE'
 
 permissions: {}
 
@@ -102,7 +112,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          fetch-depth: 0
+          fetch-depth: 1
           persist-credentials: false
 
       - name: Setup Tools

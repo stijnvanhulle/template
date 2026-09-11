@@ -7,153 +7,96 @@ importers:
     configDependencies: {}
     packageManagerDependencies:
       pnpm:
-        specifier: 12.4.0
-        version: 12.4.0
+        specifier: 12.3.4
+        version: 12.3.4
 
 packages:
 
-  '@pnpm/exe.android-arm64@12.4.0':
-    resolution: {integrity: sha512-sAwslzCw74OpqK2P9l39cgdrRWHSqf5wEjB58JEzeVX6wdLvaHyg9i/GeRK5Ou6PZNA3AkD4yLO3c/y7UqOf8w==}
-    cpu: [arm64]
-    os: [android]
-
-  '@pnpm/exe.android-x64@12.4.0':
-    resolution: {integrity: sha512-Ps3Gz0OrqYjuRfhzeNqcvIow6QmNrU3BSzMxJu5rUCSl7inVUUFX2gZbNL9naQsNLoorKCdxUf4N+WI9Mr1WBg==}
-    cpu: [x64]
-    os: [android]
-
-  '@pnpm/exe.darwin-arm64@12.4.0':
-    resolution: {integrity: sha512-75EYiF8GuiTsnvP4cbZsviMBjohXUYtg2zjD4gdfhqxlU1y9Nj+KdEsbH4jfgB/FgyJSYPB2rqfmvvgLnRlVug==}
+  '@pnpm/exe.darwin-arm64@12.3.4':
+    resolution: {integrity: sha512-PAyUol8T1+/+ViOiXAt51ECA+QnfXCqz6foL4bW+LsoX0NcVd5XVEM2mRQu+LV4oc7uRz9zf9U0P+XFfuQeDAw==}
     cpu: [arm64]
     os: [darwin]
 
-  '@pnpm/exe.darwin-x64@12.4.0':
-    resolution: {integrity: sha512-b74TzBg8lxl0lqZImGOXpRbAGcqVKX+UMckl3wG+KH52yYHI86VBJP86HbJX30HJ/EFeC6Tgbz2E4b5hhKRvdA==}
+  '@pnpm/exe.darwin-x64@12.3.4':
+    resolution: {integrity: sha512-fxP9JCk0Cdye+ePuj+GJJLMUMTqHGWRdb1dtv4How876uQ2ehxvenpgiYAir/ceO9PsYUZkFTtyZdx+rRu5QOA==}
     cpu: [x64]
     os: [darwin]
 
-  '@pnpm/exe.freebsd-x64@12.4.0':
-    resolution: {integrity: sha512-A45d6axdQIFNyNTYZAC64wh5+6LJ6dNKhNAoNMNi/EC5y9CRfv0GL3ZYDBqpkmsN9KMAkVsFWizq/Ng6xtjnhw==}
-    cpu: [x64]
-    os: [freebsd]
-
-  '@pnpm/exe.linux-arm64-musl@12.4.0':
-    resolution: {integrity: sha512-yS6DNel7twfEUoW1yka1hpQrnhRe/s1JZ1MThVfgrmNQrNaPyHxQvAihm/GtL2CM6OeMV6z5532H/W/yDjQp5g==}
+  '@pnpm/exe.linux-arm64-musl@12.3.4':
+    resolution: {integrity: sha512-FBOt0/7ye6O6q4AllVV5QMviB6qE6fqkeczV/+MDWQsmo+QJrlfsh6X7CpH/tClVpBZEyIbjpUoT8bNhCYBxEg==}
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@pnpm/exe.linux-arm64@12.4.0':
-    resolution: {integrity: sha512-6npQUwq3D/WXbTgR4evApEKQ9ITznZ6Iz/dptcjBzA7+wSLTaYkK98Od2wsHCoPmEFb9tGtM+cvG82+wy0o9uA==}
+  '@pnpm/exe.linux-arm64@12.3.4':
+    resolution: {integrity: sha512-t71AVA7LRqiKTyZ5xMYaZc2n5DfdpMbfokZuiIOXHBOM03ECnF0t4iYwaBDqJgVjlKYUOwaF/bRQajGNA4cJ4w==}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@pnpm/exe.linux-ppc64@12.4.0':
-    resolution: {integrity: sha512-7shJ4WytyvBEdjrbIDqx2gDAH7sr0HBDooTmnNQ7DlzcLeeGi7Yqir7gJjOTm6s9S1cVnT56IwmqnnwQMP1HTQ==}
-    cpu: [ppc64]
-    os: [linux]
-    libc: [glibc]
-
-  '@pnpm/exe.linux-riscv64@12.4.0':
-    resolution: {integrity: sha512-q03EGUFoe/oOU/67E3sEAePr3qjFu8xrsX+WOXTodcFXfO5FondC6TPs7BSwhTiV27j3jeDP56qhJP05pXn+vw==}
-    cpu: [riscv64]
-    os: [linux]
-    libc: [glibc]
-
-  '@pnpm/exe.linux-s390x@12.4.0':
-    resolution: {integrity: sha512-GZ5YellCtNnaLe9zVj9l3avlw9CbSzExUFDh7v+tVbLfOOfkkRLpx2lsw1ytJ/nFWvxF2TO6M6Q9JDT7q8svRg==}
-    cpu: [s390x]
-    os: [linux]
-    libc: [glibc]
-
-  '@pnpm/exe.linux-x64-musl@12.4.0':
-    resolution: {integrity: sha512-c8YyjVL39L48tRg9i3iw3d90fN6q84UjxlgWBhplcBOpzCgmglDVkPMtEAVDC+t9iobvYzs2hJnmTqLaA87MVA==}
+  '@pnpm/exe.linux-x64-musl@12.3.4':
+    resolution: {integrity: sha512-RPmk7Jb/aYaFvL2iyDN/AtMY+hUEsue732WmXpcuQ9tBpMnGyA5py7Z3+e+qmQaJ0zY/4ni9jJiyPBQHujmv6w==}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@pnpm/exe.linux-x64@12.4.0':
-    resolution: {integrity: sha512-SQVgRkcR4Xyqf8+VNbtY0rtcEnfDq48RhH30HWo2/UfqKEfle2rOMyGZOmN1DbMw4ZzG5mWYoC81O7ZqHFZcPw==}
+  '@pnpm/exe.linux-x64@12.3.4':
+    resolution: {integrity: sha512-2ZqOlSPkfwX1h5cR+FPiWf8+F+2hZT/3TvhUK5sigHqwaQCIiq8R7CGxhndKs63JtcLi2a1Qpo+wX/EoyfjyJQ==}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@pnpm/exe.win32-arm64@12.4.0':
-    resolution: {integrity: sha512-ZamXPhx0X6APZJAIkcH+K9KAsKcTYwxEgOyTQ/NXE+2UHBT9bRnSQ91sBeY6ELNd58V5cmMAkXSW5xmU+2ry+w==}
+  '@pnpm/exe.win32-arm64@12.3.4':
+    resolution: {integrity: sha512-ANyrHqyqco6SXBysUTRF74itDyyraea7IbFsKFdNXTjcFnfycTDx37EwuhdpPYFNSIh2JhUG4fByclsRfiHX7w==}
     cpu: [arm64]
     os: [win32]
 
-  '@pnpm/exe.win32-x64@12.4.0':
-    resolution: {integrity: sha512-b8bLaprnpYi/2zN0M3H9RDAHuxCP3fmV5agPPwdp9fIdjNSUkV7V/RC3L4oWwbZvVgYEjjFLx1RuJOdltoKP6g==}
+  '@pnpm/exe.win32-x64@12.3.4':
+    resolution: {integrity: sha512-WH/KqBPY/hq2Tb7SgQltEZytimcjgKRaCRL/aM9CI0c67iKc5TVmHUhIiL3Ux9FB4bWn36i6XewUcScQI+zG8w==}
     cpu: [x64]
     os: [win32]
 
-  pnpm@12.4.0:
-    resolution: {integrity: sha512-N1NsJu1Aq0E0tlEeCfayfz67RWh0aPJAbKOAUnmk5coVjBkxNQrZd01qshCNcbPbrrOZQxWSlDdeTQU+jgVoXA==}
+  pnpm@12.3.4:
+    resolution: {integrity: sha512-lhqkH7B32joEpEHZ+OFevAyW2o73ELLrZ7+e58sGEOq9SPH9hfUc/+c4RnhfoPh8VqOocqHYk/hEZ0G1zORUVw==}
     engines: {node: '>=18.*'}
     hasBin: true
 
 snapshots:
 
-  '@pnpm/exe.android-arm64@12.4.0':
+  '@pnpm/exe.darwin-arm64@12.3.4':
     optional: true
 
-  '@pnpm/exe.android-x64@12.4.0':
+  '@pnpm/exe.darwin-x64@12.3.4':
     optional: true
 
-  '@pnpm/exe.darwin-arm64@12.4.0':
+  '@pnpm/exe.linux-arm64-musl@12.3.4':
     optional: true
 
-  '@pnpm/exe.darwin-x64@12.4.0':
+  '@pnpm/exe.linux-arm64@12.3.4':
     optional: true
 
-  '@pnpm/exe.freebsd-x64@12.4.0':
+  '@pnpm/exe.linux-x64-musl@12.3.4':
     optional: true
 
-  '@pnpm/exe.linux-arm64-musl@12.4.0':
+  '@pnpm/exe.linux-x64@12.3.4':
     optional: true
 
-  '@pnpm/exe.linux-arm64@12.4.0':
+  '@pnpm/exe.win32-arm64@12.3.4':
     optional: true
 
-  '@pnpm/exe.linux-ppc64@12.4.0':
+  '@pnpm/exe.win32-x64@12.3.4':
     optional: true
 
-  '@pnpm/exe.linux-riscv64@12.4.0':
-    optional: true
-
-  '@pnpm/exe.linux-s390x@12.4.0':
-    optional: true
-
-  '@pnpm/exe.linux-x64-musl@12.4.0':
-    optional: true
-
-  '@pnpm/exe.linux-x64@12.4.0':
-    optional: true
-
-  '@pnpm/exe.win32-arm64@12.4.0':
-    optional: true
-
-  '@pnpm/exe.win32-x64@12.4.0':
-    optional: true
-
-  pnpm@12.4.0:
+  pnpm@12.3.4:
     optionalDependencies:
-      '@pnpm/exe.android-arm64': 12.4.0
-      '@pnpm/exe.android-x64': 12.4.0
-      '@pnpm/exe.darwin-arm64': 12.4.0
-      '@pnpm/exe.darwin-x64': 12.4.0
-      '@pnpm/exe.freebsd-x64': 12.4.0
-      '@pnpm/exe.linux-arm64': 12.4.0
-      '@pnpm/exe.linux-arm64-musl': 12.4.0
-      '@pnpm/exe.linux-ppc64': 12.4.0
-      '@pnpm/exe.linux-riscv64': 12.4.0
-      '@pnpm/exe.linux-s390x': 12.4.0
-      '@pnpm/exe.linux-x64': 12.4.0
-      '@pnpm/exe.linux-x64-musl': 12.4.0
-      '@pnpm/exe.win32-arm64': 12.4.0
-      '@pnpm/exe.win32-x64': 12.4.0
+      '@pnpm/exe.darwin-arm64': 12.3.4
+      '@pnpm/exe.darwin-x64': 12.3.4
+      '@pnpm/exe.linux-arm64': 12.3.4
+      '@pnpm/exe.linux-arm64-musl': 12.3.4
+      '@pnpm/exe.linux-x64': 12.3.4
+      '@pnpm/exe.linux-x64-musl': 12.3.4
+      '@pnpm/exe.win32-arm64': 12.3.4
+      '@pnpm/exe.win32-x64': 12.3.4
 
 ---
 lockfileVersion: '9.0'
@@ -164,9 +107,6 @@ settings:
 
 catalogs:
   default:
-    '@types/node':
-      specifier: ^22.20.2
-      version: 22.20.2
     '@vitest/coverage-v8':
       specifier: ^5.0.0
       version: 5.0.0
@@ -189,6 +129,9 @@ catalogs:
       specifier: ^5.0.0
       version: 5.0.0
 
+overrides:
+  '@types/node': 22.20.1
+
 importers:
 
   .:
@@ -200,8 +143,8 @@ importers:
         specifier: ^3.0.2
         version: 3.0.2
       '@types/node':
-        specifier: 'catalog:'
-        version: 22.20.2
+        specifier: 22.20.1
+        version: 22.20.1
       '@vitest/coverage-v8':
         specifier: 'catalog:'
         version: 5.0.0(vitest@5.0.0)
@@ -222,7 +165,7 @@ importers:
         version: 21.1.0
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@22.20.2)(typescript@6.0.3)
+        version: 10.9.2(@types/node@22.20.1)(typescript@6.0.3)
       tsdown:
         specifier: 'catalog:'
         version: 0.23.0(typescript@6.0.3)
@@ -234,19 +177,19 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 'catalog:'
-        version: 5.0.0(@types/node@22.20.2)(@vitest/coverage-v8@5.0.0)(@vitest/ui@5.0.0)(vite@8.0.13(@types/node@22.20.2)(jiti@2.7.0)(yaml@2.9.0))
+        version: 5.0.0(@types/node@22.20.1)(@vitest/coverage-v8@5.0.0)(@vitest/ui@5.0.0)(vite@8.0.13(@types/node@22.20.1)(jiti@2.7.0)(yaml@2.9.0))
 
   internals/utils:
     devDependencies:
       '@types/node':
-        specifier: 'catalog:'
-        version: 22.20.2
+        specifier: 22.20.1
+        version: 22.20.1
 
   packages/core:
     devDependencies:
       '@types/node':
-        specifier: 'catalog:'
-        version: 22.20.2
+        specifier: 22.20.1
+        version: 22.20.1
       tsdown:
         specifier: 'catalog:'
         version: 0.23.0(typescript@6.0.3)
@@ -255,7 +198,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 'catalog:'
-        version: 5.0.0(@types/node@22.20.2)(@vitest/coverage-v8@5.0.0)(@vitest/ui@5.0.0)(vite@8.0.13(@types/node@22.20.2)(jiti@2.7.0)(yaml@2.9.0))
+        version: 5.0.0(@types/node@22.20.1)(@vitest/coverage-v8@5.0.0)(@vitest/ui@5.0.0)(vite@8.0.13(@types/node@22.20.1)(jiti@2.7.0)(yaml@2.9.0))
 
   packages/demo:
     dependencies:
@@ -264,8 +207,8 @@ importers:
         version: link:../core
     devDependencies:
       '@types/node':
-        specifier: 'catalog:'
-        version: 22.20.2
+        specifier: 22.20.1
+        version: 22.20.1
       tsdown:
         specifier: 'catalog:'
         version: 0.23.0(typescript@6.0.3)
@@ -274,7 +217,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 'catalog:'
-        version: 5.0.0(@types/node@22.20.2)(@vitest/coverage-v8@5.0.0)(@vitest/ui@5.0.0)(vite@8.0.13(@types/node@22.20.2)(jiti@2.7.0)(yaml@2.9.0))
+        version: 5.0.0(@types/node@22.20.1)(@vitest/coverage-v8@5.0.0)(@vitest/ui@5.0.0)(vite@8.0.13(@types/node@22.20.1)(jiti@2.7.0)(yaml@2.9.0))
 
   tools/claude: {}
 
@@ -940,8 +883,8 @@ packages:
   '@types/estree@1.0.9':
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
 
-  '@types/node@22.20.2':
-    resolution: {integrity: sha512-xlvWf4Vs9n1PEVYwP1n4vvG07M6y8WgvJ2t0vbrWTmijsIHp1cS+uJ2kMIRdY3nHZK0nCYKrPeD171+SzF4/zw==}
+  '@types/node@22.20.1':
+    resolution: {integrity: sha512-EANqOCF9QFyra+4pfxUcX9STKJpCLjMbObVzljIJomAWSnuSIEAvyzEU53GaajbXJEgdh0iEcPL+DGvpUd4k1Q==}
 
   '@vitest/coverage-v8@5.0.0':
     resolution: {integrity: sha512-toMg6PZGCIa/lQNCDoASrfb1ly4hsUKXFtFYC9kD4t78o5Y6LyNJU7AENt8eHPr3quYdxaxK7hj2mnbFfUk9NA==}
@@ -1407,10 +1350,6 @@ packages:
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
-  picomatch@4.0.5:
-    resolution: {integrity: sha512-RvwwcruNjI1ncT5xRakeyS9Lf8lcItv34KD+aif+VH9kduAyfYBipGh12274xtenIPZ119/R9BdTBa8gAwSh0A==}
-    engines: {node: '>=12'}
-
   picomatch@4.0.7:
     resolution: {integrity: sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA==}
     engines: {node: '>=12'}
@@ -1536,7 +1475,7 @@ packages:
     peerDependencies:
       '@swc/core': '>=1.2.50'
       '@swc/wasm': '>=1.2.50'
-      '@types/node': '*'
+      '@types/node': 22.20.1
       typescript: '>=2.7'
     peerDependenciesMeta:
       '@swc/core':
@@ -1618,7 +1557,7 @@ packages:
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
-      '@types/node': ^20.19.0 || >=22.12.0
+      '@types/node': 22.20.1
       '@vitejs/devtools': ^0.1.18
       esbuild: ^0.27.0 || ^0.28.0
       jiti: '>=1.21.0'
@@ -1663,7 +1602,7 @@ packages:
     peerDependencies:
       '@edge-runtime/vm': '*'
       '@opentelemetry/api': ^1.9.0
-      '@types/node': ^22.0.0 || >=24.0.0
+      '@types/node': 22.20.1
       '@vitest/browser-playwright': 5.0.0
       '@vitest/browser-preview': 5.0.0
       '@vitest/browser-webdriverio': ^5.0.0-beta.5 || >=5.0.0
@@ -1726,7 +1665,7 @@ snapshots:
     dependencies:
       fzf: 0.5.2
       package-manager-detector: 1.8.0
-      tinyexec: 1.3.0
+      tinyexec: 1.3.1
       tinyglobby: 0.2.17
 
   '@babel/helper-string-parser@7.29.7': {}
@@ -1794,7 +1733,7 @@ snapshots:
       launch-editor: 2.14.1
       package-manager-detector: 1.8.0
       semver: 7.8.5
-      tinyexec: 1.3.0
+      tinyexec: 1.3.1
 
   '@changesets/config@4.0.0':
     dependencies:
@@ -1802,14 +1741,14 @@ snapshots:
       '@changesets/should-skip-package': 1.0.0
       '@changesets/types': 7.0.0
       '@manypkg/get-packages': 3.1.0
-      picomatch: 4.0.5
+      picomatch: 4.0.7
 
   '@changesets/errors@1.0.0': {}
 
   '@changesets/format@0.1.2':
     dependencies:
       package-manager-detector: 1.8.0
-      tinyexec: 1.3.0
+      tinyexec: 1.3.1
 
   '@changesets/get-dependents-graph@3.0.0':
     dependencies:
@@ -1825,8 +1764,8 @@ snapshots:
       '@changesets/errors': 1.0.0
       '@changesets/types': 7.0.0
       '@manypkg/get-packages': 3.1.0
-      picomatch: 4.0.5
-      tinyexec: 1.3.0
+      picomatch: 4.0.7
+      tinyexec: 1.3.1
 
   '@changesets/parse@1.0.0':
     dependencies:
@@ -2189,7 +2128,7 @@ snapshots:
 
   '@types/estree@1.0.9': {}
 
-  '@types/node@22.20.2':
+  '@types/node@22.20.1':
     dependencies:
       undici-types: 6.21.0
 
@@ -2203,7 +2142,7 @@ snapshots:
       obug: 2.1.4
       std-env: 4.2.0
       tinyrainbow: 3.1.1
-      vitest: 5.0.0(@types/node@22.20.2)(@vitest/coverage-v8@5.0.0)(@vitest/ui@5.0.0)(vite@8.0.13(@types/node@22.20.2)(jiti@2.7.0)(yaml@2.9.0))
+      vitest: 5.0.0(@types/node@22.20.1)(@vitest/coverage-v8@5.0.0)(@vitest/ui@5.0.0)(vite@8.0.13(@types/node@22.20.1)(jiti@2.7.0)(yaml@2.9.0))
 
   '@vitest/istanbul-lib-coverage@1.0.1': {}
 
@@ -2211,14 +2150,14 @@ snapshots:
     dependencies:
       '@vitest/istanbul-lib-coverage': 1.0.1
 
-  '@vitest/mocker@5.0.0(vite@8.0.13(@types/node@22.20.2)(jiti@2.7.0)(yaml@2.9.0))':
+  '@vitest/mocker@5.0.0(vite@8.0.13(@types/node@22.20.1)(jiti@2.7.0)(yaml@2.9.0))':
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       '@vitest/spy': 5.0.0
       estree-walker: 3.0.3
       magic-string: 1.2.3
     optionalDependencies:
-      vite: 8.0.13(@types/node@22.20.2)(jiti@2.7.0)(yaml@2.9.0)
+      vite: 8.0.13(@types/node@22.20.1)(jiti@2.7.0)(yaml@2.9.0)
 
   '@vitest/pretty-format@5.0.0':
     dependencies:
@@ -2234,7 +2173,7 @@ snapshots:
       pathe: 2.0.3
       sirv: 3.0.2
       tinyrainbow: 3.1.1
-      vitest: 5.0.0(@types/node@22.20.2)(@vitest/coverage-v8@5.0.0)(@vitest/ui@5.0.0)(vite@8.0.13(@types/node@22.20.2)(jiti@2.7.0)(yaml@2.9.0))
+      vitest: 5.0.0(@types/node@22.20.1)(@vitest/coverage-v8@5.0.0)(@vitest/ui@5.0.0)(vite@8.0.13(@types/node@22.20.1)(jiti@2.7.0)(yaml@2.9.0))
 
   '@vitest/utils@5.0.0':
     dependencies:
@@ -2334,7 +2273,7 @@ snapshots:
 
   bun-types@1.4.2:
     dependencies:
-      '@types/node': 22.20.2
+      '@types/node': 22.20.1
 
   cac@7.0.0: {}
 
@@ -2376,9 +2315,9 @@ snapshots:
     dependencies:
       fast-string-width: 3.0.2
 
-  fdir@6.5.0(picomatch@4.0.5):
+  fdir@6.5.0(picomatch@4.0.7):
     optionalDependencies:
-      picomatch: 4.0.5
+      picomatch: 4.0.7
 
   fflate@0.8.3: {}
 
@@ -2547,8 +2486,6 @@ snapshots:
 
   picocolors@1.1.1: {}
 
-  picomatch@4.0.5: {}
-
   picomatch@4.0.7: {}
 
   pnpm-workspace-yaml@1.8.0:
@@ -2659,7 +2596,7 @@ snapshots:
       pathe: 2.0.3
       pnpm-workspace-yaml: 1.8.0
       restore-cursor: 5.1.0
-      tinyexec: 1.3.0
+      tinyexec: 1.3.1
       tinyglobby: 0.2.17
       unconfig: 7.5.0
       verkit: 0.3.2
@@ -2673,8 +2610,8 @@ snapshots:
 
   tinyglobby@0.2.17:
     dependencies:
-      fdir: 6.5.0(picomatch@4.0.5)
-      picomatch: 4.0.5
+      fdir: 6.5.0(picomatch@4.0.7)
+      picomatch: 4.0.7
 
   tinypool@2.1.2: {}
 
@@ -2684,14 +2621,14 @@ snapshots:
 
   tree-kill@1.2.2: {}
 
-  ts-node@10.9.2(@types/node@22.20.2)(typescript@6.0.3):
+  ts-node@10.9.2(@types/node@22.20.1)(typescript@6.0.3):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.12
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 22.20.2
+      '@types/node': 22.20.1
       acorn: 8.16.0
       acorn-walk: 8.3.5
       arg: 4.1.3
@@ -2763,23 +2700,23 @@ snapshots:
 
   verkit@0.4.0: {}
 
-  vite@8.0.13(@types/node@22.20.2)(jiti@2.7.0)(yaml@2.9.0):
+  vite@8.0.13(@types/node@22.20.1)(jiti@2.7.0)(yaml@2.9.0):
     dependencies:
       lightningcss: 1.32.0
-      picomatch: 4.0.5
+      picomatch: 4.0.7
       postcss: 8.5.16
       rolldown: 1.0.1
       tinyglobby: 0.2.17
     optionalDependencies:
-      '@types/node': 22.20.2
+      '@types/node': 22.20.1
       fsevents: 2.3.3
       jiti: 2.7.0
       yaml: 2.9.0
 
-  vitest@5.0.0(@types/node@22.20.2)(@vitest/coverage-v8@5.0.0)(@vitest/ui@5.0.0)(vite@8.0.13(@types/node@22.20.2)(jiti@2.7.0)(yaml@2.9.0)):
+  vitest@5.0.0(@types/node@22.20.1)(@vitest/coverage-v8@5.0.0)(@vitest/ui@5.0.0)(vite@8.0.13(@types/node@22.20.1)(jiti@2.7.0)(yaml@2.9.0)):
     dependencies:
       '@types/chai': 5.2.3
-      '@vitest/mocker': 5.0.0(vite@8.0.13(@types/node@22.20.2)(jiti@2.7.0)(yaml@2.9.0))
+      '@vitest/mocker': 5.0.0(vite@8.0.13(@types/node@22.20.1)(jiti@2.7.0)(yaml@2.9.0))
       chai: 6.2.2
       es-module-lexer: 2.3.2
       expect-type: 1.4.0
@@ -2790,10 +2727,10 @@ snapshots:
       tinybench: 6.1.4
       tinyexec: 1.3.0
       tinyglobby: 0.2.17
-      vite: 8.0.13(@types/node@22.20.2)(jiti@2.7.0)(yaml@2.9.0)
+      vite: 8.0.13(@types/node@22.20.1)(jiti@2.7.0)(yaml@2.9.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 22.20.2
+      '@types/node': 22.20.1
       '@vitest/coverage-v8': 5.0.0(vitest@5.0.0)
       '@vitest/ui': 5.0.0(vitest@5.0.0)
     transitivePeerDependencies:

@@ -8,7 +8,7 @@ allowBuilds:
   es5-ext: true
   esbuild: true
 catalog:
-  "@types/node": ^22.20.2
+  "@types/node": ^22.20.1
   "@vitest/coverage-v8": ^5.0.0
   "@vitest/ui": ^5.0.0
   oxfmt: ^0.67.0
@@ -16,6 +16,11 @@ catalog:
   tsdown: ^0.23.0
   typescript: ^6.0.3
   vitest: ^5.0.0
+# @types/* is exempt from minimumReleaseAge below, but CI's safe-chain gate does not
+# exempt it, so a fresh @types/node fails the install there. Hold it at the last version
+# older than 48 hours until the bump clears that gate.
+overrides:
+  "@types/node": 22.20.1
 minimumReleaseAge: 2880 # 48 hours, matches CI's SAFE_CHAIN_MINIMUM_PACKAGE_AGE_HOURS
 # Native platform bindings are always co-published with their parent package in the same release.
 # Excluding them avoids false-positive ERR_PNPM_NO_MATURE_MATCHING_VERSION errors.

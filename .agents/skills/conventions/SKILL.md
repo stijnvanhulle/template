@@ -9,8 +9,8 @@ This skill ships the rules the template repo keeps in
 `.agents/skills/conventions/rules/`. When the plugin is installed in another
 project, the same files load on demand from here instead.
 
-`plain-language`, `security`, and `usa-english` apply to every request. The rest
-carry `paths:` frontmatter and load when you open a matching file.
+`plain-language`, `security`, `usa-english`, and `user-questions` apply to every request. The
+rest carry `paths:` frontmatter and load when you open a matching file.
 
 Read the file that matches what you are doing:
 
@@ -26,6 +26,8 @@ Read the file that matches what you are doing:
 - [`rules/testing.md`](./rules/testing.md) for Vitest patterns and what to test.
 - [`rules/usa-english.md`](./rules/usa-english.md) for the USA English spelling
   convention used across code, comments, and docs.
+- [`rules/user-questions.md`](./rules/user-questions.md) for asking the user a question as a
+  short quiz, native picker where one exists and a lettered list otherwise.
 
 If a rule conflicts with a project-specific instruction in `AGENTS.md` or
 `CLAUDE.md`, the project instruction wins.

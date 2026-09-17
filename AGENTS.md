@@ -97,8 +97,8 @@ bump their `version` by hand in the same PR.
 
 ## Rules
 
-Conventions for this repo. `plain-language`, `security`, and `usa-english` apply to
-every request. The rest carry `paths:` frontmatter and load when you open a matching
+Conventions for this repo. `plain-language`, `security`, `usa-english`, and `user-questions`
+apply to every request. The rest carry `paths:` frontmatter and load when you open a matching
 file. The same files ship in the `conventions` skill for tools that load `SKILL.md`
 folders on demand.
 
@@ -109,6 +109,7 @@ folders on demand.
 - [security](.agents/skills/conventions/rules/security.md): Secrets, input validation at trust boundaries, safe shell use.
 - [testing](.agents/skills/conventions/rules/testing.md): Vitest patterns and what to test.
 - [usa-english](.agents/skills/conventions/rules/usa-english.md): Write code, comments, and docs in USA English spellings.
+- [user-questions](.agents/skills/conventions/rules/user-questions.md): Ask the user a question as a short quiz, native picker where one exists and a lettered list otherwise.
 
 <skills>
 

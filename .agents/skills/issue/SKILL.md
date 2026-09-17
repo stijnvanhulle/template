@@ -1,12 +1,21 @@
 ---
 name: issue
-description: Open a GitHub issue with its sidebar filled in, so the labels, the type, and the Priority and Effort fields are set rather than left empty. Use when filing an issue, turning a report into one, or triaging an issue whose fields are empty.
+description: Open a GitHub issue or a Jira ticket with its sidebar filled in, so the labels, the type, and the fields are set rather than left empty. Use when filing an issue, filing a Jira ticket, turning a report into one, or triaging an issue whose fields are empty.
 ---
 
 # Issue skill
 
 An issue with an empty sidebar sits in the backlog unsorted. Set the type, the labels, and the
 fields in the same pass as the title and body.
+
+## Pick the tracker
+
+| Tracker | When | Template |
+| --- | --- | --- |
+| GitHub | The repo has a GitHub remote and the branch carries no project key | `templates/github-bug.md`, `templates/github-feature.md` |
+| Jira | The branch name or `CLAUDE.md` carries a project key such as `KEY-123` | `templates/jira-story.md`, `templates/jira-bug.md`, `templates/jira-epic.md` |
+
+The rest of this skill covers GitHub. For Jira, see the section near the end.
 
 ## 1. Check it is not already open
 
@@ -18,8 +27,8 @@ Comment on the match instead of opening a second issue.
 
 ## 2. Write it
 
-Pick the form in `.github/ISSUE_TEMPLATE/`: `bug.yml` for a defect, `docs.yml` for
-documentation, blank for the rest. Answer every required field.
+Pick the body from `templates/`: `github-bug.md` for a defect, `github-feature.md` for new
+behavior. Answer every placeholder.
 
 Title in the imperative, under 72 characters, no period, so `fix the resolver cache miss on
 nested plugins` rather than `Resolver bug`. A bug body carries the version, the steps, the
@@ -65,9 +74,25 @@ validates each option name before the call:
 `method: "update"` with an issue number fills in an issue that already exists. Report the URL and
 the values you set.
 
+## Jira
+
+- Search first with `searchJiraIssuesUsingJql` and comment on a match instead of opening a
+  duplicate.
+- Pick the template by issue type. A story gets the persona sentence, a bug gets steps and actual
+  behavior, an epic gets a goal and the stories that reach it.
+- Each acceptance criterion is one behavior a reviewer can call true or false without asking. Two
+  behaviors in one bullet means two bullets.
+- If a story cannot be estimated or will not fit a sprint, split it. That is the S and the E in
+  INVEST, and it changes what gets written, not only how.
+- An epic groups stories that share a goal. A one-off fix stays a plain story.
+- Create with `createJiraIssue`, update an existing ticket with `editJiraIssue`.
+- Ticket references are markdown links, never bare keys.
+- Payloads go in fenced blocks. Jira's editor mangles some pasted inline code, so type inline
+  backticks in the editor rather than pasting them, and check the result.
+
 ## Guardrails
 
-- One issue does one thing. Split a report carrying two problems.
+- One issue or ticket does one thing. Split a report carrying two problems.
 - No tokens, `.env` lines, or internal hostnames in a body. Say where the value lives.
 - Do not raise Priority to jump a queue.
 - Run the `humanizer` skill over the title and body.

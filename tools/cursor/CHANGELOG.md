@@ -1,5 +1,30 @@
 # @stijnvanhulle/template-cursor-plugin
 
+## 0.6.0
+
+### Minor Changes
+
+- [#223](https://github.com/stijnvanhulle/template/pull/223) [`2a33c3c`](https://github.com/stijnvanhulle/template/commit/2a33c3c271c1d56d42a58a8126831c16fab5675f) Thanks [@stijnvanhulle](https://github.com/stijnvanhulle)! - The `issue` skill now files Jira tickets alongside GitHub issues, and its templates move into the
+  skill itself.
+  
+  - Adds a story, bug, and epic template for Jira, using `createJiraIssue`, `editJiraIssue`, and
+    `searchJiraIssuesUsingJql`.
+  - Adds a "pick the tracker" table so the skill routes GitHub issues and Jira tickets to the right
+    template.
+  - Moves the GitHub bug and feature bodies from `.github/ISSUE_TEMPLATE/` into
+    `.agents/skills/issue/templates/`, so every consuming repo gets a body shape even without its
+    own issue forms.
+
+- [#223](https://github.com/stijnvanhulle/template/pull/223) [`2a33c3c`](https://github.com/stijnvanhulle/template/commit/2a33c3c271c1d56d42a58a8126831c16fab5675f) Thanks [@stijnvanhulle](https://github.com/stijnvanhulle)! - Adds a `user-questions` convention rule so every skill asks the user a short, concrete question
+  instead of an open paragraph when a task has a few known paths.
+  
+  - Uses the native multiple-choice tool (`AskUserQuestion` in Claude Code and Claude Desktop)
+    where the client supports it, and falls back to a lettered list in plain text for Codex,
+    Cursor, Gemini CLI, and OpenCode.
+  - Applies to every request, alongside `plain-language`, `security`, and `usa-english`.
+  - Updates the `backlog` skill's per-issue confirmation to point at the fallback for clients
+    without a native picker.
+
 ## 0.5.0
 
 ### Minor Changes

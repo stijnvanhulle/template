@@ -1,5 +1,63 @@
 # @stijnvanhulle/template-claude-plugin
 
+## 1.0.0
+
+### Major Changes
+
+- [#226](https://github.com/stijnvanhulle/template/pull/226) [`e0639c2`](https://github.com/stijnvanhulle/template/commit/e0639c2936bad332a9fd7d95aa80bca796a85bab) Thanks [@stijnvanhulle](https://github.com/stijnvanhulle)! - Fold the `ponytail` skill and its `/ponytail` command into `deslop`, so one skill and one
+  `/deslop` command run both checks in a single pass.
+  
+  - Runs the reuse-first decision ladder (over-engineering: unneeded deps, wrappers, config)
+    alongside the existing AI style-tell checklist (needless comments, defensive checks, `any`
+    casts).
+  - Lists every finding with the file, what it violates, and the proposed fix, then asks before
+    changing anything, using a native picker where the client has one and a lettered list
+    otherwise. `deslop` used to apply its fixes directly; it now asks first, matching how
+    `ponytail` already worked.
+  - Applies only the findings you confirm.
+  
+  To upgrade, run `/deslop` where you used to run `/ponytail`.
+
+### Minor Changes
+
+- [#226](https://github.com/stijnvanhulle/template/pull/226) [`e0639c2`](https://github.com/stijnvanhulle/template/commit/e0639c2936bad332a9fd7d95aa80bca796a85bab) Thanks [@stijnvanhulle](https://github.com/stijnvanhulle)! - The `user-questions` rule now says to always reach for the native picker (`AskUserQuestion` or
+  a client's equivalent) when a task is blocked on information only the user can supply, instead
+  of reserving it for a fixed-choice fork.
+  
+  - Covers open-ended requests too: offer your best-guess options and let `Other` carry the real
+    answer, rather than falling back to a plain question.
+  - The one carve-out is a secret or credential (an API key, a token, a password), which stays a
+    plain question and is never echoed back or offered as a guessable option.
+
+- [#226](https://github.com/stijnvanhulle/template/pull/226) [`e0639c2`](https://github.com/stijnvanhulle/template/commit/e0639c2936bad332a9fd7d95aa80bca796a85bab) Thanks [@stijnvanhulle](https://github.com/stijnvanhulle)! - `code-reviewer` now folds `deslop`'s reuse-first ladder and AI style tells, `jsdoc`'s
+  conventions, `humanizer`'s pattern list, and `documentation`'s style guide into its review, in
+  that order, then asks which findings to hand off for fixing.
+  
+  - Stays read-only: it reports findings by these skills' criteria instead of applying their
+    fixes, then follows the `user-questions` rule to ask which of `deslop`, `jsdoc`, `humanizer`,
+    or `documentation` you want run next.
+  - A pass with nothing in its category (no exported symbols touched, no prose changed) is
+    skipped rather than forced.
+
+- [#226](https://github.com/stijnvanhulle/template/pull/226) [`e0639c2`](https://github.com/stijnvanhulle/template/commit/e0639c2936bad332a9fd7d95aa80bca796a85bab) Thanks [@stijnvanhulle](https://github.com/stijnvanhulle)! - `deslop` now runs the `humanizer` pattern list as a third pass over any changed README, doc,
+  comment block, or other user-facing markdown in the diff, alongside its existing reuse-first
+  ladder and code style-tell checks.
+  
+  - One `/deslop` run now covers over-engineering, code style tells, and AI writing tells in
+    prose, instead of needing a separate `/humanizer` pass for prose changes.
+  - `humanizer` still works standalone for prose review outside a code diff.
+
+### Patch Changes
+
+- [#226](https://github.com/stijnvanhulle/template/pull/226) [`e0639c2`](https://github.com/stijnvanhulle/template/commit/e0639c2936bad332a9fd7d95aa80bca796a85bab) Thanks [@stijnvanhulle](https://github.com/stijnvanhulle)! - Cut the token cost of the `jsdoc` and `pr` skills without dropping any guidance.
+  
+  - Moved the `jsdoc` skill's full `@example` gallery and documentation patterns into
+    `references/examples.md`, so the default load only carries the tag tables, guidelines, and tag
+    order.
+  - Shortened the `jsdoc` skill's frontmatter description, since it stays in context in every
+    `<skills>` listing whether or not the skill loads.
+  - Tightened repetitive prose across the `pr` skill's steps, keeping every check and guardrail.
+
 ## 0.6.0
 
 ### Minor Changes

@@ -18,9 +18,9 @@ Only the slash commands need installing, and Codex uses a prompt format with `de
   filled in.
 - `/create-pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens
   the pull request.
-- `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
-- `/trim [path]` audits the branch's changes for AI-generated code smell (over-engineering and
+- `/deslop [path]` audits the branch's changes for AI-generated code smell (over-engineering and
   style tells) and applies only what you confirm.
+- `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
 
 Codex has no subagent concept, so there is no code-reviewer agent here.
 
@@ -38,7 +38,7 @@ ln -s "$PWD/tools/codex/prompts"/*.md ~/.codex/prompts/
 Restart Codex afterward, since it scans the folder at startup. Codex reads only top-level
 markdown files there, so link the files rather than the directory.
 
-`/create-changeset`, `/trim`, and `/humanizer` open with a `` !`git diff --stat HEAD` `` line that
+`/create-changeset`, `/deslop`, and `/humanizer` open with a `` !`git diff --stat HEAD` `` line that
 Claude Code expands into command output. If your Codex version does not support shell
 injection in prompts, that line comes through as literal text and the command still works, it
 just describes the diff instead of embedding it.

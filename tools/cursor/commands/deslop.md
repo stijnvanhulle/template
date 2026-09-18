@@ -1,10 +1,12 @@
-description = "Audit the current branch's changes for AI-generated code smell (over-engineering and style tells), then apply only what you confirm"
+---
+argument-hint: [path]
+description: Audit the current branch's changes for AI-generated code smell (over-engineering and style tells), then apply only what you confirm
+---
 
-prompt = """
-!{git diff --stat HEAD}
+!`git diff --stat HEAD`
 
 Audit the branch's diff against the default branch for AI-generated code smell, narrowed to
-`{{args}}` when given.
+`$ARGUMENTS` when given.
 
 1. For each new dependency, file, wrapper, or exported symbol, walk the reuse-first ladder:
    needed, already in the codebase, stdlib or platform, installed dependency, one line.
@@ -13,12 +15,10 @@ Audit the branch's diff against the default branch for AI-generated code smell, 
    deep nesting that early returns would flatten.
 3. List every finding with the file, what it violates, and the proposed fix. Do not edit
    anything yet.
-4. Follow `.agents/skills/conventions/rules/user-questions.md` to confirm each finding (apply,
-   skip, or show more) before changing anything. Leave a check alone that guards a real trust
-   boundary.
+4. Follow the `user-questions` rule to confirm each finding (apply, skip, or show more) before
+   changing anything. Leave a check alone that guards a real trust boundary.
 5. Apply only what is confirmed, run `pnpm format && pnpm lint:fix`, and report a 1-3 sentence
    summary.
 
-Follow `.agents/skills/trim/SKILL.md` for the full ladder, style-tell checklist, and guardrails.
-For prose and user-facing markdown, use `.agents/skills/humanizer/SKILL.md` instead.
-"""
+Follow the `deslop` skill for the full ladder, style-tell checklist, and guardrails. For prose
+and user-facing markdown, use the `humanizer` skill instead.

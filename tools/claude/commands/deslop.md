@@ -20,5 +20,5 @@ Audit the branch's diff against the default branch for AI-generated code smell, 
 5. Apply only what is confirmed, run `pnpm format && pnpm lint:fix`, and report a 1-3 sentence
    summary.
 
-Follow the `trim` skill for the full ladder, style-tell checklist, and guardrails. For prose and
-user-facing markdown, use the `humanizer` skill instead.
+Follow the `deslop` skill for the full ladder, style-tell checklist, and guardrails. For prose
+and user-facing markdown, use the `humanizer` skill instead.

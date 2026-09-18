@@ -19,9 +19,9 @@ Slash commands for release and review housekeeping:
   filled in.
 - `/create-pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens
   the pull request.
-- `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
-- `/trim [path]` audits the branch's changes for AI-generated code smell (over-engineering and
+- `/deslop [path]` audits the branch's changes for AI-generated code smell (over-engineering and
   style tells) and applies only what you confirm.
+- `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
 
 Rules that Cursor auto-attaches by file type, or applies always:
 
@@ -36,13 +36,13 @@ Skills loaded on demand from their descriptions:
 - `branch` names and cuts a branch from a GitHub, ClickUp, or Jira issue.
 - `changelog` turns commit history into a user-facing changelog.
 - `changeset` is the layout and wording for a changeset that reads as a release note.
+- `deslop` audits a diff for AI-generated code smell, both over-engineering (the reuse-first
+  ladder) and style tells (the code counterpart to `humanizer`), then asks before applying.
 - `documentation` is the writing style guide for blog posts and docs.
 - `humanizer` removes AI tells from user-facing markdown.
 - `issue` fills in an issue's type, labels, priority, and effort.
 - `jsdoc` covers JSDoc tags and examples for TypeScript.
 - `pr` is the PR-prep and release checklist for a Changesets monorepo.
-- `trim` audits a diff for AI-generated code smell, both over-engineering (the reuse-first
-  ladder) and style tells (the code counterpart to `humanizer`), then asks before applying.
 - `conventions` bundles the same rule text the Cursor rules carry.
 
 A `code-reviewer` subagent reviews TypeScript changes for correctness, security,
@@ -81,8 +81,8 @@ directory, with the skills from `.agents/skills`.
 Slash commands run when you type them. Name the command and pass any argument:
 
 ```text
-/trim                      # audit the whole branch diff for AI-generated code smell
-/trim apps/web             # limit it to one path
+/deslop                    # audit the whole branch diff for AI-generated code smell
+/deslop apps/web           # limit it to one path
 /humanizer docs            # rewrite the prose the branch changed under docs/
 /create-changeset minor    # add a changeset for the current changes
 /create-pr                 # get the branch ready for review and open the PR
@@ -92,7 +92,7 @@ Slash commands run when you type them. Name the command and pass any argument:
 
 Skills load on their own. Each carries a description, and the agent reads the matching one when
 the task fits, so writing release notes pulls in `changelog` and cleaning prose pulls in
-`humanizer` without being asked. To force one, name it: "use the trim skill on this diff."
+`humanizer` without being asked. To force one, name it: "use the deslop skill on this diff."
 
 Rules apply on their own too. `plain-language`, `security`, and `usa-english` are always on, and the rest attach
 when you open a matching file. The guiding split: rules always apply (or attach by file type),

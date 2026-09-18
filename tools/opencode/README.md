@@ -21,9 +21,9 @@ Slash commands:
   filled in.
 - `/create-pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens
   the pull request.
-- `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
-- `/trim [path]` audits the branch's changes for AI-generated code smell (over-engineering and
+- `/deslop [path]` audits the branch's changes for AI-generated code smell (over-engineering and
   style tells) and applies only what you confirm.
+- `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
 
 A read-only `code-reviewer` subagent reviews TypeScript changes for correctness, security, and
 maintainability. Invoke it by name with `@code-reviewer`.
@@ -55,8 +55,8 @@ and what this repo uses.
 ## Usage
 
 ```text
-/trim                      # audit the whole branch diff for AI-generated code smell
-/trim apps/web             # limit it to one path
+/deslop                    # audit the whole branch diff for AI-generated code smell
+/deslop apps/web           # limit it to one path
 /humanizer docs            # rewrite the prose the branch changed under docs/
 /create-changeset minor    # add a changeset for the current changes
 /create-pr                 # get the branch ready for review and open the PR

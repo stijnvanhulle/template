@@ -1,9 +1,9 @@
 ---
-name: trim
+name: deslop
 description: Audit a branch's diff for AI-generated code smell, both over-engineering (unneeded deps, wrappers, config) and style tells (needless comments, defensive checks, `any` casts), then apply only the findings the user confirms. Use before implementing a feature, before opening a PR, or when auditing a diff for AI slop.
 ---
 
-# Trim
+# Deslop
 
 Two passes over the same diff: whether the code should exist in this shape (the reuse-first
 ladder), and whether it reads like a human wrote it (the AI style tells). Report every finding

@@ -18,8 +18,8 @@ Only the slash commands need installing, and Codex uses a prompt format with `de
   filled in.
 - `/create-pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens
   the pull request.
-- `/deslop [path]` audits the branch's changes for AI-generated code smell (over-engineering and
-  style tells) and applies only what you confirm.
+- `/deslop [path]` audits the branch's changes for AI-generated code smell (over-engineering,
+  code style tells, and prose humanizing) and applies only what you confirm.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
 
 Codex has no subagent concept, so there is no code-reviewer agent here.

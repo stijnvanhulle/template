@@ -1,6 +1,6 @@
 ---
 argument-hint: [path]
-description: Audit the current branch's changes for AI-generated code smell (over-engineering and style tells), then apply only what you confirm
+description: Audit the current branch's changes for AI-generated code smell and writing tells (over-engineering, style tells, and prose humanizing), then apply only what you confirm
 ---
 
 !`git diff --stat HEAD`
@@ -13,12 +13,13 @@ Audit the branch's diff against the default branch for AI-generated code smell, 
 2. Check the same diff for AI style tells: unnecessary or inconsistent comments, defensive
    checks and `try/catch` on trusted code paths, `any` casts that only dodge a type error, and
    deep nesting that early returns would flatten.
-3. List every finding with the file, what it violates, and the proposed fix. Do not edit
+3. For any changed README, doc, comment block, or other user-facing markdown, run the
+   `humanizer` skill's pattern list as a third pass.
+4. List every finding with the file, what it violates, and the proposed fix. Do not edit
    anything yet.
-4. Follow the `user-questions` rule to confirm each finding (apply, skip, or show more) before
+5. Follow the `user-questions` rule to confirm each finding (apply, skip, or show more) before
    changing anything. Leave a check alone that guards a real trust boundary.
-5. Apply only what is confirmed, run `pnpm format && pnpm lint:fix`, and report a 1-3 sentence
+6. Apply only what is confirmed, run `pnpm format && pnpm lint:fix`, and report a 1-3 sentence
    summary.
 
-Follow the `deslop` skill for the full ladder, style-tell checklist, and guardrails. For prose
-and user-facing markdown, use the `humanizer` skill instead.
+Follow the `deslop` skill for the full ladder, style-tell checklist, and guardrails.

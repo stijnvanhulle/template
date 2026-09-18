@@ -1,19 +1,21 @@
 ---
 name: deslop
-description: Audit a branch's diff for AI-generated code smell, both over-engineering (unneeded deps, wrappers, config) and style tells (needless comments, defensive checks, `any` casts), then apply only the findings the user confirms. Use before implementing a feature, before opening a PR, or when auditing a diff for AI slop.
+description: Audit a branch's diff for AI-generated code smell, over-engineering (unneeded deps, wrappers, config), style tells in code (needless comments, defensive checks, `any` casts), and AI writing tells in changed prose, then apply only the findings the user confirms. Use before implementing a feature, before opening a PR, or when auditing a diff for AI slop.
 ---
 
 # Deslop
 
-Two passes over the same diff: whether the code should exist in this shape (the reuse-first
-ladder), and whether it reads like a human wrote it (the AI style tells). Report every finding
-before changing anything, then apply only what the user confirms.
+Three passes over the same diff: whether the code should exist in this shape (the reuse-first
+ladder), whether the code reads like a human wrote it (the AI style tells), and whether any
+changed prose does too (the `humanizer` pattern list). Report every finding before changing
+anything, then apply only what the user confirms.
 
 ## When to use
 
 - Before adding a dependency, config option, or abstraction.
 - After writing or generating a batch of code, before opening a PR.
-- Auditing a diff, a PR, or your own output for over-engineering or AI style tells.
+- Auditing a diff, a PR, or your own output for over-engineering, code style tells, or AI
+  writing tells in changed prose.
 
 ## 1. The reuse-first decision ladder
 
@@ -46,20 +48,24 @@ serving more than one real caller today is not a violation.
 - Deep nesting that early returns would flatten.
 - Naming, import, or export style inconsistent with the file and the `code-style` rule.
 
-Prose and user-facing markdown are out of scope for either pass. Run the `humanizer` skill over
-those instead.
+## 3. Prose: run the humanizer pattern list
 
-## 3. Report, then ask
+For any changed README, doc, comment block, or other user-facing markdown in the diff, run the
+`humanizer` skill's pattern list as the third pass: dashes and semicolons used as punctuation,
+title-case headings, emoji, marketing words, rule-of-three lists, inline-header bullets, hedging,
+and filler openers. Code with no prose changes skips this pass.
 
-List every finding from both passes: file, the rung or tell it violates, and the proposed fix.
-Do not edit anything yet.
+## 4. Report, then ask
+
+List every finding from all three passes: file, the rung or tell it violates, and the proposed
+fix. Do not edit anything yet.
 
 Follow the `user-questions` rule to confirm before applying: one `AskUserQuestion` batch in a
 client that has it (apply / skip / show more, per finding or per closely related group), a
 lettered list in a client that does not. Skipping here costs nothing; skipping after an edit
 costs a revert.
 
-## 4. Apply only what is confirmed
+## 5. Apply only what is confirmed
 
 - Keep behavior unchanged unless fixing a clear bug the ladder or the tells surfaced.
 - Prefer minimal, surgical edits over broad rewrites.
@@ -73,6 +79,6 @@ costs a revert.
 
 | Skill                                                         | Use for                                                                     |
 | ------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| [humanizer](../humanizer/SKILL.md)                            | Removing AI tells from prose and user-facing markdown                       |
+| [humanizer](../humanizer/SKILL.md)                            | The full pattern list step 3 runs, and prose review outside a code diff     |
 | [code-style rule](../conventions/rules/code-style.md)         | The house style this skill enforces on code, dependencies, and abstractions |
 | [user-questions rule](../conventions/rules/user-questions.md) | How the confirm step renders per client                                     |

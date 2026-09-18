@@ -19,8 +19,8 @@ Slash commands for release and review housekeeping:
   filled in.
 - `/create-pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens
   the pull request.
-- `/deslop [path]` audits the branch's changes for AI-generated code smell (over-engineering and
-  style tells) and applies only what you confirm.
+- `/deslop [path]` audits the branch's changes for AI-generated code smell (over-engineering,
+  code style tells, and prose humanizing) and applies only what you confirm.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
 
 Rules that Cursor auto-attaches by file type, or applies always:
@@ -36,8 +36,8 @@ Skills loaded on demand from their descriptions:
 - `branch` names and cuts a branch from a GitHub, ClickUp, or Jira issue.
 - `changelog` turns commit history into a user-facing changelog.
 - `changeset` is the layout and wording for a changeset that reads as a release note.
-- `deslop` audits a diff for AI-generated code smell, both over-engineering (the reuse-first
-  ladder) and style tells (the code counterpart to `humanizer`), then asks before applying.
+- `deslop` audits a diff for AI-generated code smell: the reuse-first ladder, code style tells,
+  and, for changed prose, the `humanizer` pattern list, then asks before applying.
 - `documentation` is the writing style guide for blog posts and docs.
 - `humanizer` removes AI tells from user-facing markdown.
 - `issue` fills in an issue's type, labels, priority, and effort.

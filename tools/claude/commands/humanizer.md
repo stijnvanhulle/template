@@ -17,4 +17,4 @@ Rewrite the user-facing prose on this branch so it reads as human.
    upstream text as they are.
 5. Report a 1-3 sentence summary of the tells you fixed.
 
-Follow the `humanizer` skill for the full pattern list. For code, use the `deslop` skill instead.
+Follow the `humanizer` skill for the full pattern list. For code, use the `trim` skill instead.

@@ -16,5 +16,5 @@ Rewrite the user-facing prose on this branch so it reads as human.
 5. Report a 1-3 sentence summary of the tells you fixed.
 
 Follow `.agents/skills/humanizer/SKILL.md` for the full pattern list. For code, use
-`.agents/skills/deslop/SKILL.md` instead.
+`.agents/skills/trim/SKILL.md` instead.
 """

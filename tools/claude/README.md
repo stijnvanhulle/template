@@ -19,9 +19,9 @@ Slash commands for release and review housekeeping:
   filled in.
 - `/create-pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens
   the pull request.
-- `/deslop [path]` removes AI-generated code slop from the branch's changes.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
-- `/ponytail [path]` audits the branch's changes for over-engineering.
+- `/trim [path]` audits the branch's changes for AI-generated code smell (over-engineering and
+  style tells) and applies only what you confirm.
 
 Skills loaded on demand from their descriptions:
 
@@ -29,13 +29,13 @@ Skills loaded on demand from their descriptions:
 - `branch` names and cuts a branch from a GitHub, ClickUp, or Jira issue.
 - `changelog` turns commit history into a user-facing changelog.
 - `changeset` is the layout and wording for a changeset that reads as a release note.
-- `deslop` strips AI-generated code slop from a diff, the code counterpart to `humanizer`.
 - `documentation` is the writing style guide for blog posts and docs.
 - `humanizer` removes AI tells from user-facing markdown.
 - `issue` fills in an issue's type, labels, priority, and effort.
 - `jsdoc` covers JSDoc tags and examples for TypeScript.
-- `ponytail` checks new code against a reuse-first decision ladder before adding a dependency.
 - `pr` is the PR-prep and release checklist for a Changesets monorepo.
+- `trim` audits a diff for AI-generated code smell, both over-engineering (the reuse-first
+  ladder) and style tells (the code counterpart to `humanizer`), then asks before applying.
 - `conventions` bundles the seven rules (code style, JSDoc, markdown, plain language,
   security, testing, USA English).
 
@@ -74,19 +74,18 @@ Slash commands run when you type them. In Claude Code, name the command and pass
 argument:
 
 ```bash
-/deslop                    # strip AI code slop from the whole branch diff
-/deslop apps/web           # limit it to one path
+/trim                      # audit the whole branch diff for AI-generated code smell
+/trim apps/web             # limit it to one path
 /humanizer docs            # rewrite the prose the branch changed under docs/
 /create-changeset minor    # add a changeset for the current changes
 /create-pr                 # get the branch ready for review and open the PR
 /backlog github 10         # triage the 10 latest GitHub issues
 /backlog jira              # triage the latest Jira issues
-/ponytail                  # audit the whole branch diff for over-engineering
 ```
 
 Skills load on their own. Each carries a description, and the agent reads the matching one when
 the task fits, so writing release notes pulls in `changelog` and cleaning prose pulls in
-`humanizer` without being asked. To force one, name it: "use the deslop skill on this diff."
+`humanizer` without being asked. To force one, name it: "use the trim skill on this diff."
 
 Rules need no trigger. `plain-language`, `security`, and `usa-english` apply on every request,
 and the rest attach when you open a matching file. The guiding split: rules apply on their own,

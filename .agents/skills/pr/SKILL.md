@@ -185,17 +185,17 @@ the author decide.
 - Never force-push a branch someone else may have checked out.
 - Run the `humanizer` skill over the PR body, the changeset, and any user-facing markdown in
   the diff.
-- Run the `deslop` skill over generated code before you push.
+- Run the `trim` skill over generated code before you push.
 - Use USA English in the title, body, commits, and changeset.
 
 ## Related skills
 
-| Skill | Use for |
-| --- | --- |
-| [branch](../branch/SKILL.md) | Naming and cutting the branch this PR comes from |
-| [changeset](../changeset/SKILL.md) | The changeset layout, bump, and wording |
-| [changelog](../changelog/SKILL.md) | Release-note wording |
-| [issue](../issue/SKILL.md) | Opening the issue this PR closes |
-| [deslop](../deslop/SKILL.md) | Stripping AI tells from the code in the diff |
-| [humanizer](../humanizer/SKILL.md) | Stripping AI tells from the prose in the diff |
-| [conventions](../conventions/SKILL.md) | Code style, markdown, security, plain language |
+| Skill                                  | Use for                                                           |
+| -------------------------------------- | ----------------------------------------------------------------- |
+| [branch](../branch/SKILL.md)           | Naming and cutting the branch this PR comes from                  |
+| [changeset](../changeset/SKILL.md)     | The changeset layout, bump, and wording                           |
+| [changelog](../changelog/SKILL.md)     | Release-note wording                                              |
+| [issue](../issue/SKILL.md)             | Opening the issue this PR closes                                  |
+| [trim](../trim/SKILL.md)               | Stripping AI tells and over-engineering from the code in the diff |
+| [humanizer](../humanizer/SKILL.md)     | Stripping AI tells from the prose in the diff                     |
+| [conventions](../conventions/SKILL.md) | Code style, markdown, security, plain language                    |

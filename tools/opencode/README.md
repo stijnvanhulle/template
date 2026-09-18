@@ -25,8 +25,10 @@ Slash commands:
   code style tells, and prose humanizing) and applies only what you confirm.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
 
-A read-only `code-reviewer` subagent reviews TypeScript changes for correctness, security, and
-maintainability. Invoke it by name with `@code-reviewer`.
+A read-only `code-reviewer` subagent reviews TypeScript changes for correctness, security,
+maintainability, over-engineering, and AI tells in code and prose, then asks which findings to
+hand off to `deslop`, `jsdoc`, `humanizer`, or `documentation` for fixing. Invoke it by name with
+`@code-reviewer`.
 
 Skills load from `.agents/skills/`.
 

@@ -46,7 +46,9 @@ Skills loaded on demand from their descriptions:
 - `conventions` bundles the same rule text the Cursor rules carry.
 
 A `code-reviewer` subagent reviews TypeScript changes for correctness, security,
-and maintainability. It is read-only and runs in its own context.
+maintainability, over-engineering, and AI tells in code and prose, then asks which findings to
+hand off to `deslop`, `jsdoc`, `humanizer`, or `documentation` for fixing. It is read-only and
+runs in its own context.
 
 ## Install
 

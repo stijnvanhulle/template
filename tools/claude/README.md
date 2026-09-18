@@ -40,8 +40,10 @@ Skills loaded on demand from their descriptions:
   security, testing, USA English).
 
 A `code-reviewer` subagent reviews TypeScript changes for correctness, security,
-and maintainability. Three output styles set the writing voice (`house`),
-inline implementation planning (`plan`), and a diagrams-first layout (`diagrams-first`).
+maintainability, over-engineering, and AI tells in code and prose, then asks which findings to
+hand off to `deslop`, `jsdoc`, `humanizer`, or `documentation` for fixing. Three output styles
+set the writing voice (`house`), inline implementation planning (`plan`), and a diagrams-first
+layout (`diagrams-first`).
 
 ## Install
 

@@ -22,8 +22,8 @@ for a PR body under 150 words. Run the `humanizer` skill over anything you write
 
 ## 1. Confirm the branch
 
-Never commit to `main`. Check where you are, and branch from an up-to-date `main` if you are
-still on it:
+Never commit to `main`. Check where you are, and branch from an up-to-date `main` when still on
+it:
 
 ```bash
 git status
@@ -61,10 +61,10 @@ The `changeset` skill decides whether this branch needs one, which bump it takes
 entry is laid out. `/create-changeset` does the step for you.
 
 Both plugin manifests version through Changesets, so a change under `tools/claude` or
-`tools/cursor` needs its own changeset. Never hand-edit `version` in
-`tools/claude/.claude-plugin/plugin.json` or `tools/cursor/.cursor-plugin/plugin.json`. A
-change under `.agents/skills/` also ships in Codex and Gemini, so bump `version` by hand in
-`.codex-plugin/plugin.json` and `gemini-extension.json` in the same PR.
+`tools/cursor` needs its own changeset; never hand-edit `version` in either
+`.claude-plugin/plugin.json` or `.cursor-plugin/plugin.json`. A change under `.agents/skills/`
+also ships in Codex and Gemini, so bump `version` by hand in `.codex-plugin/plugin.json` and
+`gemini-extension.json` in the same PR.
 
 ## 4. Commit
 
@@ -85,8 +85,8 @@ One Conventional Commit line, imperative, under 72 characters, no trailing perio
 the squash-merge commit, so write it for whoever reads the changelog later.
 
 The branch category (`feature`, `hotfix`, `release`) is too coarse for a Conventional Commit
-type, so read the type the same way the `branch` skill's step 2 does, off the issue's labels or
-the change itself, rather than off the branch prefix:
+type. Read the type the way the `branch` skill's step 2 does, off the issue's labels or the
+change itself, not the branch prefix:
 
 1. Pick the type: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, or `perf`.
 2. Drop the issue reference from the branch name, then turn the kebab-case rest into a sentence,
@@ -121,22 +121,15 @@ result.
 
 ### How to test
 
-Three lines, replacing the placeholders:
-
-- Step 1: [Clear reproduction step]
-- Step 2: [Next step]
-- Step 3: [Expected result]
-
-Use a real command or path, starting from a clean checkout. Fix steps someone hands you rather
-than pasting them as-is: add the missing prerequisite, order them, name the expected result. Ask
-for steps you can't derive from the diff. Add a screenshot for a visible change, before and
-after when you changed something that already existed.
+Replace the placeholders with three real steps, from a clean checkout: a reproduction step, the
+next step, and the expected result. Fix steps someone hands you rather than pasting them as-is:
+add the missing prerequisite, order them, name the result. Ask for steps you can't derive from
+the diff. Add a before/after screenshot for a visible change.
 
 ### Impact
 
-One line. Say who this reaches: someone using the published package, someone consuming the
-generated output, or nobody outside this repo. Name the migration step when the change breaks
-someone.
+One line naming who this reaches: someone using the published package, someone consuming the
+generated output, or nobody outside this repo. Name the migration step when it breaks someone.
 
 ## 6. Push and open the PR
 
@@ -152,28 +145,20 @@ gh pr create \
   --assignee @me
 ```
 
-Use the `gh` CLI rather than a GitHub MCP server or any other bot token, so the PR is authored
-by whoever ran it and lands in their own list.
+Use the `gh` CLI, never a GitHub MCP server or another bot token, so the PR is authored by
+whoever ran it and lands in their own list.
 
-Open it ready for review, not draft. Mark a draft ready with `gh pr ready` once the branch is
-finished and the checks pass.
-
-Add a label the repo already uses; `gh label list` shows them. Inventing one is worse than
-leaving the PR unlabeled.
-
-`gh pr merge --squash --delete-branch` squashes and deletes the branch in one step. No merge
-rights: say in the body that the PR is meant to be squashed.
-
-One PR does one thing. Unrelated work noticed along the way stays out, mentioned in the body
-instead.
+Open it ready for review, not draft; mark a draft ready with `gh pr ready` once checks pass. Add
+a label the repo already uses (`gh label list`) rather than inventing one. `gh pr merge --squash
+--delete-branch` squashes and deletes the branch in one step; with no merge rights, say in the
+body that the PR is meant to be squashed. One PR does one thing: mention unrelated work noticed
+along the way in the body and leave it out of the diff.
 
 ## 7. After CI runs
 
-A red PR is work now, whatever its review state.
-
-Read the failing job, reproduce it locally, fix the cause, push again. Re-run a job only when
-the failure never reached a test body (a checkout or install error) or the same commit passed
-before.
+A red PR is work now, whatever its review state. Read the failing job, reproduce it locally, fix
+the cause, push again. Re-run a job only when the failure never reached a test body (a checkout
+or install error) or the same commit passed before.
 
 Answer every review comment in a sentence or two: what you changed, how the reviewer can check
 it. Push the fix for a small, local ask; for a larger one, reply with what you propose and let
@@ -190,12 +175,12 @@ the author decide.
 
 ## Related skills
 
-| Skill | Use for |
-| --- | --- |
-| [branch](../branch/SKILL.md) | Naming and cutting the branch this PR comes from |
-| [changeset](../changeset/SKILL.md) | The changeset layout, bump, and wording |
-| [changelog](../changelog/SKILL.md) | Release-note wording |
-| [issue](../issue/SKILL.md) | Opening the issue this PR closes |
-| [deslop](../deslop/SKILL.md) | Stripping AI tells from the code in the diff |
-| [humanizer](../humanizer/SKILL.md) | Stripping AI tells from the prose in the diff |
-| [conventions](../conventions/SKILL.md) | Code style, markdown, security, plain language |
+| Skill                                  | Use for                                                           |
+| -------------------------------------- | ----------------------------------------------------------------- |
+| [branch](../branch/SKILL.md)           | Naming and cutting the branch this PR comes from                  |
+| [changeset](../changeset/SKILL.md)     | The changeset layout, bump, and wording                           |
+| [changelog](../changelog/SKILL.md)     | Release-note wording                                              |
+| [issue](../issue/SKILL.md)             | Opening the issue this PR closes                                  |
+| [deslop](../deslop/SKILL.md)           | Stripping AI tells and over-engineering from the code in the diff |
+| [humanizer](../humanizer/SKILL.md)     | Stripping AI tells from the prose in the diff                     |
+| [conventions](../conventions/SKILL.md) | Code style, markdown, security, plain language                    |

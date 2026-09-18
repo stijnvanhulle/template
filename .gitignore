@@ -62,3 +62,6 @@ packages/*/CHANGELOG.md
 ## Nitro
 .output
 .nitro
+
+## Agent worktrees (local scratch checkouts for background agent sessions)
+.claude/worktrees/

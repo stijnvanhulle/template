@@ -24,9 +24,9 @@ Slash commands, as `commands/*.toml`:
   filled in.
 - `/create-pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens
   the pull request.
-- `/deslop [path]` removes AI-generated code slop from the branch's changes.
+- `/deslop [path]` audits the branch's changes for AI-generated code smell (over-engineering,
+  code style tells, and prose humanizing) and applies only what you confirm.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
-- `/ponytail [path]` audits the branch's changes for over-engineering.
 
 Gemini CLI has no subagent concept, so there is no code-reviewer agent here.
 
@@ -46,13 +46,12 @@ gemini extensions install --path=.
 ## Usage
 
 ```text
-/deslop                    # strip AI code slop from the whole branch diff
+/deslop                    # audit the whole branch diff for AI-generated code smell
 /deslop apps/web           # limit it to one path
 /humanizer docs            # rewrite the prose the branch changed under docs/
 /create-changeset minor    # add a changeset for the current changes
 /create-pr                 # get the branch ready for review and open the PR
 /backlog github 10         # triage the 10 latest GitHub issues
-/ponytail                  # audit the whole branch diff for over-engineering
 ```
 
 Commands take their argument through `{{args}}`, and `/create-changeset`, `/deslop`, and

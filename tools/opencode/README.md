@@ -21,12 +21,14 @@ Slash commands:
   filled in.
 - `/create-pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens
   the pull request.
-- `/deslop [path]` removes AI-generated code slop from the branch's changes.
+- `/deslop [path]` audits the branch's changes for AI-generated code smell (over-engineering,
+  code style tells, and prose humanizing) and applies only what you confirm.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
-- `/ponytail [path]` audits the branch's changes for over-engineering.
 
-A read-only `code-reviewer` subagent reviews TypeScript changes for correctness, security, and
-maintainability. Invoke it by name with `@code-reviewer`.
+A read-only `code-reviewer` subagent reviews TypeScript changes for correctness, security,
+maintainability, over-engineering, and AI tells in code and prose, then asks which findings to
+hand off to `deslop`, `jsdoc`, `humanizer`, or `documentation` for fixing. Invoke it by name with
+`@code-reviewer`.
 
 Skills load from `.agents/skills/`.
 
@@ -55,13 +57,12 @@ and what this repo uses.
 ## Usage
 
 ```text
-/deslop                    # strip AI code slop from the whole branch diff
+/deslop                    # audit the whole branch diff for AI-generated code smell
 /deslop apps/web           # limit it to one path
 /humanizer docs            # rewrite the prose the branch changed under docs/
 /create-changeset minor    # add a changeset for the current changes
 /create-pr                 # get the branch ready for review and open the PR
 /backlog github 10         # triage the 10 latest GitHub issues
-/ponytail                  # audit the whole branch diff for over-engineering
 @code-reviewer             # hand the current diff to the review subagent
 ```
 

@@ -19,9 +19,9 @@ Slash commands for release and review housekeeping:
   filled in.
 - `/create-pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens
   the pull request.
-- `/deslop [path]` removes AI-generated code slop from the branch's changes.
+- `/deslop [path]` audits the branch's changes for AI-generated code smell (over-engineering,
+  code style tells, and prose humanizing) and applies only what you confirm.
 - `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
-- `/ponytail [path]` audits the branch's changes for over-engineering.
 
 Skills loaded on demand from their descriptions:
 
@@ -29,19 +29,21 @@ Skills loaded on demand from their descriptions:
 - `branch` names and cuts a branch from a GitHub, ClickUp, or Jira issue.
 - `changelog` turns commit history into a user-facing changelog.
 - `changeset` is the layout and wording for a changeset that reads as a release note.
-- `deslop` strips AI-generated code slop from a diff, the code counterpart to `humanizer`.
+- `deslop` audits a diff for AI-generated code smell: the reuse-first ladder, code style tells,
+  and, for changed prose, the `humanizer` pattern list, then asks before applying.
 - `documentation` is the writing style guide for blog posts and docs.
 - `humanizer` removes AI tells from user-facing markdown.
 - `issue` fills in an issue's type, labels, priority, and effort.
 - `jsdoc` covers JSDoc tags and examples for TypeScript.
-- `ponytail` checks new code against a reuse-first decision ladder before adding a dependency.
 - `pr` is the PR-prep and release checklist for a Changesets monorepo.
 - `conventions` bundles the seven rules (code style, JSDoc, markdown, plain language,
   security, testing, USA English).
 
 A `code-reviewer` subagent reviews TypeScript changes for correctness, security,
-and maintainability. Three output styles set the writing voice (`house`),
-inline implementation planning (`plan`), and a diagrams-first layout (`diagrams-first`).
+maintainability, over-engineering, and AI tells in code and prose, then asks which findings to
+hand off to `deslop`, `jsdoc`, `humanizer`, or `documentation` for fixing. Three output styles
+set the writing voice (`house`), inline implementation planning (`plan`), and a diagrams-first
+layout (`diagrams-first`).
 
 ## Install
 
@@ -74,14 +76,13 @@ Slash commands run when you type them. In Claude Code, name the command and pass
 argument:
 
 ```bash
-/deslop                    # strip AI code slop from the whole branch diff
+/deslop                    # audit the whole branch diff for AI-generated code smell
 /deslop apps/web           # limit it to one path
 /humanizer docs            # rewrite the prose the branch changed under docs/
 /create-changeset minor    # add a changeset for the current changes
 /create-pr                 # get the branch ready for review and open the PR
 /backlog github 10         # triage the 10 latest GitHub issues
 /backlog jira              # triage the latest Jira issues
-/ponytail                  # audit the whole branch diff for over-engineering
 ```
 
 Skills load on their own. Each carries a description, and the agent reads the matching one when

@@ -1,20 +1,25 @@
 ---
 argument-hint: [path]
-description: Remove AI-generated code slop from the current branch's changes
+description: Audit the current branch's changes for AI-generated code smell and writing tells (over-engineering, style tells, and prose humanizing), then apply only what you confirm
 ---
 
 !`git diff --stat HEAD`
 
-Remove AI-generated code slop from the changes on this branch.
+Audit the branch's diff against the default branch for AI-generated code smell, narrowed to
+`$ARGUMENTS` when given.
 
-1. Review the branch's changes: the diff against the default branch, narrowed to `$ARGUMENTS`
-   when a path or glob is given.
-2. Strip the AI tells: unnecessary or inconsistent comments, defensive checks and `try/catch` on
-   trusted code paths, `any` casts that only dodge a type error, and deep nesting that early
-   returns would flatten.
-3. Keep behavior unchanged unless fixing a clear bug. Make minimal, surgical edits and do not
-   weaken types, lint rules, or tests.
-4. Run `pnpm format && pnpm lint:fix` and report a 1-3 sentence summary.
+1. For each new dependency, file, wrapper, or exported symbol, walk the reuse-first ladder:
+   needed, already in the codebase, stdlib or platform, installed dependency, one line.
+2. Check the same diff for AI style tells: unnecessary or inconsistent comments, defensive
+   checks and `try/catch` on trusted code paths, `any` casts that only dodge a type error, and
+   deep nesting that early returns would flatten.
+3. For any changed README, doc, comment block, or other user-facing markdown, run the
+   `humanizer` skill's pattern list as a third pass.
+4. List every finding with the file, what it violates, and the proposed fix. Do not edit
+   anything yet.
+5. Follow the `user-questions` rule to confirm each finding (apply, skip, or show more) before
+   changing anything. Leave a check alone that guards a real trust boundary.
+6. Apply only what is confirmed, run `pnpm format && pnpm lint:fix`, and report a 1-3 sentence
+   summary.
 
-Follow the `deslop` skill for the full checklist. For prose and user-facing markdown, use the
-`humanizer` skill instead.
+Follow the `deslop` skill for the full ladder, style-tell checklist, and guardrails.

@@ -20,18 +20,18 @@ The full folder structure, repository setup, and commands live in
 
 ## Repository setup
 
-| Aspect | Choice |
-| --- | --- |
-| Monorepo | pnpm workspaces + Turborepo |
-| Module system | ESM-only (`type: "module"`) |
-| Node version | 22 |
-| Package manager | pnpm 11+ |
-| Linter | oxlint |
-| Formatter | oxfmt |
-| Bundler | tsdown |
-| Tests | Vitest |
-| Versioning | Changesets |
-| CI/CD | GitHub Actions |
+| Aspect          | Choice                      |
+| --------------- | --------------------------- |
+| Monorepo        | pnpm workspaces + Turborepo |
+| Module system   | ESM-only (`type: "module"`) |
+| Node version    | 22                          |
+| Package manager | pnpm 11+                    |
+| Linter          | oxlint                      |
+| Formatter       | oxfmt                       |
+| Bundler         | tsdown                      |
+| Tests           | Vitest                      |
+| Versioning      | Changesets                  |
+| CI/CD           | GitHub Actions              |
 
 ## Commits and PRs
 
@@ -124,12 +124,11 @@ You have new skills. If any skill might be relevant then you MUST read it.
 - [changelog](.agents/skills/changelog/SKILL.md) - Creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes.
 - [changeset](.agents/skills/changeset/SKILL.md) - Write a changeset that reads as a release note, with the right bump, a one-line summary, bullets for what changed, and a code example a user can copy. Use when adding a changeset, reviewing one, or deciding whether a change needs one.
 - [conventions](.agents/skills/conventions/SKILL.md) - Always-on conventions for TypeScript monorepos. Use when writing or reviewing TypeScript, markdown, or tests, when handling secrets, env vars, or input at trust boundaries, or any time you would otherwise reach for a project style guide. Bundles code style, JSDoc, markdown structure, plain language, security, testing, and USA English rules.
-- [deslop](.agents/skills/deslop/SKILL.md) - Remove AI-generated code slop from a branch or diff. Use after writing or generating code to strip unnecessary comments, defensive checks, `any` casts, and style that does not match the surrounding file. For prose and markdown, use the humanizer skill instead.
+- [deslop](.agents/skills/deslop/SKILL.md) - Audit a branch's diff for AI-generated code smell, over-engineering (unneeded deps, wrappers, config), style tells in code (needless comments, defensive checks, `any` casts), and AI writing tells in changed prose, then apply only the findings the user confirms. Use before implementing a feature, before opening a PR, or when auditing a diff for AI slop.
 - [documentation](.agents/skills/documentation/SKILL.md) - Use when writing blog posts or documentation markdown files. Provides a writing style guide (active voice, present tense), content structure patterns, and SEO optimization. Overrides brevity rules for proper grammar.
 - [humanizer](.agents/skills/humanizer/SKILL.md) - Remove AI writing patterns to make documentation sound natural, specific, and human. Covers content patterns, language patterns, style patterns, and communication patterns.
-- [issue](.agents/skills/issue/SKILL.md) - Open a GitHub issue with its sidebar filled in, so the labels, the type, and the Priority and Effort fields are set rather than left empty. Use when filing an issue, turning a report into one, or triaging an issue whose fields are empty.
-- [jsdoc](.agents/skills/jsdoc/SKILL.md) - Full JSDoc format guide for TypeScript, covering @example formats (short, multi-line, multi-variant), tag usage (@default, @deprecated, what to avoid), documentation patterns for properties/enums/functions, and tag order.
-- [ponytail](.agents/skills/ponytail/SKILL.md) - Check new code against a reuse-first decision ladder before adding a dependency, wrapper, or abstraction. Use before implementing a feature and to audit a diff for over-engineering, such as an unneeded package, config option, or component with only one caller.
+- [issue](.agents/skills/issue/SKILL.md) - Open a GitHub issue or a Jira ticket with its sidebar filled in, so the labels, the type, and the fields are set rather than left empty. Use when filing an issue, filing a Jira ticket, turning a report into one, or triaging an issue whose fields are empty.
+- [jsdoc](.agents/skills/jsdoc/SKILL.md) - Full JSDoc format guide for TypeScript, covering @example formats, tag usage (@default, @deprecated, what to avoid), documentation patterns, and tag order.
 - [pr](.agents/skills/pr/SKILL.md) - Open or update a pull request in this monorepo. Covers the pre-push checks, the changeset decision, Conventional Commit titles, how to fill the PR template, and what to do once CI runs. Use when asked to open a PR, push a branch for review, fix a red PR, or judge whether a branch is ready to merge.
 </skills>
 
@@ -287,22 +286,26 @@ Use USA English in code, comments, docs, commits, and changesets:
 Keep third-party identifiers and quoted upstream strings as-is.
 # Asking the user a question
 
-When a task needs the user to pick between a few known paths, ask it as a short question with
-concrete options rather than an open paragraph. The reader should be able to answer with one
-tap or one character.
+Whenever a task is blocked on information only the user can supply, ask through the picker
+instead of a plain paragraph. This covers a genuine fork (which of two approaches, which
+package, whether to proceed) and a request for missing information (a file path, which
+environment, what to name something). The reader should be able to answer with one tap or one
+character.
 
 - In a client with a native multiple-choice tool (Claude Code and Claude Desktop's
-  `AskUserQuestion`, or the equivalent in another host), use it. It renders as a picker, and the
-  user can still type a free-form answer if none of the options fit.
+  `AskUserQuestion`, or the equivalent in another host), use it, always, rather than asking in
+  plain prose. It renders as a picker, and the user can still type a free-form answer through
+  `Other` if none of the options fit. For open-ended information with no fixed set of answers,
+  offer your best-guess options (a likely default, a common alternative) and let `Other` carry
+  the real answer, rather than skipping the tool.
 - In a client with no such tool (Codex, a plain terminal, a chat surface without picker
   support), write the options as a lettered or numbered list in the reply text, and ask the
   user to answer with the letter or number. `A) ... B) ... C) ...` reads the same whether it
   renders as a widget or as plain text.
 - Keep each option a real, distinct choice, three or four at most, with the likely answer
   first. Do not pad a list to hit a count.
-- Reserve this for a genuine fork, such as which of two approaches, which package, or whether
-  to proceed. A request for missing information with no fixed set of answers, such as an API
-  key or a file path, stays a plain question.
+- The one exception: a secret or credential (an API key, a token, a password) never becomes an
+  option, guessed or otherwise. Ask for those in plain prose and never echo the value back.
 
 ## Where this applies
 

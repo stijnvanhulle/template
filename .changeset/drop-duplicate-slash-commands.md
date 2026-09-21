@@ -1,6 +1,7 @@
 ---
 '@stijnvanhulle/template-claude-plugin': minor
 '@stijnvanhulle/template-cursor-plugin': minor
+'@stijnvanhulle/template-codex-plugin': minor
 ---
 
 Drop the `backlog`, `deslop`, and `humanizer` commands, which listed twice in the slash menu next to the skills of the same name.

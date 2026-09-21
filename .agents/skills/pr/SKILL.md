@@ -60,11 +60,11 @@ pnpm changeset
 The `changeset` skill decides whether this branch needs one, which bump it takes, and how the
 entry is laid out. `/create-changeset` does the step for you.
 
-Both plugin manifests version through Changesets, so a change under `tools/claude` or
-`tools/cursor` needs its own changeset; never hand-edit `version` in either
-`.claude-plugin/plugin.json` or `.cursor-plugin/plugin.json`. A change under `.agents/skills/`
-also ships in Codex and Gemini, so bump `version` by hand in `.codex-plugin/plugin.json` and
-`gemini-extension.json` in the same PR.
+The Claude, Cursor, and Codex plugin manifests version through Changesets, so a change
+under `tools/claude`, `tools/cursor`, or `tools/codex` needs a changeset; never hand-edit
+`version` in `.claude-plugin/plugin.json`, `.cursor-plugin/plugin.json`, or
+`.codex-plugin/plugin.json`. A change under `.agents/skills/` also ships in Gemini, so
+bump `version` by hand in `gemini-extension.json` in the same PR.
 
 ## 4. Commit
 

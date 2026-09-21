@@ -1,0 +1,7 @@
+{
+  "name": "@stijnvanhulle/template-codex-plugin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Codex plugin for this template (prompts, skills).",
+  "license": "MIT"
+}

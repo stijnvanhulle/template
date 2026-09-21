@@ -7,6 +7,8 @@ on:
       - 'packages/**'
       - 'tools/claude/**'
       - 'tools/cursor/**'
+      - 'tools/codex/**'
+      - '.codex-plugin/**'
 
 permissions: {}
 
@@ -47,8 +49,9 @@ jobs:
         id: changesets
         uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
         with:
-          # Keeps the Claude and Cursor plugin manifests' version fields in step with
-          # the @stijnvanhulle/template-{claude,cursor}-plugin packages Changesets bumps.
+          # Keeps the Claude, Cursor, and Codex plugin manifests' version fields in
+          # step with the @stijnvanhulle/template-{claude,cursor,codex}-plugin packages
+          # Changesets bumps.
           # changesets/action runs this without a shell, so `&&` can't chain
           # commands here — pnpm run does its own shell chaining instead.
           version-script: pnpm run release:version

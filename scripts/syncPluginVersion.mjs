@@ -7,6 +7,7 @@ const root = fileURLToPath(new URL('..', import.meta.url))
 const manifests = [
   { packageJson: 'tools/claude/package.json', manifest: 'tools/claude/.claude-plugin/plugin.json' },
   { packageJson: 'tools/cursor/package.json', manifest: 'tools/cursor/.cursor-plugin/plugin.json' },
+  { packageJson: 'tools/codex/package.json', manifest: '.codex-plugin/plugin.json' },
 ]
 
 for (const { packageJson, manifest } of manifests) {

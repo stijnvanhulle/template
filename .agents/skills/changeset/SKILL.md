@@ -1,6 +1,6 @@
 ---
 name: changeset
-description: Write a changeset that reads as a release note, with the right bump, a one-line summary, bullets for what changed, and a code example a user can copy. Use when adding a changeset, reviewing one, or deciding whether a change needs one.
+description: Write or review a release-note changeset with the correct bump.
 ---
 
 # Changeset skill
@@ -21,6 +21,10 @@ sure, check whether the package is in the workspace and not listed under `ignore
 | `patch` | A fix | The resolver no longer caches a miss |
 | `minor` | New behavior existing code survives | A new `unionType` option |
 | `major` | A rename, a removal, or a changed default | `enumType` now defaults to `asConst` |
+
+Use the bump from the command when it is `patch`, `minor`, or `major`. When none was passed, or
+the table does not pick one on its own, follow the `ask` skill: offer `patch`,
+`minor`, and `major`, likely answer first. Do not default to `patch` and report it as a guess.
 
 List only the packages you changed.
 
@@ -83,3 +87,4 @@ Resolve nested plugin paths on Windows, which broke on a backslash separator.
 | [pr](../pr/SKILL.md) | The branch and PR the changeset ships in |
 | [changelog](../changelog/SKILL.md) | Turning released changesets into `docs/changelog.md` |
 | [humanizer](../humanizer/SKILL.md) | AI tells in the summary |
+| [ask](../ask/SKILL.md) | Picker vs lettered list when the bump is not obvious |

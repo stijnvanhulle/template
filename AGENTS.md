@@ -68,32 +68,28 @@ rtk proxy <cmd>       # Run raw without filtering but still track usage
 
 ## How agents read this repo
 
-`AGENTS.md` is canonical. Every other context file symlinks to it, except `GEMINI.md`,
-which `pnpm agent-files --write` generates as this file plus the rules inlined. Never
-edit `GEMINI.md` by hand. Skills live in `.agents/skills/`, rules in
-`.agents/skills/conventions/rules/`, and each agent's toolkit under `tools/<agent>/`.
-`pnpm agent-files` runs in CI and fails if the command sets diverge, a Cursor rule
-drifts from its source, or `GEMINI.md` is stale.
+`AGENTS.md` is canonical. `AGENT.md` and `CLAUDE.md` symlink to it. Skills live in
+`.agents/skills/`, rules in `.agents/skills/conventions/rules/`, and each supported agent's
+toolkit under `tools/<agent>/`. `pnpm agent-files` runs in CI and fails if the Claude and Cursor
+command sets diverge or a Cursor rule drifts from its source.
 
 For the full wiring (which path symlinks where, plugin manifests, install steps) see
 the per-agent READMEs under `tools/` and the
 [README](README.md#ai-assistant-configuration).
 
-Four toolkit manifests ship this content and each carries its own `version` field:
+Three toolkit manifests ship this content and each carries its own `version` field:
 `tools/claude/.claude-plugin/plugin.json`, `tools/cursor/.cursor-plugin/plugin.json`,
-`.codex-plugin/plugin.json`, and `gemini-extension.json`. `claude plugin update` (and
-the Cursor and Codex equivalents) compare that field to decide whether there's anything
-new, so a content change with no version bump makes the update look like a no-op.
+and `.codex-plugin/plugin.json`. `claude plugin update` (and the Cursor and Codex equivalents)
+compare that field to decide whether there's anything new, so a content change with no version
+bump makes the update look like a no-op.
 
-The Claude and Cursor manifests are versioned through Changesets: `tools/claude` and
-`tools/cursor` are private workspace packages (`@stijnvanhulle/template-claude-plugin`,
-`@stijnvanhulle/template-cursor-plugin`) in the same `fixed` group as every other
-`@stijnvanhulle/template-*` package. Add a changeset when you change either plugin's
-content; release syncs the bumped version into the matching `plugin.json` automatically
-(`scripts/syncPluginVersion.mjs`), so never edit those two `version` fields by hand.
-`.codex-plugin/plugin.json` and `gemini-extension.json` aren't tied to a workspace
-package yet, so when a change touches `.agents/skills/` (which both of those also ship),
-bump their `version` by hand in the same PR.
+The Claude, Cursor, and Codex manifests are versioned through Changesets: `tools/claude`,
+`tools/cursor`, and `tools/codex` are private workspace packages
+(`@stijnvanhulle/template-claude-plugin`, `@stijnvanhulle/template-cursor-plugin`,
+`@stijnvanhulle/template-codex-plugin`) in the same `fixed` group as every other
+`@stijnvanhulle/template-*` package. Add a changeset when you change any of those
+plugins. Release syncs the bumped version into the matching `plugin.json` automatically
+(`scripts/syncPluginVersion.mjs`), so never edit those `version` fields by hand.
 
 ## Rules
 
@@ -109,7 +105,7 @@ folders on demand.
 - [security](.agents/skills/conventions/rules/security.md): Secrets, input validation at trust boundaries, safe shell use.
 - [testing](.agents/skills/conventions/rules/testing.md): Vitest patterns and what to test.
 - [usa-english](.agents/skills/conventions/rules/usa-english.md): Write code, comments, and docs in USA English spellings.
-- [user-questions](.agents/skills/conventions/rules/user-questions.md): Ask the user a question as a short quiz, native picker where one exists and a lettered list otherwise.
+- [user-questions](.agents/skills/conventions/rules/user-questions.md): Follow the `ask` skill. `AskUserQuestion` in Claude Code, `AskQuestion` in Cursor, a lettered list everywhere else.
 
 <skills>
 
@@ -117,15 +113,16 @@ folders on demand.
 
 You have new skills. If any skill might be relevant then you MUST read it.
 
-- [backlog](.agents/skills/backlog/SKILL.md) - Work through the latest open issues one by one. Invoke as /backlog <source> [count], where source is github, clickup, or jira and count defaults to 10. Asks a clarifying question per issue before touching code, then implements each confirmed issue in its own git worktree with its own subagent. Use when asked to work through the backlog, triage and implement open issues, or clear out recent tickets.
-- [branch](.agents/skills/branch/SKILL.md) - Create a Conventional Commit branch from the issue it belongs to. Reads a GitHub issue, a ClickUp task, or a Jira key, picks the type off its labels, and cuts the branch from an up-to-date main. Use when starting work on an issue or a ticket, or when asked what to call a branch.
-- [changelog](.agents/skills/changelog/SKILL.md) - Creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes.
-- [changeset](.agents/skills/changeset/SKILL.md) - Write a changeset that reads as a release note, with the right bump, a one-line summary, bullets for what changed, and a code example a user can copy. Use when adding a changeset, reviewing one, or deciding whether a change needs one.
-- [conventions](.agents/skills/conventions/SKILL.md) - Always-on conventions for TypeScript monorepos. Use when writing or reviewing TypeScript, markdown, or tests, when handling secrets, env vars, or input at trust boundaries, or any time you would otherwise reach for a project style guide. Bundles code style, JSDoc, markdown structure, plain language, security, testing, and USA English rules.
-- [deslop](.agents/skills/deslop/SKILL.md) - Audit a branch's diff for AI-generated code smell, over-engineering (unneeded deps, wrappers, config), style tells in code (needless comments, defensive checks, `any` casts), and AI writing tells in changed prose, then apply only the findings the user confirms. Use before implementing a feature, before opening a PR, or when auditing a diff for AI slop.
-- [documentation](.agents/skills/documentation/SKILL.md) - Use when writing blog posts or documentation markdown files. Provides a writing style guide (active voice, present tense), content structure patterns, and SEO optimization. Overrides brevity rules for proper grammar.
-- [humanizer](.agents/skills/humanizer/SKILL.md) - Remove AI writing patterns to make documentation sound natural, specific, and human. Covers content patterns, language patterns, style patterns, and communication patterns.
-- [issue](.agents/skills/issue/SKILL.md) - Open a GitHub issue or a Jira ticket with its sidebar filled in, so the labels, the type, and the fields are set rather than left empty. Use when filing an issue, filing a Jira ticket, turning a report into one, or triaging an issue whose fields are empty.
-- [jsdoc](.agents/skills/jsdoc/SKILL.md) - Full JSDoc format guide for TypeScript, covering @example formats, tag usage (@default, @deprecated, what to avoid), documentation patterns, and tag order.
-- [pr](.agents/skills/pr/SKILL.md) - Open or update a pull request in this monorepo. Covers the pre-push checks, the changeset decision, Conventional Commit titles, how to fill the PR template, and what to do once CI runs. Use when asked to open a PR, push a branch for review, fix a red PR, or judge whether a branch is ready to merge.
+- [ask](.agents/skills/ask/SKILL.md) - Ask a blocking multiple-choice question with the client's native picker, or a lettered list when none exists.
+- [backlog](.agents/skills/backlog/SKILL.md) - Triage recent GitHub, ClickUp, or Jira issues, then implement confirmed ones in isolated worktrees.
+- [branch](.agents/skills/branch/SKILL.md) - Name and create a Conventional Commit branch from a GitHub, ClickUp, or Jira issue.
+- [changelog](.agents/skills/changelog/SKILL.md) - Turn commit history and changesets into user-facing release notes.
+- [changeset](.agents/skills/changeset/SKILL.md) - Write or review a release-note changeset with the correct bump.
+- [conventions](.agents/skills/conventions/SKILL.md) - Apply the shared TypeScript, markdown, testing, security, and language rules.
+- [deslop](.agents/skills/deslop/SKILL.md) - Audit a diff for over-engineering and AI code/prose tells, then apply only confirmed fixes.
+- [documentation](.agents/skills/documentation/SKILL.md) - Write or review developer documentation using the project style and SEO guidance.
+- [humanizer](.agents/skills/humanizer/SKILL.md) - Find AI writing tells and apply only confirmed rewrites.
+- [issue](.agents/skills/issue/SKILL.md) - Create or triage a GitHub or Jira issue with its type, labels, and fields filled.
+- [jsdoc](.agents/skills/jsdoc/SKILL.md) - Apply the TypeScript JSDoc format, examples, tags, and ordering.
+- [pr](.agents/skills/pr/SKILL.md) - Prepare, open, update, or assess a pull request, including checks, changesets, title, template, and CI.
 </skills>

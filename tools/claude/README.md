@@ -10,8 +10,6 @@ install reads as `toolkit@stijnvanhulle`.
 
 Slash commands for release and review housekeeping:
 
-- `/backlog [source] [count]` works through the latest open issues, one worktree and subagent
-  per issue.
 - `/create-branch [issue or description]` cuts a Conventional Commit branch from the issue it
   belongs to.
 - `/create-changeset [patch|minor|major]` creates Changesets for affected packages.
@@ -19,9 +17,6 @@ Slash commands for release and review housekeeping:
   filled in.
 - `/create-pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens
   the pull request.
-- `/deslop [path]` audits the branch's changes for AI-generated code smell (over-engineering,
-  code style tells, and prose humanizing) and applies only what you confirm.
-- `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
 
 Skills loaded on demand from their descriptions:
 
@@ -76,18 +71,16 @@ Slash commands run when you type them. In Claude Code, name the command and pass
 argument:
 
 ```bash
-/deslop                    # audit the whole branch diff for AI-generated code smell
-/deslop apps/web           # limit it to one path
-/humanizer docs            # rewrite the prose the branch changed under docs/
+/create-branch 501         # cut the branch for issue 501
 /create-changeset minor    # add a changeset for the current changes
 /create-pr                 # get the branch ready for review and open the PR
-/backlog github 10         # triage the 10 latest GitHub issues
-/backlog jira              # triage the latest Jira issues
 ```
 
 Skills load on their own. Each carries a description, and the agent reads the matching one when
 the task fits, so writing release notes pulls in `changelog` and cleaning prose pulls in
 `humanizer` without being asked. To force one, name it: "use the deslop skill on this diff."
+Claude Code also lists skills in the `/` menu, so `/backlog`, `/deslop`, and `/humanizer` still
+work from the slash menu.
 
 Rules need no trigger. `plain-language`, `security`, and `usa-english` apply on every request,
 and the rest attach when you open a matching file. The guiding split: rules apply on their own,

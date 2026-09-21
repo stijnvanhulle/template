@@ -1,12 +1,9 @@
 ---
 name: issue
-description: Open a GitHub issue or a Jira ticket with its sidebar filled in, so the labels, the type, and the fields are set rather than left empty. Use when filing an issue, filing a Jira ticket, turning a report into one, or triaging an issue whose fields are empty.
+description: Create or triage a GitHub or Jira issue with its type, labels, and fields filled.
 ---
 
-# Issue skill
-
-An issue with an empty sidebar sits in the backlog unsorted. Set the type, the labels, and the
-fields in the same pass as the title and body.
+# Issue
 
 ## Pick the tracker
 
@@ -15,50 +12,47 @@ fields in the same pass as the title and body.
 | GitHub | The repo has a GitHub remote and the branch carries no project key | `templates/github-bug.md`, `templates/github-feature.md` |
 | Jira | The branch name or `CLAUDE.md` carries a project key such as `KEY-123` | `templates/jira-story.md`, `templates/jira-bug.md`, `templates/jira-epic.md` |
 
-The rest of this skill covers GitHub. For Jira, see the section near the end.
+When unclear, use `ask`: GitHub or Jira. Do not guess.
 
-## 1. Check it is not already open
+## 1. Deduplicate
 
 ```bash
 gh issue list --search "<keywords>" --state all --limit 10
 ```
 
-Comment on the match instead of opening a second issue.
+Search Jira with JQL. Comment on a match rather than duplicating it.
 
-## 2. Write it
+## 2. Write
 
-Pick the body from `templates/`: `github-bug.md` for a defect, `github-feature.md` for new
-behavior. Answer every placeholder.
+Use the matching template and fill every placeholder:
 
-Title in the imperative, under 72 characters, no period, so `fix the resolver cache miss on
-nested plugins` rather than `Resolver bug`. A bug body carries the version, the steps, the
-expected result, and what happened instead. A feature body leads with the problem and links the
-code it is about.
+- GitHub: `github-bug.md` or `github-feature.md`.
+- Jira: story, bug, or epic template.
 
-## 3. Read the valid values
+Title: imperative, under 72 characters, no period. Bugs need version, steps, expected and actual
+results. Features lead with the problem.
 
-Never invent a label, a type, or an option name. `gh label list` covers labels. Types and fields
-come from the organization, so read those with the GitHub MCP server's `list_issue_types` and
-`list_issue_fields`.
+## 3. Read valid values
 
-## 4. Fill the sidebar
+Never invent values. Use `gh label list`, `list_issue_types`, and `list_issue_fields`.
+
+## 4. Classify
 
 Set the type first: Bug for something that broke or contradicts its documentation, Feature for
 new behavior somebody asked for, Task for work with no user-visible change, such as CI, releases,
-or agent files.
+or agent files. When the type is not obvious, follow the `ask` skill: Bug, Feature,
+Task. Do not guess Medium/Medium and move on.
 
 | Field | Options | Pick |
 | --- | --- | --- |
 | Priority | Urgent, High, Medium, Low | Urgent blocks a release or breaks the published package for everyone. High hits users today with no workaround. Medium is the default. Low is a nice-to-have |
 | Effort | High, Medium, Low | Low is one file a reviewer reads in one sitting. Medium spans a few files or needs a test. High needs a design decision or touches a public API |
 
-Stuck on one: Priority `Medium`, Effort `Medium`, and say which values you guessed.
+Use `ask` when Priority or Effort remains ambiguous.
 
-## 5. Create it
+## 5. Create
 
-`gh issue create --title "<title>" --body-file <body>.md --label bug --assignee @me` writes the
-issue as whoever runs it. The fields go through the GitHub MCP server's `issue_write`, which
-validates each option name before the call:
+Use `gh issue create` for the body and the GitHub MCP `issue_write` for type and fields:
 
 ```json
 {
@@ -71,31 +65,22 @@ validates each option name before the call:
 }
 ```
 
-`method: "update"` with an issue number fills in an issue that already exists. Report the URL and
-the values you set.
+Use `method: "update"` when triaging an existing issue. Report URL and values.
 
 ## Jira
 
-- Search first with `searchJiraIssuesUsingJql` and comment on a match instead of opening a
-  duplicate.
-- Pick the template by issue type. A story gets the persona sentence, a bug gets steps and actual
-  behavior, an epic gets a goal and the stories that reach it.
-- Each acceptance criterion is one behavior a reviewer can call true or false without asking. Two
-  behaviors in one bullet means two bullets.
-- If a story cannot be estimated or will not fit a sprint, split it. That is the S and the E in
-  INVEST, and it changes what gets written, not only how.
-- An epic groups stories that share a goal. A one-off fix stays a plain story.
-- Create with `createJiraIssue`, update an existing ticket with `editJiraIssue`.
-- Ticket references are markdown links, never bare keys.
-- Payloads go in fenced blocks. Jira's editor mangles some pasted inline code, so type inline
-  backticks in the editor rather than pasting them, and check the result.
+- Story: persona and independently testable acceptance criteria, one behavior per bullet.
+- Bug: steps and actual behavior. Epic: goal and related stories.
+- Split work that cannot fit a sprint. Do not make a one-off fix an epic.
+- Use `createJiraIssue` / `editJiraIssue`; link ticket references.
+- Put payloads in fences. Type inline backticks in Jira's editor and verify the result.
 
 ## Guardrails
 
-- One issue or ticket does one thing. Split a report carrying two problems.
+- One issue does one thing; split mixed reports.
 - No tokens, `.env` lines, or internal hostnames in a body. Say where the value lives.
 - Do not raise Priority to jump a queue.
-- Run the `humanizer` skill over the title and body.
+- Run `humanizer` over title and body.
 
 ## Related skills
 
@@ -103,3 +88,4 @@ the values you set.
 | --- | --- |
 | [pr](../pr/SKILL.md) | The pull request that closes the issue |
 | [humanizer](../humanizer/SKILL.md) | AI tells in the title and body |
+| [ask](../ask/SKILL.md) | Picker vs lettered list for tracker and type |

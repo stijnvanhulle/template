@@ -3,7 +3,7 @@ name: PR
 on:
   workflow_dispatch:
   # Narrow on purpose, not '**/*.md': `pnpm run agent-files` in the linting job
-  # guards GEMINI.md and the command sets, and its inputs are markdown.
+  # guards the command sets and Cursor rules, and its inputs are markdown.
   pull_request:
     paths-ignore:
       - 'README.md'

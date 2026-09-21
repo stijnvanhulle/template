@@ -22,8 +22,8 @@ already wired up.
 
 ## AI assistant configuration
 
-Every agent reads from the same source: `AGENTS.md` plus the Agent Skills in `.agents/skills/`.
-Tool-specific files are symlinks, not copies, so nothing drifts out of sync.
+Claude Code, Cursor, and Codex read from the same source: `AGENTS.md` plus the Agent Skills in
+`.agents/skills/`. Tool-specific files are symlinks where their formats match.
 
 ### 30-second setup
 
@@ -64,37 +64,6 @@ same slash commands, and the `code-reviewer` subagent. Other projects install it
 </details>
 
 <details>
-<summary><strong>Gemini CLI</strong></summary>
-
-```bash
-gemini extensions install https://github.com/stijnvanhulle/template
-```
-
-Installs the extension from `gemini-extension.json` at the repo root, which is where Gemini
-looks. It reads `GEMINI.md` and the eight slash commands in `commands/*.toml`. Gemini has no
-on-demand skill loading, so `GEMINI.md` is generated as `AGENTS.md` plus the conventions
-inlined, rather than symlinked like the other agents' instruction files. No subagent concept
-either, so `code-reviewer` has no equivalent. See
-[tools/gemini/README.md](tools/gemini/README.md).
-
-</details>
-
-<details>
-<summary><strong>OpenCode</strong></summary>
-
-```bash
-git clone https://github.com/stijnvanhulle/template.git
-```
-
-Reads `opencode.json` and `AGENTS.md` from the repo root, and picks the toolkit up through
-`.opencode/`, already wired in this repo. OpenCode uses the same command syntax Claude Code
-does, so its `commands/` is a symlink to the Claude ones rather than a copy. The
-`code-reviewer` subagent works here too, invoked with `@code-reviewer`. To wire it into another
-project, see [tools/opencode/README.md](tools/opencode/README.md).
-
-</details>
-
-<details>
 <summary><strong>Codex</strong></summary>
 
 ```bash
@@ -110,52 +79,31 @@ same content for the Codex plugin marketplace. The prompt format matches Claude 
 
 </details>
 
-<details>
-<summary><strong>Other agents</strong></summary>
-
-Nothing to install. These read `AGENTS.md` directly, or through a symlink, with no plugin step
-and no slash commands.
-
-- **GitHub Copilot** (VS Code) reads `.github/copilot-instructions.md`.
-- **Kiro** reads `.kiro/steering/` and **Zed** reads `.zed/`. Both are symlinks back to
-  `AGENTS.md`.
-- **Amp**, **Jules**, and anything else that speaks the AGENTS.md convention read it directly.
-  `AGENT.md` is symlinked too, for the tools that look for the singular spelling.
-- **Aider** takes it as an argument: `aider --read AGENTS.md`.
-
-</details>
-
 ### Skills and commands
 
-Every agent shares one toolset, so a skill or command written once works in all of them:
+All three supported agents share one toolset:
 
 | Path                                     | What it does                                                                                                                                                           | When it loads                                                    |
 | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `.agents/skills/conventions/`            | Rules: code style, JSDoc, markdown, plain language, security, testing, USA English                                                                                     | Session start, plus path-scoped rules when a matching file opens |
-| `.agents/skills/`                        | Playbooks: backlog, branch, changelog, changeset, deslop, documentation, humanizer, issue, jsdoc, pr                                                                   | On demand, when a task matches the skill                         |
-| `tools/*/commands/backlog`               | `/backlog` works through the latest open issues, one worktree and subagent per issue                                                                                   | When you type the command                                        |
+| `.agents/skills/`                        | Playbooks: ask, backlog, branch, changelog, changeset, deslop, documentation, humanizer, issue, jsdoc, pr                                                               | On demand, when a task matches the skill, or when you name it    |
 | `tools/*/commands/create-branch`         | `/create-branch` cuts a Conventional Commit branch from the issue it belongs to                                                                                        | When you type the command                                        |
 | `tools/*/commands/create-changeset`      | `/create-changeset` creates a changeset with the right semver bump                                                                                                     | When you type the command                                        |
 | `tools/*/commands/create-issue`          | `/create-issue` opens a GitHub issue with the type, labels, and fields filled in                                                                                       | When you type the command                                        |
 | `tools/*/commands/create-pr`             | `/create-pr` runs the pre-push checks, adds a changeset when one is needed, and opens the pull request                                                                 | When you type the command                                        |
-| `tools/*/commands/deslop`                | `/deslop` audits the current branch's changes for AI-generated code smell (over-engineering, code style tells, and prose humanizing) and applies only what you confirm | When you type the command                                        |
-| `tools/*/commands/humanizer`             | `/humanizer` removes AI writing patterns from the prose changed on the current branch                                                                                  | When you type the command                                        |
-| `tools/{claude,cursor,opencode}/agents/` | Subagents with their own context window (`code-reviewer`). Not supported by Gemini CLI or Codex                                                                        | When delegated a matching task                                   |
+| `tools/{claude,cursor}/agents/`          | Subagents with their own context window (`code-reviewer`). Not supported by Codex                                                                                      | When delegated a matching task                                   |
 | `tools/claude/output-styles/`            | System-prompt modes: `house` (default), `plan`, `diagrams-first`. Claude Code only                                                                                     | Session start, or when selected                                  |
 
-Each agent's plugin manifest sits at the repo root, where its CLI looks for it, and points back
-at the shared content under `tools/`: `.claude-plugin/`, `.cursor-plugin/`, `.codex-plugin/`,
-`gemini-extension.json`, and `opencode.json`. Gemini also needs its `commands/` beside the
-manifest, so the root `commands/` symlink points at `tools/gemini/commands`.
+Each plugin manifest sits at the repo root and points back at the shared content under
+`tools/`: `.claude-plugin/`, `.cursor-plugin/`, and `.codex-plugin/`.
 
-Commands live once per format, not once per agent. OpenCode and Codex use Claude Code's command
-syntax, so their folders are symlinks to `tools/claude/commands/`. Cursor and Gemini CLI need
-their own formats (`.mdc` rules, `.toml` commands), so those are real files, and
-`pnpm agent-files` checks in CI that they still expose the same command set. It also regenerates
-`GEMINI.md`, the one generated file, with `pnpm agent-files --write`.
+Codex uses Claude Code's command syntax, so `tools/codex/prompts/` is a symlink to
+`tools/claude/commands/`. Cursor needs its commands and rules in its own format, so those are
+real files. `pnpm agent-files` checks in CI that the command sets match and that Cursor's rules
+have not drifted from their sources.
 
-`.claude/`, `.cursor/`, `.gemini/`, and `.opencode/` are workspace config, symlinked into their
-`tools/` folders so this repo runs the same plugins it distributes.
+`.claude/` and `.cursor/` are workspace config, symlinked into their `tools/` folders so this
+repo runs the same plugins it distributes.
 
 ## Using this template
 

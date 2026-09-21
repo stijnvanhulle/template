@@ -1,6 +1,6 @@
 ---
 name: documentation
-description: Use when writing blog posts or documentation markdown files. Provides a writing style guide (active voice, present tense), content structure patterns, and SEO optimization. Overrides brevity rules for proper grammar.
+description: Write or review developer documentation using the project style and SEO guidance.
 ---
 
 # Documentation skill

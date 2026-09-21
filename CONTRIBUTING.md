@@ -35,8 +35,9 @@ pnpm build
 ├── configs/             # Shared TypeScript bases and Vitest config
 ├── tools/claude/        # Claude Code plugin (commands, code-reviewer agent, output styles); skills symlink to .agents/skills
 ├── tools/cursor/        # Cursor plugin (rules, commands, agent); skills symlink to .agents/skills
+├── tools/codex/         # Codex plugin (prompts symlink to Claude commands); skills symlink to .agents/skills
 ├── .changeset/          # Changeset configuration
-├── .agents/skills/      # Canonical cross-provider agent skills, shared by both plugins
+├── .agents/skills/      # Canonical cross-provider agent skills, shared by every plugin
 ├── .claude/             # Claude rules, commands, agents, output styles, hooks
 ├── .cursor/             # Cursor rules, commands, agents, skills (symlinked into tools/cursor)
 └── .github/             # Issue templates, setup action, CI workflows

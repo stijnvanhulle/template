@@ -1,6 +1,6 @@
 ---
 name: changelog
-description: Creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes.
+description: Turn commit history and changesets into user-facing release notes.
 ---
 
 # Changelog and versioning

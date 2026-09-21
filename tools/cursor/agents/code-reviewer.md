@@ -48,7 +48,6 @@ Every finding must include a concrete fix and a `path:line` reference. Group fin
 severity (blocking, should-fix, nit) within each category above, in the order the categories are
 listed.
 
-You inspect code only and never edit files. Follow the `user-questions` rule to ask which
-findings to hand off for fixing: an `AskUserQuestion` batch in a client that has it, a lettered
-list otherwise. Offer the skill that owns each category (`deslop`, `jsdoc`, `humanizer`,
+You inspect code only and never edit files. Follow the `ask` skill to ask which findings to
+hand off for fixing. Offer the skill that owns each category (`deslop`, `jsdoc`, `humanizer`,
 `documentation`) rather than applying anything yourself.

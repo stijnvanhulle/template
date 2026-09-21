@@ -61,7 +61,7 @@ The `changeset` skill decides whether this branch needs one, which bump it takes
 entry is laid out. `/create-changeset` does the step for you.
 
 The Claude, Cursor, and Codex plugin manifests version through Changesets, so a change
-under `tools/claude`, `tools/cursor`, or `tools/codex` needs a changeset; never hand-edit
+under `tools/claude`, `tools/cursor`, or `tools/codex` needs a changeset. Never hand-edit
 `version` in `.claude-plugin/plugin.json`, `.cursor-plugin/plugin.json`, or
 `.codex-plugin/plugin.json`. A change under `.agents/skills/` also ships in Gemini, so
 bump `version` by hand in `gemini-extension.json` in the same PR.

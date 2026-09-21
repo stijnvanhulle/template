@@ -92,7 +92,7 @@ The Claude, Cursor, and Codex manifests are versioned through Changesets: `tools
 (`@stijnvanhulle/template-claude-plugin`, `@stijnvanhulle/template-cursor-plugin`,
 `@stijnvanhulle/template-codex-plugin`) in the same `fixed` group as every other
 `@stijnvanhulle/template-*` package. Add a changeset when you change any of those
-plugins; release syncs the bumped version into the matching `plugin.json` automatically
+plugins. Release syncs the bumped version into the matching `plugin.json` automatically
 (`scripts/syncPluginVersion.mjs`), so never edit those `version` fields by hand.
 `gemini-extension.json` isn't tied to a workspace package yet, so when a change touches
 `.agents/skills/` (which Gemini also ships), bump its `version` by hand in the same PR.

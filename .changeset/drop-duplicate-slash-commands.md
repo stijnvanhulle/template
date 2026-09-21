@@ -4,7 +4,7 @@
 '@stijnvanhulle/template-codex-plugin': minor
 ---
 
-Drop the `backlog`, `deslop`, and `humanizer` commands, which listed twice in the slash menu next to the skills of the same name.
+Drop the `backlog`, `deslop`, and `humanizer` commands, which showed up twice in the slash menu next to the skills of the same name.
 
 - Reach all three through their skills, which the slash menu already lists.
 - The five `create-*` commands are unchanged.

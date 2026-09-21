@@ -79,8 +79,8 @@ argument:
 Skills load on their own. Each carries a description, and the agent reads the matching one when
 the task fits, so writing release notes pulls in `changelog` and cleaning prose pulls in
 `humanizer` without being asked. To force one, name it: "use the deslop skill on this diff."
-Claude Code also lists skills in the `/` menu, so `/backlog`, `/deslop`, and `/humanizer` reach
-them there.
+Claude Code also lists skills in the `/` menu, so `/backlog`, `/deslop`, and `/humanizer` still
+work from the slash menu.
 
 Rules need no trigger. `plain-language`, `security`, and `usa-english` apply on every request,
 and the rest attach when you open a matching file. The guiding split: rules apply on their own,

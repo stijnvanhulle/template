@@ -87,7 +87,7 @@ Skills load on their own. Each carries a description, and the agent reads the ma
 the task fits, so writing release notes pulls in `changelog` and cleaning prose pulls in
 `humanizer` without being asked. To force one, name it: "use the deslop skill on this diff."
 Cursor lists skills in the same `/` menu as the commands, so `/backlog`, `/deslop`, and
-`/humanizer` reach them there.
+`/humanizer` still work from the slash menu.
 
 Rules apply on their own too. `plain-language`, `security`, and `usa-english` are always on, and the rest attach
 when you open a matching file. The guiding split: rules always apply (or attach by file type),

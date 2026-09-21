@@ -71,7 +71,7 @@ gemini extensions install https://github.com/stijnvanhulle/template
 ```
 
 Installs the extension from `gemini-extension.json` at the repo root, which is where Gemini
-looks. It reads `GEMINI.md` and the eight slash commands in `commands/*.toml`. Gemini has no
+looks. It reads `GEMINI.md` and the seven slash commands in `commands/*.toml`. Gemini has no
 on-demand skill loading, so `GEMINI.md` is generated as `AGENTS.md` plus the conventions
 inlined, rather than symlinked like the other agents' instruction files. No subagent concept
 either, so `code-reviewer` has no equivalent. See

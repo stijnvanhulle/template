@@ -18,7 +18,7 @@ const rules = '.agents/skills/conventions/rules'
 const mirrors = 'tools/cursor/rules'
 const geminiCommands = 'tools/gemini/commands'
 
-const commandDirs = ['tools/claude/commands', 'tools/cursor/commands', geminiCommands]
+const commandDirs = ['tools/claude/commands', 'tools/cursor/commands']
 
 const read = (...parts: Array<string>) => readFileSync(join(root, ...parts), 'utf8')
 
@@ -69,13 +69,24 @@ const checkCommands = () => {
   const expected = namesIn(canonical, '.md')
 
   const parity = rest.flatMap((dir) => {
-    const actual = namesIn(dir, dir === geminiCommands ? '.toml' : '.md')
+    const actual = namesIn(dir, '.md')
 
     return [
       ...expected.filter((name) => !actual.includes(name)).map((name) => `${dir} is missing ${name}`),
       ...actual.filter((name) => !expected.includes(name)).map((name) => `${dir}/${name} matches no command`),
     ]
   })
+
+  // Gemini CLI has no on-demand skill loading, so skills that other agents load on
+  // demand (backlog, deslop, humanizer) must ship as commands in tools/gemini/commands.
+  const geminiSkillsAsCommands = ['backlog', 'deslop', 'humanizer']
+  const expectedGemini = [...expected, ...geminiSkillsAsCommands].sort()
+  const actualGemini = namesIn(geminiCommands, '.toml')
+
+  const geminiParity = [
+    ...expectedGemini.filter((name) => !actualGemini.includes(name)).map((name) => `${geminiCommands} is missing ${name}`),
+    ...actualGemini.filter((name) => !expectedGemini.includes(name)).map((name) => `${geminiCommands}/${name} matches no command`),
+  ]
 
   const bodies = namesIn(geminiCommands, '.toml').flatMap((name) => {
     const source = read(geminiCommands, `${name}.toml`)
@@ -85,7 +96,7 @@ const checkCommands = () => {
       .map((key) => `${geminiCommands}/${name}.toml has no ${key}`)
   })
 
-  return [...parity, ...bodies]
+  return [...parity, ...geminiParity, ...bodies]
 }
 
 /** Cursor keeps copies of the rules, so both the body and the scope have to match. */

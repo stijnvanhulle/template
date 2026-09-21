@@ -1,5 +1,5 @@
 {
-  "name": "@stijnvanhulle/template-codex-plugin",
+  "name": "@stijnvanhulle/codex-plugin",
   "version": "1.1.0",
   "private": true,
   "description": "Codex plugin for this template (prompts, skills).",

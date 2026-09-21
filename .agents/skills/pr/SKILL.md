@@ -122,8 +122,9 @@ result.
 
 Replace the placeholders with three real steps, from a clean checkout: a reproduction step, the
 next step, and the expected result. Fix steps someone hands you rather than pasting them as-is:
-add the missing prerequisite, order them, name the result. Ask for steps you can't derive from
-the diff. Add a before/after screenshot for a visible change.
+add the missing prerequisite, order them, name the result. When you cannot derive the steps from
+the diff, follow the `user-questions` rule: offer two or three guessed plans, likely first, and
+let `Other` carry the real one. Add a before/after screenshot for a visible change.
 
 ### Impact
 

@@ -27,7 +27,7 @@ Read the file that matches what you are doing:
 - [`rules/usa-english.md`](./rules/usa-english.md) for the USA English spelling
   convention used across code, comments, and docs.
 - [`rules/user-questions.md`](./rules/user-questions.md) for asking the user a question as a
-  short quiz, native picker where one exists and a lettered list otherwise.
+  native picker (`AskUserQuestion`) where one exists and a lettered list otherwise.
 
 If a rule conflicts with a project-specific instruction in `AGENTS.md` or
 `CLAUDE.md`, the project instruction wins.

@@ -17,8 +17,10 @@ another's branch or working tree.
 ## 1. Pick the source
 
 Take the source (`github`, `clickup`, or `jira`) and count from the command, count defaulting to
-10. No source given: ask before doing anything else, rather than guessing. This follows the
-`branch` skill's own list of trackers, so the same source names the branch later.
+10. No source given: follow the `user-questions` rule before doing anything else. Offer
+`github`, `clickup`, and `jira` in one `AskUserQuestion` batch (or a lettered list). Never
+guess. This follows the `branch` skill's own list of trackers, so the same source names the
+branch later.
 
 | Source | How to list the latest N |
 | --- | --- |
@@ -81,4 +83,4 @@ from step 2. Link the PR when a subagent opened one.
 | [branch](../branch/SKILL.md) | Naming the branch each worktree checks out |
 | [pr](../pr/SKILL.md) | What each subagent runs once its issue is implemented |
 | [issue](../issue/SKILL.md) | Opening a new issue, rather than working an existing one |
-| [conventions](../conventions/SKILL.md) | Plain language, security, USA English |
+| [conventions](../conventions/SKILL.md) | Plain language, security, USA English, user questions |

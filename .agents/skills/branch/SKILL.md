@@ -66,9 +66,10 @@ A type in the request wins. Otherwise read it off the issue:
 | A measured speed or memory win | `perf` | `feature` |
 | Version bump, tagging, release notes | — | `release` |
 
-Torn between `feat` and `fix`: ask whether the documented behavior was ever right. It was, so
-this is a fix. Type still drives the `pr` skill's commit and title; category is only the
-branch's first segment.
+Torn between `feat` and `fix`: follow the `user-questions` rule. Offer `fix` first when the
+documented behavior was ever right, then `feat`. Do not pick one and report it as a guess.
+Type still drives the `pr` skill's commit and title; category is only the branch's first
+segment.
 
 ## 3. Cut it
 
@@ -82,16 +83,16 @@ Branch from `origin/main`, unless the work builds on an open PR. Then branch fro
 branch and say so.
 
 Check `git status --short` first, because `git switch -c` carries uncommitted changes along.
-That is what you want when they belong to this issue. When they do not, run `git stash -u`
-first and say you stashed.
+When the working tree is dirty and those changes may not belong to this issue, follow the
+`user-questions` rule: carry them onto the new branch, or stash with `git stash -u` first.
 
 When the name is taken, switch to that branch if it holds the same work. If it does not, pick a
 different slug rather than adding a number.
 
 ## 4. Report
 
-The branch name, the issue and its URL, and the type with the signal behind it. Say which parts
-you guessed: a type with no label behind it, or a title you could not fetch.
+The branch name, the issue and its URL, and the type with the signal behind it. If you could not
+fetch a title, say so. Do not invent a type: use the picker from step 2.
 
 ## Guardrails
 
@@ -105,4 +106,4 @@ you guessed: a type with no label behind it, or a title you could not fetch.
 | --- | --- |
 | [pr](../pr/SKILL.md) | The checks, the title, and the PR this branch ends in |
 | [issue](../issue/SKILL.md) | Opening the issue first, when there is none to branch from |
-| [conventions](../conventions/SKILL.md) | Plain language, security, USA English |
+| [conventions](../conventions/SKILL.md) | Plain language, security, USA English, user questions |

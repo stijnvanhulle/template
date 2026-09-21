@@ -12,9 +12,13 @@ instead of generic and hollow.
 
 1. Read the input text.
 2. Identify AI patterns using the references below.
-3. Rewrite the problematic sections.
-4. Do a final anti-AI pass: ask "what makes this obviously AI generated?", name the remaining
-   tells, and fix them.
+3. List every tell: file or passage, the pattern it matches, and the proposed rewrite. Do not
+   edit anything yet.
+4. Follow the `user-questions` rule to confirm before applying: one `AskUserQuestion` batch
+   (apply / skip / show more, per rewrite or per closely related group), a lettered list in a
+   client that does not have the tool.
+5. Apply only what is confirmed. Then do a final anti-AI pass on the accepted rewrites: ask
+   "what makes this obviously AI generated?", name remaining tells, and fix those too.
 
 Ensure the result sounds natural read aloud, varies sentence structure, uses specific details,
 and keeps the right tone.
@@ -36,3 +40,10 @@ Load the category you need:
 | [language-patterns.md](references/language-patterns.md) | AI vocabulary, copula avoidance, negative parallelisms, rule-of-three, elegant variation, false ranges, filler and hedging, words to cut |
 | [style-patterns.md](references/style-patterns.md) | Dashes and semicolons as punctuation, unnecessary bold, inline-header lists, title-case headings, emojis |
 | [communication-patterns.md](references/communication-patterns.md) | Chatbot artifacts, sycophantic openers |
+
+## Related skills
+
+| Skill | Use for |
+| --- | --- |
+| [deslop](../deslop/SKILL.md) | The same confirm step, for code and mixed diffs |
+| [conventions](../conventions/SKILL.md) | How the confirm step renders per client |

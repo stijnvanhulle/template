@@ -22,6 +22,10 @@ sure, check whether the package is in the workspace and not listed under `ignore
 | `minor` | New behavior existing code survives | A new `unionType` option |
 | `major` | A rename, a removal, or a changed default | `enumType` now defaults to `asConst` |
 
+Use the bump from the command when it is `patch`, `minor`, or `major`. When none was passed, or
+the table does not pick one on its own, follow the `user-questions` rule: offer `patch`,
+`minor`, and `major`, likely answer first. Do not default to `patch` and report it as a guess.
+
 List only the packages you changed.
 
 ## 3. Write the file
@@ -83,3 +87,4 @@ Resolve nested plugin paths on Windows, which broke on a backslash separator.
 | [pr](../pr/SKILL.md) | The branch and PR the changeset ships in |
 | [changelog](../changelog/SKILL.md) | Turning released changesets into `docs/changelog.md` |
 | [humanizer](../humanizer/SKILL.md) | AI tells in the summary |
+| [conventions](../conventions/SKILL.md) | User questions when the bump is not obvious |

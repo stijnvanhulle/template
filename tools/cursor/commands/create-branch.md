@@ -10,4 +10,6 @@ task, and the key itself for Jira, since no Jira server is connected. Pick the c
 labels, turn the title into a short kebab-case name, and cut
 `<category>/<ISSUE-REF>_<branch-name>` from `origin/main`.
 
-Report the branch name, the issue it came from, and anything you guessed.
+Report the branch name, the issue it came from, and the type you used. Follow the
+`user-questions` rule when the type is torn, or when the working tree is dirty, instead of
+guessing.

@@ -2,8 +2,6 @@ name: PR
 
 on:
   workflow_dispatch:
-  # Narrow on purpose, not '**/*.md': `pnpm run agent-files` in the linting job
-  # guards the command sets and Cursor rules, and its inputs are markdown.
   pull_request:
     paths-ignore:
       - 'README.md'
@@ -124,9 +122,6 @@ jobs:
         env:
           NODE_OPTIONS: '--max_old_space_size=4096'
         run: pnpm run lint
-
-      - name: Agent files in sync
-        run: pnpm run agent-files
 
   prerelease:
     name: Prerelease

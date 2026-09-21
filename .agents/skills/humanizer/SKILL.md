@@ -1,6 +1,6 @@
 ---
 name: humanizer
-description: Remove AI writing patterns to make documentation sound natural, specific, and human. Covers content patterns, language patterns, style patterns, and communication patterns.
+description: Find AI writing tells and apply only confirmed rewrites.
 ---
 
 # Humanizer

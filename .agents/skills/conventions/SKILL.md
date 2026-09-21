@@ -1,6 +1,6 @@
 ---
 name: conventions
-description: Always-on conventions for TypeScript monorepos. Use when writing or reviewing TypeScript, markdown, or tests, when handling secrets, env vars, or input at trust boundaries, or any time you would otherwise reach for a project style guide. Bundles code style, JSDoc, markdown structure, plain language, security, testing, and USA English rules.
+description: Apply the shared TypeScript, markdown, testing, security, and language rules.
 ---
 
 # Conventions

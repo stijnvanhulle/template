@@ -1,26 +1,13 @@
 ---
 name: pr
-description: Open or update a pull request in this monorepo. Covers the pre-push checks, the changeset decision, Conventional Commit titles, how to fill the PR template, and what to do once CI runs. Use when asked to open a PR, push a branch for review, fix a red PR, or judge whether a branch is ready to merge.
+description: Prepare, open, update, or assess a pull request, including checks, changesets, title, template, and CI.
 ---
 
-# PR skill
+# PR
 
-Take a branch from "the code is written" to "a reviewer can merge this." Work the steps in
-order. Can't finish a step: say so in the PR body rather than skipping it quietly.
+Take a branch to merge-ready. Work in order; disclose any unfinished step in the PR body.
 
-## When to use
-
-- Opening a pull request, or pushing a branch you expect to become one.
-- Updating a pull request after a review comment or a failing CI run.
-- Answering whether a branch is ready to merge.
-
-## Keep every output short
-
-The title, the body, the commits, the review replies, and what you report back in chat all
-follow one rule: lead with what changed, keep what the reader has to act on, cut the rest. Aim
-for a PR body under 150 words. Run the `humanizer` skill over anything you write for a person.
-
-## 1. Confirm the branch
+## 1. Branch
 
 Never commit to `main`. Check where you are, and branch from an up-to-date `main` when still on
 it:
@@ -32,33 +19,21 @@ git fetch origin main
 git switch -c <category>/<ISSUE-REF>_<branch-name> origin/main
 ```
 
-`<category>/<ISSUE-REF>_<branch-name>` is the shape the `branch` skill names and cuts for you,
-so `hotfix/501_retry-queue-drops-jobs` or `feature/DEV-2048_add-dark-mode-toggle`.
-`/create-branch` does the step. `ISSUE-REF` is the issue this closes, uppercase, dropped out
-when there is none.
+Use the `branch` skill's `<category>/<ISSUE-REF>_<slug>` shape. Omit the reference when none
+exists.
 
-## 2. Run the checks before you push
-
-Run the same sequence that `AGENTS.md`, `CONTRIBUTING.md`, and the PR template all name:
+## 2. Checks
 
 ```bash
 pnpm format && pnpm lint:fix && pnpm typecheck && pnpm test
 ```
 
-Run `pnpm build` too when you changed package source: local packages resolve through their
-build output.
+Also run `pnpm build` after package-source changes. Fix failures at the source; never weaken a
+type or rule, or skip a test.
 
-Everything has to pass before you push. Fix the root cause: never disable a lint rule, loosen a
-type, or skip a test to get a green run.
+## 3. Changeset
 
-## 3. Decide on a changeset
-
-```bash
-pnpm changeset
-```
-
-The `changeset` skill decides whether this branch needs one, which bump it takes, and how the
-entry is laid out. `/create-changeset` does the step for you.
+Run the `changeset` skill for versioned package changes. Docs, CI, and tests alone need none.
 
 The Claude, Cursor, and Codex plugin manifests version through Changesets, so a change
 under `tools/claude`, `tools/cursor`, or `tools/codex` needs a changeset. Never hand-edit
@@ -67,71 +42,27 @@ under `tools/claude`, `tools/cursor`, or `tools/codex` needs a changeset. Never 
 
 ## 4. Commit
 
-One Conventional Commit per logical change, in the imperative, with no trailing period:
+Use one imperative Conventional Commit per logical change, under 72 characters, no period.
+Review `git diff --cached`. Never commit secrets or generated output; generate lockfiles with
+pnpm.
 
-```
-feat(core): add a plugin resolver cache
-```
+## 5. Title and body
 
-Check `git diff --cached` before every commit. Never commit a secret, a token, a `.env` file, or
-a build artifact. Regenerate a lockfile with pnpm, never by hand.
+Title: imperative Conventional Commit, under 72 characters, no period. Derive the type from the
+change or issue label, not `feature`/`hotfix`. Put `Closes #123` in the body.
 
-## 5. Write the title and body
+Fill `.github/pull_request_template.md` without deleting sections:
 
-### Title
+- **Changes:** what changed and why, in 1–3 sentences.
+- **How to test:** three clean-checkout steps ending in the expected result. If the diff cannot
+  supply them, use the `ask` skill. Add screenshots for visible changes.
+- **Checklist:** check only what ran; explain unchecked items.
+- **Release impact:** changeset, docs-only, and breaking boxes must match the diff.
+- **Impact:** who is affected and any migration.
 
-One Conventional Commit line, imperative, under 72 characters, no trailing period. It becomes
-the squash-merge commit, so write it for whoever reads the changelog later.
+Keep the body under 150 words when practical. Run `humanizer` over user-facing prose.
 
-The branch category (`feature`, `hotfix`, `release`) is too coarse for a Conventional Commit
-type. Read the type the way the `branch` skill's step 2 does, off the issue's labels or the
-change itself, not the branch prefix:
-
-1. Pick the type: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, or `perf`.
-2. Drop the issue reference from the branch name, then turn the kebab-case rest into a sentence,
-   imperative and in the present tense.
-3. Add the scope in parentheses when the change sits in one package.
-
-`hotfix/501_retry-queue-drops-jobs`, labeled `bug`, becomes `fix(core): retry the queue on a
-dropped job`, closing #501.
-
-Put the issue number in the body with `Closes #123`, not in the title.
-
-### Body
-
-Fill `.github/pull_request_template.md`. Keep its headings and their order, replace each HTML
-comment with real content, and delete no section. Write a body a reviewer gets in one read.
-
-Under **Changes**, write one to three sentences: what changed, then why, naming the package or
-file a reviewer should open first. Add `Closes #123` when the PR closes an issue.
-
-Under **Checklist**, tick a box only for something you actually did. An unticked box with a
-one-line reason is honest and useful; a ticked box you didn't verify costs a reviewer their
-trust, so never do that.
-
-Under **Release impact**, tick the changeset box when `.changeset/` gained a file in this
-branch, and the docs box when no published package changed.
-
-Run the `humanizer` skill over the body before you open the PR, and fix the tells it surfaces:
-an opener that restates the title, a closing paragraph that repeats it, words such as
-`comprehensive` and `robust`, mid-sentence bold, a dash joining two clauses. Cut background the
-reviewer already has, options you ruled out, and any sentence naming no file, command, or
-result.
-
-### How to test
-
-Replace the placeholders with three real steps, from a clean checkout: a reproduction step, the
-next step, and the expected result. Fix steps someone hands you rather than pasting them as-is:
-add the missing prerequisite, order them, name the result. When you cannot derive the steps from
-the diff, follow the `ask` skill: offer two or three guessed plans, likely first, and
-let `Other` carry the real one. Add a before/after screenshot for a visible change.
-
-### Impact
-
-One line naming who this reaches: someone using the published package, someone consuming the
-generated output, or nobody outside this repo. Name the migration step when it breaks someone.
-
-## 6. Push and open the PR
+## 6. Push and open
 
 ```bash
 git fetch origin main
@@ -145,32 +76,17 @@ gh pr create \
   --assignee @me
 ```
 
-Use the `gh` CLI, never a GitHub MCP server or another bot token, so the PR is authored by
-whoever ran it and lands in their own list.
+Use `gh`, open ready for review, and use only existing labels. One PR does one thing.
 
-Open it ready for review, not draft; mark a draft ready with `gh pr ready` once checks pass. Add
-a label the repo already uses (`gh label list`) rather than inventing one. `gh pr merge --squash
---delete-branch` squashes and deletes the branch in one step; with no merge rights, say in the
-body that the PR is meant to be squashed. One PR does one thing: mention unrelated work noticed
-along the way in the body and leave it out of the diff.
+## 7. CI and review
 
-## 7. After CI runs
-
-A red PR is work now, whatever its review state. Read the failing job, reproduce it locally, fix
-the cause, push again. Re-run a job only when the failure never reached a test body (a checkout
-or install error) or the same commit passed before.
-
-Answer every review comment in a sentence or two: what you changed, how the reviewer can check
-it. Push the fix for a small, local ask; for a larger one, reply with what you propose and let
-the author decide.
+Fix red CI before handoff. Re-run only infrastructure failures. Reply to every review comment
+with what changed and how to verify it; propose before making a large requested change.
 
 ## Guardrails
 
-- Keep the diff to what was asked. Drive-by refactors belong in their own PR.
-- Never force-push a branch someone else may have checked out.
-- Run the `humanizer` skill over the PR body, the changeset, and any user-facing markdown in
-  the diff.
-- Run the `deslop` skill over generated code before you push.
+- Keep the diff scoped. No drive-by refactors or force-pushes.
+- Run `humanizer` on prose and `deslop` on generated code before push.
 - Use USA English in the title, body, commits, and changeset.
 
 ## Related skills

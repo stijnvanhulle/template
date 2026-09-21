@@ -1,26 +1,13 @@
 ---
 name: deslop
-description: Audit a branch's diff for AI-generated code smell, over-engineering (unneeded deps, wrappers, config), style tells in code (needless comments, defensive checks, `any` casts), and AI writing tells in changed prose, then apply only the findings the user confirms. Use before implementing a feature, before opening a PR, or when auditing a diff for AI slop.
+description: Audit a diff for over-engineering and AI code/prose tells, then apply only confirmed fixes.
 ---
 
 # Deslop
 
-Three passes over the same diff: whether the code should exist in this shape (the reuse-first
-ladder), whether the code reads like a human wrote it (the AI style tells), and whether any
-changed prose does too (the `humanizer` pattern list). Report every finding before changing
-anything, then apply only what the user confirms.
-
-## When to use
-
-- Before adding a dependency, config option, or abstraction.
-- After writing or generating a batch of code, before opening a PR.
-- Auditing a diff, a PR, or your own output for over-engineering, code style tells, or AI
-  writing tells in changed prose.
-
 ## 1. The reuse-first decision ladder
 
-For each new dependency, file, wrapper, or exported symbol, work down this ladder and stop at the
-first rung that fits:
+For each new dependency, file, wrapper, or export, stop at the first fit:
 
 1. **Does this need to exist?** Skip safeguards for inputs that can't occur and flags for cases
    nobody asked for.
@@ -32,46 +19,32 @@ first rung that fits:
 6. **One line?** Inline it instead of extracting a function or component.
 7. **Otherwise:** write only what the task needs.
 
-Over-engineering looks like a dependency for something the stdlib, the platform, or an existing
-package already does, a wrapper with exactly one caller, a config or feature flag nobody asked
-for, or a function generalized for inputs the codebase never passes it. A dependency or wrapper
-serving more than one real caller today is not a violation.
+Flag dependencies covered by an earlier rung, one-caller wrappers, unrequested flags, and
+generality for inputs never passed. Two real callers means reuse, not a violation.
 
-## 2. AI style tells
+## 2. Code tells
 
-- Comments a human would not add: restating what the code already says, or inconsistent with the
-  comment density of the rest of the file.
-- Defensive checks and `try/catch` blocks abnormal for the area, especially on trusted or
-  already-validated code paths. The `security` rule puts validation at trust boundaries, not in
-  internal code.
-- Casts to `any` used only to bypass a type error. Fix the type instead.
+- Comments that restate code or do not match local comment density.
+- Abnormal defensive checks or `try/catch` on trusted paths. Keep trust-boundary validation.
+- `any` casts that dodge a type error.
 - Deep nesting that early returns would flatten.
-- Naming, import, or export style inconsistent with the file and the `code-style` rule.
+- Naming/import/export style inconsistent with nearby code.
 
-## 3. Prose: run the humanizer pattern list
+## 3. Prose
 
-For any changed README, doc, comment block, or other user-facing markdown in the diff, run the
-`humanizer` skill's pattern list as the third pass: dashes and semicolons used as punctuation,
-title-case headings, emoji, marketing words, rule-of-three lists, inline-header bullets, hedging,
-and filler openers. Code with no prose changes skips this pass.
+Run `humanizer` criteria on changed docs/comments. Skip when no prose changed.
 
 ## 4. Report, then ask
 
-List every finding from all three passes: file, the rung or tell it violates, and the proposed
-fix. Do not edit anything yet.
-
-Follow the `ask` skill to confirm before applying: apply / skip / show more, per finding or per
-closely related group. Skipping here costs nothing; skipping after an edit costs a revert.
+Before editing, list each finding with path, violated rung/tell, and fix. Use `ask`: apply /
+skip / show more per finding or related group.
 
 ## 5. Apply only what is confirmed
 
-- Keep behavior unchanged unless fixing a clear bug the ladder or the tells surfaced.
-- Prefer minimal, surgical edits over broad rewrites.
-- Never remove a check that guards a real trust boundary or real error handling. When unsure
-  whether a check is slop or load-bearing, leave it and say so.
-- Do not weaken types, lint rules, or tests to make an edit pass. Fix the root cause.
-- After editing, run `pnpm format && pnpm lint:fix` and let the tests pass.
-- Report a 1-3 sentence summary of what changed and what was left as-is.
+- Preserve behavior unless fixing a clear bug. Make surgical edits.
+- Keep trust-boundary checks and real error handling.
+- Fix root causes; never weaken types, rules, or tests.
+- Run format, lint, and relevant tests. Summarize changes and skipped findings.
 
 ## Related skills
 

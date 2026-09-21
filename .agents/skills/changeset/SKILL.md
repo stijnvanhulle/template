@@ -1,6 +1,6 @@
 ---
 name: changeset
-description: Write a changeset that reads as a release note, with the right bump, a one-line summary, bullets for what changed, and a code example a user can copy. Use when adding a changeset, reviewing one, or deciding whether a change needs one.
+description: Write or review a release-note changeset with the correct bump.
 ---
 
 # Changeset skill

@@ -11,12 +11,12 @@ package, whether to proceed) and a request for missing information (a file path,
 environment, what to name something). The reader should be able to answer with one tap or one
 character.
 
-- In a client with a native multiple-choice tool (Claude Code and Claude Desktop's
-  `AskUserQuestion`, or the equivalent in another host), use it, always, rather than asking in
-  plain prose. It renders as a picker, and the user can still type a free-form answer through
-  `Other` if none of the options fit. For open-ended information with no fixed set of answers,
-  offer your best-guess options (a likely default, a common alternative) and let `Other` carry
-  the real answer, rather than skipping the tool.
+- In a client with a native multiple-choice tool (`AskUserQuestion` in Claude Code, or the
+  equivalent in Cursor), use it, always, rather than asking in plain prose. It renders as a
+  picker, and the user can still type a free-form answer through `Other` if none of the options
+  fit. For open-ended information with no fixed set of answers, offer your best-guess options
+  (a likely default, a common alternative) and let `Other` carry the real answer, rather than
+  skipping the tool.
 - In a client with no such tool (Codex, a plain terminal, a chat surface without picker
   support), write the options as a lettered or numbered list in the reply text, and ask the
   user to answer with the letter or number. `A) ... B) ... C) ...` reads the same whether it
@@ -29,5 +29,5 @@ character.
 ## Where this applies
 
 Every skill that stops to ask the user something follows this shape, in every agent this
-template ships for: Claude Code, Claude Desktop, Cursor, Codex, Gemini CLI, and OpenCode. The
-`backlog` skill's per-issue confirmation is the reference example.
+template ships for: Claude Code, Cursor, and Codex. The `backlog` skill's per-issue
+confirmation is the reference example.

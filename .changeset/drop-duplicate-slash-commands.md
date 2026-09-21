@@ -7,4 +7,6 @@
 Drop the `backlog`, `deslop`, and `humanizer` commands, which showed up twice in the slash menu next to the skills of the same name.
 
 - Reach all three through their skills, which the slash menu already lists.
-- The five `create-*` commands are unchanged.
+- Keep the four `create-*` commands unchanged.
+- Remove the Gemini CLI and OpenCode integrations. The toolkit now supports Claude Code,
+  Cursor, and Codex.

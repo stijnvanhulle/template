@@ -68,22 +68,20 @@ rtk proxy <cmd>       # Run raw without filtering but still track usage
 
 ## How agents read this repo
 
-`AGENTS.md` is canonical. Every other context file symlinks to it, except `GEMINI.md`,
-which `pnpm agent-files --write` generates as this file plus the rules inlined. Never
-edit `GEMINI.md` by hand. Skills live in `.agents/skills/`, rules in
-`.agents/skills/conventions/rules/`, and each agent's toolkit under `tools/<agent>/`.
-`pnpm agent-files` runs in CI and fails if the command sets diverge, a Cursor rule
-drifts from its source, or `GEMINI.md` is stale.
+`AGENTS.md` is canonical. `AGENT.md` and `CLAUDE.md` symlink to it. Skills live in
+`.agents/skills/`, rules in `.agents/skills/conventions/rules/`, and each supported agent's
+toolkit under `tools/<agent>/`. `pnpm agent-files` runs in CI and fails if the Claude and Cursor
+command sets diverge or a Cursor rule drifts from its source.
 
 For the full wiring (which path symlinks where, plugin manifests, install steps) see
 the per-agent READMEs under `tools/` and the
 [README](README.md#ai-assistant-configuration).
 
-Four toolkit manifests ship this content and each carries its own `version` field:
+Three toolkit manifests ship this content and each carries its own `version` field:
 `tools/claude/.claude-plugin/plugin.json`, `tools/cursor/.cursor-plugin/plugin.json`,
-`.codex-plugin/plugin.json`, and `gemini-extension.json`. `claude plugin update` (and
-the Cursor and Codex equivalents) compare that field to decide whether there's anything
-new, so a content change with no version bump makes the update look like a no-op.
+and `.codex-plugin/plugin.json`. `claude plugin update` (and the Cursor and Codex equivalents)
+compare that field to decide whether there's anything new, so a content change with no version
+bump makes the update look like a no-op.
 
 The Claude, Cursor, and Codex manifests are versioned through Changesets: `tools/claude`,
 `tools/cursor`, and `tools/codex` are private workspace packages
@@ -92,8 +90,6 @@ The Claude, Cursor, and Codex manifests are versioned through Changesets: `tools
 `@stijnvanhulle/template-*` package. Add a changeset when you change any of those
 plugins. Release syncs the bumped version into the matching `plugin.json` automatically
 (`scripts/syncPluginVersion.mjs`), so never edit those `version` fields by hand.
-`gemini-extension.json` isn't tied to a workspace package yet, so when a change touches
-`.agents/skills/` (which Gemini also ships), bump its `version` by hand in the same PR.
 
 ## Rules
 

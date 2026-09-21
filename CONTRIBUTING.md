@@ -33,13 +33,8 @@ pnpm build
 ├── packages/            # Publishable packages (core, demo)
 ├── internals/           # Internal, non-published packages (utils)
 ├── configs/             # Shared TypeScript bases and Vitest config
-├── tools/claude/        # Claude Code plugin (commands, code-reviewer agent, output styles); skills symlink to .agents/skills
-├── tools/cursor/        # Cursor plugin (rules, commands, agent); skills symlink to .agents/skills
-├── tools/codex/         # Codex plugin (prompts symlink to Claude commands); skills symlink to .agents/skills
 ├── .changeset/          # Changeset configuration
-├── .agents/skills/      # Canonical cross-provider agent skills, shared by every plugin
-├── .claude/             # Claude rules, commands, agents, output styles, hooks
-├── .cursor/             # Cursor rules, commands, agents, skills (symlinked into tools/cursor)
+├── .claude/             # Repository-specific Claude hooks and permissions
 └── .github/             # Issue templates, setup action, CI workflows
 ```
 
@@ -84,7 +79,7 @@ pnpm vitest run --config ./configs/vitest.config.ts -u packages/core   # update 
 
 ## Development workflow
 
-1. Create a branch from `main`, named `<category>/<ISSUE-REF>_<branch-name>`, so `hotfix/501_retry-queue-drops-jobs`. The `branch` skill and the `/create-branch` command do this from the issue.
+1. Create a branch from `main`, named `<category>/<ISSUE-REF>_<branch-name>`, so `hotfix/501_retry-queue-drops-jobs`.
 2. Make your change, with tests for new behavior.
 3. Build and verify locally with `pnpm build && pnpm typecheck && pnpm test`.
 4. Fix style with `pnpm format && pnpm lint:fix`.

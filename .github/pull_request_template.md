@@ -1,5 +1,4 @@
 <!--
-Agents: follow the `pr` skill (.agents/skills/pr/SKILL.md), or run /pr.
 Fill every section below, and tick a box only when you actually ran or verified it.
 -->
 

@@ -5,10 +5,6 @@ on:
     paths:
       - '.changeset/**'
       - 'packages/**'
-      - 'tools/claude/**'
-      - 'tools/cursor/**'
-      - 'tools/codex/**'
-      - '.codex-plugin/**'
 
 permissions: {}
 
@@ -43,21 +39,14 @@ jobs:
       - name: Build
         run: pnpm run build
 
-      # Opens a "Version Packages" PR when changesets are present. Merging it
-      # re-triggers this workflow, which then publishes to npm.
       - name: Create Release PR or Publish
         id: changesets
         uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
         with:
-          # Keeps the Claude, Cursor, and Codex plugin manifests' version fields in
-          # step with the @stijnvanhulle/template-{claude,cursor,codex}-plugin packages
-          # Changesets bumps.
-          # changesets/action runs this without a shell, so `&&` can't chain
-          # commands here — pnpm run does its own shell chaining instead.
           version-script: pnpm run release:version
           publish-script: pnpm release
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'ci(changesets): version packages'
           pr-title: 'ci(changesets): version packages'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
           NPM_CONFIG_PROVENANCE: true

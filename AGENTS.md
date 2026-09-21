@@ -10,7 +10,7 @@ This repository is a pnpm TypeScript monorepo template.
 - Turborepo orchestrates builds, type checks, tests, linting, and cleanup.
 - Changesets versions and publishes packages.
 
-`AGENT.md` and `CLAUDE.md` symlink to this file.
+`AGENT.md` symlinks to this file.
 
 ## Toolchain
 

@@ -221,6 +221,8 @@ importers:
 
   tools/claude: {}
 
+  tools/codex: {}
+
   tools/cursor: {}
 
 packages:

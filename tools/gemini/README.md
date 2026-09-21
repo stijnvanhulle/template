@@ -16,7 +16,6 @@ the commands sit beside the manifest as Gemini expects.
 
 Slash commands, as `commands/*.toml`:
 
-- `/backlog [source] [count]` works through the latest open issues, one per issue.
 - `/create-branch [issue or description]` cuts a Conventional Commit branch from the issue it
   belongs to.
 - `/create-changeset [patch|minor|major]` creates Changesets for affected packages.
@@ -24,9 +23,9 @@ Slash commands, as `commands/*.toml`:
   filled in.
 - `/create-pr [note]` runs the pre-push checks, adds a changeset when one is needed, and opens
   the pull request.
-- `/deslop [path]` audits the branch's changes for AI-generated code smell (over-engineering,
-  code style tells, and prose humanizing) and applies only what you confirm.
-- `/humanizer [path]` removes AI writing patterns from the prose the branch changed.
+
+The `backlog`, `deslop`, and `humanizer` playbooks live only in `.agents/skills/` now, so ask
+for them by name ("run the humanizer skill over docs/") and point the CLI at the skill file.
 
 Gemini CLI has no subagent concept, so there is no code-reviewer agent here.
 
@@ -46,17 +45,13 @@ gemini extensions install --path=.
 ## Usage
 
 ```text
-/deslop                    # audit the whole branch diff for AI-generated code smell
-/deslop apps/web           # limit it to one path
-/humanizer docs            # rewrite the prose the branch changed under docs/
+/create-branch 501         # cut the branch for issue 501
 /create-changeset minor    # add a changeset for the current changes
 /create-pr                 # get the branch ready for review and open the PR
-/backlog github 10         # triage the 10 latest GitHub issues
 ```
 
-Commands take their argument through `{{args}}`, and `/create-changeset`, `/deslop`, and
-`/humanizer` inject `git diff --stat HEAD` with `!{...}`, which asks for confirmation before it
-runs.
+Commands take their argument through `{{args}}`, and `/create-changeset` injects
+`git diff --stat HEAD` with `!{...}`, which asks for confirmation before it runs.
 
 ## Scope
 

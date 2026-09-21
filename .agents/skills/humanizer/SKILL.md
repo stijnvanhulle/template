@@ -14,9 +14,8 @@ instead of generic and hollow.
 2. Identify AI patterns using the references below.
 3. List every tell: file or passage, the pattern it matches, and the proposed rewrite. Do not
    edit anything yet.
-4. Follow the `user-questions` rule to confirm before applying: one `AskUserQuestion` batch
-   (apply / skip / show more, per rewrite or per closely related group), a lettered list in a
-   client that does not have the tool.
+4. Follow the `ask` skill to confirm before applying: apply / skip / show more, per rewrite or
+   per closely related group.
 5. Apply only what is confirmed. Then do a final anti-AI pass on the accepted rewrites: ask
    "what makes this obviously AI generated?", name remaining tells, and fix those too.
 
@@ -46,4 +45,4 @@ Load the category you need:
 | Skill | Use for |
 | --- | --- |
 | [deslop](../deslop/SKILL.md) | The same confirm step, for code and mixed diffs |
-| [conventions](../conventions/SKILL.md) | How the confirm step renders per client |
+| [ask](../ask/SKILL.md) | How the confirm step renders per client |

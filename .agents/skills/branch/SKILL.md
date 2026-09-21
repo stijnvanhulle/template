@@ -66,7 +66,7 @@ A type in the request wins. Otherwise read it off the issue:
 | A measured speed or memory win | `perf` | `feature` |
 | Version bump, tagging, release notes | — | `release` |
 
-Torn between `feat` and `fix`: follow the `user-questions` rule. Offer `fix` first when the
+Torn between `feat` and `fix`: follow the `ask` skill. Offer `fix` first when the
 documented behavior was ever right, then `feat`. Do not pick one and report it as a guess.
 Type still drives the `pr` skill's commit and title; category is only the branch's first
 segment.
@@ -84,7 +84,7 @@ branch and say so.
 
 Check `git status --short` first, because `git switch -c` carries uncommitted changes along.
 When the working tree is dirty and those changes may not belong to this issue, follow the
-`user-questions` rule: carry them onto the new branch, or stash with `git stash -u` first.
+`ask` skill: carry them onto the new branch, or stash with `git stash -u` first.
 
 When the name is taken, switch to that branch if it holds the same work. If it does not, pick a
 different slug rather than adding a number.
@@ -106,4 +106,5 @@ fetch a title, say so. Do not invent a type: use the picker from step 2.
 | --- | --- |
 | [pr](../pr/SKILL.md) | The checks, the title, and the PR this branch ends in |
 | [issue](../issue/SKILL.md) | Opening the issue first, when there is none to branch from |
-| [conventions](../conventions/SKILL.md) | Plain language, security, USA English, user questions |
+| [conventions](../conventions/SKILL.md) | Plain language, security, USA English |
+| [ask](../ask/SKILL.md) | Picker vs lettered list when the type is torn or the tree is dirty |

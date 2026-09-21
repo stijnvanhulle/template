@@ -11,5 +11,4 @@ valid values with `gh label list`, `list_issue_types`, and `list_issue_fields`, 
 type, the labels, and the Priority and Effort fields. For Jira, pick the story, bug, or epic
 template and fill the acceptance criteria.
 
-Report the issue or ticket URL, and the field values you set. Follow the `user-questions` rule
-when the tracker or type is not obvious, instead of guessing.
+Report the issue or ticket URL, and the field values you set. Follow the `ask` skill when the tracker or type is not obvious, instead of guessing.

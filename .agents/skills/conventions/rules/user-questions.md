@@ -1,46 +1,8 @@
 # Asking the user a question
 
-Whenever a task is blocked on information only the user can supply, ask through the picker
-instead of a plain paragraph. This covers a genuine fork (which of two approaches, which
-package, whether to proceed) and a request for missing information (a file path, which
-environment, what to name something). The reader should be able to answer with one tap or one
-character.
+Whenever a task is blocked on information only the user can supply, follow the `ask` skill
+(`.agents/skills/ask/SKILL.md`). That skill picks the tool this session has: `AskUserQuestion`
+in Claude Code, `AskQuestion` in Cursor (IDE and CLI), a lettered list everywhere else.
 
-- In a client with a native multiple-choice tool (`AskUserQuestion` in Claude Code, or the
-  equivalent in Cursor), use it, always, rather than asking in plain prose. It renders as a
-  picker, and the user can still type a free-form answer through `Other` if none of the options
-  fit. For open-ended information with no fixed set of answers, offer your best-guess options
-  (a likely default, a common alternative) and let `Other` carry the real answer, rather than
-  skipping the tool.
-- In a client with no such tool (Codex, a plain terminal, a chat surface without picker
-  support), write the options as a lettered or numbered list in the reply text, and ask the
-  user to answer with the letter or number. `A) ... B) ... C) ...` reads the same whether it
-  renders as a widget or as plain text.
-- Keep each option a real, distinct choice, three or four at most, with the likely answer
-  first. Do not pad a list to hit a count.
-- Batch related questions in one call rather than asking one at a time.
-- The one exception: a secret or credential (an API key, a token, a password) never becomes an
-  option, guessed or otherwise. Ask for those in plain prose and never echo the value back.
-
-Do not guess and report later. If the skill names a stop, stop.
-
-## Skills that stop
-
-Each of these uses the picker (or a lettered list) before it continues:
-
-| Skill | Stop |
-| --- | --- |
-| `backlog` | Tracker when none was given. Then implement / skip / needs more detail per issue |
-| `branch` | `feat` vs `fix` when the type is torn. Carry vs stash when the working tree is dirty |
-| `changeset` | `patch` / `minor` / `major` when the bump is not obvious or no bump was passed |
-| `issue` | GitHub vs Jira when the tracker is not obvious. Bug / Feature / Task when the type is not obvious |
-| `humanizer` | Apply / skip / show more per rewrite, after listing the tells |
-| `deslop` | Apply / skip / show more per finding, after listing them |
-| `pr` | How to test, when the steps cannot be derived from the diff |
-
-The `backlog` skill's per-issue confirmation is the reference example.
-
-## Where this applies
-
-Every skill that stops to ask the user something follows this shape, in every agent this
-template ships for: Claude Code, Cursor, and Codex.
+Do not guess and report later. Do not ask in a plain paragraph when the `ask` skill applies. A
+secret or credential never becomes an option.

@@ -17,7 +17,7 @@ fields in the same pass as the title and body.
 
 The rest of this skill covers GitHub. For Jira, see the section near the end.
 
-When both trackers are possible, or neither is obvious, follow the `user-questions` rule before
+When both trackers are possible, or neither is obvious, follow the `ask` skill before
 writing anything: GitHub, Jira. Do not open a ticket on the wrong tracker and report it as a
 guess.
 
@@ -49,7 +49,7 @@ come from the organization, so read those with the GitHub MCP server's `list_iss
 
 Set the type first: Bug for something that broke or contradicts its documentation, Feature for
 new behavior somebody asked for, Task for work with no user-visible change, such as CI, releases,
-or agent files. When the type is not obvious, follow the `user-questions` rule: Bug, Feature,
+or agent files. When the type is not obvious, follow the `ask` skill: Bug, Feature,
 Task. Do not guess Medium/Medium and move on.
 
 | Field | Options | Pick |
@@ -57,7 +57,7 @@ Task. Do not guess Medium/Medium and move on.
 | Priority | Urgent, High, Medium, Low | Urgent blocks a release or breaks the published package for everyone. High hits users today with no workaround. Medium is the default. Low is a nice-to-have |
 | Effort | High, Medium, Low | Low is one file a reviewer reads in one sitting. Medium spans a few files or needs a test. High needs a design decision or touches a public API |
 
-Stuck on Priority or Effort: follow the `user-questions` rule rather than defaulting to Medium.
+Stuck on Priority or Effort: follow the `ask` skill rather than defaulting to Medium.
 
 ## 5. Create it
 
@@ -108,4 +108,4 @@ the values you set.
 | --- | --- |
 | [pr](../pr/SKILL.md) | The pull request that closes the issue |
 | [humanizer](../humanizer/SKILL.md) | AI tells in the title and body |
-| [conventions](../conventions/SKILL.md) | User questions for tracker and type |
+| [ask](../ask/SKILL.md) | Picker vs lettered list for tracker and type |

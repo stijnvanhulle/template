@@ -123,7 +123,7 @@ result.
 Replace the placeholders with three real steps, from a clean checkout: a reproduction step, the
 next step, and the expected result. Fix steps someone hands you rather than pasting them as-is:
 add the missing prerequisite, order them, name the result. When you cannot derive the steps from
-the diff, follow the `user-questions` rule: offer two or three guessed plans, likely first, and
+the diff, follow the `ask` skill: offer two or three guessed plans, likely first, and
 let `Other` carry the real one. Add a before/after screenshot for a visible change.
 
 ### Impact
@@ -184,3 +184,4 @@ the author decide.
 | [deslop](../deslop/SKILL.md)           | Stripping AI tells and over-engineering from the code in the diff |
 | [humanizer](../humanizer/SKILL.md)     | Stripping AI tells from the prose in the diff                     |
 | [conventions](../conventions/SKILL.md) | Code style, markdown, security, plain language                    |
+| [ask](../ask/SKILL.md)                 | Picker vs lettered list when test steps cannot be derived         |

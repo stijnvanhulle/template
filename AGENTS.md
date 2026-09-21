@@ -105,7 +105,7 @@ folders on demand.
 - [security](.agents/skills/conventions/rules/security.md): Secrets, input validation at trust boundaries, safe shell use.
 - [testing](.agents/skills/conventions/rules/testing.md): Vitest patterns and what to test.
 - [usa-english](.agents/skills/conventions/rules/usa-english.md): Write code, comments, and docs in USA English spellings.
-- [user-questions](.agents/skills/conventions/rules/user-questions.md): Ask the user a question as a short quiz, native picker where one exists and a lettered list otherwise.
+- [user-questions](.agents/skills/conventions/rules/user-questions.md): Follow the `ask` skill. `AskUserQuestion` in Claude Code, `AskQuestion` in Cursor, a lettered list everywhere else.
 
 <skills>
 
@@ -113,6 +113,7 @@ folders on demand.
 
 You have new skills. If any skill might be relevant then you MUST read it.
 
+- [ask](.agents/skills/ask/SKILL.md) - Ask the user a multiple-choice question through the native picker for this client. Claude Code and Claude Desktop use AskUserQuestion, Cursor IDE and Cursor CLI (`agent`) use AskQuestion, Codex and other terminals use a lettered list. Use whenever a task is blocked on information only the user can supply, instead of guessing or asking in prose.
 - [backlog](.agents/skills/backlog/SKILL.md) - Work through the latest open issues one by one. Invoke as /backlog <source> [count], where source is github, clickup, or jira and count defaults to 10. Asks a clarifying question per issue before touching code, then implements each confirmed issue in its own git worktree with its own subagent. Use when asked to work through the backlog, triage and implement open issues, or clear out recent tickets.
 - [branch](.agents/skills/branch/SKILL.md) - Create a Conventional Commit branch from the issue it belongs to. Reads a GitHub issue, a ClickUp task, or a Jira key, picks the type off its labels, and cuts the branch from an up-to-date main. Use when starting work on an issue or a ticket, or when asked what to call a branch.
 - [changelog](.agents/skills/changelog/SKILL.md) - Creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes.

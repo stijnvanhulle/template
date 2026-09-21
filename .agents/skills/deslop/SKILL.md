@@ -60,10 +60,8 @@ and filler openers. Code with no prose changes skips this pass.
 List every finding from all three passes: file, the rung or tell it violates, and the proposed
 fix. Do not edit anything yet.
 
-Follow the `user-questions` rule to confirm before applying: one `AskUserQuestion` batch in a
-client that has it (apply / skip / show more, per finding or per closely related group), a
-lettered list in a client that does not. Skipping here costs nothing; skipping after an edit
-costs a revert.
+Follow the `ask` skill to confirm before applying: apply / skip / show more, per finding or per
+closely related group. Skipping here costs nothing; skipping after an edit costs a revert.
 
 ## 5. Apply only what is confirmed
 
@@ -81,4 +79,4 @@ costs a revert.
 | ------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | [humanizer](../humanizer/SKILL.md)                            | The full pattern list step 3 runs, and prose review outside a code diff     |
 | [code-style rule](../conventions/rules/code-style.md)         | The house style this skill enforces on code, dependencies, and abstractions |
-| [user-questions rule](../conventions/rules/user-questions.md) | How the confirm step renders per client                                     |
+| [ask](../ask/SKILL.md)                                         | How the confirm step renders per client                                     |

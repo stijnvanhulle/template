@@ -10,7 +10,8 @@ This skill ships the rules the template repo keeps in
 project, the same files load on demand from here instead.
 
 `plain-language`, `security`, `usa-english`, and `user-questions` apply to every request. The
-rest carry `paths:` frontmatter and load when you open a matching file.
+`user-questions` rule points at the `ask` skill for the picker. The rest carry `paths:`
+frontmatter and load when you open a matching file.
 
 Read the file that matches what you are doing:
 
@@ -26,8 +27,8 @@ Read the file that matches what you are doing:
 - [`rules/testing.md`](./rules/testing.md) for Vitest patterns and what to test.
 - [`rules/usa-english.md`](./rules/usa-english.md) for the USA English spelling
   convention used across code, comments, and docs.
-- [`rules/user-questions.md`](./rules/user-questions.md) for asking the user a question as a
-  native picker (`AskUserQuestion`) where one exists and a lettered list otherwise.
+- [`rules/user-questions.md`](./rules/user-questions.md) to load the `ask` skill when a task is
+  blocked on information only the user can supply.
 
 If a rule conflicts with a project-specific instruction in `AGENTS.md` or
 `CLAUDE.md`, the project instruction wins.

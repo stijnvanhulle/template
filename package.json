@@ -45,7 +45,7 @@
     "taze": "^21.3.0",
     "ts-node": "^10.9.2",
     "tsdown": "catalog:",
-    "turbo": "^2.11.7",
+    "turbo": "^2.11.10",
     "typescript": "catalog:",
     "vitest": "catalog:"
   },

@@ -11,4 +11,3 @@ pnpm-lock.yaml linguist-generated
 *.gif binary
 *.webp binary
 *.ico binary
-*.svg -diff linguist-generated

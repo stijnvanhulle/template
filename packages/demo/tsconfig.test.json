@@ -7,8 +7,9 @@
     "emitDeclarationOnly": true,
     "noEmit": false,
     "outDir": ".tsbuild",
+    "rootDir": "../..",
     "types": ["bun-types", "../../reset.d.ts", "vitest/importMeta"]
   },
-  "include": ["src/**/*.test.ts", "src/**/*.bench.ts", "tsdown.config.ts", "vitest.config.ts"],
+  "include": ["src/**/*.test.ts", "src/**/*.bench.ts", "tsdown.config.ts", "vitest.config.ts", "../../configs/tsdown.ts"],
   "references": [{ "path": "./tsconfig.src.json" }, { "path": "../core/tsconfig.src.json" }]
 }

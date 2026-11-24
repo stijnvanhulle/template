@@ -1,12 +1,12 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["tsconfig.json"],
+  "globalDependencies": ["tsconfig.json", "configs/base.json", "configs/bundler.json"],
   "globalEnv": ["NODE_ENV"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", "*.d.ts", "*.d.cts", ".output/**"],
-      "inputs": ["src/**/*.ts", "src/**/*.tsx", "tsdown.config.ts", "package.json", "tsconfig.json"]
+      "inputs": ["src/**/*.ts", "src/**/*.tsx", "tsdown.config.ts", "$TURBO_ROOT$/configs/tsdown.ts", "package.json", "tsconfig.json"]
     },
     "clean": {
       "dependsOn": ["^clean"],

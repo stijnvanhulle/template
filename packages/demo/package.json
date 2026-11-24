@@ -29,7 +29,6 @@
     "clean": "rm -rf ./dist",
     "release": "pnpm publish --no-git-checks",
     "start": "tsdown --watch",
-    "test": "vitest --passWithNoTests",
     "typecheck": "tsc -b"
   },
   "dependencies": {

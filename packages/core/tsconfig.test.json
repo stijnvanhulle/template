@@ -10,6 +10,6 @@
     "rootDir": "../..",
     "types": ["bun-types", "../../reset.d.ts", "vitest/importMeta"]
   },
-  "include": ["src/**/*.test.ts", "src/**/*.bench.ts", "tsdown.config.ts", "vitest.config.ts", "../../configs/tsdown.ts"],
+  "include": ["src/**/*.test.ts", "src/**/*.bench.ts", "tsdown.config.ts", "../../configs/tsdown.ts"],
   "references": [{ "path": "./tsconfig.src.json" }]
 }
